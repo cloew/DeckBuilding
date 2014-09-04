@@ -12,6 +12,11 @@ class Card:
         self.activatableEffects = None
         self.triggerableEffects = None
         
+    def play(self, owner):
+        """ Play the card and perform any effects """
+        for effect in self.playEffects:
+            effect.perform(owner)
+        
     def __repr__(self):
         """ Return the String Representation of the card """
         return self.name
