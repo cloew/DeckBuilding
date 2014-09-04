@@ -9,4 +9,4 @@ class PlayCard:
         
     def perform(self):
         """ Perform the command """
-        self.card.play(self.owner)
+        self.owner.playCard(self.card)
