@@ -14,6 +14,10 @@ class Turn:
         card.play(self)
         self.playedCards.append(card)
         
+    def draw(self, count=1):
+        """ Draw the given number of cards """
+        self.player.draw(count=count)
+        
     def gainPower(self, power):
         """ Gain the appropriate amount of power """
         self.power += power

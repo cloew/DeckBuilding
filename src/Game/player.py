@@ -11,3 +11,8 @@ class Player:
         self.deck.shuffle()
         self.hand = self.deck.draw(count=self.HAND_SIZE)
         self.ongoing = None
+        
+    def draw(self, count=1):
+        """ Draw the given number of cards """
+        newCards = self.deck.draw(count=count)
+        self.hand += newCards
