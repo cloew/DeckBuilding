@@ -9,5 +9,8 @@ punch = Card("Punch", playEffects=[GainPower(1)])
 kidFlash = Card("Kid Flash", playEffects=[Draw(count=1)])
 
 StartingDeckInitializer = DeckInitializer()
-StartingDeckInitializer.addItem(kidFlash, count=3)
+StartingDeckInitializer.addItem(vulnerability, count=3)
 StartingDeckInitializer.addItem(punch, count=7)
+
+MainDeckInitializer = DeckInitializer()
+MainDeckInitializer.addItem(kidFlash, count=20)
