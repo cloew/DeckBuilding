@@ -23,8 +23,12 @@ class Turn:
         self.player.gainCard(card)
         
     def gainPower(self, power):
-        """ Gain the appropriate amount of power """
+        """ Gain the proper amount of power """
         self.power += power
+        
+    def spendPower(self, power):
+        """ Spend the provided amount of power """
+        self.power -= power
         
     def __repr__(self):
         """ Return the String Representation of the Turn """

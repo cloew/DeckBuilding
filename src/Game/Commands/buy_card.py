@@ -10,5 +10,6 @@ class BuyCard:
         
     def perform(self):
         """ Perform the command """
+        self.owner.spendPower(self.card.calculateCost())
         self.lineUp.remove(self.card)
         self.owner.gainCard(self.card)
