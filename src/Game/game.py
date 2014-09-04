@@ -22,6 +22,21 @@ class Game:
         self.destroyedPile = None
         
         self.turnCoroutine = self.pickTurn()
+        self.nextTurn()
+        
+    def endTurn(self):
+        """ End the turn """
+        self.refillLineUp()
+        self.nextTurn()
+        
+    def refillLineUp(self):
+        """ Refill the Line Up """
+        slotsToRefill = self.LINE_UP_SIZE - len(self.lineUp)
+        if slotsToRefill > 0:
+            self.lineUp += self.mainDeck.draw(count=slotsToRefill)
+            
+    def nextTurn(self):
+        """ Set the current turn to be the next turn """
         self.currentTurn = self.turnCoroutine.next()
         
     def pickTurn(self):
