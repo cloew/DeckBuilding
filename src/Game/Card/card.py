@@ -11,3 +11,7 @@ class Card:
         self.playEffects = playEffects
         self.activatableEffects = None
         self.triggerableEffects = None
+        
+    def __repr__(self):
+        """ Return the String Representation of the card """
+        return self.name
