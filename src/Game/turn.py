@@ -10,3 +10,7 @@ class Turn:
     def gainPower(self, power):
         """ Gain the appropriate amount of power """
         self.power += power
+        
+    def __repr__(self):
+        """ Return the String Representation of the Turn """
+        return "<Turn: Power:{0}>".format(self.power)
