@@ -16,3 +16,7 @@ class Player:
         """ Draw the given number of cards """
         newCards = self.deck.draw(count=count)
         self.hand += newCards
+        
+    def gainCard(self, card):
+        """ Gain the provided card """
+        self.deck.discard(card)
