@@ -1,4 +1,5 @@
 from player import Player
+from turn import Turn
 
 class Game:
     """ Represents a game of the Deck Building Game """
@@ -14,3 +15,11 @@ class Game:
         self.weaknessDeck = None
         self.kickDeck = None
         self.destroyedPile = None
+        
+        self.turnCoroutine = self.pickTurn()
+        self.currentTurn = self.turnCoroutine.next()
+        
+    def pickTurn(self):
+        """ Yields the turn for the proper player """
+        for player in self.players:
+            yield Turn(player)
