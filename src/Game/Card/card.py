@@ -2,10 +2,13 @@
 class Card:
     """ Represents a Card in the Deck Building Game """
     
-    def __init__(self, name, playEffects=[]):
+    def __init__(self, name, costCalculator=None, playEffects=[]):
         """ Initialize the Card """
         self.name = name
-        self.costCalculator = None
+        
+        self.costCalculator = costCalculator
+        self.calculateCost = self.costCalculator.calculateCost
+        
         self.victoryPointsCalculator = None
         
         self.playEffects = playEffects
@@ -19,4 +22,4 @@ class Card:
         
     def __repr__(self):
         """ Return the String Representation of the card """
-        return self.name
+        return "{0}:{1}".format(self.name, self.calculateCost())
