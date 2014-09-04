@@ -8,5 +8,6 @@ class Player:
     def __init__(self):
         """ Initialize a Player """
         self.deck = DeckWithDiscardPile(deck_initializer=StartingDeckInitializer, reshuffle=True)
+        self.deck.shuffle()
         self.hand = self.deck.draw(count=self.HAND_SIZE)
         self.ongoing = None
