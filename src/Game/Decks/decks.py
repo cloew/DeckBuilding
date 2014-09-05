@@ -7,14 +7,14 @@ from Game.Effects.gain_power import GainPower
 
 from kao_deck.deck_initializer import DeckInitializer
 
-vulnerability = CardFactory.loadCard("Vulnerability") # Card("Vulnerability", costCalculator=FixedCost(0))
-punch = CardFactory.loadCard("Punch") #Card("Punch", costCalculator=FixedCost(0), playEffects=[GainPower(1)])
-kick = Card("Kick", costCalculator=FixedCost(3), playEffects=[GainPower(2)])
-kidFlash = Card("Kid Flash", costCalculator=FixedCost(2), playEffects=[Draw(count=1)])
+vulnerability = CardFactory.loadCard("Vulnerability")
+punch = CardFactory.loadCard("Punch")
+kick = CardFactory.loadCard("Kick")
+kidFlash = CardFactory.loadCard("Kid Flash")
 
 StartingDeckInitializer = DeckInitializer()
-StartingDeckInitializer.addItem(vulnerability, count=2)
-StartingDeckInitializer.addItem(punch, count=8)
+StartingDeckInitializer.addItem(kidFlash, count=3)
+StartingDeckInitializer.addItem(punch, count=7)
 
 KickDeckInitializer = DeckInitializer()
 KickDeckInitializer.addItem(kick, count=30)
