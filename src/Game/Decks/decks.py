@@ -1,23 +1,25 @@
-from Game.Card.card import Card
-from Game.Card.card_factory import CardFactory
-from Game.Card.Cost.fixed_cost import FixedCost
+# from Game.Card.card import Card
+# from Game.Card.card_factory import CardFactory
+# from Game.Card.Cost.fixed_cost import FixedCost
 
-from Game.Effects.draw import Draw
-from Game.Effects.gain_power import GainPower
+from Game.Decks.deck_factory import DeckFactory
 
-from kao_deck.deck_initializer import DeckInitializer
+# from Game.Effects.draw import Draw
+# from Game.Effects.gain_power import GainPower
 
-vulnerability = CardFactory.loadCard("Vulnerability")
-punch = CardFactory.loadCard("Punch")
-kick = CardFactory.loadCard("Kick")
-kidFlash = CardFactory.loadCard("Kid Flash")
+# from kao_deck.deck_initializer import DeckInitializer
 
-StartingDeckInitializer = DeckInitializer()
-StartingDeckInitializer.addItem(kidFlash, count=3)
-StartingDeckInitializer.addItem(punch, count=7)
+# vulnerability = CardFactory.loadCard("Vulnerability")
+# punch = CardFactory.loadCard("Punch")
+# kick = CardFactory.loadCard("Kick")
+# kidFlash = CardFactory.loadCard("Kid Flash")
 
-KickDeckInitializer = DeckInitializer()
-KickDeckInitializer.addItem(kick, count=30)
+StartingDeckInitializer = DeckFactory.loadDeck("Starting")
+# StartingDeckInitializer.addItem(kidFlash, count=3)
+# StartingDeckInitializer.addItem(punch, count=7)
 
-MainDeckInitializer = DeckInitializer()
-MainDeckInitializer.addItem(kidFlash, count=20)
+KickDeckInitializer = DeckFactory.loadDeck("Kick")
+# KickDeckInitializer.addItem(kick, count=30)
+
+MainDeckInitializer = DeckFactory.loadDeck("Deck 1")
+# MainDeckInitializer.addItem(kidFlash, count=20)

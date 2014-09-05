@@ -1,0 +1,19 @@
+[
+{
+    "name":"Deck 1",
+    "cards":[{"name":"Kid Flash",
+              "count":20}]
+},
+{
+    "name":"Kick",
+    "cards":[{"name":"Kick",
+              "count":30}]
+},
+{
+    "name":"Starting",
+    "cards":[{"name":"Punch",
+              "count":7},
+             {"name":"Vulnerability",
+              "count":3}]
+}
+]
