@@ -3,10 +3,10 @@ class CardWrapper:
     """ A Wrapper for a Card """
     
     def __init__(self, card):
-        """ Initialize the Game Wrapper """
+        """ Initialize the Card Wrapper """
         self.card = card
         
     def toJSON(self):
-        """ Return the game as a JSON Dictionary """
+        """ Return the card as a JSON Dictionary """
         return {'name':self.card.name,
                 'cost':self.card.calculateCost()}

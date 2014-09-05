@@ -1,6 +1,7 @@
 from games import games
 
 from card_wrapper import CardWrapper
+from turn_wrapper import TurnWrapper
 
 class GameWrapper:
     """ A Wrapper for a Game that handles its conversion to and from JSON """
@@ -17,4 +18,5 @@ class GameWrapper:
         lineUpJSON = [CardWrapper(card).toJSON() for card in self.game.lineUp]
         
         return {'game':{'id':self.id,
-                        'lineUp':lineUpJSON}}
+                        'lineUp':lineUpJSON,
+                        'turn':TurnWrapper(self.game.currentTurn).toJSON()}}
