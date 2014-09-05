@@ -1,7 +1,9 @@
 from games import games
 
+from card_wrapper import CardWrapper
+
 class GameWrapper:
-    """ A Wrapper for a Word Guess Game that handles its conversion to and from JSON """
+    """ A Wrapper for a Game that handles its conversion to and from JSON """
     
     def __init__(self, game=None, id=None):
         """ Initialize the Game Wrapper """
@@ -12,4 +14,7 @@ class GameWrapper:
         
     def toJSON(self):
         """ Return the game as a JSON Dictionary """
-        return {'game':{'id':self.id}}
+        lineUpJSON = [CardWrapper(card).toJSON() for card in self.game.lineUp]
+        
+        return {'game':{'id':self.id,
+                        'lineUp':lineUpJSON}}
