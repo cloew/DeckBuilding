@@ -8,7 +8,8 @@ def StartNewGame():
     global games
     global id
     
-    game = Game(id)
-    games[id] = game
+    game = Game(1)
+    currentId = id
+    games[currentId] = game
     id += 1
-    return game
+    return currentId

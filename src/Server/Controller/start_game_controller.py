@@ -6,5 +6,5 @@ class StartGameController(JSONController):
     """ Controller to handle starting a new Game via JSON """
     
     def performWithJSON(self):
-        game = StartNewGame()
-        return GameWrapper(game=game).toJSON(), 201
+        id = StartNewGame()
+        return GameWrapper(id=id).toJSON(), 201
