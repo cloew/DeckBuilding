@@ -1,5 +1,5 @@
-from Server.games import StartNewGame
-from Server.game_wrapper import GameWrapper
+from Server.Game.games import StartNewGame
+from Server.Game.game_wrapper import GameWrapper
 from kao_flask.controllers.json_controller import JSONController
 
 class StartGameController(JSONController):
