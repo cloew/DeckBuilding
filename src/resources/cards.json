@@ -1,0 +1,12 @@
+[
+{
+    "name":"Punch",
+    "cost":{"type":"FIXED",
+            "cost":0}
+},
+{
+    "name":"Vulnerability",
+    "cost":{"type":"FIXED",
+            "cost":0}
+}
+]
