@@ -1,0 +1,44 @@
+<style>
+    .centered {
+        margin-left: auto;
+        margin-right: auto;
+        width: 600px;
+    }
+    .kaotable {
+        height: 100%;
+        display:table;
+        vertical-align:middle;
+    }
+    .kaocell {
+        display:table-cell;
+        vertical-align:middle;
+        width: 200px;
+    }
+    .bordered {
+        border-style: solid;
+        border-color: #000;
+        border-width: 1px;
+    }
+</style>
+
+<div style="float:right">
+    <h2>Round: {{game.wordLength-1}}</h2>
+    <h2>Word Length: {{game.wordLength}}</h2>
+    <h2>Points: {{game.points}}</h2>
+    <h2>Tries Left: {{game.triesLeft}}</h2>
+</div>
+
+<div class="centered kaotable">
+    <div class="kaocell">
+        <input maxlength="{{game.wordLength}}" ng-model="guessString" ng-change="setGuess(guessString);" />
+        <button ng-click="guess()" ng-show="game.canGuess">Guess</button>
+        <button ng-click="nextRound()" ng-show="game.hasNextRound && game.roundComplete">Start Next Round</button>
+        <div style="width:200px;display:inline;">
+            <div ng-repeat="guess in game.guesses" class="bordered">
+                <div ng-repeat="charGuess in guess.results">
+                    <p>{{charGuess.guess}}: {{charGuess.result}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
