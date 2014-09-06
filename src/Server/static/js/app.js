@@ -27,5 +27,5 @@ angular.module('DeckBuilding', ['ngRoute', 'DeckBuildingControllers'])
       return {
           restrict: 'E',
           replace: 'true',
-          template: '<div><card style="cursor:pointer" ng-click="playCard(card)"></card></div>'
+          template: '<div><card style="cursor:pointer" ng-click="playCard($index)"></card></div>'
       }});

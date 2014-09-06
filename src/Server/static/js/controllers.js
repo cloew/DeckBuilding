@@ -19,7 +19,11 @@ controllers.controller('GameController', function($scope, $http, $routeParams) {
         }).error(function(error) {
             alert(error);
         });
-    $scope.playCard = function(card) {
-        alert(card.name);
+    $scope.playCard = function(index) {
+        $http.post('/api/game/'+$routeParams.gameId+'/play', {'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+            $scope.game = data['game'];
+        }).error(function(error) {
+            alert(error);
+        });
     };
 });
