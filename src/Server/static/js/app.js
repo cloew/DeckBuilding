@@ -28,4 +28,10 @@ angular.module('DeckBuilding', ['ngRoute', 'DeckBuildingControllers'])
           restrict: 'E',
           replace: 'true',
           template: '<div><card style="cursor:pointer" ng-click="playCard($index)"></card></div>'
+      }})
+      .directive('lineUpCard', function() {
+      return {
+          restrict: 'E',
+          replace: 'true',
+          template: '<div><card style="cursor:pointer" ng-click="buyCard($index, '+"'"+'lineUp'+"'"+')"></card></div>'
       }});

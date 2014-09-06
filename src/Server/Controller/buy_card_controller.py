@@ -1,4 +1,4 @@
-from Game.Commands.play_card import PlayCard
+from Game.Commands.buy_card import BuyCard
 from Server.Game.game_wrapper import GameWrapper
 
 from kao_flask.controllers.json_controller import JSONController
