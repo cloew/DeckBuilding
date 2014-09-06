@@ -19,4 +19,7 @@ controllers.controller('GameController', function($scope, $http, $routeParams) {
         }).error(function(error) {
             alert(error);
         });
+    $scope.playCard = function(card) {
+        alert(card.name);
+    };
 });

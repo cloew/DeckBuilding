@@ -22,4 +22,10 @@ angular.module('DeckBuilding', ['ngRoute', 'DeckBuildingControllers'])
           restrict: 'E',
           replace: 'true',
           template: '<span>{{card.name}}|{{card.cost}}</span>'
+      }})
+      .directive('handCard', function() {
+      return {
+          restrict: 'E',
+          replace: 'true',
+          template: '<div><card style="cursor:pointer" ng-click="playCard(card)"></card></div>'
       }});

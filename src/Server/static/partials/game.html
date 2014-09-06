@@ -9,7 +9,7 @@
 <div>
     <h2>Power: {{game.turn.power}}</h2>
     <h2>Hand</h2>
-    <card ng-repeat="card in game.turn.hand"></card>
+    <hand-card ng-repeat="card in game.turn.hand"></hand-card>
     <h2>Played</h2>
     <card ng-repeat="card in game.turn.played"></card>
 </div>
