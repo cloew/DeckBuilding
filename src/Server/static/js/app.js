@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('WordGuess', ['ngRoute', 'WordGuessControllers'])
+angular.module('DeckBuilding', ['ngRoute', 'DeckBuildingControllers'])
 	.config(['$routeProvider',
 		function($routeProvider) {
 		$routeProvider
@@ -17,9 +17,9 @@ angular.module('WordGuess', ['ngRoute', 'WordGuessControllers'])
 		})
 		;
 	}])
-    .directive('guessInput', function() {
+    .directive('card', function() {
       return {
           restrict: 'E',
           replace: 'true',
-          template: '<input style="width: 15px;" ng-model="guess.guess"></input>'
+          template: '<span>{{card.name}}|{{card.cost}}</span>'
       }});
