@@ -1,6 +1,9 @@
+from Game.Effects.conditional_effect import ConditionalEffect
 from Game.Effects.draw import Draw
 from Game.Effects.gain_power import GainPower
 from Game.Effects.ongoing import Ongoing
+
+from Game.Effects.Conditions.condition_factory import ConditionFactory
 
 class EffectFactory:
     """ Factory to create Game Effects """
@@ -16,7 +19,11 @@ class EffectFactory:
         """ Load the effect in the given JSON """
         effectType = effectJson['type']
         
-        if effectType == "DRAW":
+        if effectType == "CONDITIONAL":
+            condition = ConditionFactory.loadCondition(effectJson["condition"])
+            effect = EffectFactory.loadEffect(effectJson["effect"])
+            return ConditionalEffect(condition, effect)
+        elif effectType == "DRAW":
             return Draw(effectJson["count"])
         elif effectType == "GAIN_POWER":
             return GainPower(effectJson["power"])

@@ -1,6 +1,7 @@
 [
 {
     "name":"Kick",
+    "type":"Super Power",
     "cost":{"type":"FIXED",
             "cost":3},
     "playEffects":[{"type":"GAIN_POWER",
@@ -8,6 +9,7 @@
 },
 {
     "name":"Kid Flash",
+    "type":"Hero",
     "cost":{"type":"FIXED",
             "cost":2},
     "playEffects":[{"type":"DRAW",
@@ -15,6 +17,7 @@
 },
 {
     "name":"Punch",
+    "type":"Starter",
     "cost":{"type":"FIXED",
             "cost":0},
     "playEffects":[{"type":"GAIN_POWER",
@@ -22,6 +25,7 @@
 },
 {
     "name":"Raven",
+    "type":"Hero",
     "cost":{"type":"FIXED",
             "cost":3},
     "playEffects":[{"type":"GAIN_POWER",
@@ -30,13 +34,28 @@
                     "count":1}]
 },
 {
+    "name":"Talon",
+    "type":"Villain",
+    "cost":{"type":"FIXED",
+            "cost":1},
+    "playEffects":[{"type":"CONDITIONAL",
+                    "condition":{"type":"MATCHING",
+                                 "field":"cardType",
+                                 "values":["Starter"],
+                                 "sourceType":"PLAYED"},
+                    "effect":{"type":"GAIN_POWER",
+                              "power":2}}]
+},
+{
     "name":"The Rot",
+    "type":"Location",
     "cost":{"type":"FIXED",
             "cost":4},
     "playEffects":[{"type":"ONGOING"}]
 },
 {
     "name":"Vulnerability",
+    "type":"Starter",
     "cost":{"type":"FIXED",
             "cost":0}
 }
