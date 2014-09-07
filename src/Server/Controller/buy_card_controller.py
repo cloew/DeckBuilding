@@ -17,4 +17,4 @@ class BuyCardController(JSONController):
             card = game.game.lineUp.cards[cardIndex]
         
         BuyCard(card, game.game.currentTurn, source).perform()
-        return GameWrapper(id=gameId).toJSON()
+        return game.toJSON()

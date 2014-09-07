@@ -33,4 +33,11 @@ controllers.controller('GameController', function($scope, $http, $routeParams) {
             alert(error);
         });
     };
+    $scope.endTurn = function(index) {
+        $http.post('/api/game/'+$routeParams.gameId+'/endturn').success(function(data) {
+            $scope.game = data['game'];
+        }).error(function(error) {
+            alert(error);
+        });
+    };
 });
