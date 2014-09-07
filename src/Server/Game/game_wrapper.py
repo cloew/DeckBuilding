@@ -15,7 +15,7 @@ class GameWrapper:
         
     def toJSON(self):
         """ Return the game as a JSON Dictionary """
-        lineUpJSON = [CardWrapper(card).toJSON() for card in self.game.lineUp]
+        lineUpJSON = [CardWrapper(card).toJSON() for card in self.game.lineUp.cards]
         
         return {'game':{'id':self.id,
                         'lineUp':lineUpJSON,

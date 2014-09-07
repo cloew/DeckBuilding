@@ -1,7 +1,9 @@
+from line_up import LineUp
 from player import Player
 from turn import Turn
 
 from Game.Decks.decks import MainDeckInitializer, KickDeckInitializer
+
 from kao_deck.deck import Deck
 
 class Game:
@@ -16,7 +18,7 @@ class Game:
             
         self.mainDeck = Deck(deck_initializer=MainDeckInitializer)
         self.mainDeck.shuffle()
-        self.lineUp = self.mainDeck.draw(count=self.LINE_UP_SIZE)
+        self.lineUp = LineUp(self.mainDeck)
         self.weaknessDeck = None
         self.kickDeck = Deck(deck_initializer=KickDeckInitializer)
         self.destroyedPile = None
