@@ -18,7 +18,7 @@ class Card:
     def play(self, owner):
         """ Play the card and perform any effects """
         for effect in self.playEffects:
-            effect.perform(owner)
+            effect.perform(owner, self)
         
     def __repr__(self):
         """ Return the String Representation of the card """

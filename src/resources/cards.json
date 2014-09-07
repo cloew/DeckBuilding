@@ -30,6 +30,12 @@
                     "count":1}]
 },
 {
+    "name":"Raven",
+    "cost":{"type":"FIXED",
+            "cost":3},
+    "playEffects":[{"type":"ONGOING"}]
+},
+{
     "name":"Vulnerability",
     "cost":{"type":"FIXED",
             "cost":0}

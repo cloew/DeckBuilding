@@ -14,6 +14,10 @@ class Turn:
         card.play(self)
         self.playedCards.append(card)
         
+    def addOngoing(self, card):
+        """ Add the given card as an ongoing effect """
+        self.player.addOngoing(card)
+        
     def draw(self, count=1):
         """ Draw the given number of cards """
         self.player.draw(count=count)

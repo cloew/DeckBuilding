@@ -10,7 +10,11 @@ class Player:
         self.deck = DeckWithDiscardPile(deck_initializer=StartingDeckInitializer, reshuffle=True)
         self.deck.shuffle()
         self.drawHand()
-        self.ongoing = None
+        self.ongoing = []
+        
+    def addOngoing(self, card):
+        """ Add the given card as an ongoing effect """
+        self.ongoing.append(card)
         
     def drawHand(self):
         """ Draw a new hand """

@@ -6,7 +6,7 @@ class GainPower:
         """ Initialize the Effect with the power to gain """
         self.power = power
         
-    def perform(self, owner):
+    def perform(self, owner, card):
         """ Perform the Game Effect """
         owner.gainPower(self.power)
         # Will probably return some kind of message object that says power was gained and by what
