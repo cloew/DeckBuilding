@@ -21,6 +21,15 @@
                     "power":1}]
 },
 {
+    "name":"Raven",
+    "cost":{"type":"FIXED",
+            "cost":3},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":1},
+                   {"type":"DRAW",
+                    "count":1}]
+},
+{
     "name":"Vulnerability",
     "cost":{"type":"FIXED",
             "cost":0}
