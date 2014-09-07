@@ -22,6 +22,8 @@ class CardFactory:
             name = cardJson["name"]
             cost = cardJson["cost"]["cost"]
             return Card(name, costCalculator=FixedCost(cost), playEffects=self.loadPlayEffects(cardJson))
+        else:
+            print "Unable to load Card:", cardName
         return None
         
     def findCardJson(self, cardName):

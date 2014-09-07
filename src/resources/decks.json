@@ -13,7 +13,9 @@
     "name":"Starting",
     "cards":[{"name":"Punch",
               "count":7},
+             {"name":"The Rot",
+              "count":1},
              {"name":"Vulnerability",
-              "count":3}]
+              "count":2}]
 }
 ]

@@ -1,5 +1,6 @@
 from Game.Effects.draw import Draw
 from Game.Effects.gain_power import GainPower
+from Game.Effects.ongoing import Ongoing
 
 class EffectFactory:
     """ Factory to create Game Effects """
@@ -19,6 +20,8 @@ class EffectFactory:
             return Draw(effectJson["count"])
         elif effectType == "GAIN_POWER":
             return GainPower(effectJson["power"])
+        elif effectType == "ONGOING":
+            return Ongoing()
         return None
         
 EffectFactory = EffectFactory()

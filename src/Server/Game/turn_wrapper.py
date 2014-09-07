@@ -11,7 +11,9 @@ class TurnWrapper:
         """ Return the turn as a JSON Dictionary """
         handJSON = [CardWrapper(card).toJSON() for card in self.turn.player.hand]
         playedJSON = [CardWrapper(card).toJSON() for card in self.turn.playedCards]
+        ongoingJSON = [CardWrapper(card).toJSON() for card in self.turn.player.ongoing]
         
         return {'hand':handJSON,
                 'played':playedJSON,
+                'ongoing':ongoingJSON,
                 'power':self.turn.power}

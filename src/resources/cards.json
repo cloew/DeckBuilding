@@ -30,9 +30,9 @@
                     "count":1}]
 },
 {
-    "name":"Raven",
+    "name":"The Rot",
     "cost":{"type":"FIXED",
-            "cost":3},
+            "cost":4},
     "playEffects":[{"type":"ONGOING"}]
 },
 {
