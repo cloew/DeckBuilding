@@ -30,6 +30,12 @@ class Turn:
         """ Spend the provided amount of power """
         self.power -= power
         
+    def cleanup(self):
+        """ Cleanup the turn """
+        self.player.deck.discardAll(self.playedCards)
+        self.player.deck.discardAll(self.player.hand)
+        self.player.drawHand()
+        
     def __repr__(self):
         """ Return the String Representation of the Turn """
         return "<Turn: Power:{0}|Played:{1}>".format(self.power, self.playedCards)

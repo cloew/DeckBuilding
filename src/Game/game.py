@@ -28,6 +28,7 @@ class Game:
         
     def endTurn(self):
         """ End the turn """
+        self.currentTurn.cleanup()
         self.lineUp.refill()
         self.nextTurn()
             
