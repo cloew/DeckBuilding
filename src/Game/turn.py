@@ -2,9 +2,10 @@
 class Turn:
     """ Represents a turn in the game """
     
-    def __init__(self, player):
+    def __init__(self, player, game):
         """ Initialize the Turn """
         self.player = player
+        self.game = game
         self.power = 0
         self.playedCards = []
         self.cleanupEffects = []
@@ -12,7 +13,7 @@ class Turn:
     def playCard(self, card):
         """ Play the provided card """
         self.player.hand.remove(card)
-        card.play(self)
+        card.play(self, self.game)
         self.playedCards.append(card)
         
     def addOngoing(self, card):

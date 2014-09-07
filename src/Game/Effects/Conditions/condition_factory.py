@@ -8,3 +8,5 @@ class ConditionFactory:
         if conditionJSON["type"] == "MATCHING":
             return Matching(conditionJSON["field"], conditionJSON["values"], conditionJSON["sourceType"])
         return None
+        
+ConditionFactory = ConditionFactory()

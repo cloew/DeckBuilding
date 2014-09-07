@@ -40,7 +40,7 @@ class Game:
         """ Yields the turn for the proper player """
         while True:
             for player in self.players:
-                yield Turn(player)
+                yield Turn(player, self)
             
     def __repr__(self):
         """ Return the String Representation of the Game """

@@ -20,8 +20,9 @@ class CardFactory:
         cardJson = self.findCardJson(cardName)
         if cardJson is not None:
             name = cardJson["name"]
+            cardType = cardJson["type"]
             cost = cardJson["cost"]["cost"]
-            return Card(name, costCalculator=FixedCost(cost), playEffects=self.loadPlayEffects(cardJson))
+            return Card(name, cardType, costCalculator=FixedCost(cost), playEffects=self.loadPlayEffects(cardJson))
         else:
             print "Unable to load Card:", cardName
         return None

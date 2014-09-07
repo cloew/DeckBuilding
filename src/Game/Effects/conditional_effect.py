@@ -10,4 +10,4 @@ class ConditionalEffect:
     def perform(self, owner, card, game):
         """ Perform the Game Effect """
         if self.condition.evaluate(game):
-            self.effect.peform(owner, card, game)
+            self.effect.perform(owner, card, game)
