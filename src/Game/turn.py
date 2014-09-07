@@ -7,6 +7,7 @@ class Turn:
         self.player = player
         self.power = 0
         self.playedCards = []
+        self.cleanupEffects = []
         
     def playCard(self, card):
         """ Play the provided card """
@@ -36,6 +37,9 @@ class Turn:
         
     def cleanup(self):
         """ Cleanup the turn """
+        for effect in self.cleanupEffects:
+            effect.perform(self)
+        
         self.player.deck.discardAll(self.playedCards)
         self.player.deck.discardAll(self.player.hand)
         self.player.drawHand()
