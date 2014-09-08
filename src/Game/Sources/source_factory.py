@@ -4,7 +4,9 @@ class SourceFactory:
     
     def getSource(self, sourceType, game, event=None):
         """ Return the source for the given source tyoe and game """
-        if sourceType == "EVENT":
+        if sourceType == "DISCARD_PILE":
+            return game.currentTurn.player.discardPile
+        elif sourceType == "EVENT":
             return event
         elif sourceType == "LINE_UP":
             return game.lineUp

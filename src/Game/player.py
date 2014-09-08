@@ -29,3 +29,8 @@ class Player:
     def gainCard(self, card):
         """ Gain the provided card """
         self.deck.discard(card)
+        
+    @property
+    def discardPile(self):
+        """ Return the Deck's Discard Pile """
+        return self.deck.discardPile
