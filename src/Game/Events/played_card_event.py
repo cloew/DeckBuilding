@@ -11,4 +11,8 @@ class PlayedCardEvent:
         self.card = card
         self.game = game
         
-        self.args = EffectArguments(game, card)
+        self.args = EffectArguments(game, card, event=self)
+        
+    def __iter__(self):
+        """ Return the iterator for the event when it is used as a source """
+        return [self.card].__iter__()

@@ -9,10 +9,10 @@ class Matching:
         self.values = values
         self.sourceType = sourceType
         
-    def evaluate(self, game):
+    def evaluate(self, game, event=None):
         """ Evaluate the condition """
         matches = False
-        source = SourceFactory.getSource(self.sourceType, game)
+        source = SourceFactory.getSource(self.sourceType, game, event=event)
         
         for card in source:
             value = getattr(card, self.field)

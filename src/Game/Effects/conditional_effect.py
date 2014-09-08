@@ -9,5 +9,5 @@ class ConditionalEffect:
         
     def perform(self, args):
         """ Perform the Game Effect """
-        if self.condition.evaluate(args.game):
+        if self.condition.evaluate(args.game, event=args.event):
             self.effect.perform(args)
