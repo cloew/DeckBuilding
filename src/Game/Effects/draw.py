@@ -6,6 +6,6 @@ class Draw:
         """ Initialize the Effect with the number of cards to draw """
         self.count = count
         
-    def perform(self, owner, card, game):
+    def perform(self, args):
         """ Perform the Game Effect """
-        owner.draw(count=self.count)
+        args.owner.draw(count=self.count)

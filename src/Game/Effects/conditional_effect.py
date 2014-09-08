@@ -7,7 +7,7 @@ class ConditionalEffect:
         self.condition = condition
         self.effect = effect
         
-    def perform(self, owner, card, game):
+    def perform(self, args):
         """ Perform the Game Effect """
-        if self.condition.evaluate(game):
-            self.effect.perform(owner, card, game)
+        if self.condition.evaluate(args.game):
+            self.effect.perform(args)

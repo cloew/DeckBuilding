@@ -13,7 +13,7 @@ class Turn:
     def playCard(self, card):
         """ Play the provided card """
         self.player.hand.remove(card)
-        card.play(self, self.game)
+        card.play(self.game)
         self.playedCards.append(card)
         
     def addOngoing(self, card):
