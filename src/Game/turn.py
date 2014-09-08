@@ -1,3 +1,4 @@
+from Game.Events.played_card_event import PlayedCardEvent
 from Game.Events.game_event_listener import GameEventListener
 
 class Turn:
@@ -18,6 +19,7 @@ class Turn:
         self.player.hand.remove(card)
         card.play(self.game)
         self.playedCards.append(card)
+        self.eventListener.send(PlayedCardEvent(card))
         
     def addOngoing(self, card):
         """ Add the given card as an ongoing effect """

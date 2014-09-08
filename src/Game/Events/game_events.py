@@ -1,0 +1,2 @@
+CARD_PLAYED = 1
+DRAW = 2

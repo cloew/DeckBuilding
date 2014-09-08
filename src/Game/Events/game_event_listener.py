@@ -12,8 +12,8 @@ class GameEventListener:
             self.observers[subject] = []
         self.observers[subject].append(observer)
         
-    def send(self, subject):
+    def send(self, event):
         """ Send the event signal to each observer """
-        if subject in self.observers:
-            for observer in self.observers[subject]:
-                observer.respond(subject)
+        if event.subject in self.observers:
+            for observer in self.observers[event.subject]:
+                observer.respond(event)
