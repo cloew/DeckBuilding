@@ -18,12 +18,14 @@ class Turn:
         """ Play the provided card """
         self.player.hand.remove(card)
         card.play(self.game)
+        self.eventListener.send(PlayedCardEvent(card, self.game))
         self.playedCards.append(card)
-        self.eventListener.send(PlayedCardEvent(card))
         
     def addOngoing(self, card):
         """ Add the given card as an ongoing effect """
         self.player.addOngoing(card)
+        for trigger in card.triggerEffects:
+            self.eventListener.register(trigger.subject, trigger)
         
     def draw(self, count=1):
         """ Draw the given number of cards """
