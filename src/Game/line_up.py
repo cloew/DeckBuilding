@@ -18,3 +18,7 @@ class LineUp:
     def remove(self, card):
         """ Remove a card from the line-up """
         self.cards.remove(card)
+        
+    def __iter__(self):
+        """ Return the Line-up Iterator """
+        return self.cards.__iter__()

@@ -2,7 +2,10 @@
 {
     "name":"Deck 1",
     "cards":[{"name":"Raven",
-              "count":20}]
+              "count":10},
+             {"name":"Talon",
+              "count":10}]
+    
 },
 {
     "name":"Kick",
@@ -12,10 +15,8 @@
 {
     "name":"Starting",
     "cards":[{"name":"Punch",
-              "count":6},
-             {"name":"The Rot",
-              "count":1},
-             {"name":"Vulnerability",
-              "count":3}]
+              "count":0},
+             {"name":"Bo Staff",
+              "count":10}]
 }
 ]

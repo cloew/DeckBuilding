@@ -1,5 +1,20 @@
 [
 {
+    "name":"Bo Staff",
+    "type":"Equipment",
+    "cost":{"type":"FIXED",
+            "cost":3},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":2},
+                   {"type":"CONDITIONAL",
+                    "condition":{"type":"MATCHING",
+                                 "field":"cardType",
+                                 "values":["Villain"],
+                                 "sourceType":"LINE_UP"},
+                    "effect":{"type":"GAIN_POWER",
+                              "power":1}}]
+},
+{
     "name":"Kick",
     "type":"Super Power",
     "cost":{"type":"FIXED",
