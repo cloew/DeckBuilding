@@ -12,7 +12,13 @@ class Turn:
         self.playedCards = []
         self.cleanupEffects = []
         
+        self.setupEventListener()
+        
+    def setupEventListener(self):
+        """ Setup the Event Listener """
         self.eventListener = GameEventListener()
+        for card in self.player.ongoing:
+            self.eventListener.registerTriggers(card.triggerEffects)
         
     def playCard(self, card):
         """ Play the provided card """
@@ -24,8 +30,7 @@ class Turn:
     def addOngoing(self, card):
         """ Add the given card as an ongoing effect """
         self.player.addOngoing(card)
-        for trigger in card.triggerEffects:
-            self.eventListener.register(trigger.subject, trigger)
+        self.eventListener.registerTriggers(card.triggerEffects)
         
     def draw(self, count=1):
         """ Draw the given number of cards """

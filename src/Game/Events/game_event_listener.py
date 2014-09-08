@@ -6,6 +6,11 @@ class GameEventListener:
         """ Initialize the Game Event Listener """
         self.observers = {}
         
+    def registerTriggers(self, triggers):
+        """ Register the triggers """
+        for trigger in triggers:
+            self.register(trigger.subject, trigger)
+        
     def register(self, subject, observer):
         """ Register an observer to the given subject """
         if subject not  in self.observers:
