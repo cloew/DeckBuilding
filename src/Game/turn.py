@@ -1,3 +1,4 @@
+from Game.Events.game_event_listener import GameEventListener
 
 class Turn:
     """ Represents a turn in the game """
@@ -9,6 +10,8 @@ class Turn:
         self.power = 0
         self.playedCards = []
         self.cleanupEffects = []
+        
+        self.eventListener = GameEventListener()
         
     def playCard(self, card):
         """ Play the provided card """
