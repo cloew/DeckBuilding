@@ -12,10 +12,10 @@
 {
     "name":"Starting",
     "cards":[{"name":"Punch",
-              "count":7},
+              "count":6},
              {"name":"The Rot",
               "count":1},
              {"name":"Vulnerability",
-              "count":2}]
+              "count":3}]
 }
 ]

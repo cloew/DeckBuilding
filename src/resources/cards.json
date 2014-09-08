@@ -51,7 +51,21 @@
     "type":"Location",
     "cost":{"type":"FIXED",
             "cost":4},
-    "playEffects":[{"type":"ONGOING"}]
+    "playEffects":[{"type":"ONGOING"}],
+    "triggers":[{"type":"CARD_PLAYED",
+                 "effect":{"type":"CONDITIONAL",
+                           "condition":{"type":"AND",
+                                        "conditions":[{"type":"NOT",
+                                                       "condition":{"type":"MATCHING",
+                                                                    "field":"name",
+                                                                    "values":["Vulnerability", "Weakness"],
+                                                                    "sourceType":"PLAYED"}},
+                                                      {"type":"MATCHING",
+                                                       "field":"name",
+                                                       "values":["Vulnerability", "Weakness"],
+                                                       "sourceType":"EVENT"}]},
+                           "effect":{"type":"DRAW",
+                                     "count":1}}}]
 },
 {
     "name":"Vulnerability",
