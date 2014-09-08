@@ -2,6 +2,7 @@ from Game.Card.card import Card
 from Game.Card.Cost.fixed_cost import FixedCost
 
 from Game.Effects.effect_factory import EffectFactory
+from Game.Effects.Triggers.trigger_factory import TriggerFactory
 
 import resources.resource_manager as resource_manager
 
@@ -22,7 +23,7 @@ class CardFactory:
             name = cardJson["name"]
             cardType = cardJson["type"]
             cost = cardJson["cost"]["cost"]
-            return Card(name, cardType, costCalculator=FixedCost(cost), playEffects=self.loadPlayEffects(cardJson))
+            return Card(name, cardType, costCalculator=FixedCost(cost), playEffects=self.loadPlayEffects(cardJson), triggers=self.loadTriggers(cardJson))
         else:
             print "Unable to load Card:", cardName
         return None
@@ -40,6 +41,13 @@ class CardFactory:
         if "playEffects" in cardJson:
             playEffects = EffectFactory.loadEffects(cardJson["playEffects"])
         return playEffects
+        
+    def loadTriggers(self, cardJson):
+        """ Load the Card's Trigger Effects """
+        triggers = []
+        if "triggers" in cardJson:
+            triggers = TriggerFactory.loadTriggers(cardJson["triggers"])
+        return triggers
             
     @property
     def cardsJson(self):

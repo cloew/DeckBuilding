@@ -3,7 +3,7 @@ from Game.Effects.effect_arguments import EffectArguments
 class Card:
     """ Represents a Card in the Deck Building Game """
     
-    def __init__(self, name, cardType, costCalculator=None, playEffects=[]):
+    def __init__(self, name, cardType, costCalculator=None, playEffects=[], triggers=[]):
         """ Initialize the Card """
         self.name = name
         self.cardType = cardType
@@ -15,7 +15,7 @@ class Card:
         
         self.playEffects = playEffects
         self.activatableEffects = None
-        self.triggerableEffects = None
+        self.triggerEffects = triggers
         
     def play(self, game):
         """ Play the card and perform any effects """

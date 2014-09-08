@@ -5,5 +5,5 @@ class Ongoing:
         
     def perform(self, args):
         """ Perform the Game Effect """
-        owner.addOngoing(args.parent)
+        args.owner.addOngoing(args.parent)
         args.owner.cleanupEffects.append(RemovePlayedCard(args.parent))
