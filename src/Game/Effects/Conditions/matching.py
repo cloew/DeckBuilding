@@ -2,7 +2,7 @@ from Game.Sources.source_factory import SourceFactory
 from Game.Effects.Conditions.Operations.operations import operations
 
 class Matching:
-    """ Represents a condition where a filed must match a value """
+    """ Represents a condition where a field must match a value """
     
     def __init__(self, field, values, sourceType):
         """ Initialize the Matching Condition with the field to use and the values it can match """
@@ -13,7 +13,6 @@ class Matching:
         
     def evaluate(self, game, event=None):
         """ Evaluate the condition """
-        matches = False
         source = SourceFactory.getSource(self.sourceType, game, event=event)
         return any([self.compare(card) for card in source])
         
