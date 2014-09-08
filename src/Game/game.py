@@ -3,6 +3,7 @@ from player import Player
 from turn import Turn
 
 from Game.Decks.decks import MainDeckInitializer, KickDeckInitializer
+from Game.Events.game_event_listener import GameEventListener
 
 from kao_deck.deck import Deck
 
@@ -22,6 +23,8 @@ class Game:
         self.weaknessDeck = None
         self.kickDeck = Deck(deck_initializer=KickDeckInitializer)
         self.destroyedPile = None
+        
+        self.eventListener = GameEventListener()
         
         self.turnCoroutine = self.pickTurn()
         self.nextTurn()
