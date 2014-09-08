@@ -45,6 +45,20 @@
                     "count":1}]
 },
 {
+    "name":"Manhunter",
+    "type":"Villain",
+    "cost":{"type":"FIXED",
+            "cost":3},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":1},
+                   {"type":"PER_MATCH",
+                    "field":"name",
+                    "values":["Manhunter"],
+                    "sourceType":"DISCARD_PILE",
+                    "effect":{"type":"GAIN_POWER",
+                              "power":2}}]
+},
+{
     "name":"Punch",
     "type":"Starter",
     "cost":{"type":"FIXED",

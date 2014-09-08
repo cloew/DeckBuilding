@@ -1,9 +1,9 @@
 [
 {
     "name":"Deck 1",
-    "cards":[{"name":"Raven",
+    "cards":[{"name":"Manhunter",
               "count":10},
-             {"name":"Talon",
+             {"name":"Manhunter",
               "count":10}]
     
 },
@@ -16,7 +16,7 @@
     "name":"Starting",
     "cards":[{"name":"Punch",
               "count":0},
-             {"name":"Hawkgirl",
+             {"name":"Manhunter",
               "count":10}]
 }
 ]
