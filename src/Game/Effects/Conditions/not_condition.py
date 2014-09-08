@@ -1,5 +1,5 @@
 
-class Not:
+class NotCondition:
     """ Represents a condition where a condition must not be true """
     
     def __init__(self, condition):
