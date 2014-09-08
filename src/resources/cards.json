@@ -15,6 +15,20 @@
                               "power":1}}]
 },
 {
+    "name":"Hawkgirl",
+    "type":"Hero",
+    "cost":{"type":"FIXED",
+            "cost":2},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":1},
+                   {"type":"PER_MATCH",
+                    "field":"cardType",
+                    "values":["Hero"],
+                    "sourceType":"DISCARD_PILE",
+                    "effect":{"type":"GAIN_POWER",
+                              "power":1}}]
+},
+{
     "name":"Kick",
     "type":"Super Power",
     "cost":{"type":"FIXED",

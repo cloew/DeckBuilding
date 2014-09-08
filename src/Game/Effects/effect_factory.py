@@ -2,6 +2,7 @@ from Game.Effects.conditional_effect import ConditionalEffect
 from Game.Effects.draw import Draw
 from Game.Effects.gain_power import GainPower
 from Game.Effects.ongoing import Ongoing
+from Game.Effects.per_match import PerMatch
 
 from Game.Effects.Conditions.condition_factory import ConditionFactory
 
@@ -29,6 +30,9 @@ class EffectFactory:
             return GainPower(effectJson["power"])
         elif effectType == "ONGOING":
             return Ongoing()
+        elif effectType == "PER_MATCH":
+            effect = EffectFactory.loadEffect(effectJson["effect"])
+            return PerMatch(effectJson["field"], effectJson["values"], effectJson["sourceType"], effect)
         return None
         
 EffectFactory = EffectFactory()
