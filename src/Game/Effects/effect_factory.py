@@ -1,3 +1,4 @@
+from Game.Effects.add_trigger import AddTrigger
 from Game.Effects.conditional_effect import ConditionalEffect
 from Game.Effects.draw import Draw
 from Game.Effects.gain_power import GainPower
@@ -20,7 +21,10 @@ class EffectFactory:
         """ Load the effect in the given JSON """
         effectType = effectJson['type']
         
-        if effectType == "CONDITIONAL":
+        if effectType == "ADD_TRIGGER":
+            from Game.Effects.Triggers.trigger_factory import TriggerFactory
+            return AddTrigger(TriggerFactory.loadTrigger(effectJson["trigger"]))
+        elif effectType == "CONDITIONAL":
             condition = ConditionFactory.loadCondition(effectJson["condition"])
             effect = EffectFactory.loadEffect(effectJson["effect"])
             return ConditionalEffect(condition, effect)
