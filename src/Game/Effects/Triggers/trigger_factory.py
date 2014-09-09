@@ -15,7 +15,8 @@ class TriggerFactory:
     def loadTrigger(self, triggerJson):
         """ Load the trigger in the given JSON """
         eventType = triggerJson["type"]
+        singleUse = triggerJson["singleUse"]
         effect = EffectFactory.loadEffect(triggerJson["effect"])
-        return Trigger(eventType, effect)
+        return Trigger(eventType, effect, singleUse=singleUse)
         
 TriggerFactory = TriggerFactory()

@@ -56,6 +56,10 @@ class Turn:
         """ Register the given triggers """
         self.eventListener.registerTriggers(triggers)
         
+    def unregisterTrigger(self, trigger):
+        """ Unregister the given trigger """
+        self.eventListener.unregisterTriggers([trigger])
+        
     def cleanup(self):
         """ Cleanup the turn """
         for effect in self.cleanupEffects:
