@@ -12,5 +12,5 @@ class Trigger:
         """ Receive the event """
         self.effect.perform(event.args)
         
-        if self.singleUse:
-            event.args.owner.unregisterTrigger(self)
+        # if self.singleUse:
+            # event.args.owner.unregisterTrigger(self)
