@@ -1,18 +1,22 @@
 <style>
 </style>
 
-<div>
-    <h1>Line Up</h1>
-    <line-up-card ng-repeat="card in game.lineUp"></line-up-card>
+<div style="width: 100%">
+    <div style="width:750px; margin-right: auto; margin-left: auto; text-align:center">
+        <h1>Line Up</h1>
+        <card-list cards="game.lineUp" action="buyCard" action-arguments="'lineUp'"></card-list>
+    </div>
 </div>
 
 <div>
     <h2>Power: {{game.turn.power}}</h2>
-    <h2>Hand</h2>
-    <hand-card ng-repeat="card in game.turn.hand"></hand-card>
-    <h2>Played</h2>
-    <card ng-repeat="card in game.turn.played"></card>
-    <h2>Ongoing</h2>
-    <card ng-repeat="card in game.turn.ongoing"></card>
+    <div style="width:750px; margin-right: auto; margin-left: auto; text-align:center">
+        <h2>Hand</h2>
+        <card-list cards="game.turn.hand" action="playCard"></card-list>
+        <h2>Played</h2>
+        <card-list cards="game.turn.played"></card-list>
+        <h2>Ongoing</h2>
+        <card-list cards="game.turn.ongoing"></card-list>
+    </div>
     <button ng-click="endTurn();">Done</button>
 </div>
