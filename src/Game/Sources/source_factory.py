@@ -10,6 +10,8 @@ class SourceFactory:
             return event
         elif sourceType == "LINE_UP":
             return game.lineUp
+        elif sourceType == "KICK":
+            return game.kickDeck
         elif sourceType == "PLAYED":
             return game.currentTurn.playedCards
         return None
