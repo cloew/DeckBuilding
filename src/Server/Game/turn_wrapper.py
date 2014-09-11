@@ -12,8 +12,10 @@ class TurnWrapper:
         handJSON = [CardWrapper(card).toJSON() for card in self.turn.player.hand]
         playedJSON = [CardWrapper(card).toJSON() for card in self.turn.playedCards]
         ongoingJSON = [CardWrapper(card).toJSON() for card in self.turn.player.ongoing]
+        discardPileJSON = [CardWrapper(card).toJSON() for card in self.turn.player.deck.discardPile]
         
         return {'hand':handJSON,
                 'played':playedJSON,
                 'ongoing':ongoingJSON,
+                'discardPile':{'cards':discardPileJSON},
                 'power':self.turn.power}
