@@ -15,8 +15,10 @@ class GameWrapper:
         
     def toJSON(self):
         """ Return the game as a JSON Dictionary """
+        kicksJSON = [CardWrapper(card).toJSON() for card in self.game.kickDeck]
         lineUpJSON = [CardWrapper(card).toJSON() for card in self.game.lineUp.cards]
         
         return {'game':{'id':self.id,
+                        'kicks':{'cards':kicksJSON},
                         'lineUp':lineUpJSON,
                         'turn':TurnWrapper(self.game.currentTurn).toJSON()}}
