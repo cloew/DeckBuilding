@@ -10,5 +10,5 @@ class PlayCardController(JSONController):
         game = GameWrapper(id=gameId)
         cardIndex = self.json['index']
         card = game.game.currentTurn.player.hand[cardIndex]
-        PlayCard(card, game.game.currentTurn).perform()
+        game.game.currentTurn.perform(PlayCard(card, game.game.currentTurn))
         return game.toJSON()

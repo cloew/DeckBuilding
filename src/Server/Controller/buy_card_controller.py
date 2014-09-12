@@ -16,5 +16,5 @@ class BuyCardController(JSONController):
         source = SourceFactory.getSource(sourceType, game.game)
         card = source[cardIndex]
         
-        BuyCard(card, game.game.currentTurn, source).perform()
+        game.game.currentTurn.perform(BuyCard(card, game.game.currentTurn, source))
         return game.toJSON()

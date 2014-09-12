@@ -8,5 +8,5 @@ class EndTurnController(JSONController):
     
     def performWithJSON(self, gameId):
         game = GameWrapper(id=gameId)
-        EndTurn(game.game).perform()
+        game.game.currentTurn.perform(EndTurn(game.game))
         return game.toJSON()

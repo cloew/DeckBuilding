@@ -9,4 +9,10 @@ class PlayCard:
         
     def perform(self):
         """ Perform the command """
-        self.owner.playCard(self.card)
+        coroutine = self.owner.playCard(self.card)
+        try:
+            response = yield coroutine.next()
+            while True:
+                response = yield coroutine.send(response)
+        except StopIteration:
+            pass

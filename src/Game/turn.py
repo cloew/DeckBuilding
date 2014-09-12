@@ -19,11 +19,29 @@ class Turn:
         self.eventListener = GameEventListener()
         for card in self.player.ongoing:
             self.registerTriggers(card.triggerEffects)
+            
+    def perform(self, command):
+        """ Perform the given command """
+        coroutine = command.perform()
+        try:
+            response = coroutine.next()
+            self.command = command
+            self.request = response
+        except StopIteration:
+            self.command = None
+            self.request = None
         
     def playCard(self, card):
         """ Play the provided card """
         self.player.hand.remove(card)
-        card.play(self.game)
+        coroutine = card.play(self.game)
+        try:
+            response = yield coroutine.next()
+            while True:
+                response = yield coroutine.send(response)
+        except StopIteration:
+            pass
+        
         self.eventListener.send(PlayedCardEvent(card, self.game))
         self.playedCards.append(card)
         

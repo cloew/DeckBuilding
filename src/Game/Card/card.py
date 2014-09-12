@@ -1,5 +1,7 @@
 from Game.Effects.effect_arguments import EffectArguments
 
+import inspect
+
 class Card:
     """ Represents a Card in the Deck Building Game """
     
@@ -25,7 +27,15 @@ class Card:
         """ Play the card and perform any effects """
         args = EffectArguments(game, self)
         for effect in self.playEffects:
-            effect.perform(args)
+            if inspect.isgeneratorfunction(effect.perform):
+                try:
+                    coroutine = effect.perform(args)
+                    response = yield coroutine.next()
+                    coroutine.send(response)
+                except StopIteration:
+                    pass
+            else:
+                effect.perform(args)
         
     def __repr__(self):
         """ Return the String Representation of the card """
