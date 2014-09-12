@@ -1,7 +1,7 @@
 [
 {
     "name":"Deck 1",
-    "cards":[{"name":"Talon",
+    "cards":[{"name":"Kick",
               "count":10},
              {"name":"Kid Flash",
               "count":10}]
@@ -14,7 +14,7 @@
 },
 {
     "name":"Starting",
-    "cards":[{"name":"Killer Croc",
+    "cards":[{"name":"Teleportation",
               "count":10},
              {"name":"Talon",
               "count":0}]

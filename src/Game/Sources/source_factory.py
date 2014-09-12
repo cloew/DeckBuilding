@@ -4,8 +4,9 @@ from list_source import ListSource
 DISCARD_PILE = "DISCARD_PILE"
 EVENT = "EVENT"
 HAND = "HAND"
-LINE_UP = "LINE_UP"
 KICK = "KICK"
+LINE_UP = "LINE_UP"
+MAIN_DECK = "MAIN_DECK"
 PLAYED = "PLAYED"
 
 class SourceFactory:
@@ -19,10 +20,12 @@ class SourceFactory:
             return event
         elif sourceType == HAND:
             return ListSource(game.currentTurn.player.hand)
-        elif sourceType == LINE_UP:
-            return game.lineUp
         elif sourceType == KICK:
             return DeckSource(game.kickDeck)
+        elif sourceType == LINE_UP:
+            return game.lineUp
+        elif sourceType == MAIN_DECK:
+            return DeckSource(game.mainDeck)
         elif sourceType == PLAYED:
             return ListSource(game.currentTurn.playedCards)
         return None

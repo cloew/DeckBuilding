@@ -1,6 +1,7 @@
 from Game.Effects.add_trigger import AddTrigger
 from Game.Effects.conditional_effect import ConditionalEffect
 from Game.Effects.draw import Draw
+from Game.Effects.gain_card import GainCard
 from Game.Effects.gain_power import GainPower
 from Game.Effects.ongoing import Ongoing
 from Game.Effects.per_match import PerMatch
@@ -30,6 +31,8 @@ class EffectFactory:
             return ConditionalEffect(condition, effect)
         elif effectType == "DRAW":
             return Draw(effectJson["count"])
+        elif effectType == "GAIN_CARD":
+            return GainCard()
         elif effectType == "GAIN_POWER":
             return GainPower(effectJson["power"])
         elif effectType == "ONGOING":

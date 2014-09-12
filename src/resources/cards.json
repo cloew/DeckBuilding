@@ -128,6 +128,13 @@
                               "power":2}}]
 },
 {
+    "name":"Teleportation",
+    "type":"Super Power",
+    "cost":{"type":"FIXED",
+            "cost":7},
+    "playEffects":[{"type":"GAIN_CARD"}]
+},
+{
     "name":"The Rot",
     "type":"Location",
     "cost":{"type":"FIXED",
