@@ -13,6 +13,9 @@ class Turn:
         self.power = 0
         self.playedCards = []
         self.cleanupEffects = []
+
+        self.command = None
+        self.request = None
         
         self.setupEventListener()
         

@@ -1,5 +1,5 @@
 from Game.Effects.add_trigger import AddTrigger
-from Game.Effects.Choice import Choice, Option
+from Game.Effects.choice import Choice, Option
 from Game.Effects.conditional_effect import ConditionalEffect
 from Game.Effects.draw import Draw
 from Game.Effects.gain_card import GainCard
