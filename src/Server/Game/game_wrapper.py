@@ -3,6 +3,8 @@ from games import games
 from card_wrapper import CardWrapper
 from turn_wrapper import TurnWrapper
 
+from Server.Game.Requests.choose_option_request_wrapper import ChooseOptionRequestWrapper
+
 class GameWrapper:
     """ A Wrapper for a Game that handles its conversion to and from JSON """
     
@@ -18,7 +20,12 @@ class GameWrapper:
         kicksJSON = [CardWrapper(card).toJSON() for card in self.game.kickDeck]
         lineUpJSON = [CardWrapper(card).toJSON() for card in self.game.lineUp.cards]
         
-        return {'game':{'id':self.id,
-                        'kicks':{'cards':kicksJSON},
-                        'lineUp':lineUpJSON,
-                        'turn':TurnWrapper(self.game.currentTurn).toJSON()}}
+        gameJSON = {'id':self.id,
+                    'kicks':{'cards':kicksJSON},
+                    'lineUp':lineUpJSON,
+                    'turn':TurnWrapper(self.game.currentTurn).toJSON()}
+                    
+        if self.game.currentTurn.request is not None:
+            gameJSON['request'] = ChooseOptionRequestWrapper(self.game.currentTurn.request).toJSON()
+                    
+        return {'game':gameJSON}
