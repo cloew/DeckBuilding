@@ -14,9 +14,9 @@
 },
 {
     "name":"Starting",
-    "cards":[{"name":"Punch",
-              "count":7},
+    "cards":[{"name":"Killer Croc",
+              "count":10},
              {"name":"Talon",
-              "count":3}]
+              "count":0}]
 }
 ]
