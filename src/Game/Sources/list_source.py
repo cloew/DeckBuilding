@@ -21,3 +21,7 @@ class ListSource:
     def __iter__(self):
         """ Return the Cards Iterator """
         return self.cards.__iter__()
+        
+    def __len__(self):
+        """ Return the Length of the Cards """
+        return len(self.cards)

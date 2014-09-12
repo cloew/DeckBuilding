@@ -132,7 +132,10 @@
     "type":"Super Power",
     "cost":{"type":"FIXED",
             "cost":7},
-    "playEffects":[{"type":"GAIN_CARD"}]
+    "playEffects":[{"type":"CONDITIONAL",
+                    "condition":{"type":"HAS_CARDS",
+                                 "sourceType":"MAIN_DECK"},
+                    "effect":{"type":"GAIN_CARD"}}]
 },
 {
     "name":"The Rot",

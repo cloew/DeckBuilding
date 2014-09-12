@@ -21,3 +21,7 @@ class DeckSource:
     def __iter__(self):
         """ Return the Deck Iterator """
         return self.deck.__iter__()
+        
+    def __len__(self):
+        """ Return the Length of the Deck """
+        return len(self.deck)
