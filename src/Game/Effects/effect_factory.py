@@ -1,4 +1,5 @@
 from Game.Effects.add_trigger import AddTrigger
+from Game.Effects.Choice import Choice, Option
 from Game.Effects.conditional_effect import ConditionalEffect
 from Game.Effects.draw import Draw
 from Game.Effects.gain_card import GainCard
@@ -25,6 +26,9 @@ class EffectFactory:
         if effectType == "ADD_TRIGGER":
             from Game.Effects.Triggers.trigger_factory import TriggerFactory
             return AddTrigger(TriggerFactory.loadTrigger(effectJson["trigger"]))
+        elif effectType == "CHOICE":
+            options = [Option(optionJSON['description'], self.loadEffects(optionJSON['effects'])) for optionJSON in effectJson['choices']]
+            return Choice(options)
         elif effectType == "CONDITIONAL":
             condition = ConditionFactory.loadCondition(effectJson["condition"])
             effect = EffectFactory.loadEffect(effectJson["effect"])

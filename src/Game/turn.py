@@ -26,9 +26,20 @@ class Turn:
         """ Perform the given command """
         coroutine = RunCoroutineOrFunction(command.perform)
         try:
-            response = coroutine.next()
+            request = coroutine.next()
+            self.command = coroutine
+            self.request = request
+        except StopIteration:
+            self.command = None
+            self.request = None
+            
+    def continueCommand(self, response):
+        """ Continue the Command """
+        coroutine = self.command
+        try:
+            request = self.command.send(response)
             self.command = command
-            self.request = response
+            self.request = request
         except StopIteration:
             self.command = None
             self.request = None
