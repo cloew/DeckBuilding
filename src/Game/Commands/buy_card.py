@@ -1,3 +1,4 @@
+from Game.Sources.source_factory import SourceFactory, DISCARD_PILE
 
 class BuyCard:
     """ Represents a command to buy a card """
@@ -11,5 +12,4 @@ class BuyCard:
     def perform(self):
         """ Perform the command """
         self.owner.spendPower(self.card.calculateCost())
-        self.source.remove(self.card)
-        self.owner.gainCard(self.card)
+        self.owner.gainCard(self.card, self.source, destinationSource=SourceFactory.getSource(DISCARD_PILE, self.owner.game))

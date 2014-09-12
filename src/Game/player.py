@@ -26,9 +26,10 @@ class Player:
         newCards = self.deck.draw(count=count)
         self.hand += newCards
         
-    def gainCard(self, card):
+    def gainCard(self, card, fromSource, destinationSource=None):
         """ Gain the provided card """
-        self.deck.discard(card)
+        fromSource.remove(card)
+        destinationSource.add(card)
         
     @property
     def discardPile(self):

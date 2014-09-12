@@ -36,9 +36,9 @@ class Turn:
         """ Draw the given number of cards """
         self.player.draw(count=count)
         
-    def gainCard(self, card):
+    def gainCard(self, card, fromSource, destinationSource=None):
         """ Gain the provided card """
-        self.player.gainCard(card)
+        self.player.gainCard(card, fromSource, destinationSource=destinationSource)
         
     def gainPower(self, power):
         """ Gain the proper amount of power """
