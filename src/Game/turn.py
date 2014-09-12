@@ -1,6 +1,8 @@
 from Game.Events.played_card_event import PlayedCardEvent
 from Game.Events.game_event_listener import GameEventListener
 
+from coroutine_helper import RunCoroutineOrFunction
+
 class Turn:
     """ Represents a turn in the game """
     
@@ -22,7 +24,7 @@ class Turn:
             
     def perform(self, command):
         """ Perform the given command """
-        coroutine = command.perform()
+        coroutine = RunCoroutineOrFunction(command.perform)
         try:
             response = coroutine.next()
             self.command = command
