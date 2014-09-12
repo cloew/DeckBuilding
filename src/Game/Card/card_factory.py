@@ -23,7 +23,11 @@ class CardFactory:
             name = cardJson["name"]
             cardType = cardJson["type"]
             cost = cardJson["cost"]["cost"]
-            return Card(name, cardType, costCalculator=FixedCost(cost), playEffects=self.loadPlayEffects(cardJson), triggers=self.loadTriggers(cardJson))
+            
+            image = None
+            if "image" in cardJson:
+                image = cardJson["image"]
+            return Card(name, cardType, costCalculator=FixedCost(cost), playEffects=self.loadPlayEffects(cardJson), triggers=self.loadTriggers(cardJson), image=image)
         else:
             print "Unable to load Card:", cardName
         return None

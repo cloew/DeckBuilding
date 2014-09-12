@@ -33,6 +33,7 @@
     "type":"Super Power",
     "cost":{"type":"FIXED",
             "cost":3},
+    "image":"kick.jpg",
     "playEffects":[{"type":"GAIN_POWER",
                     "power":2}]
 },
@@ -41,6 +42,7 @@
     "type":"Hero",
     "cost":{"type":"FIXED",
             "cost":2},
+    "image":"kid_flash.jpg",
     "playEffects":[{"type":"DRAW",
                     "count":1}]
 },
@@ -99,6 +101,7 @@
     "type":"Starter",
     "cost":{"type":"FIXED",
             "cost":0},
+    "image":"punch.jpg",
     "playEffects":[{"type":"GAIN_POWER",
                     "power":1}]
 },

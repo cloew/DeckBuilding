@@ -1,22 +1,22 @@
 [
 {
     "name":"Deck 1",
-    "cards":[{"name":"Manhunter",
+    "cards":[{"name":"Talon",
               "count":10},
-             {"name":"Manhunter",
+             {"name":"Kid Flash",
               "count":10}]
     
 },
 {
     "name":"Kick",
     "cards":[{"name":"Kick",
-              "count":30}]
+              "count":16}]
 },
 {
     "name":"Starting",
-    "cards":[{"name":"Killer Croc",
-              "count":1},
+    "cards":[{"name":"Punch",
+              "count":7},
              {"name":"Talon",
-              "count":9}]
+              "count":3}]
 }
 ]
