@@ -163,5 +163,23 @@
     "type":"Starter",
     "cost":{"type":"FIXED",
             "cost":0}
+},
+{
+    "name":"Whirlwind",
+    "type":"Super Power",
+    "cost":{"type":"FIXED",
+            "cost":2},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":1},
+                   {"type":"CONDITIONAL",
+                    "condition":{"type":"NOT",
+                                 "condition":{"type":"HAS_CARDS",
+                                              "sourceType":"PLAYED"}},
+                    "effect":{"type":"CHOICE",
+                              "choices":[{"description":"Discard hand and draw 4 cards",
+                                          "effects":[{"type":"DRAW",
+                                                      "count":4}]},
+                                         {"description":"Do nothing",
+                                          "effects":[]}]}}]
 }
 ]
