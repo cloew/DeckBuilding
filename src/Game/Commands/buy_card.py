@@ -12,4 +12,4 @@ class BuyCard:
     def perform(self):
         """ Perform the command """
         self.owner.spendPower(self.card.calculateCost())
-        self.owner.gainCard(self.card, self.source, destinationSource=SourceFactory.getSource(DISCARD_PILE, self.owner.game))
+        self.owner.gainCard(self.card, self.source, toSource=SourceFactory.getSource(DISCARD_PILE, self.owner.game))

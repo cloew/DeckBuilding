@@ -26,7 +26,7 @@ class Choice:
     def perform(self, args):
         """ Perform the Game Effect """
         option = yield ChooseOptionRequest(self.options)
-        coroutine = option.performEffects()
+        coroutine = option.performEffects(args)
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)
