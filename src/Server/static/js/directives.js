@@ -4,25 +4,25 @@ angular.module('DeckBuildingDirectives', [])
     .directive('card', function() {
       return {
           restrict: 'E',
-          replace: 'true',
+          replace: true,
+          transclude: true,
           scope: {
-              card: '=card',
-              overlay: '=overlay'
+              card: '=card'
           },
           templateUrl: 'static/partials/directives/card.html'
       }})
       .directive('actionCard', function() {
       return {
           restrict: 'E',
-          replace: 'true',
+          replace: true,
+          transclude: true,
           scope: {
               action: '=action',
               args: '=actionArguments',
               index: '=index',
-              card: '=card',
-              overlay: '=overlay'
+              card: '=card'
           },
-          template: '<div style="width: 150px; float:left; position: relative;"><card style="cursor:pointer;" ng-click="action(index, args);" card="card" overlay="overlay"></card></div>'
+          template: '<div style="width: 150px; float:left; position: relative;"><card style="cursor:pointer;" ng-click="action(index, args);" card="card"><div ng-transclude></div></card></div>'
       }})
       .directive('cardList', function() {
       return {
@@ -38,12 +38,11 @@ angular.module('DeckBuildingDirectives', [])
       .directive('deck', function() {
       return {
           restrict: 'E',
-          replace: 'true',
+          replace: true,
           scope: {
               deck: '=deck',
               action: '=action',
               args: '=actionArguments',
-              overlay: '=temp'
           },
           templateUrl: 'static/partials/directives/deck.html'
       }});
