@@ -14,38 +14,41 @@ controllers.controller('StartGameController', function ($scope, $http, $location
 });
 
 controllers.controller('GameController', function($scope, $http, $routeParams, $modal) {
+    $scope.setGame = function(data) {
+        $scope.game = data['game'];
+        if ($scope.game.request) {
+            $scope.openModal()
+        }
+    };
     $http.get('/api/game/'+$routeParams.gameId).success(function(data) {
-            $scope.game = data['game'];
+            $scope.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     $scope.buyCard = function(index, source) {  
         $http.post('/api/game/'+$routeParams.gameId+'/buy', {'index':index, 'source':source}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
-            $scope.game = data['game'];
+            $scope.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     };
     $scope.playCard = function(index) {
         $http.post('/api/game/'+$routeParams.gameId+'/play', {'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
-            $scope.game = data['game'];
-            if ($scope.game.request) {
-                $scope.openModal()
-            }
+            $scope.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     };
     $scope.endTurn = function(index) {
         $http.post('/api/game/'+$routeParams.gameId+'/endturn').success(function(data) {
-            $scope.game = data['game'];
+            $scope.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     };
     $scope.chooseOption = function(index) {
         $http.post('/api/game/'+$routeParams.gameId+'/choose', {'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
-            $scope.game = data['game'];
+            $scope.setGame(data);
         }).error(function(error) {
             alert(error);
         });
