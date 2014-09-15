@@ -184,7 +184,8 @@
                                               "sourceType":"PLAYED"}},
                     "effect":{"type":"CHOICE",
                               "choices":[{"description":"Discard hand and draw 4 cards",
-                                          "effects":[{"type":"DRAW",
+                                          "effects":[{"type":"DISCARD"},
+                                                     {"type":"DRAW",
                                                       "count":4}]},
                                          {"description":"Do nothing",
                                           "effects":[]}]}}]
