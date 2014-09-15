@@ -42,4 +42,13 @@ angular.module('DeckBuildingDirectives', [])
               args: '=actionArguments',
           },
           templateUrl: 'static/partials/directives/deck.html'
+      }})
+      .directive('deckCounter', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          scope: {
+              deck: '=deck',
+          },
+          templateUrl: 'static/partials/directives/deck_counter.html'
       }});
