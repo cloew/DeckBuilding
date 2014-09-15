@@ -1,6 +1,6 @@
-<div style="text-align:center">
+<div class="center">
     <h1>Choose an option</h1>
 </div>
-<div ng-repeat="option in request.options" style="width: 300px;margin-left:auto;margin-right:auto;">
-    <button style="width: 300px;margin-left:auto;margin-right:auto;margin-top: 10px; margin-bottom: 10px;" ng-click="chooseOption($index);">{{option}}</button>
+<div ng-repeat="option in request.options" class="center options">
+    <button class="center option-button" ng-click="chooseOption($index);">{{option}}</button>
 </div>
