@@ -14,6 +14,5 @@ class Destroy:
         destroyedDeck = SourceFactory.getSource(DESTROYED, args.game)
         card = yield PickCardRequest(source)
         
-        card = source[0]
         source.remove(card)
         destroyedDeck.add(card)

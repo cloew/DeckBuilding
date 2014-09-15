@@ -10,5 +10,6 @@ class PickCardController(JSONController):
         game = GameWrapper(id=gameId)
         cardIndex = self.json['index']
         card = game.game.currentTurn.request.cards[cardIndex]
+        
         PickCard(card, game.game.currentTurn).perform()
         return game.toJSON()

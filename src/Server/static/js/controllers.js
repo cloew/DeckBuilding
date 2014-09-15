@@ -17,7 +17,7 @@ controllers.controller('GameController', function($scope, $http, $routeParams, $
     $scope.setGame = function(data) {
         $scope.game = data['game'];
         if ($scope.game.request) {
-            $scope.openModal()
+            $scope.openRequestModal()
         }
     };
     $http.get('/api/game/'+$routeParams.gameId).success(function(data) {
@@ -53,12 +53,25 @@ controllers.controller('GameController', function($scope, $http, $routeParams, $
             alert(error);
         });
     };
-    $scope.openModal = function() {
+    $scope.pickCard = function(index) {
+        $http.post('/api/game/'+$routeParams.gameId+'/pickcard', {'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+            $scope.setGame(data);
+        }).error(function(error) {
+            alert(error);
+        });
+    };
+    $scope.openRequestModal = function() {
+        var controllers = {'CHOICE':{'templateUrl':'static/partials/choose_option.html',
+                                     'controller':'ChooseOptionController'},
+                           'PICK_CARD':{'templateUrl':'static/partials/pick_card.html',
+                                        'controller':'PickCardController'}};
+    
+        var controller = controllers[$scope.game.request.type];
         var modalInstance = $modal.open({
-          templateUrl: 'static/partials/choose_option.html',
+          templateUrl: controller.templateUrl,
           backdrop: 'static',
           keyboard : false,
-          controller: 'ChooseOptionController',
+          controller: controller.controller,
           resolve: {
             parent: function () {
               return $scope;
@@ -74,6 +87,16 @@ controllers.controller('ChooseOptionController', function($scope, $modalInstance
     
     $scope.chooseOption = function(index) {
         $scope.parent.chooseOption(index);
+        $modalInstance.dismiss('cancel');
+    };
+});
+
+controllers.controller('PickCardController', function($scope, $modalInstance, parent) {
+    $scope.parent = parent;
+    $scope.request = parent.game.request;
+    
+    $scope.pickCard = function(index) {
+        $scope.parent.pickCard(index);
         $modalInstance.dismiss('cancel');
     };
 });
