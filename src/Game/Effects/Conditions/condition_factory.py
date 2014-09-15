@@ -3,6 +3,8 @@ from has_cards import HasCards
 from matching import Matching
 from not_condition import NotCondition
 
+from filter import Filter
+
 class ConditionFactory:
     """ Factory to build Conditions """
     
@@ -11,7 +13,12 @@ class ConditionFactory:
         if conditionJSON["type"] == "AND":
             return AndCondition([self.loadCondition(subConditionJSON) for subConditionJSON in conditionJSON["conditions"]])
         elif conditionJSON["type"] == "HAS_CARDS":
-            return HasCards(conditionJSON["sourceType"])
+            filter = None
+            if "filter" in conditionJSON:
+                filterJson = conditionJSON["filter"]
+                filter = Filter(filterJson["field"], filterJson["values"], conditionJSON["sourceType"])
+                
+            return HasCards(conditionJSON["sourceType"], filter=filter)
         elif conditionJSON["type"] == "MATCHING":
             return Matching(conditionJSON["field"], conditionJSON["values"], conditionJSON["sourceType"])
         elif conditionJSON["type"] == "NOT":
