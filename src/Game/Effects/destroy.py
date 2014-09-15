@@ -1,3 +1,4 @@
+from Game.Commands.Requests.pick_card_request import PickCardRequest
 from Game.Sources.source_factory import SourceFactory, DESTROYED, HAND
 
 class Destroy:
@@ -11,6 +12,7 @@ class Destroy:
         """ Perform the Game Effect """
         source = SourceFactory.getSource(self.sourceType, args.game)
         destroyedDeck = SourceFactory.getSource(DESTROYED, args.game)
+        card = yield PickCardRequest(source)
         
         card = source[0]
         source.remove(card)
