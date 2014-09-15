@@ -3,7 +3,7 @@ from games import games
 from card_wrapper import CardWrapper
 from turn_wrapper import TurnWrapper
 
-from Server.Game.Requests.choose_option_request_wrapper import ChooseOptionRequestWrapper
+from Server.Game.Requests.request_wrapper_factory import RequestWrapperFactory
 
 class GameWrapper:
     """ A Wrapper for a Game that handles its conversion to and from JSON """
@@ -30,7 +30,7 @@ class GameWrapper:
                     'turn':TurnWrapper(self.game.currentTurn).toJSON()}
                     
         if self.game.currentTurn.request is not None:
-            gameJSON['request'] = ChooseOptionRequestWrapper(self.game.currentTurn.request).toJSON()
+            gameJSON['request'] = RequestWrapperFactory.buildRequestWrapper(self.game.currentTurn.request).toJSON()
                     
         return {'game':gameJSON}
         
