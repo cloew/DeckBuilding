@@ -207,5 +207,20 @@
                                                       "count":4}]},
                                          {"description":"Do nothing",
                                           "effects":[]}]}}]
+},
+{
+    "name":"Wonder of the Knight",
+    "type":"Hero",
+    "image":"wonder_of_the_knight.jpg",
+    "cost":{"type":"FIXED",
+            "cost":5},
+    "playEffects":[{"type":"CONDITIONAL",
+                    "condition":{"type":"HAS_CARDS",
+                                 "sourceType":"DISCARD_PILE"},
+                    "effect":{"type":"MOVE_CARD",
+                              "from":"DISCARD_PILE",
+                              "to":"HAND"}},
+                   {"type":"DRAW",
+                    "count":1}]
 }
 ]
