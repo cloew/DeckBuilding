@@ -35,7 +35,7 @@ class EffectFactory:
             effect = EffectFactory.loadEffect(effectJson["effect"])
             return ConditionalEffect(condition, effect)
         elif effectType == "DISCARD":
-            return Discard()
+            return Discard(effectJson["source"])
         elif effectType == "DRAW":
             return Draw(effectJson["count"])
         elif effectType == "GAIN_CARD":
