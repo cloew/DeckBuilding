@@ -41,7 +41,7 @@ class Turn:
         coroutine = self.command
         try:
             request = self.command.send(response)
-            self.command = command
+            self.command = coroutine
             self.request = request
         except StopIteration:
             self.command = None

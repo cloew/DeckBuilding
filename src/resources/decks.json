@@ -15,8 +15,14 @@
 {
     "name":"Starting",
     "cards":[{"name":"Soultaker Sword",
-              "count":10},
-             {"name":"Talon",
-              "count":0}]
+              "count":6},
+             {"name":"Punch",
+              "count":1},
+             {"name":"Raven",
+              "count":1},
+             {"name":"The Rot",
+              "count":1},
+             {"name":"Vulnerability",
+              "count":1}]
 }
 ]
