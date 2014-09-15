@@ -11,6 +11,7 @@ from Game.Effects.ongoing import Ongoing
 from Game.Effects.per_match import PerMatch
 
 from Game.Effects.Conditions.condition_factory import ConditionFactory
+from Game.Effects.Conditions.filter import Filter
 
 class EffectFactory:
     """ Factory to create Game Effects """
@@ -47,7 +48,12 @@ class EffectFactory:
         elif effectType == "GAIN_POWER":
             return GainPower(effectJson["power"])
         elif effectType == "MOVE_CARD":
-            return MoveCard(effectJson["from"], effectJson["to"])
+            filter = None
+            if "filter" in effectJson:
+                filterJson = effectJson["filter"]
+                filter = Filter(filterJson["field"], filterJson["values"], effectJson["from"])
+            
+            return MoveCard(effectJson["from"], effectJson["to"], filter=filter)
         elif effectType == "ONGOING":
             return Ongoing()
         elif effectType == "PER_MATCH":

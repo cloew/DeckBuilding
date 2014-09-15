@@ -219,8 +219,8 @@
                                  "sourceType":"DISCARD_PILE"},
                     "effect":{"type":"MOVE_CARD",
                               "from":"DISCARD_PILE",
-                              "to":"HAND"}},
-                   {"type":"DRAW",
-                    "count":1}]
+                              "to":"HAND",
+                              "filter":{"field":"cardType",
+                                        "values":["Equipment"]}}}]
 }
 ]
