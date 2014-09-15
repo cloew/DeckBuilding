@@ -15,8 +15,8 @@
 {
     "name":"Starting",
     "cards":[{"name":"Soultaker Sword",
-              "count":0},
+              "count":5},
              {"name":"Wonder of the Knight",
-              "count":10}]
+              "count":5}]
 }
 ]

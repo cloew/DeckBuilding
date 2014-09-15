@@ -216,11 +216,15 @@
             "cost":5},
     "playEffects":[{"type":"CONDITIONAL",
                     "condition":{"type":"HAS_CARDS",
+                                 "filter":{"field":"cardType",
+                                        "values":["Equipment"]},
                                  "sourceType":"DISCARD_PILE"},
                     "effect":{"type":"MOVE_CARD",
                               "from":"DISCARD_PILE",
                               "to":"HAND",
                               "filter":{"field":"cardType",
-                                        "values":["Equipment"]}}}]
+                                        "values":["Equipment"]}}},
+                   {"type":"DRAW",
+                    "count":1}]
 }
 ]
