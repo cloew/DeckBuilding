@@ -125,11 +125,14 @@
             "cost":4},
     "playEffects":[{"type":"GAIN_POWER",
                     "power":2},
-                   {"type":"CHOICE",
-                    "choices":[{"description":"Destroy a card in your hand",
-                                "effects":[{"type":"DESTROY"}]},
-                               {"description":"Do nothing",
-                                "effects":[]}]}]
+                   {"type":"CONDITIONAL",
+                    "condition":{"type":"HAS_CARDS",
+                                 "sourceType":"HAND"},
+                    "effect":{"type":"CHOICE",
+                              "choices":[{"description":"Destroy a card in your hand",
+                                          "effects":[{"type":"DESTROY"}]},
+                                         {"description":"Do nothing",
+                                          "effects":[]}]}}]
 },
 {
     "name":"Talon",
