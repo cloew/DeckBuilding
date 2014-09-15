@@ -1,6 +1,6 @@
 from games import games
 
-from card_wrapper import CardWrapper
+from json_helper import GetCardListJSON
 from turn_wrapper import TurnWrapper
 
 from Server.Game.Requests.request_wrapper_factory import RequestWrapperFactory
@@ -17,9 +17,9 @@ class GameWrapper:
         
     def toJSON(self):
         """ Return the game as a JSON Dictionary """
-        kicksJSON = self.getCardListJSON(self.game.kickDeck)
-        destroyedJSON = self.getCardListJSON(self.game.destroyedDeck)
-        lineUpJSON = self.getCardListJSON(self.game.lineUp.cards)
+        kicksJSON = GetCardListJSON(self.game.kickDeck)
+        destroyedJSON = GetCardListJSON(self.game.destroyedDeck)
+        lineUpJSON = GetCardListJSON(self.game.lineUp.cards)
         
         gameJSON = {'id':self.id,
                     'mainDeck':{'count':len(self.game.mainDeck),
@@ -33,7 +33,3 @@ class GameWrapper:
             gameJSON['request'] = RequestWrapperFactory.buildRequestWrapper(self.game.currentTurn.request).toJSON()
                     
         return {'game':gameJSON}
-        
-    def getCardListJSON(self, cards):
-        """ Return the Card JSON for the given list of cards """
-        return [CardWrapper(card).toJSON() for card in cards]
