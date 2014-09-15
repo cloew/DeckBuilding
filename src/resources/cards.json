@@ -118,6 +118,16 @@
                     "count":1}]
 },
 {
+    "name":"Soultaker Sword",
+    "type":"Equipment",
+    "image":"soultaker_sword.jpg",
+    "cost":{"type":"FIXED",
+            "cost":4},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":2},
+                   {"type":"DESTROY"}]
+},
+{
     "name":"Talon",
     "type":"Villain",
     "image":"talon.jpg",

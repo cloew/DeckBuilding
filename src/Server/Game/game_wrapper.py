@@ -17,13 +17,15 @@ class GameWrapper:
         
     def toJSON(self):
         """ Return the game as a JSON Dictionary """
-        kicksJSON = [CardWrapper(card).toJSON() for card in self.game.kickDeck]
-        lineUpJSON = [CardWrapper(card).toJSON() for card in self.game.lineUp.cards]
+        kicksJSON = self.getCardListJSON(self.game.kickDeck)
+        destroyedJSON = self.getCardListJSON(self.game.destroyedDeck)
+        lineUpJSON = self.getCardListJSON(self.game.lineUp.cards)
         
         gameJSON = {'id':self.id,
                     'mainDeck':{'count':len(self.game.mainDeck),
                                 'hidden':True},
                     'kicks':{'cards':kicksJSON},
+                    'destroyed':{'cards':destroyedJSON},
                     'lineUp':lineUpJSON,
                     'turn':TurnWrapper(self.game.currentTurn).toJSON()}
                     
@@ -31,3 +33,7 @@ class GameWrapper:
             gameJSON['request'] = ChooseOptionRequestWrapper(self.game.currentTurn.request).toJSON()
                     
         return {'game':gameJSON}
+        
+    def getCardListJSON(self, cards):
+        """ Return the Card JSON for the given list of cards """
+        return [CardWrapper(card).toJSON() for card in cards]

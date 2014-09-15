@@ -1,6 +1,7 @@
 from deck_source import DeckSource
 from list_source import ListSource
 
+DESTROYED = "DESTROYED"
 DISCARD_PILE = "DISCARD_PILE"
 EVENT = "EVENT"
 HAND = "HAND"
@@ -14,7 +15,9 @@ class SourceFactory:
     
     def getSource(self, sourceType, game, event=None):
         """ Return the source for the given source tyoe and game """
-        if sourceType == DISCARD_PILE:
+        if sourceType == DESTROYED:
+            return DeckSource(game.destroyedDeck)
+        elif sourceType == DISCARD_PILE:
             return DeckSource(game.currentTurn.player.discardPile)
         elif sourceType == EVENT:
             return event

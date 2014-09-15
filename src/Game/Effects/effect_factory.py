@@ -1,6 +1,7 @@
 from Game.Effects.add_trigger import AddTrigger
 from Game.Effects.choice import Choice, Option
 from Game.Effects.conditional_effect import ConditionalEffect
+from Game.Effects.destroy import Destroy
 from Game.Effects.discard import Discard
 from Game.Effects.draw import Draw
 from Game.Effects.gain_card import GainCard
@@ -34,6 +35,8 @@ class EffectFactory:
             condition = ConditionFactory.loadCondition(effectJson["condition"])
             effect = EffectFactory.loadEffect(effectJson["effect"])
             return ConditionalEffect(condition, effect)
+        elif effectType == "DESTROY":
+            return Destroy()
         elif effectType == "DISCARD":
             return Discard(effectJson["source"])
         elif effectType == "DRAW":

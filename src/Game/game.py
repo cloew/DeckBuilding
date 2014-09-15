@@ -21,7 +21,7 @@ class Game:
         self.lineUp = LineUp(self.mainDeck)
         self.weaknessDeck = None
         self.kickDeck = Deck(deck_initializer=KickDeckInitializer)
-        self.destroyedPile = None
+        self.destroyedDeck = Deck()
         
         self.turnCoroutine = self.pickTurn()
         self.nextTurn()
