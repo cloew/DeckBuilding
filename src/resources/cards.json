@@ -31,24 +31,25 @@
 {
     "name":"Kick",
     "type":"Super Power",
+    "image":"kick.jpg",
     "cost":{"type":"FIXED",
             "cost":3},
-    "image":"kick.jpg",
     "playEffects":[{"type":"GAIN_POWER",
                     "power":2}]
 },
 {
     "name":"Kid Flash",
     "type":"Hero",
+    "image":"kid_flash.jpg",
     "cost":{"type":"FIXED",
             "cost":2},
-    "image":"kid_flash.jpg",
     "playEffects":[{"type":"DRAW",
                     "count":1}]
 },
 {
     "name":"Killer Croc",
     "type":"Villain",
+    "image":"killer_croc.jpg",
     "cost":{"type":"FIXED",
             "cost":4},
     "playEffects":[{"type":"GAIN_POWER",
@@ -84,6 +85,7 @@
 {
     "name":"Manhunter",
     "type":"Villain",
+    "image":"manhunter.jpg",
     "cost":{"type":"FIXED",
             "cost":3},
     "playEffects":[{"type":"GAIN_POWER",
@@ -98,15 +100,16 @@
 {
     "name":"Punch",
     "type":"Starter",
+    "image":"punch.jpg",
     "cost":{"type":"FIXED",
             "cost":0},
-    "image":"punch.jpg",
     "playEffects":[{"type":"GAIN_POWER",
                     "power":1}]
 },
 {
     "name":"Raven",
     "type":"Hero",
+    "image":"raven.jpg",
     "cost":{"type":"FIXED",
             "cost":3},
     "playEffects":[{"type":"GAIN_POWER",
@@ -117,6 +120,7 @@
 {
     "name":"Talon",
     "type":"Villain",
+    "image":"talon.jpg",
     "cost":{"type":"FIXED",
             "cost":1},
     "playEffects":[{"type":"CONDITIONAL",
@@ -130,6 +134,7 @@
 {
     "name":"Teleportation",
     "type":"Super Power",
+    "image":"teleportation.jpg",
     "cost":{"type":"FIXED",
             "cost":7},
     "playEffects":[{"type":"CONDITIONAL",
@@ -161,12 +166,14 @@
 {
     "name":"Vulnerability",
     "type":"Starter",
+    "image":"vulnerability.jpg",
     "cost":{"type":"FIXED",
             "cost":0}
 },
 {
     "name":"Whirlwind",
     "type":"Super Power",
+    "image":"whirlwind.jpg",
     "cost":{"type":"FIXED",
             "cost":2},
     "playEffects":[{"type":"GAIN_POWER",
