@@ -17,5 +17,7 @@ class TurnWrapper:
         return {'hand':handJSON,
                 'played':playedJSON,
                 'ongoing':ongoingJSON,
+                'deck':{'count':len(self.turn.player.deck),
+                        'hidden':True},
                 'discardPile':{'cards':discardPileJSON},
                 'power':self.turn.power}
