@@ -1,6 +1,6 @@
 
 class ChooseOptionRequestWrapper:
-    """ A Wrapper for a Choose Option Request that handles its conversion to and from JSON """
+    """ A Wrapper for a Choose Option Request that handles its conversion to JSON """
     
     def __init__(self, request):
         """ Initialize the Request Wrapper """

@@ -1,10 +1,13 @@
 from Game.Commands.Requests.choose_option_request import ChooseOptionRequest
+from Game.Commands.Requests.pick_card_request import PickCardRequest
 
 from Server.Game.Requests.choose_option_request_wrapper import ChooseOptionRequestWrapper
+from Server.Game.Requests.pick_card_request_wrapper import PickCardRequestWrapper
 
 class RequestWrapperFactory:
     """ Factory to construct Request Wrappers """
-    REQUEST_TO_WRAPPER = {ChooseOptionRequest:ChooseOptionRequestWrapper}
+    REQUEST_TO_WRAPPER = {ChooseOptionRequest:ChooseOptionRequestWrapper,
+                          PickCardRequest:PickCardRequestWrapper}
     
     def buildRequestWrapper(self, request):
         """ Return the current Request Wrapper """
