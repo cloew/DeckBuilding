@@ -1,6 +1,16 @@
 'use strict';
 
 angular.module('DeckBuildingDirectives', [])
+    .directive('cardImage', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          transclude: true,
+          scope: {
+              image: '=image',
+          },
+          templateUrl: 'static/partials/directives/card_image.html'
+      }})
     .directive('card', function() {
       return {
           restrict: 'E',

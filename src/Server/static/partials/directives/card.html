@@ -1,4 +1,6 @@
-<div class="card" style="background-image: url({{card.imageUrl}});" title="{{card.name}}|{{card.cost}}">
-    <div ng-transclude>
-    </div>
+<div>
+    <card-image image="card.imageUrl" title="{{card.name}}|{{card.cost}}">
+        <div ng-transclude>
+        </div>
+    </card-image>
 </div>
