@@ -58,7 +58,7 @@ angular.module('DeckBuildingDirectives', [])
           restrict: 'E',
           replace: true,
           scope: {
-              deck: '=deck',
+              count: '=count',
           },
           templateUrl: 'static/partials/directives/deck_counter.html'
       }});

@@ -1,5 +1,8 @@
 <div class="deck">
-    <action-card action="action" action-arguments="args" card="deck.cards[0]" index="0">
-        <deck-counter deck="deck"></deck-counter>
+    <action-card action="action" action-arguments="args" card="deck.cards[0]" index="0" ng-hide="deck.hidden">
+        <deck-counter count="deck.cards.length"></deck-counter>
+    </action-card>
+    <card-image image="'static/images/background.jpg'" ng-show="deck.hidden">
+        <deck-counter count="deck.count"></deck-counter>
     </action-card>
 </div>

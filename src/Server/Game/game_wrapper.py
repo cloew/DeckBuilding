@@ -21,6 +21,8 @@ class GameWrapper:
         lineUpJSON = [CardWrapper(card).toJSON() for card in self.game.lineUp.cards]
         
         gameJSON = {'id':self.id,
+                    'mainDeck':{'count':len(self.game.mainDeck),
+                                'hidden':True},
                     'kicks':{'cards':kicksJSON},
                     'lineUp':lineUpJSON,
                     'turn':TurnWrapper(self.game.currentTurn).toJSON()}
