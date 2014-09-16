@@ -1,3 +1,4 @@
+from Game.Effects.effect_runner import PerformEffect
 from Game.Events.top_card_event import TopCardEvent
 from Game.Sources.source_factory import SourceFactory
 
@@ -14,4 +15,7 @@ class LookAtTop:
         source = SourceFactory.getSource(self.sourceType, args.game, event=args.event)
         card = source[0]
         event = TopCardEvent(card, source, args.game)
-        self.thenEffect.perform(event.args)
+        coroutine = PerformEffect(self.thenEffect, event.args)
+        response = yield coroutine.next()
+        while True:
+            response = yield coroutine.send(response)
