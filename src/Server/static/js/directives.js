@@ -24,12 +24,11 @@ angular.module('DeckBuildingDirectives', [])
           replace: true,
           transclude: true,
           scope: {
-              action: '=action',
-              args: '=actionArguments',
+              actions: '=actions',
               index: '=index',
               card: '=card'
           },
-          template: '<div style="width: 150px; float:left; position: relative;"><card style="cursor:pointer;" ng-click="action(index, args);"><div ng-transclude></div></card></div>'
+          template: '<div style="width: 150px; float:left; position: relative;"><card><div ng-transclude></div></card></div>'
       }})
       .directive('cardList', function() {
       return {
@@ -37,10 +36,9 @@ angular.module('DeckBuildingDirectives', [])
           replace: 'true',
           scope: {
               cards: '=cards',
-              action: '=action',
-              args: '=actionArguments'
+              actions: '=actions',
           },
-          template: '<div style="display: inline-block; width: 100%;"><action-card action="action" action-arguments="args" card="card" index="$index" ng-repeat="card in cards"></action-card></div>'
+          template: '<div style="display: inline-block; width: 100%;"><action-card actions="actions" card="card" index="$index" ng-repeat="card in cards"></action-card></div>'
       }})
       .directive('deck', function() {
       return {
@@ -48,10 +46,22 @@ angular.module('DeckBuildingDirectives', [])
           replace: true,
           scope: {
               deck: '=deck',
-              action: '=action',
-              args: '=actionArguments',
+              actions: '=actions',
           },
           templateUrl: 'static/partials/directives/deck.html'
+      }})
+      .directive('cardIcons', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          transclude: true,
+          templateUrl: 'static/partials/directives/card_icons.html'
+      }})
+      .directive('buyIcon', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          templateUrl: 'static/partials/directives/buy_icon.html'
       }})
       .directive('deckCounter', function() {
       return {

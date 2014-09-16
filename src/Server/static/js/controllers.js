@@ -79,6 +79,7 @@ controllers.controller('GameController', function($scope, $http, $routeParams, $
           size: 'lg'
         });
     };
+    $scope.actions = {'buyCard':$scope.buyCard};
 });
 
 controllers.controller('ChooseOptionController', function($scope, $modalInstance, parent) {
