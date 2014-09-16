@@ -18,7 +18,12 @@ class MoveCard:
         cards = fromSource
         if self.filter is not None:
             cards = self.filter.evaluate(args.game)
-        card = yield PickCardRequest(cards)
+        
+        card = None
+        if len(cards) == 1:
+            card = cards[0]
+        else:
+            card = yield PickCardRequest(cards)
         
         fromSource.remove(card)
         toSource.add(card)
