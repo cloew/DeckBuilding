@@ -11,7 +11,14 @@ class ConditionalEffect:
     def perform(self, args):
         """ Perform the Game Effect """
         if self.condition.evaluate(args.game, event=args.event):
-            coroutine = PerformEffect(self.effect, args)
+            coroutine = self.performEffect(args)
             response = yield coroutine.next()
             while True:
                 response = yield coroutine.send(response)
+                
+    def performEffect(self, args):
+        """ Perform the conditional effect """
+        coroutine = PerformEffect(self.effect, args)
+        response = yield coroutine.next()
+        while True:
+            response = yield coroutine.send(response)
