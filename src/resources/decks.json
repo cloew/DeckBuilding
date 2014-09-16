@@ -14,11 +14,9 @@
 },
 {
     "name":"Starting",
-    "cards":[{"name":"Nth Metal",
-              "count":5},
-             {"name":"Kid Flash",
-              "count":5},
-             {"name":"Titans Tower",
+    "cards":[{"name":"Vulnerability",
+              "count":9},
+             {"name":"The Rot",
               "count":1}]
 }
 ]
