@@ -39,7 +39,7 @@ class EffectFactory:
             effect = EffectFactory.loadEffect(effectJson["effect"])
             return ConditionalEffect(condition, effect)
         elif effectType == "DESTROY":
-            return Destroy()
+            return Destroy(effectJson["source"])
         elif effectType == "DISCARD":
             return Discard(effectJson["source"])
         elif effectType == "DRAW":

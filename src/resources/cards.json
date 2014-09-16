@@ -98,6 +98,23 @@
                               "power":2}}]
 },
 {
+    "name":"Nth Metal",
+    "type":"Equipment",
+    "image":"nth_metal.jpg",
+    "cost":{"type":"FIXED",
+            "cost":3},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":1},
+                   {"type":"LOOK_AT_TOP",
+                    "source":"DECK",
+                    "then":{"type":"CHOICE",
+                            "choices":[{"description":"Destroy Card",
+                                          "effects":[{"type":"DESTROY",
+                                                      "source":"EVENT"}]},
+                                         {"description":"Do nothing",
+                                          "effects":[]}]}}]
+},
+{
     "name":"Punch",
     "type":"Starter",
     "image":"punch.jpg",
@@ -130,7 +147,8 @@
                                  "sourceType":"HAND"},
                     "effect":{"type":"CHOICE",
                               "choices":[{"description":"Destroy a card in your hand",
-                                          "effects":[{"type":"DESTROY"}]},
+                                          "effects":[{"type":"DESTROY",
+                                                      "source":"HAND"}]},
                                          {"description":"Do nothing",
                                           "effects":[]}]}}]
 },
