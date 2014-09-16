@@ -57,11 +57,23 @@ angular.module('DeckBuildingDirectives', [])
           transclude: true,
           templateUrl: 'static/partials/directives/card_icons.html'
       }})
+      .directive('actionCardIcon', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          templateUrl: 'static/partials/directives/action_card_icon.html'
+      }})
       .directive('buyIcon', function() {
       return {
           restrict: 'E',
           replace: true,
           templateUrl: 'static/partials/directives/buy_icon.html'
+      }})
+      .directive('playIcon', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          templateUrl: 'static/partials/directives/play_icon.html'
       }})
       .directive('deckCounter', function() {
       return {

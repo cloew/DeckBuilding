@@ -25,14 +25,15 @@ controllers.controller('GameController', function($scope, $http, $routeParams, $
         }).error(function(error) {
             alert(error);
         });
-    $scope.buyCard = function(index, source) {  
+    $scope.actions = {};
+    $scope.actions.buyCard = function(index, source) {  
         $http.post('/api/game/'+$routeParams.gameId+'/buy', {'index':index, 'source':source}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
             $scope.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     };
-    $scope.playCard = function(index) {
+    $scope.actions.playCard = function(index) {
         $http.post('/api/game/'+$routeParams.gameId+'/play', {'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
             $scope.setGame(data);
         }).error(function(error) {
@@ -79,7 +80,6 @@ controllers.controller('GameController', function($scope, $http, $routeParams, $
           size: 'lg'
         });
     };
-    $scope.actions = {'buyCard':$scope.buyCard};
 });
 
 controllers.controller('ChooseOptionController', function($scope, $modalInstance, parent) {

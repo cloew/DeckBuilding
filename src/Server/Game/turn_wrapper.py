@@ -1,4 +1,5 @@
 from card_wrapper import CardWrapper
+from json_helper import GetCardListJSON
 
 class TurnWrapper:
     """ A Wrapper for a Game Turn """
@@ -9,10 +10,10 @@ class TurnWrapper:
         
     def toJSON(self):
         """ Return the turn as a JSON Dictionary """
-        handJSON = [CardWrapper(card).toJSON() for card in self.turn.player.hand]
-        playedJSON = [CardWrapper(card).toJSON() for card in self.turn.playedCards]
-        ongoingJSON = [CardWrapper(card).toJSON() for card in self.turn.player.ongoing]
-        discardPileJSON = [CardWrapper(card).toJSON() for card in self.turn.player.deck.discardPile]
+        handJSON = GetCardListJSON(self.turn.player.hand, actions=[{'type':'PLAY'}])
+        playedJSON = GetCardListJSON(self.turn.playedCards)
+        ongoingJSON = GetCardListJSON(self.turn.player.ongoing)
+        discardPileJSON = GetCardListJSON(self.turn.player.deck.discardPile)
         
         return {'hand':handJSON,
                 'played':playedJSON,
