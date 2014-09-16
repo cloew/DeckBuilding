@@ -1,5 +1,5 @@
 from card_wrapper import CardWrapper
 
-def GetCardListJSON(cards, canBuy=False, source=None):
+def GetCardListJSON(cards, actions=[]):
     """ Return the Card JSON for the given list of cards """
-    return [CardWrapper(card, canBuy=canBuy, source=source).toJSON() for card in cards]
+    return [CardWrapper(card, actions=actions).toJSON() for card in cards]
