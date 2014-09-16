@@ -12,8 +12,8 @@ class MoveCard:
         
     def perform(self, args):
         """ Perform the Game Effect """
-        fromSource = SourceFactory.getSource(self.fromSourceType, args.game)
-        toSource = SourceFactory.getSource(self.toSourceType, args.game)
+        fromSource = SourceFactory.getSource(self.fromSourceType, args.game, event=args.event)
+        toSource = SourceFactory.getSource(self.toSourceType, args.game, event=args.event)
         
         cards = fromSource
         if self.filter is not None:

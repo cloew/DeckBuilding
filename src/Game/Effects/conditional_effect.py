@@ -14,4 +14,4 @@ class ConditionalEffect:
             coroutine = PerformEffect(self.effect, args)
             response = yield coroutine.next()
             while True:
-                response = yield coroutine.send(response) 
+                response = yield coroutine.send(response)
