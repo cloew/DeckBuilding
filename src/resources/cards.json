@@ -169,6 +169,22 @@
                               "power":2}}]
 },
 {
+    "name":"Titans Tower",
+    "type":"Location",
+    "image":"titans_tower.jpg",
+    "cost":{"type":"FIXED",
+            "cost":5},
+    "playEffects":[{"type":"ONGOING"}],
+    "triggers":[{"type":"CARD_PLAYED",
+                 "singleUse":true,
+                 "condition":{"type":"MATCHING",
+                              "field":"cost",
+                              "values":[2, 3],
+                              "sourceType":"EVENT"},
+                 "effect":{"type":"DRAW",
+                           "count":1}}]
+},
+{
     "name":"Teleportation",
     "type":"Super Power",
     "image":"teleportation.jpg",

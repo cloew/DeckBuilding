@@ -28,7 +28,12 @@ class Card:
         coroutine = PerformEffects(self.playEffects, args)
         response = yield coroutine.next()
         while True:
-            response = yield coroutine.send(response)   
+            response = yield coroutine.send(response)
+            
+    @property
+    def cost(self):
+        """ Return the cost of the Card """
+        return self.calculateCost()
         
     def __repr__(self):
         """ Return the String Representation of the card """
