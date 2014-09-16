@@ -19,13 +19,14 @@ class Option:
 class Choice:
     """ Represents an effect absed on a choice """
     
-    def __init__(self, options):
+    def __init__(self, options, relevantSourceType=None):
         """ Initialize the options """
         self.options = options
+        self.relevantSourceType = relevantSourceType
         
     def perform(self, args):
         """ Perform the Game Effect """
-        option = yield ChooseOptionRequest(self.options)
+        option = yield ChooseOptionRequest(self.options, args, self.relevantSourceType)
         coroutine = option.performEffects(args)
         response = yield coroutine.next()
         while True:

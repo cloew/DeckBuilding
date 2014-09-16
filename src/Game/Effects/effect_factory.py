@@ -33,7 +33,10 @@ class EffectFactory:
             return AddTrigger(TriggerFactory.loadTrigger(effectJson["trigger"]))
         elif effectType == "CHOICE":
             options = [Option(optionJSON['description'], self.loadEffects(optionJSON['effects'])) for optionJSON in effectJson['choices']]
-            return Choice(options)
+            relevantSourceType = None
+            if "source" in effectJson:
+                relevantSourceType = effectJson["source"]
+            return Choice(options, relevantSourceType=relevantSourceType)
         elif effectType == "CONDITIONAL":
             condition = ConditionFactory.loadCondition(effectJson["condition"])
             effect = EffectFactory.loadEffect(effectJson["effect"])
