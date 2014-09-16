@@ -14,9 +14,9 @@
 },
 {
     "name":"Starting",
-    "cards":[{"name":"Soultaker Sword",
-              "count":5},
+    "cards":[{"name":"Teleportation",
+              "count":10},
              {"name":"Wonder of the Knight",
-              "count":5}]
+              "count":0}]
 }
 ]

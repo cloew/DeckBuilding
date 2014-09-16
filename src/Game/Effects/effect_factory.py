@@ -6,6 +6,7 @@ from Game.Effects.discard import Discard
 from Game.Effects.draw import Draw
 from Game.Effects.gain_card import GainCard
 from Game.Effects.gain_power import GainPower
+from Game.Effects.look_at_top import LookAtTop
 from Game.Effects.move_card import MoveCard
 from Game.Effects.ongoing import Ongoing
 from Game.Effects.per_match import PerMatch
@@ -47,6 +48,8 @@ class EffectFactory:
             return GainCard()
         elif effectType == "GAIN_POWER":
             return GainPower(effectJson["power"])
+        elif effectType == "LOOK_AT_TOP":
+            return LookAtTop(effectJson["source"], self.loadEffect(effectJson["then"]))
         elif effectType == "MOVE_CARD":
             filter = None
             if "filter" in effectJson:

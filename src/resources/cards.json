@@ -157,7 +157,9 @@
     "playEffects":[{"type":"CONDITIONAL",
                     "condition":{"type":"HAS_CARDS",
                                  "sourceType":"MAIN_DECK"},
-                    "effect":{"type":"GAIN_CARD"}}]
+                    "effect":{"type":"LOOK_AT_TOP",
+                              "source":"MAIN_DECK",
+                              "then":{"type":"GAIN_CARD"}}}]
 },
 {
     "name":"The Rot",
