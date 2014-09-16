@@ -1,5 +1,8 @@
 <div class="center">
     <h1>Choose an option</h1>
+    <div class="center card-list">
+        <card-list cards="request.cards"></card-list>
+    </div>
 </div>
 <div ng-repeat="option in request.options" class="center options">
     <button class="center option-button" ng-click="chooseOption($index);">{{option}}</button>
