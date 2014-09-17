@@ -23,8 +23,11 @@ class Turn:
     def setupEventListener(self):
         """ Setup the Event Listener """
         self.eventListener = GameEventListener()
+        self.addStartingEffects()
+        
+    def addStartingEffects(self):
         for card in self.player.ongoing:
-            self.registerTriggers(card.triggerEffects)
+            self.addOngoingEffects(card)
             
     def perform(self, command):
         """ Perform the given command """
@@ -71,6 +74,9 @@ class Turn:
     def addOngoing(self, card):
         """ Add the given card as an ongoing effect """
         self.player.addOngoing(card)
+        self.addOngoingEffects(card)
+        
+    def addOngoingEffects(self, card):
         self.registerTriggers(card.triggerEffects)
         self.registerActivatable(card, card.activatableEffect)
         

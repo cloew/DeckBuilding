@@ -14,8 +14,10 @@
 },
 {
     "name":"Starting",
-    "cards":[{"name":"Vulnerability",
-              "count":9},
+    "cards":[{"name":"Kid Flash",
+              "count":8},
+             {"name":"Titans Tower",
+              "count":1},
              {"name":"Apokolips",
               "count":1}]
 }
