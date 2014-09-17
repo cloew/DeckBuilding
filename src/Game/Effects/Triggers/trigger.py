@@ -1,3 +1,4 @@
+from Game.Effects.effect_runner import PerformEffect
 
 class Trigger:
     """ Represents a Triggerable Effect """
@@ -12,7 +13,10 @@ class Trigger:
     def receive(self, event):
         """ Receive the event """
         if self.condition.evaluate(event.args.game, event=event):
-            self.effect.perform(event.args)
+            coroutine = PerformEffect(self.effect, args)
+            response = yield coroutine.next()
+            while True:
+                response = yield coroutine.send(response)
         
             if self.singleUse:
                 event.args.owner.unregisterTrigger(self)
