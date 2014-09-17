@@ -75,6 +75,12 @@ angular.module('DeckBuildingDirectives', [])
           replace: true,
           templateUrl: 'static/partials/directives/buy_icon.html'
       }})
+      .directive('pickIcon', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          templateUrl: 'static/partials/directives/pick_icon.html'
+      }})
       .directive('playIcon', function() {
       return {
           restrict: 'E',

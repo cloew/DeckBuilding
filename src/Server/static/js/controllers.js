@@ -102,8 +102,8 @@ controllers.controller('ChooseOptionController', function($scope, $modalInstance
 controllers.controller('PickCardController', function($scope, $modalInstance, parent) {
     $scope.parent = parent;
     $scope.request = parent.game.request;
-    
-    $scope.pickCard = function(index) {
+    $scope.actions = {};
+    $scope.actions.pickCard = function(index) {
         $scope.parent.pickCard(index);
         $modalInstance.dismiss('cancel');
     };

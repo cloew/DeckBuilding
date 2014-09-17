@@ -11,4 +11,4 @@ class PickCardRequestWrapper:
     def toJSON(self):
         """ Return the request as a JSON Dictionary """
         return {'type':'PICK_CARD',
-                'cards':GetCardListJSON(self.request.cards, self.game)}
+                'cards':GetCardListJSON(self.request.cards, self.game, actions=[{"type":"PICK"}])}
