@@ -1,4 +1,6 @@
+from Game.Characters.character_factory import CharacterFactory
 from Game.Decks.decks import StartingDeckInitializer
+
 from kao_deck.deck_with_discard_pile import DeckWithDiscardPile
 
 class Player:
@@ -11,6 +13,7 @@ class Player:
         self.deck.shuffle()
         self.drawHand()
         self.ongoing = []
+        self.character = CharacterFactory.loadCharacter("Batman")
         
     def addOngoing(self, card):
         """ Add the given card as an ongoing effect """
