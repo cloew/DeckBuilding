@@ -10,6 +10,7 @@ from Game.Effects.look_at_top import LookAtTop
 from Game.Effects.move_card import MoveCard
 from Game.Effects.ongoing import Ongoing
 from Game.Effects.per_match import PerMatch
+from Game.Effects.play_or_have_played import PlayOrHavePlayed
 
 from Game.Effects.Conditions.condition_factory import ConditionFactory
 from Game.Effects.Conditions.filter import Filter
@@ -68,6 +69,9 @@ class EffectFactory:
         elif effectType == "PER_MATCH":
             effect = EffectFactory.loadEffect(effectJson["effect"])
             return PerMatch(effectJson["field"], effectJson["values"], effectJson["sourceType"], effect)
+        elif effectType == "PLAY_OR_HAVE_PLAYED":
+            effect = EffectFactory.loadEffect(effectJson["effect"])
+            return PlayOrHavePlayed(effectJson["field"], effectJson["values"], effect)
         return None
         
 EffectFactory = EffectFactory()
