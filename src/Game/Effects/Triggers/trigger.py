@@ -13,7 +13,7 @@ class Trigger:
     def receive(self, event):
         """ Receive the event """
         if self.condition.evaluate(event.args.game, event=event):
-            coroutine = PerformEffect(self.effect, args)
+            coroutine = PerformEffect(self.effect, event.args)
             response = yield coroutine.next()
             while True:
                 response = yield coroutine.send(response)
