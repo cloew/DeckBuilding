@@ -1,5 +1,17 @@
 [
 {
+    "name":"Apokolips",
+    "type":"Location",
+    "image":"apokolips.jpg",
+    "cost":{"type":"FIXED",
+            "cost":5},
+    "playEffects":[{"type":"ONGOING",
+                    "power":2}],
+    "activatableEffect":{"singleUse":true,
+                         "effect":{"type":"GAIN_POWER",
+                                   "power":10}}
+},
+{
     "name":"Bo Staff",
     "type":"Equipment",
     "cost":{"type":"FIXED",
@@ -17,6 +29,7 @@
 {
     "name":"Hawkgirl",
     "type":"Hero",
+    "image":"hawkgirl.jpg",
     "cost":{"type":"FIXED",
             "cost":2},
     "playEffects":[{"type":"GAIN_POWER",
