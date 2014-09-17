@@ -27,7 +27,6 @@ class Turn:
         
     def addStartingEffects(self):
         for card in self.player.ongoing + [self.player.character]:
-            print "Adding effects for:", card.name
             self.addOngoingEffects(card)
             
     def perform(self, command):

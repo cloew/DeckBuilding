@@ -9,5 +9,5 @@ class Matching:
         
     def evaluate(self, game, event=None):
         """ Evaluate the condition """
-        return len(self.filter.evaluate(game, event=event))
+        return len(self.filter.evaluate(game, event=event)) > 0
         
