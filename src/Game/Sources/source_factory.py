@@ -34,7 +34,7 @@ class SourceFactory:
         elif sourceType == MAIN_DECK:
             return DeckSource(game.mainDeck)
         elif sourceType == ONGOING:
-            return ListSource(game.turn.player.ongoing)
+            return ListSource(game.currentTurn.player.ongoing)
         elif sourceType == PLAYED:
             return ListSource(game.currentTurn.playedCards)
         return None

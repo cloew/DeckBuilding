@@ -12,4 +12,4 @@ class Activatable:
         self.effect.perform(args)
         
         if self.singleUse:
-            args.owner.unregisterActivatable(args.parent, self)
+            args.owner.unregisterActivatable(args.parent)

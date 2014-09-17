@@ -1,3 +1,4 @@
+from Game.Effects.effect_arguments import EffectArguments
 
 class ActivateCard:
     """ Represents a command to activate a card """
@@ -10,4 +11,4 @@ class ActivateCard:
     def perform(self):
         """ Perform the command """
         args = EffectArguments(self.owner.game, self.card)
-        self.owner.activatableEffect[self.card].activate(args)
+        self.owner.activatableEffects[self.card].activate(args)
