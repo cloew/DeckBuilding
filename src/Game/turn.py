@@ -12,6 +12,7 @@ class Turn:
         self.game = game
         self.power = 0
         self.playedCards = []
+        self.activatableEffects = {}
         self.cleanupEffects = []
 
         self.command = None
@@ -65,6 +66,7 @@ class Turn:
         """ Add the given card as an ongoing effect """
         self.player.addOngoing(card)
         self.registerTriggers(card.triggerEffects)
+        self.registerActivatable(card, card.activatableEffect)
         
     def draw(self, count=1):
         """ Draw the given number of cards """
@@ -93,6 +95,15 @@ class Turn:
     def unregisterTrigger(self, trigger):
         """ Unregister the given trigger """
         self.eventListener.unregisterTriggers([trigger])
+        
+    def registerActivatable(self, card, activatable):
+        """ Register the given activatable """
+        if activatable is not None:
+            self.activatableEffects[card] = activatable
+        
+    def unregisterActivatable(self, card):
+        """ Unregister the given card's activatable effect """
+        del self.activatableEffects[card]
         
     def cleanup(self):
         """ Cleanup the turn """
