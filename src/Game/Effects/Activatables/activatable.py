@@ -11,9 +11,12 @@ class Activatable:
     def activate(self, args):
         """ Activate the effect """
         coroutine = PerformEffect(self.effect, args)
-        response = yield coroutine.next()
-        while True:
-            response = yield coroutine.send(response)
+        try:
+            response = yield coroutine.next()
+            while True:
+                response = yield coroutine.send(response)
+        except StopIteration:
+            pass
         
         if self.singleUse:
             args.owner.unregisterActivatable(args.parent)

@@ -14,9 +14,12 @@ class Trigger:
         """ Receive the event """
         if self.condition.evaluate(event.args.game, event=event):
             coroutine = PerformEffect(self.effect, event.args)
-            response = yield coroutine.next()
-            while True:
-                response = yield coroutine.send(response)
+            try:
+                response = yield coroutine.next()
+                while True:
+                    response = yield coroutine.send(response)
+            except StopIteration:
+                pass
         
             if self.singleUse:
                 event.args.owner.unregisterTrigger(self)
