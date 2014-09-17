@@ -31,4 +31,7 @@ class GameEventListener:
         """ Send the event signal to each observer """
         if event.subject in self.observers:
             for observer in self.observers[event.subject]:
-                observer.receive(event)
+                coroutine = observer.receive(event)
+                response = yield coroutine.next()
+                while True:
+                    response = yield coroutine.send(response)

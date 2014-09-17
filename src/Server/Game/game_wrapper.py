@@ -30,6 +30,6 @@ class GameWrapper:
                     'turn':TurnWrapper(self.game.currentTurn).toJSON()}
                     
         if self.game.currentTurn.request is not None:
-            gameJSON['request'] = RequestWrapperFactory.buildRequestWrapper(self.game.currentTurn.request).toJSON()
+            gameJSON['request'] = RequestWrapperFactory.buildRequestWrapper(self.game.currentTurn.request, self.game).toJSON()
                     
         return {'game':gameJSON}

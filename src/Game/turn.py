@@ -59,7 +59,13 @@ class Turn:
         except StopIteration:
             pass
         
-        self.eventListener.send(PlayedCardEvent(card, self.game))
+        coroutine = self.eventListener.send(PlayedCardEvent(card, self.game))
+        try:
+            response = yield coroutine.next()
+            while True:
+                response = yield coroutine.send(response)
+        except StopIteration:
+            pass
         self.playedCards.append(card)
         
     def addOngoing(self, card):
