@@ -40,7 +40,10 @@ class EffectFactory:
         elif effectType == "CONDITIONAL":
             condition = ConditionFactory.loadCondition(effectJson["condition"])
             effect = EffectFactory.loadEffect(effectJson["effect"])
-            return ConditionalEffect(condition, effect)
+            otherwiseEffect = None
+            if "otherwise" in effectJson:
+                otherwiseEffect = EffectFactory.loadEffect(effectJson["otherwise"])
+            return ConditionalEffect(condition, effect, otherwiseEffect=otherwiseEffect)
         elif effectType == "DESTROY":
             return Destroy(effectJson["source"])
         elif effectType == "DISCARD":

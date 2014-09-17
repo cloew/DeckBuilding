@@ -10,8 +10,11 @@ class HasCards:
         
     def evaluate(self, game, event=None):
         """ Evaluate the condition """
-        cards = SourceFactory.getSource(self.sourceType, game, event=event)
+        source = SourceFactory.getSource(self.sourceType, game, event=event)
+        length = 0
         if self.filter is not None:
-            cards = self.filter.evaluate(game)
-        return len(cards) > 0
+            length = len(self.filter.evaluate(game))
+        else:
+            length = source.availableLength()
+        return length > 0
         

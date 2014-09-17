@@ -1,5 +1,7 @@
 from deck_source import DeckSource
+from deck_with_discard_pile_source import DeckWithDiscardPileSource
 from list_source import ListSource
+from source import Source
 
 DECK = "DECK"
 DESTROYED = "DESTROYED"
@@ -18,13 +20,13 @@ class SourceFactory:
     def getSource(self, sourceType, game, event=None):
         """ Return the source for the given source tyoe and game """
         if sourceType == DECK:
-            return DeckSource(game.currentTurn.player.deck)
+            return DeckWithDiscardPileSource(game.currentTurn.player.deck)
         if sourceType == DESTROYED:
             return DeckSource(game.destroyedDeck)
         elif sourceType == DISCARD_PILE:
             return DeckSource(game.currentTurn.player.discardPile)
         elif sourceType == EVENT:
-            return event
+            return Source(event)
         elif sourceType == HAND:
             return ListSource(game.currentTurn.player.hand)
         elif sourceType == KICK:
