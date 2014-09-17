@@ -25,6 +25,13 @@
     width: 25px;
     height: 100%;
 }
+.activate-icon {
+    background-image: url(/static/images/activate.png);
+    background-size: 23px 23px;
+    width: 23px;
+    height: 23px;
+    margin: 1px;
+}
 .buy-icon {
     background-image: url(/static/images/buy.png);
     background-size: 25px 25px;

@@ -63,6 +63,12 @@ angular.module('DeckBuildingDirectives', [])
           replace: true,
           templateUrl: 'static/partials/directives/action_card_icon.html'
       }})
+      .directive('activateIcon', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          templateUrl: 'static/partials/directives/activate_icon.html'
+      }})
       .directive('buyIcon', function() {
       return {
           restrict: 'E',
