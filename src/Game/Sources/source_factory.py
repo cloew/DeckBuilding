@@ -9,6 +9,7 @@ HAND = "HAND"
 KICK = "KICK"
 LINE_UP = "LINE_UP"
 MAIN_DECK = "MAIN_DECK"
+ONGOING = "ONGOING"
 PLAYED = "PLAYED"
 
 class SourceFactory:
@@ -32,6 +33,8 @@ class SourceFactory:
             return game.lineUp
         elif sourceType == MAIN_DECK:
             return DeckSource(game.mainDeck)
+        elif sourceType == ONGOING:
+            return ListSource(game.turn.player.ongoing)
         elif sourceType == PLAYED:
             return ListSource(game.currentTurn.playedCards)
         return None

@@ -17,9 +17,9 @@ class GameWrapper:
         
     def toJSON(self):
         """ Return the game as a JSON Dictionary """
-        kicksJSON = GetCardListJSON(self.game.kickDeck, actions=[{'type':'BUY', 'source':'KICK'}])
-        destroyedJSON = GetCardListJSON(self.game.destroyedDeck)
-        lineUpJSON = GetCardListJSON(self.game.lineUp.cards, actions=[{'type':'BUY', 'source':'LINE_UP'}])
+        kicksJSON = GetCardListJSON(self.game.kickDeck, self.game, actions=[{'type':'BUY', 'source':'KICK'}])
+        destroyedJSON = GetCardListJSON(self.game.destroyedDeck, self.game)
+        lineUpJSON = GetCardListJSON(self.game.lineUp.cards, self.game, actions=[{'type':'BUY', 'source':'LINE_UP'}])
         
         gameJSON = {'id':self.id,
                     'mainDeck':{'count':len(self.game.mainDeck),
