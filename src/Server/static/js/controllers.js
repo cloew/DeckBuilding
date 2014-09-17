@@ -26,6 +26,13 @@ controllers.controller('GameController', function($scope, $http, $routeParams, $
             alert(error);
         });
     $scope.actions = {};
+    $scope.actions.activateCard = function(index, source) {  
+        $http.post('/api/game/'+$routeParams.gameId+'/activate', {'index':index, 'source':source}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+            $scope.setGame(data);
+        }).error(function(error) {
+            alert(error);
+        });
+    };
     $scope.actions.buyCard = function(index, source) {  
         $http.post('/api/game/'+$routeParams.gameId+'/buy', {'index':index, 'source':source}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
             $scope.setGame(data);
