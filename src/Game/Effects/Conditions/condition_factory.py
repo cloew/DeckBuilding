@@ -1,4 +1,5 @@
 from and_condition import AndCondition
+from enough_power import EnoughPower
 from has_cards import HasCards
 from matching import Matching
 from not_condition import NotCondition
@@ -13,6 +14,8 @@ class ConditionFactory:
         """ Load the Condition from the given JSON """
         if conditionJSON["type"] == "AND":
             return AndCondition([self.loadCondition(subConditionJSON) for subConditionJSON in conditionJSON["conditions"]])
+        elif conditionJSON["type"] == "ENOUGH_POWER":
+            return EnoughPower(conditionJSON["power"])
         elif conditionJSON["type"] == "HAS_CARDS":
             filter = None
             if "filter" in conditionJSON:
