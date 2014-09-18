@@ -5,7 +5,7 @@ class PerMatch:
     
     def __init__(self, field, values, sourceType, effect):
         """ Initialize the Effect with the condition to evaluate and effect to perform """
-        self.filter = Filter(field, values, sourceType)
+        self.filter = Filter(field, values, sourceType, "IN")
         self.effect = effect
         
     def perform(self, args):

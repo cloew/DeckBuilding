@@ -66,7 +66,7 @@ class EffectFactory:
             filter = None
             if "filter" in effectJson:
                 filterJson = effectJson["filter"]
-                filter = Filter(filterJson["field"], filterJson["values"], effectJson["from"])
+                filter = Filter(filterJson["field"], filterJson["values"], effectJson["from"], filterJson["operation"])
             
             return MoveCard(effectJson["from"], effectJson["to"], filter=filter)
         elif effectType == "ONGOING":
