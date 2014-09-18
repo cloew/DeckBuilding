@@ -15,9 +15,7 @@
 {
     "name":"Starting",
     "cards":[{"name":"Killer Croc",
-              "count":5},
-             {"name":"Teleportation",
-              "count":4},
+              "count":9},
              {"name":"Apokolips",
               "count":1}]
 }
