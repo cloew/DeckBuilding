@@ -9,8 +9,10 @@ class ActivatableFactory:
     def loadActivatable(self, activatableJson):
         """ Load the trigger in the given JSON """
         singleUse = activatableJson["singleUse"]
-        # condition = ConditionFactory.loadCondition(triggerJson["condition"])
+        condition = None
+        if "condition" in activatableJson:
+            condition = ConditionFactory.loadCondition(activatableJson["condition"])
         effects = EffectFactory.loadEffects(activatableJson["effects"])
-        return Activatable(effects, singleUse=singleUse)
+        return Activatable(effects, condition=condition, singleUse=singleUse)
         
 ActivatableFactory = ActivatableFactory()

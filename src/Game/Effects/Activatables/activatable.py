@@ -3,10 +3,15 @@ from Game.Effects.effect_runner import PerformEffects
 class Activatable:
     """ Represents an effect that can be activated """
     
-    def __init__(self, effects, singleUse=False):
+    def __init__(self, effects, condition=None, singleUse=False):
         """ Initialize the Activatable Effect """
         self.effects = effects
+        self.condition = condition
         self.singleUse = singleUse
+        
+    def canActivate(self, game):
+        """ Return if the Activatable can activate """
+        return self.condition is None or self.condition.evaluate(game)
         
     def activate(self, args):
         """ Activate the effect """

@@ -27,6 +27,8 @@ class ConditionFactory:
         elif conditionJSON["type"] == "NTH":
             filterJson = conditionJSON["filter"]
             return NthPlayed(conditionJSON["n"], filterJson["field"], filterJson["values"])
+        else:
+            print "Cannot find Condition:", conditionJSON["type"]
         return None
         
 ConditionFactory = ConditionFactory()
