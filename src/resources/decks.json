@@ -15,9 +15,9 @@
 {
     "name":"Starting",
     "cards":[{"name":"Killer Croc",
-              "count":8},
-             {"name":"Titans Tower",
-              "count":1},
+              "count":5},
+             {"name":"Soultaker Sword",
+              "count":4},
              {"name":"Apokolips",
               "count":1}]
 }
