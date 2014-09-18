@@ -11,6 +11,7 @@ from Game.Effects.move_card import MoveCard
 from Game.Effects.ongoing import Ongoing
 from Game.Effects.per_match import PerMatch
 from Game.Effects.play_or_have_played import PlayOrHavePlayed
+from Game.Effects.spend_power import SpendPower
 
 from Game.Effects.Conditions.condition_factory import ConditionFactory
 from Game.Effects.Conditions.filter import Filter
@@ -72,6 +73,8 @@ class EffectFactory:
         elif effectType == "PLAY_OR_HAVE_PLAYED":
             effect = EffectFactory.loadEffect(effectJson["effect"])
             return PlayOrHavePlayed(effectJson["field"], effectJson["values"], effect)
+        elif effectType == "SPEND_POWER":
+            return SpendPower(effectJson["power"])
         return None
         
 EffectFactory = EffectFactory()
