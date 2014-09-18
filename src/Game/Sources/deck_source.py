@@ -11,3 +11,6 @@ class DeckSource(Source):
     def add(self, card):
         """ Add the given card to the source """
         self.deck.add([card])
+        
+    def __repr__(self):
+        return '<Deck:[' + ", ".join([str(item) for item in self.deck]) + ']>'
