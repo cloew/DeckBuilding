@@ -16,6 +16,7 @@ from Game.Effects.spend_power import SpendPower
 from Game.Effects.Conditions.condition_factory import ConditionFactory
 from Game.Effects.Conditions.filter import Filter
 
+
 class EffectFactory:
     """ Factory to create Game Effects """
     
@@ -53,7 +54,10 @@ class EffectFactory:
         elif effectType == "DRAW":
             return Draw(effectJson["count"])
         elif effectType == "GAIN_CARD":
-            return GainCard()
+            toSource = None
+            if "to" in effectJson:
+                toSource = effectJson["to"]
+            return GainCard(effectJson["from"], toSourceType=toSource)
         elif effectType == "GAIN_POWER":
             return GainPower(effectJson["power"])
         elif effectType == "LOOK_AT_TOP":

@@ -1,16 +1,17 @@
-from Game.Sources.source_factory import SourceFactory, HAND, MAIN_DECK
+from Game.Sources.source_factory import SourceFactory, DISCARD_PILE
 
 class GainCard:
     """ Represents an effect to Gain a card """
     
-    def __init__(self):
+    def __init__(self, fromSourceType, toSourceType=DISCARD_PILE):
         """ Initialize the Effect with the card to remove from play before discarding """
-        self.fromSourceType = MAIN_DECK
-        self.toSourceType = HAND
+        self.fromSourceType = fromSourceType
+        self.toSourceType = toSourceType
         
     def perform(self, args):
         """ Perform the Game Effect """
-        fromSource = SourceFactory.getSource(MAIN_DECK, args.game)
-        toSource = SourceFactory.getSource(HAND, args.game)
+        fromSource = SourceFactory.getSource(self.fromSourceType, args.game, event=args.event)
+        toSource = SourceFactory.getSource(self.toSourceType, args.game, event=args.event)
         
-        args.owner.gainCard(fromSource[0], fromSource, toSource=toSource)
+        for card in fromSource:
+            args.owner.gainCard(card, fromSource, toSource=toSource)
