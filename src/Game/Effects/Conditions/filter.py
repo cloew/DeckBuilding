@@ -19,4 +19,4 @@ class Filter:
     def compare(self, card):
         """ Compare the card with the Matching Condition """
         value = getattr(card, self.field)
-        return self.operation.compare(value, self.values)
+        return self.operation(value, self.values)

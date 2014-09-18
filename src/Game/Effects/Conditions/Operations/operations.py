@@ -1,7 +1,7 @@
+import operator
 
-class InOperator:
-    def compare(self, left, right):
-        """ Compare the left and right hand sides """
-        return left in right
+def inOperator(value, container):
+    return operator.contains(container, value)
 
-operations = {"IN":InOperator()}
+operations = {"<=":operator.__le__,
+              "IN":inOperator}
