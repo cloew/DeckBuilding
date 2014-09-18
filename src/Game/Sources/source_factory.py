@@ -1,8 +1,10 @@
+from character_source import CharacterSource
 from deck_source import DeckSource
 from deck_with_discard_pile_source import DeckWithDiscardPileSource
 from list_source import ListSource
 from source import Source
 
+CHARACTER = "CHARACTER"
 DECK = "DECK"
 DESTROYED = "DESTROYED"
 DISCARD_PILE = "DISCARD_PILE"
@@ -19,7 +21,9 @@ class SourceFactory:
     
     def getSource(self, sourceType, game, event=None):
         """ Return the source for the given source tyoe and game """
-        if sourceType == DECK:
+        if sourceType == CHARACTER:
+            return CharacterSource(game.currentTurn.player.character)
+        elif sourceType == DECK:
             return DeckWithDiscardPileSource(game.currentTurn.player.deck)
         if sourceType == DESTROYED:
             return DeckSource(game.destroyedDeck)
