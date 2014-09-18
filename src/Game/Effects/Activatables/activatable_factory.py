@@ -10,7 +10,7 @@ class ActivatableFactory:
         """ Load the trigger in the given JSON """
         singleUse = activatableJson["singleUse"]
         # condition = ConditionFactory.loadCondition(triggerJson["condition"])
-        effect = EffectFactory.loadEffect(activatableJson["effect"])
-        return Activatable(effect, singleUse=singleUse)
+        effects = EffectFactory.loadEffects(activatableJson["effects"])
+        return Activatable(effects, singleUse=singleUse)
         
 ActivatableFactory = ActivatableFactory()
