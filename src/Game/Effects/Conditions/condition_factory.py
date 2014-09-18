@@ -29,7 +29,7 @@ class ConditionFactory:
             return NotCondition(self.loadCondition(conditionJSON["condition"]))
         elif conditionJSON["type"] == "NTH":
             filterJson = conditionJSON["filter"]
-            return NthPlayed(conditionJSON["n"], filterJson["field"], filterJson["values"])
+            return NthPlayed(conditionJSON["n"], filterJson["field"], filterJson["values"], filterJson["operation"])
         else:
             print "Cannot find Condition:", conditionJSON["type"]
         return None

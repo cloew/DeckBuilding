@@ -57,6 +57,23 @@
                               "power":1}}]
 },
 {
+    "name":"House of Mystery",
+    "type":"Location",
+    "cost":{"type":"FIXED",
+            "cost":4},
+    "playEffects":[{"type":"ONGOING"}],
+    "triggers":[{"type":"CARD_PLAYED",
+                 "singleUse":true,
+                 "condition":{"type":"NTH",
+                              "n":1,
+                              "filter":{
+                                "field":"cost",
+                                "operation":">=",
+                                "values":5}},
+                 "effect":{"type":"DRAW",
+                           "count":1}}]
+},
+{
     "name":"Kick",
     "type":"Super Power",
     "image":"kick.jpg",
@@ -187,6 +204,7 @@
                               "n":1,
                               "filter":{
                                 "field":"cost",
+                                "operation":"IN",
                                 "values":[2, 3]}},
                  "effect":{"type":"DRAW",
                            "count":1}}]
@@ -218,6 +236,7 @@
                               "n":1,
                               "filter":{
                                 "field":"name",
+                                "operation":"IN",
                                 "values":["Vulnerability", "Weakness"]}},
                  "effect":{"type":"DRAW",
                            "count":1}}]
