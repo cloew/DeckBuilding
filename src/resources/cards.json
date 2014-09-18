@@ -200,7 +200,9 @@
                                  "sourceType":"MAIN_DECK"},
                     "effect":{"type":"LOOK_AT_TOP",
                               "source":"MAIN_DECK",
-                              "then":{"type":"GAIN_CARD"}}}]
+                              "then":{"type":"GAIN_CARD",
+                                      "from":"EVENT",
+                                      "to":"HAND"}}}]
 },
 {
     "name":"The Rot",
