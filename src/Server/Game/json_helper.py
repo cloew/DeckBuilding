@@ -5,7 +5,15 @@ def GetCardListJSON(cards, game, actions=[], source=None):
     wrappers = []
     for card in cards:
         actionsForCard = list(actions)
-        if card in game.currentTurn.activatableEffects:
-            actionsForCard.append({'type':'ACTIVATE', 'source':source})
+        activatableJSON = GetActivatableActionJSON(card, game, source=source)
+        if activatableJSON is not None:
+            actionsForCard.append(activatableJSON)
         wrappers.append(CardWrapper(card, actions=actionsForCard))
     return [wrapper.toJSON() for wrapper in wrappers]
+    
+def GetActivatableActionJSON(card, game, source=None):
+    """ Get the Activatable Action JSON for a particular card """
+    json = None
+    if card in game.currentTurn.activatableEffects:
+        json = {'type':'ACTIVATE', 'source':source}
+    return json
