@@ -9,8 +9,8 @@ class Discard:
         
     def perform(self, args):
         """ Perform the Game Effect """
-        source = SourceFactory.getSource(self.sourceType, args.game, event=args.event)
-        discardPile = SourceFactory.getSource(DISCARD_PILE, args.game, event=args.event)
+        source = SourceFactory.getSourceForEffect(self.sourceType, args)
+        discardPile = SourceFactory.getSourceForEffect(DISCARD_PILE, args)
         
         for card in source:
             source.remove(card)

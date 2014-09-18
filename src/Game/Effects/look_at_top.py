@@ -13,7 +13,7 @@ class LookAtTop(ConditionalEffect):
         
     def performEffect(self, args):
         """ Perform the Game Effect """
-        source = SourceFactory.getSource(self.sourceType, args.game, event=args.event)
+        source = SourceFactory.getSourceForEffect(self.sourceType, args)
         card = source[0]
         event = TopCardEvent(card, source, args.game)
         

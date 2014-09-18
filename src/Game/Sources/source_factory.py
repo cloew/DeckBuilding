@@ -19,8 +19,12 @@ PLAYED = "PLAYED"
 class SourceFactory:
     """ Factory to construct card sources """
     
+    def getSourceForEffect(self, sourceType, args):
+        """ Gat a Source based on Effect Arguments """
+        return self.getSource(sourceType, args.game, event=args.event)
+    
     def getSource(self, sourceType, game, event=None):
-        """ Return the source for the given source tyoe and game """
+        """ Return the source for the given source type and game """
         if sourceType == CHARACTER:
             return CharacterSource(game.currentTurn.player.character)
         elif sourceType == DECK:

@@ -10,8 +10,8 @@ class GainCard:
         
     def perform(self, args):
         """ Perform the Game Effect """
-        fromSource = SourceFactory.getSource(self.fromSourceType, args.game, event=args.event)
-        toSource = SourceFactory.getSource(self.toSourceType, args.game, event=args.event)
+        fromSource = SourceFactory.getSourceForEffect(self.fromSourceType, args)
+        toSource = SourceFactory.getSourceForEffect(self.toSourceType, args)
         
         for card in fromSource:
             args.owner.gainCard(card, fromSource, toSource=toSource)
