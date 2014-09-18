@@ -7,6 +7,12 @@
 .card-list {
     width: 750px;
 }
+.character {
+    background-size: 142px 188px;
+    width: 142px;
+    height: 188px;
+    margin: 0px;
+}
 .center {
     margin-right: auto;
     margin-left: auto; 

@@ -18,6 +18,19 @@ angular.module('DeckBuildingDirectives', [])
           transclude: true,
           templateUrl: 'static/partials/directives/card.html'
       }})
+    .directive('character', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          scope: {
+              actions: '=actions',
+              character: '=character'
+          },
+          link: function(scope, elements, attrs) {
+              scope.index = 0;
+          },
+          templateUrl: 'static/partials/directives/character.html'
+      }})
       .directive('actionCard', function() {
       return {
           restrict: 'E',

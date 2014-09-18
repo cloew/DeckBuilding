@@ -45,8 +45,13 @@
     </div>
 </div>
 <div class="col-md-3">
-    <h2>Power: {{game.turn.power}}</h2>
-    <button ng-click="endTurn();">Done</button>
+    <div class="col-md-12">
+        <h2>Power: {{game.turn.power}}</h2>
+        <button ng-click="endTurn();">Done</button>
+    </div>
+    <div class="col-md-6">
+        <character character="game.turn.character" actions="actions"></character>
+    </div>
 </div>
 <div class="clearfix visible-md-block"></div>
 </div>
