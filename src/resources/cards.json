@@ -7,6 +7,8 @@
             "cost":5},
     "playEffects":[{"type":"ONGOING"}],
     "activatableEffect":{"singleUse":true,
+                         "condition":{"type":"HAS_CARDS",
+                                      "sourceType":"DECK"},
                          "effects":[{"type":"LOOK_AT_TOP",
                                      "source":"DECK",
                                      "then":{"type":"CONDITIONAL",
