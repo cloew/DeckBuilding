@@ -5,7 +5,7 @@ class Matching:
     
     def __init__(self, field, values, sourceType):
         """ Initialize the Matching Condition with the field to use and the values it can match """
-        self.filter = Filter(field, values, sourceType)
+        self.filter = Filter(field, values, sourceType, "IN")
         
     def evaluate(self, game, event=None):
         """ Evaluate the condition """

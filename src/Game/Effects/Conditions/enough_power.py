@@ -8,5 +8,4 @@ class EnoughPower:
         
     def evaluate(self, game, event=None):
         """ Evaluate the condition """
-        print "Has Enough Power:", game.currentTurn.power >= self.power
         return game.currentTurn.power >= self.power

@@ -4,12 +4,12 @@ from Game.Sources.source_factory import SourceFactory
 class Filter:
     """ Represents a filter that returns all the matching cards from a source """
     
-    def __init__(self, field, values, sourceType):
+    def __init__(self, field, values, sourceType, operation):
         """ Initialize the filter """
         self.field = field
         self.values = values
         self.sourceType = sourceType
-        self.operation = operations["IN"]
+        self.operation = operations[operation]
         
     def evaluate(self, game, event=None):
         """ Evaluate the condition """

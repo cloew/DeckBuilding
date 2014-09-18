@@ -9,7 +9,7 @@ class NthPlayed:
     def __init__(self, n, field, values):
         """ Initialize the condition with the value of n """
         self.n = n
-        self.playedFilter = Filter(field, values, PLAYED)
+        self.playedFilter = Filter(field, values, PLAYED, "IN")
         self.eventCondition = Matching(field, values, EVENT)
         
     def evaluate(self, game, event=None):

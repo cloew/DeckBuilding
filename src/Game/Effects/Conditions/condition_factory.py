@@ -20,7 +20,7 @@ class ConditionFactory:
             filter = None
             if "filter" in conditionJSON:
                 filterJson = conditionJSON["filter"]
-                filter = Filter(filterJson["field"], filterJson["values"], conditionJSON["sourceType"])
+                filter = Filter(filterJson["field"], filterJson["values"], conditionJSON["sourceType"], conditionJSON["operation"])
                 
             return HasCards(conditionJSON["sourceType"], filter=filter)
         elif conditionJSON["type"] == "MATCHING":
