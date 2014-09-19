@@ -14,7 +14,7 @@ class Player:
         self.deck.shuffle()
         self.drawHand()
         self.ongoing = []
-        self.character = CharacterFactory.loadCharacter("Black Canary")
+        self.character = CharacterFactory.loadCharacter("Green Lantern")
         
     def addOngoing(self, card):
         """ Add the given card as an ongoing effect """
