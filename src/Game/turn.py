@@ -36,7 +36,7 @@ class Turn:
             
     def start(self):
         """ Start the Turn """
-        coroutine = self.eventListener.send(StartOfTurnEvent(self))
+        coroutine = self.eventListener.send(StartOfTurnEvent(self.game))
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)
