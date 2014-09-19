@@ -37,7 +37,10 @@ class ConditionFactory:
             criteria = CriteriaFactory.loadCriteria(conditionJSON["criteria"])
             return NthPlayed(conditionJSON["n"], criteria)
         elif conditionJSON["type"] == "NTH_UNIQUE":
-            return NthUnique(conditionJSON["n"])
+            criterion = []
+            if "criterion" in conditionJSON:
+                criterion = [CriteriaFactory.loadCriteria(criteriaJSON) for criteriaJSON in conditionJSON["criterion"]]
+            return NthUnique(conditionJSON["n"], criterion)
         elif conditionJSON["type"] == "UNIQUE":
             return Unique(conditionJSON["field"], conditionJSON["source"])
         else:
