@@ -16,6 +16,7 @@ from Game.Effects.spend_power import SpendPower
 
 from Game.Effects.Conditions.condition_factory import ConditionFactory
 from Game.Effects.Conditions.Filters.filter_factory import FilterFactory
+from Game.Effects.Conditions.Filters.Criteria.criteria_factory import CriteriaFactory
 
 
 class EffectFactory:
@@ -67,21 +68,23 @@ class EffectFactory:
             return ModifyHandSize(effectJson["change"])
         elif effectType == "MOVE_CARD":
             filter = None
-            if "filter" in effectJson:
-                filterJson = dict(effectJson["filter"])
-                fitlerJson["sourceType"] = effectJson["from"]
-                fitlerJson["type"] = "COMPARISON"
-                filter = FilterFactory(filterJson)
+            if "criteria" in effectJson:
+                filterJson = {"criteria":effectJson["criteria"]}
+                filterJson["sourceType"] = effectJson["from"]
+                filterJson["type"] = "COMPARISON"
+                filter = FilterFactory.loadFilter(filterJson)
             
             return MoveCard(effectJson["from"], effectJson["to"], filter=filter)
         elif effectType == "ONGOING":
             return Ongoing()
         elif effectType == "PER_MATCH":
+            criteria = CriteriaFactory.loadCriteria(effectJson["criteria"])
             effect = EffectFactory.loadEffect(effectJson["effect"])
-            return PerMatch(effectJson["field"], effectJson["values"], effectJson["sourceType"], effect)
+            return PerMatch(effectJson["sourceType"], criteria, effect)
         elif effectType == "PLAY_OR_HAVE_PLAYED":
+            criteria = CriteriaFactory.loadCriteria(effectJson["criteria"])
             effect = EffectFactory.loadEffect(effectJson["effect"])
-            return PlayOrHavePlayed(effectJson["field"], effectJson["values"], effect)
+            return PlayOrHavePlayed(effect, criteria)
         elif effectType == "SPEND_POWER":
             return SpendPower(effectJson["power"])
         return None

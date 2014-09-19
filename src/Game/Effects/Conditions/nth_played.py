@@ -6,11 +6,11 @@ from Game.Sources.source_factory import EVENT, PLAYED
 class NthPlayed:
     """ Condition to check if a condition is the nth card played """
     
-    def __init__(self, n, field, values, operation):
+    def __init__(self, n, criteria):
         """ Initialize the condition with the value of n """
         self.n = n
-        self.playedFilter = ComparisonFilter(field, values, PLAYED, operation)
-        self.eventCondition = Matching(field, values, EVENT, operation=operation)
+        self.playedFilter = ComparisonFilter(PLAYED, criteria)
+        self.eventCondition = Matching(EVENT, criteria)
         
     def evaluate(self, game, event=None):
         """ Evaluate the condition """

@@ -6,6 +6,7 @@ from not_condition import NotCondition
 from nth_played import NthPlayed
 
 from Game.Effects.Conditions.Filters.filter_factory import FilterFactory
+from Game.Effects.Conditions.Filters.Criteria.criteria_factory import CriteriaFactory
 
 class ConditionFactory:
     """ Factory to build Conditions """
@@ -18,20 +19,21 @@ class ConditionFactory:
             return EnoughPower(conditionJSON["power"])
         elif conditionJSON["type"] == "HAS_CARDS":
             filter = None
-            if "filter" in conditionJSON:
-                filterJson = dict(conditionJSON["filter"])
+            if "criteria" in conditionJSON:
+                filterJson = {"criteria":conditionJSON["criteria"]}
                 filterJson["sourceType"] = conditionJSON["sourceType"]
-                fitlerJson["type"] = "COMPARISON"
+                filterJson["type"] = "COMPARISON"
                 filter = FilterFactory.loadFilter(filterJson)
                 
             return HasCards(conditionJSON["sourceType"], filter=filter)
         elif conditionJSON["type"] == "MATCHING":
-            return Matching(conditionJSON["field"], conditionJSON["values"], conditionJSON["sourceType"])
+            criteria = CriteriaFactory.loadCriteria(conditionJSON["criteria"])
+            return Matching(conditionJSON["sourceType"], criteria)
         elif conditionJSON["type"] == "NOT":
             return NotCondition(self.loadCondition(conditionJSON["condition"]))
         elif conditionJSON["type"] == "NTH":
-            filterJson = conditionJSON["filter"]
-            return NthPlayed(conditionJSON["n"], filterJson["field"], filterJson["values"], filterJson["operation"])
+            criteria = CriteriaFactory.loadCriteria(conditionJSON["criteria"])
+            return NthPlayed(conditionJSON["n"], criteria)
         else:
             print "Cannot find Condition:", conditionJSON["type"]
         return None

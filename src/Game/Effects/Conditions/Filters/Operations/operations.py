@@ -3,6 +3,7 @@ import operator
 def inOperator(value, container):
     return operator.contains(container, value)
 
-operations = {">=":operator.__ge__,
-              "<=":operator.__le__,
+operations = {"==":operator.eq,
+              ">=":operator.ge,
+              "<=":operator.le,
               "IN":inOperator}

@@ -8,10 +8,10 @@ from Game.Sources.source_factory import SourceFactory, PLAYED, EVENT
 class PlayOrHavePlayed(ConditionalEffect):
     """ Represents an effect that conditionally applies """
     
-    def __init__(self, field, values, effect):
+    def __init__(self, effect, criteria):
         """ Initialize the Effect with the condition to evaluate and effect to perform """
-        playedCondition = Matching(field, values, PLAYED)
-        eventCondition = Matching(field, values, EVENT)
+        playedCondition = Matching(PLAYED, criteria)
+        eventCondition = Matching(EVENT, criteria)
         triggerCondition = AndCondition([playedCondition, eventCondition])
         
         trigger = Trigger("CARD_PLAYED", triggerCondition, effect, singleUse=True)

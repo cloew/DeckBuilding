@@ -3,9 +3,9 @@ from Game.Effects.Conditions.Filters.comparison_filter import ComparisonFilter
 class PerMatch:
     """ Represents an effect that applies for each matching card """
     
-    def __init__(self, field, values, sourceType, effect):
+    def __init__(self, sourceType, criteria, effect):
         """ Initialize the Effect with the condition to evaluate and effect to perform """
-        self.filter = ComparisonFilter(field, values, sourceType, "IN")
+        self.filter = ComparisonFilter(sourceType, criteria)
         self.effect = effect
         
     def perform(self, args):

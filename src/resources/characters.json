@@ -8,9 +8,10 @@
                          "effects":[{"type":"MOVE_CARD",
                                      "from":"GAINED",
                                      "to":"DECK",
-                                     "filter":{"field":"cost",
-                                               "operation":"<=",
-                                               "values":5}}]}
+                                     "criteria":{"type":"FIXED",
+                                                 "field":"cost",
+                                                 "operation":"<=",
+                                                 "value":5}}]}
 },
 {
     "name":"Batman",
@@ -18,8 +19,10 @@
     "triggers":[{"type":"CARD_PLAYED",
                  "singleUse":false,
                  "condition":{"type":"MATCHING",
-                              "field":"cardType",
-                              "values":["Equipment"],
+                              "criteria":{"type":"FIXED",
+                                          "field":"cardType",
+                                          "operation":"==",
+                                          "value":"Equipment"},
                               "sourceType":"EVENT"},
                  "effect":{"type":"GAIN_POWER",
                            "power":1}}]
@@ -54,8 +57,10 @@
     "triggers":[{"type":"CARD_GAINED",
                  "singleUse":false,
                  "condition":{"type":"MATCHING",
-                              "field":"cardType",
-                              "values":["Villain"],
+                              "criteria":{"type":"FIXED",
+                                          "field":"cardType",
+                                          "operation":"==",
+                                          "value":"Villain"},
                               "sourceType":"EVENT"},
                  "effect":{"type":"MOD_HAND_SIZE",
                            "change":1}}]
