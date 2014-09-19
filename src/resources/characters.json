@@ -1,5 +1,18 @@
 [
 {
+    "name":"Aquaman",
+    "image":"aquaman.jpg",
+    "activatableEffect":{"singleUse":false,
+                         "condition":{"type":"HAS_CARDS",
+                                      "sourceType":"GAINED"},
+                         "effects":[{"type":"MOVE_CARD",
+                                     "from":"GAINED",
+                                     "to":"DECK",
+                                     "filter":{"field":"cost",
+                                               "operation":"<=",
+                                               "values":5}}]}
+},
+{
     "name":"Batman",
     "image":"batman.jpg",
     "triggers":[{"type":"CARD_PLAYED",
