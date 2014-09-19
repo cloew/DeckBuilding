@@ -1,5 +1,6 @@
 from Game.Events.gained_card_event import GainedCardEvent
 from Game.Events.played_card_event import PlayedCardEvent
+from Game.Events.start_of_turn_event import StartOfTurnEvent
 from Game.Events.game_event_listener import GameEventListener
 
 from coroutine_helper import RunCoroutineOrFunction
@@ -32,6 +33,13 @@ class Turn:
     def addStartingEffects(self):
         for card in self.player.ongoing + [self.player.character]:
             self.addOngoingEffects(card)
+            
+    def start(self):
+        """ Start the Turn """
+        coroutine = self.eventListener.send(StartOfTurnEvent(self))
+        response = yield coroutine.next()
+        while True:
+            response = yield coroutine.send(response)
             
     def perform(self, command):
         """ Perform the given command """

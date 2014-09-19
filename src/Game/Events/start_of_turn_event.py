@@ -1,5 +1,7 @@
 from game_events import START_OF_TURN
 
+from Game.Effects.effect_arguments import EffectArguments
+
 class StartOfTurnEvent:
     """ Represnts the event for the Start of a Turn """
     subject = START_OF_TURN

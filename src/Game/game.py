@@ -2,6 +2,7 @@ from line_up import LineUp
 from player import Player
 from turn import Turn
 
+from Game.Commands.start_turn import StartTurn
 from Game.Decks.decks import MainDeckInitializer, KickDeckInitializer
 
 from kao_deck.deck import Deck
@@ -35,6 +36,7 @@ class Game:
     def nextTurn(self):
         """ Set the current turn to be the next turn """
         self.currentTurn = self.turnCoroutine.next()
+        self.currentTurn.perform(StartTurn(self.currentTurn))
         
     def pickTurn(self):
         """ Yields the turn for the proper player """
