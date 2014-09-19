@@ -4,6 +4,7 @@ from has_cards import HasCards
 from matching import Matching
 from not_condition import NotCondition
 from nth_played import NthPlayed
+from unique import Unique
 
 from Game.Effects.Conditions.Filters.filter_factory import FilterFactory
 from Game.Effects.Conditions.Filters.Criteria.criteria_factory import CriteriaFactory
@@ -34,6 +35,8 @@ class ConditionFactory:
         elif conditionJSON["type"] == "NTH":
             criteria = CriteriaFactory.loadCriteria(conditionJSON["criteria"])
             return NthPlayed(conditionJSON["n"], criteria)
+        elif conditionJSON["type"] == "UNIQUE":
+            return Unique(conditionJSON["field"], conditionJSON["source"])
         else:
             print "Cannot find Condition:", conditionJSON["type"]
         return None
