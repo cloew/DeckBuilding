@@ -12,4 +12,7 @@ class BuyCard:
     def perform(self):
         """ Perform the command """
         self.owner.spendPower(self.card.calculateCost())
-        self.owner.gainCard(self.card, self.source, toSource=SourceFactory.getSource(DISCARD_PILE, self.owner.game))
+        coroutine = self.owner.gainCard(self.card, self.source, toSource=SourceFactory.getSource(DISCARD_PILE, self.owner.game))
+        response = yield coroutine.next()
+        while True:
+            response = yield coroutine.send(response)

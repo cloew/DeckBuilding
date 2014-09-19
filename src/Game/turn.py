@@ -1,3 +1,4 @@
+from Game.Events.gained_card_event import GainedCardEvent
 from Game.Events.played_card_event import PlayedCardEvent
 from Game.Events.game_event_listener import GameEventListener
 
@@ -90,6 +91,13 @@ class Turn:
     def gainCard(self, card, fromSource, toSource=None):
         """ Gain the provided card """
         self.player.gainCard(card, fromSource, toSource=toSource)
+        coroutine = self.eventListener.send(GainedCardEvent(card, self.game))
+        try:
+            response = yield coroutine.next()
+            while True:
+                response = yield coroutine.send(response)
+        except StopIteration:
+            pass
         self.gainedCards.append(card)
         
     def gainPower(self, power):

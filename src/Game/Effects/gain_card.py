@@ -14,4 +14,10 @@ class GainCard:
         toSource = SourceFactory.getSourceForEffect(self.toSourceType, args)
         
         for card in fromSource:
-            args.owner.gainCard(card, fromSource, toSource=toSource)
+            coroutine = args.owner.gainCard(card, fromSource, toSource=toSource)
+            try:
+                response = yield coroutine.next()
+                while True:
+                    response = yield coroutine.send(response)
+            except StopIteration:
+                pass
