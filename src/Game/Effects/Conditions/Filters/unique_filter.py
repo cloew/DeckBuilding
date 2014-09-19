@@ -1,8 +1,9 @@
+from Game.Sources.source_factory import SourceFactory
 
 class UniqueFilter:
     """ Represents a filter that returns only unique values """
     
-    def __init__(self, field, sourceType,):
+    def __init__(self, field, sourceType):
         """ Initialize the filter """
         self.field = field
         self.sourceType = sourceType
@@ -14,7 +15,7 @@ class UniqueFilter:
         cards = []
         valueSet = set()
         
-        for card in cards:
+        for card in source:
             value = getattr(card, self.field)
             if value not in valueSet:
                 cards.append(card)
