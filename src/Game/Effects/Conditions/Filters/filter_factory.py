@@ -2,10 +2,10 @@ from comparison_filter import ComparisonFilter
 from unique_filter import UniqueFilter
 
 class FilterFactory:
-    """ Factory to build Conditions """
+    """ Factory to build Filters """
     
-    def loadCondition(self, filterJSON):
-        """ Load the Condition from the given JSON """
+    def loadFitler(self, filterJSON):
+        """ Load the Filter from the given JSON """
         if filterJSON["type"] == "COMPARISON":
             return ComparisonFilter(filterJson["field"], filterJson["values"], filterJSON["sourceType"], filterJson["operation"])
         elif filterJSON["type"] == "UNIQUE":
