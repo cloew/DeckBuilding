@@ -9,12 +9,12 @@ class Player:
     
     def __init__(self):
         """ Initialize a Player """
+        self.nextHandSize = self.STANDARD_HAND_SIZE
         self.deck = DeckWithDiscardPile(deck_initializer=StartingDeckInitializer, reshuffle=True)
         self.deck.shuffle()
         self.drawHand()
         self.ongoing = []
         self.character = CharacterFactory.loadCharacter("Aquaman")
-        self.nextHandSize = self.STANDARD_HAND_SIZE
         
     def addOngoing(self, card):
         """ Add the given card as an ongoing effect """
