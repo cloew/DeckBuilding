@@ -46,6 +46,20 @@
                            "power":1}}]
 },
 {
+    "name":"Green Lantern",
+    "image":"green_lantern.jpg",
+    "triggers":[{"type":"CARD_PLAYED",
+                 "singleUse":true,
+                 "condition":{"type":"NTH_UNIQUE",
+                              "n":3,
+                              "criterion":[{"type":"FIXED",
+                                            "field":"cost",
+                                            "operation":">=",
+                                            "value":1}]},
+                 "effect":{"type":"GAIN_POWER",
+                           "power":3}}]
+},
+{
     "name":"Shazam",
     "image":"shazam.jpg",
     "activatableEffect":{"singleUse":false,
