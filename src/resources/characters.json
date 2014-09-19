@@ -28,6 +28,27 @@
                            "power":1}}]
 },
 {
+    "name":"Black Canary",
+    "image":"black_canary.jpg",
+    "triggers":[{"type":"CARD_PLAYED",
+                 "singleUse":false,
+                 "condition":{"type":"AND",
+                              "conditions":[{"type":"MATCHING",
+                                            "criteria":{"type":"FIXED",
+                                                        "field":"cardType",
+                                                        "operation":"==",
+                                                        "value":"Villain"},
+                                            "sourceType":"EVENT"},
+                                           {"type":"NOT",
+                                            "condition":{"type":"MATCHING",
+                                                         "criteria":{"type":"SOURCE",
+                                                                     "field":"name",
+                                                                     "source":"PLAYED"},
+                                                         "sourceType":"EVENT"}}]},
+                 "effect":{"type":"GAIN_POWER",
+                           "power":1}}]
+},
+{
     "name":"Shazam",
     "image":"shazam.jpg",
     "activatableEffect":{"singleUse":false,
