@@ -1,9 +1,9 @@
 [
 {
     "name":"Deck 1",
-    "cards":[{"name":"Kick",
+    "cards":[{"name":"Kid Flash",
               "count":10},
-             {"name":"Kid Flash",
+             {"name":"Kick",
               "count":10}]
     
 },
@@ -14,9 +14,11 @@
 },
 {
     "name":"Starting",
-    "cards":[{"name":"Killer Croc",
-              "count":9},
-             {"name":"Apokolips",
+    "cards":[{"name":"Manhunter",
+              "count":4},
+             {"name":"Killer Croc",
+              "count":4},
+             {"name":"Talon",
               "count":1}]
 }
 ]
