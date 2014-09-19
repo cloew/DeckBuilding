@@ -69,7 +69,8 @@ class EffectFactory:
             filter = None
             if "filter" in effectJson:
                 filterJson = dict(effectJson["filter"])
-                fitlerJson["from"] = effectJson["from"]
+                fitlerJson["sourceType"] = effectJson["from"]
+                fitlerJson["type"] = "COMPARISON"
                 filter = FilterFactory(filterJson)
             
             return MoveCard(effectJson["from"], effectJson["to"], filter=filter)

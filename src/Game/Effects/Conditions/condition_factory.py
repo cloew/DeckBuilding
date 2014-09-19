@@ -21,6 +21,7 @@ class ConditionFactory:
             if "filter" in conditionJSON:
                 filterJson = dict(conditionJSON["filter"])
                 filterJson["sourceType"] = conditionJSON["sourceType"]
+                fitlerJson["type"] = "COMPARISON"
                 filter = FilterFactory.loadFilter(filterJson)
                 
             return HasCards(conditionJSON["sourceType"], filter=filter)
