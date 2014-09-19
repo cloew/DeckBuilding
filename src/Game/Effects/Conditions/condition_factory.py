@@ -5,7 +5,7 @@ from matching import Matching
 from not_condition import NotCondition
 from nth_played import NthPlayed
 
-from filter import Filter
+from Game.Effects.Conditions.Filters.filter_factory import FilterFactory
 
 class ConditionFactory:
     """ Factory to build Conditions """
@@ -19,8 +19,9 @@ class ConditionFactory:
         elif conditionJSON["type"] == "HAS_CARDS":
             filter = None
             if "filter" in conditionJSON:
-                filterJson = conditionJSON["filter"]
-                filter = Filter(filterJson["field"], filterJson["values"], conditionJSON["sourceType"], filterJson["operation"])
+                filterJson = dict(conditionJSON["filter"])
+                filterJson["sourceType"] = conditionJSON["sourceType"]
+                filter = FilterFactory.loadFilter(filterJson)
                 
             return HasCards(conditionJSON["sourceType"], filter=filter)
         elif conditionJSON["type"] == "MATCHING":

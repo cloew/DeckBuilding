@@ -15,7 +15,7 @@ from Game.Effects.play_or_have_played import PlayOrHavePlayed
 from Game.Effects.spend_power import SpendPower
 
 from Game.Effects.Conditions.condition_factory import ConditionFactory
-from Game.Effects.Conditions.filter import Filter
+from Game.Effects.Conditions.Filters.filter_factory import FilterFactory
 
 
 class EffectFactory:
@@ -68,8 +68,9 @@ class EffectFactory:
         elif effectType == "MOVE_CARD":
             filter = None
             if "filter" in effectJson:
-                filterJson = effectJson["filter"]
-                filter = Filter(filterJson["field"], filterJson["values"], effectJson["from"], filterJson["operation"])
+                filterJson = dict(effectJson["filter"])
+                fitlerJson["from"] = effectJson["from"]
+                filter = FilterFactory(filterJson)
             
             return MoveCard(effectJson["from"], effectJson["to"], filter=filter)
         elif effectType == "ONGOING":

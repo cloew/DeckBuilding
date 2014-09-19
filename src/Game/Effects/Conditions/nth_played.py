@@ -1,4 +1,4 @@
-from filter import Filter
+from Game.Effects.Conditions.Filters.comparison_filter import ComparisonFilter
 from matching import Matching
 
 from Game.Sources.source_factory import EVENT, PLAYED
@@ -9,7 +9,7 @@ class NthPlayed:
     def __init__(self, n, field, values, operation):
         """ Initialize the condition with the value of n """
         self.n = n
-        self.playedFilter = Filter(field, values, PLAYED, operation)
+        self.playedFilter = ComparisonFilter(field, values, PLAYED, operation)
         self.eventCondition = Matching(field, values, EVENT, operation=operation)
         
     def evaluate(self, game, event=None):

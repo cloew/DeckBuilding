@@ -1,8 +1,8 @@
-from Game.Effects.Conditions.Operations.operations import operations
+from Game.Effects.Conditions.Filters.Operations.operations import operations
 from Game.Sources.source_factory import SourceFactory
 
-class Filter:
-    """ Represents a filter that returns all the matching cards from a source """
+class ComparisonFilter:
+    """ Represents a filter that returns all the cards from a source that pass some comparison """
     
     def __init__(self, field, values, sourceType, operation):
         """ Initialize the filter """
