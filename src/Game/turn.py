@@ -11,7 +11,10 @@ class Turn:
         self.player = player
         self.game = game
         self.power = 0
+        
         self.playedCards = []
+        self.gainedCards = []
+        
         self.activatableEffects = {}
         self.cleanupEffects = []
 
@@ -87,6 +90,7 @@ class Turn:
     def gainCard(self, card, fromSource, toSource=None):
         """ Gain the provided card """
         self.player.gainCard(card, fromSource, toSource=toSource)
+        self.gainedCards.add(card)
         
     def gainPower(self, power):
         """ Gain the proper amount of power """
