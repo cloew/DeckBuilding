@@ -1,6 +1,7 @@
 from character_source import CharacterSource
 from deck_source import DeckSource
 from deck_with_discard_pile_source import DeckWithDiscardPileSource
+from gained_source import GainedSource
 from list_source import ListSource
 from source import Source
 
@@ -9,6 +10,7 @@ DECK = "DECK"
 DESTROYED = "DESTROYED"
 DISCARD_PILE = "DISCARD_PILE"
 EVENT = "EVENT"
+GAINED = "GAINED"
 HAND = "HAND"
 KICK = "KICK"
 LINE_UP = "LINE_UP"
@@ -35,6 +37,8 @@ class SourceFactory:
             return DeckSource(game.currentTurn.player.discardPile)
         elif sourceType == EVENT:
             return Source(event)
+        elif sourceType == GAINED:
+            return GainedSource(game.currentTurn.gainedCards, self.getSource(DISCARD_PILE, game, event=event))
         elif sourceType == HAND:
             return ListSource(game.currentTurn.player.hand)
         elif sourceType == KICK:
