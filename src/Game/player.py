@@ -5,7 +5,7 @@ from kao_deck.deck_with_discard_pile import DeckWithDiscardPile
 
 class Player:
     """ Represents a Player in the Game """
-    HAND_SIZE = 5
+    STANDARD_HAND_SIZE = 5
     
     def __init__(self):
         """ Initialize a Player """
@@ -13,7 +13,8 @@ class Player:
         self.deck.shuffle()
         self.drawHand()
         self.ongoing = []
-        self.character = CharacterFactory.loadCharacter("Batman")
+        self.character = CharacterFactory.loadCharacter("Aquaman")
+        self.nextHandSize = self.STANDARD_HAND_SIZE
         
     def addOngoing(self, card):
         """ Add the given card as an ongoing effect """
@@ -22,7 +23,8 @@ class Player:
     def drawHand(self):
         """ Draw a new hand """
         self.hand = []
-        self.draw(count=self.HAND_SIZE)
+        self.draw(count=self.nextHandSize)
+        self.nextHandSize = self.STANDARD_HAND_SIZE
         
     def draw(self, count=1):
         """ Draw the given number of cards """
@@ -33,6 +35,10 @@ class Player:
         """ Gain the provided card """
         fromSource.remove(card)
         toSource.add(card)
+        
+    def modifyHandSize(self, change):
+        """ Modify the Player's Next Hand Size """
+        self.nextHandSize += change
         
     @property
     def discardPile(self):
