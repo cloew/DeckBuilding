@@ -47,5 +47,17 @@
                                                          "effects":[{"type":"GAIN_CARD",
                                                                      "from":"EVENT",
                                                                      "to":"DISCARD_PILE"}]}]}}]}
+},
+{
+    "name":"Wonder Woman",
+    "image":"wonder_woman.jpg",
+    "triggers":[{"type":"CARD_GAINED",
+                 "singleUse":false,
+                 "condition":{"type":"MATCHING",
+                              "field":"cardType",
+                              "values":["Villain"],
+                              "sourceType":"EVENT"},
+                 "effect":{"type":"MOD_HAND_SIZE",
+                           "change":1}}]
 }
 ]
