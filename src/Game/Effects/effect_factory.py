@@ -11,6 +11,7 @@ from Game.Effects.modify_hand_size import ModifyHandSize
 from Game.Effects.move_card import MoveCard
 from Game.Effects.ongoing import Ongoing
 from Game.Effects.per_match import PerMatch
+from Game.Effects.pick_random_card import PickRandomCard
 from Game.Effects.play_or_have_played import PlayOrHavePlayed
 from Game.Effects.spend_power import SpendPower
 
@@ -81,6 +82,8 @@ class EffectFactory:
             criteria = CriteriaFactory.loadCriteria(effectJson["criteria"])
             effect = EffectFactory.loadEffect(effectJson["effect"])
             return PerMatch(effectJson["sourceType"], criteria, effect)
+        elif effectType == "PICK_RANDOM":
+            return PickRandomCard(effectJson["source"], self.loadEffect(effectJson["then"]))
         elif effectType == "PLAY_OR_HAVE_PLAYED":
             criteria = CriteriaFactory.loadCriteria(effectJson["criteria"])
             effect = EffectFactory.loadEffect(effectJson["effect"])
