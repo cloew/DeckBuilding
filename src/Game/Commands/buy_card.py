@@ -1,3 +1,4 @@
+from Game.Effects.effect_arguments import EffectArguments
 from Game.Sources.source_factory import SourceFactory, DISCARD_PILE
 
 class BuyCard:
@@ -11,8 +12,9 @@ class BuyCard:
         
     def perform(self):
         """ Perform the command """
+        args = EffectArguments(self.owner.game, self.card)
         self.owner.spendPower(self.card.calculateCost())
-        coroutine = self.owner.gainCard(self.card, self.source, toSource=SourceFactory.getSource(DISCARD_PILE, self.owner.game))
+        coroutine = self.owner.gainCard(self.card, self.source, toSource=SourceFactory.getSourceForEffect(DISCARD_PILE, args))
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)
