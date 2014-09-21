@@ -8,4 +8,4 @@ class ModifyHandSize:
         
     def perform(self, args):
         """ Perform the Game Effect """
-        args.owner.player.modifyHandSize(self.change)
+        args.player.modifyHandSize(self.change)

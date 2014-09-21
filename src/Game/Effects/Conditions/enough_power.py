@@ -6,6 +6,6 @@ class EnoughPower:
         """ Initialize the Enough Power COndition with the amount of power needed """
         self.power = power
         
-    def evaluate(self, game, event=None):
+    def evaluate(self, args):
         """ Evaluate the condition """
-        return game.currentTurn.power >= self.power
+        return args.owner.power >= self.power

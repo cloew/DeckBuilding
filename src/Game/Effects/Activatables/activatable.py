@@ -1,3 +1,4 @@
+from Game.Effects.effect_arguments import EffectArguments
 from Game.Effects.effect_runner import PerformEffects
 
 class Activatable:
@@ -11,7 +12,8 @@ class Activatable:
         
     def canActivate(self, game):
         """ Return if the Activatable can activate """
-        return self.condition is None or self.condition.evaluate(game)
+        args = EffectArguments(game, None)
+        return self.condition is None or self.condition.evaluate(args)
         
     def activate(self, args):
         """ Activate the effect """

@@ -17,9 +17,9 @@ class NthUnique:
         self.playedFilter = self.getFilter(criterion)
         self.eventCondition = self.getEventCondition(criterion)
         
-    def evaluate(self, game, event=None):
+    def evaluate(self, args):
         """ Evaluate the condition """
-        return self.eventCondition.evaluate(game, event=event) and len(self.playedFilter.evaluate(game, event=event)) == self.n-1
+        return self.eventCondition.evaluate(args) and len(self.playedFilter.evaluate(args)) == self.n-1
         
     def getFilter(self, criterion):
         """ Return the filter """

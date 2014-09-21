@@ -9,7 +9,7 @@ class FixedCriteria:
         self.value = value
         self.operation = operations[operation]
         
-    def compare(self, card, game, event=None):
+    def compare(self, card, args):
         """ Compare the card with the Matching Condition """
         value = getattr(card, self.field)
         return self.operation(value, self.value)

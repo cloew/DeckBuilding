@@ -12,6 +12,6 @@ class NthPlayed:
         self.playedFilter = ComparisonFilter(PLAYED, criteria)
         self.eventCondition = Matching(EVENT, criteria)
         
-    def evaluate(self, game, event=None):
+    def evaluate(self, args):
         """ Evaluate the condition """
-        return self.eventCondition.evaluate(game, event=event) and len(self.playedFilter.evaluate(game, event=event)) == self.n-1
+        return self.eventCondition.evaluate(args) and len(self.playedFilter.evaluate(args)) == self.n-1

@@ -17,7 +17,7 @@ class MoveCard:
         
         cards = fromSource
         if self.filter is not None:
-            cards = self.filter.evaluate(args.game)
+            cards = self.filter.evaluate(args)
         
         card = None
         if len(cards) == 1:

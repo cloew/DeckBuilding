@@ -12,6 +12,6 @@ class Unique:
         matchingCondition = Matching(EVENT, SourceCriteria(field, sourceType))
         self.condition = NotCondition(matchingCondition)
         
-    def evaluate(self, game, event=None):
+    def evaluate(self, args):
         """ Evaluate the condition """
-        return self.condition.evaluate(game, event=event)
+        return self.condition.evaluate(args)

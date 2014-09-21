@@ -10,8 +10,8 @@ class SourceCriteria:
         self.sourceType = sourceType
         self.operation = operations["IN"]
         
-    def compare(self, card, game, event=None):
+    def compare(self, card, args):
         """ Compare the card with the Matching Condition """
-        source = SourceFactory.getSource(self.sourceType, game, event=event)
+        source = SourceFactory.getSourceForEffect(self.sourceType, args)
         value = getattr(card, self.field)
         return self.operation(value, [getattr(sourceCard, self.field) for sourceCard in source])

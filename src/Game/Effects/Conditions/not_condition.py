@@ -6,7 +6,7 @@ class NotCondition:
         """ Initialize the Not Condition with the condition that must not be true """
         self.condition = condition
         
-    def evaluate(self, game, event=None):
+    def evaluate(self, args):
         """ Evaluate the condition """
-        return not self.condition.evaluate(game, event=event)
+        return not self.condition.evaluate(args)
         

@@ -6,7 +6,7 @@ class AndCondition:
         """ Initialize the And Condition with the conditions to check """
         self.conditions = conditions
         
-    def evaluate(self, game, event=None):
+    def evaluate(self, args):
         """ Evaluate the condition """
-        return all([condition.evaluate(game, event=event) for condition in self.conditions])
+        return all([condition.evaluate(args) for condition in self.conditions])
         

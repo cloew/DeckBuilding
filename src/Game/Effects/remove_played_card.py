@@ -6,6 +6,6 @@ class RemovePlayedCard:
         """ Initialize the Effect with the card to remove from play before discarding """
         self.card = card
         
-    def perform(self, owner):
+    def perform(self, args):
         """ Perform the Game Effect """
-        owner.playedCards.remove(self.card)
+        args.owner.playedCards.remove(self.card)

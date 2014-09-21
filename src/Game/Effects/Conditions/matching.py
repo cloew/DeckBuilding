@@ -7,7 +7,7 @@ class Matching:
         """ Initialize the Matching Condition with the field to use and the values it can match """
         self.filter = ComparisonFilter(sourceType, criteria)
         
-    def evaluate(self, game, event=None):
+    def evaluate(self, args):
         """ Evaluate the condition """
-        return len(self.filter.evaluate(game, event=event)) > 0
+        return len(self.filter.evaluate(args)) > 0
         

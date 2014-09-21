@@ -1,3 +1,4 @@
+from Game.Effects.effect_arguments import EffectArguments
 from Game.Events.gained_card_event import GainedCardEvent
 from Game.Events.played_card_event import PlayedCardEvent
 from Game.Events.start_of_turn_event import StartOfTurnEvent
@@ -139,8 +140,9 @@ class Turn:
         
     def cleanup(self):
         """ Cleanup the turn """
+        args = EffectArguments(self.game, None)
         for effect in self.cleanupEffects:
-            effect.perform(self)
+            effect.perform(args)
         
         self.player.deck.discardAll(self.playedCards)
         self.player.deck.discardAll(self.player.hand)

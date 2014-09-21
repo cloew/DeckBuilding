@@ -10,5 +10,5 @@ class PerMatch:
         
     def perform(self, args):
         """ Perform the Game Effect """
-        for card in self.filter.evaluate(args.game, event=args.event):
+        for card in self.filter.evaluate(args):
             self.effect.perform(args)

@@ -8,12 +8,12 @@ class HasCards:
         self.sourceType = sourceType
         self.filter = filter
         
-    def evaluate(self, game, event=None):
+    def evaluate(self, args):
         """ Evaluate the condition """
-        source = SourceFactory.getSource(self.sourceType, game, event=event)
+        source = SourceFactory.getSourceForEffect(self.sourceType, args)
         length = 0
         if self.filter is not None:
-            length = len(self.filter.evaluate(game))
+            length = len(self.filter.evaluate(args))
         else:
             length = source.availableLength()
         return length > 0

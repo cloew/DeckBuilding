@@ -12,7 +12,7 @@ class ConditionalEffect:
     def perform(self, args):
         """ Perform the Game Effect """
         coroutine = None
-        if self.condition.evaluate(args.game, event=args.event):
+        if self.condition.evaluate(args):
             coroutine = self.performEffect(args)
         elif self.otherwiseEffect is not None:
             coroutine = self.performOtherwiseEffect(args)

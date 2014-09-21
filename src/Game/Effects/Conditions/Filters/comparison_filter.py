@@ -9,7 +9,7 @@ class ComparisonFilter:
         self.sourceType = sourceType
         self.criteria = criteria
         
-    def evaluate(self, game, event=None):
+    def evaluate(self, args):
         """ Evaluate the condition """
-        source = SourceFactory.getSource(self.sourceType, game, event=event)
-        return [card for card in source if self.criteria.compare(card, game, event=event)]
+        source = SourceFactory.getSourceForEffect(self.sourceType, args)
+        return [card for card in source if self.criteria.compare(card, args)]
