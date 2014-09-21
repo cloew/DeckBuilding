@@ -46,6 +46,28 @@
                               "power":1}}]
 },
 {
+    "name":"Deadshot",
+    "type":"Villain",
+    "image":"deadshot.jpg",
+    "cost":{"type":"FIXED",
+            "cost":2},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":1},
+                   {"type":"ATTACK",
+                    "effect":{"type":"LOOK_AT_TOP",
+                              "source":"DECK",
+                              "then":{"type":"CONDITIONAL",
+                                      "condition":{"type":"MATCHING",
+                                                   "criteria":{"type":"FIXED",
+                                                               "field":"cost",
+                                                               "operation":">=",
+                                                               "value":1},
+                                                   "sourceType":"EVENT"},
+                                      "effect":{"type":"DISCARD",
+                                                "source":"EVENT"}},
+                              "source":"DECK"}}]
+},
+{
     "name":"Hawkgirl",
     "type":"Hero",
     "image":"hawkgirl.jpg",
