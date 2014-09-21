@@ -13,6 +13,11 @@ class EffectArguments:
         self.player = player
         
     @property
+    def foes(self):
+        """ Return the foes of the current player """
+        return [player for player in self.game.players if player is not self.player]
+        
+    @property
     def owner(self):
         """ Return the owner aka the current turn """
         return self.game.currentTurn

@@ -1,4 +1,5 @@
 from Game.Effects.add_trigger import AddTrigger
+from Game.Effects.attack import Attack
 from Game.Effects.choice import Choice, Option
 from Game.Effects.conditional_effect import ConditionalEffect
 from Game.Effects.destroy import Destroy
@@ -37,6 +38,9 @@ class EffectFactory:
         if effectType == "ADD_TRIGGER":
             from Game.Effects.Triggers.trigger_factory import TriggerFactory
             return AddTrigger(TriggerFactory.loadTrigger(effectJson["trigger"]))
+        elif effectType == "ATTACK":
+            effect = EffectFactory.loadEffect(effectJson["effect"])
+            return Attack(effect)
         elif effectType == "CHOICE":
             options = [Option(optionJSON['description'], self.loadEffects(optionJSON['effects'])) for optionJSON in effectJson['choices']]
             relevantSourceType = None

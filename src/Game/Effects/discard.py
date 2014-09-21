@@ -12,6 +12,7 @@ class Discard:
         source = SourceFactory.getSourceForEffect(self.sourceType, args)
         discardPile = SourceFactory.getSourceForEffect(DISCARD_PILE, args)
         
-        for card in source:
+        for card in list(source):
+        # for card in source:
             source.remove(card)
             discardPile.add(card)
