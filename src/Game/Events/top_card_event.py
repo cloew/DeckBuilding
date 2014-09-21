@@ -3,13 +3,13 @@ from Game.Effects.effect_arguments import EffectArguments
 class TopCardEvent:
     """ Represents an Event for Playing a Card """
     
-    def __init__(self, card, fromSource, game):
+    def __init__(self, card, fromSource, args):
         """ Initialize the Top Card Event with the card """
         self.cards = [card]
-        self.game = game
+        self.game = args.game
         self.fromSource = fromSource
         
-        self.args = EffectArguments(game, card, event=self)
+        self.args = EffectArguments(args.game, card, event=self, player=args.player)
         
     def remove(self, card):
         """ Remove the card from the deck """

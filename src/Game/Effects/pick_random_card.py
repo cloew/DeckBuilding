@@ -17,7 +17,7 @@ class PickRandomCard(ConditionalEffect):
         """ Perform the Game Effect """
         source = SourceFactory.getSourceForEffect(self.sourceType, args)
         card = random.choice(source)
-        event = TopCardEvent(card, source, args.game)
+        event = TopCardEvent(card, source, args)
         
         coroutine = ConditionalEffect.performEffect(self, event.args)
         response = yield coroutine.next()
