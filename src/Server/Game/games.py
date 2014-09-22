@@ -1,5 +1,5 @@
 from Game.game import Game
-from Game.plyaer import Player
+from Game.player import Player
 
 id = 1
 games = {}
