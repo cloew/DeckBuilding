@@ -23,18 +23,20 @@ controllers.controller('LobbiesController', function($scope, $http, $timeout) {
             $timeout(tick, 1000);
         });
     })();
-    $http.get('/api/lobbies').success(function(data) {
-            $scope.lobbies = data['lobbies'];
-        }).error(function(error) {
-            alert(error);
-        });
     $scope.startNewLobby = function() {
         $http.post('/api/lobbies', {headers: {'Content-Type': 'application/json'}}).success(function(data) {
             alert('' + data.lobbyId + ':' + data.playerId);
         }).error(function(error) {
             alert(error);
         });
-    }
+    };
+    $scope.joinLobby = function(lobbyId) {
+        $http.post('/api/lobbies/'+lobbyId+'/join', {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+            alert('' + data.lobbyId + ':' + data.playerId);
+        }).error(function(error) {
+            alert(error);
+        });
+    };
 });
 
 controllers.controller('GameController', function($scope, $http, $routeParams, $modal) {

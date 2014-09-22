@@ -2,5 +2,5 @@
 
 <div ng-repeat="lobby in lobbies">
     <h2>{{lobby.id}}</h2>
-    <button>Join</button>
+    <button ng-click="joinLobby(lobby.id);">Join</button>
 </div>
