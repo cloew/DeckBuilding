@@ -13,7 +13,7 @@ controllers.controller('StartGameController', function ($scope, $http, $location
     };
 });
 
-controllers.controller('LobbiesController', function($scope, $http, $location, $timeout) {
+controllers.controller('LobbiesController', function($scope, $cookie, $http, $location, $timeout) {
     (function tick() {
         $http.get('/api/lobbies').success(function(data) {
             $scope.lobbies = data['lobbies'];
@@ -25,17 +25,21 @@ controllers.controller('LobbiesController', function($scope, $http, $location, $
     })();
     $scope.startNewLobby = function() {
         $http.post('/api/lobbies', {headers: {'Content-Type': 'application/json'}}).success(function(data) {
-            $scope.goToLobby(data.lobbyId);
+            $scope.trackLobby(data);
         }).error(function(error) {
             alert(error);
         });
     };
     $scope.joinLobby = function(lobbyId) {
         $http.post('/api/lobbies/'+lobbyId+'/join', {headers: {'Content-Type': 'application/json'}}).success(function(data) {
-            $scope.goToLobby(data.lobbyId);
+            $scope.trackLobby(data);
         }).error(function(error) {
             alert(error);
         });
+    };
+    $scope.trackLobby = function(data) {
+        $cookie.playerId = data.playerId;
+        $scope.goToLobby(data.lobbyId);
     };
     $scope.goToLobby = function(lobbyId) {
         $location.path('/lobbies/'+lobbyId);

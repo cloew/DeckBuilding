@@ -1,5 +1,6 @@
 from Lobby.player_in_lobby import PlayerInLobby
 from Server.Game.games import StartNewGame
+from Server.Lobby.player_in_lobby_wrapper import PlayerInLobbyWrapper
 
 class LobbyWrapper:
     """ Represents a Lobby and wraps its transformation into JSON """
@@ -33,4 +34,5 @@ class LobbyWrapper:
         
     def toJSON(self):
         """ Return the lobby as a JSON Dictionary """
-        return {'id':self.id }
+        return {'id':self.id,
+                'players':[PlayerInLobbyWrapper(id, self.players[id]).toJSON() for id in self.players]}
