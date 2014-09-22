@@ -1,6 +1,6 @@
 'use strict';
 
-var controllers = angular.module('DeckBuildingControllers', ['ui.bootstrap']);
+var controllers = angular.module('DeckBuildingControllers', ['ui.bootstrap', 'ngCookies']);
 
 controllers.controller('StartGameController', function ($scope, $http, $location) {
     $scope.startGame = function() {
@@ -13,7 +13,7 @@ controllers.controller('StartGameController', function ($scope, $http, $location
     };
 });
 
-controllers.controller('LobbiesController', function($scope, $cookie, $http, $location, $timeout) {
+controllers.controller('LobbiesController', function($scope, $cookies, $http, $location, $timeout) {
     (function tick() {
         $http.get('/api/lobbies').success(function(data) {
             $scope.lobbies = data['lobbies'];
@@ -38,7 +38,7 @@ controllers.controller('LobbiesController', function($scope, $cookie, $http, $lo
         });
     };
     $scope.trackLobby = function(data) {
-        $cookie.playerId = data.playerId;
+        $cookies.playerId = data.playerId;
         $scope.goToLobby(data.lobbyId);
     };
     $scope.goToLobby = function(lobbyId) {
@@ -48,9 +48,9 @@ controllers.controller('LobbiesController', function($scope, $cookie, $http, $lo
         $timeout.cancel($scope.pollPromise);
     });
 });
-controllers.controller('LobbyController', function($scope, $http, $location, $timeout, $routeParams) {
+controllers.controller('LobbyController', function($scope, $cookies, $http, $location, $timeout, $routeParams) {
     (function tick() {
-        $http.get('/api/lobbies/'+$routeParams.lobbyId).success(function(data) {
+        $http.get('/api/lobbies/'+$routeParams.lobbyId+'/player/'+$cookies.playerId).success(function(data) {
             $scope.lobby = data;
             $scope.pollPromise = $timeout(tick, 1000);
         }).error(function(error) {

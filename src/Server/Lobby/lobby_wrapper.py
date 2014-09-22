@@ -36,3 +36,9 @@ class LobbyWrapper:
         """ Return the lobby as a JSON Dictionary """
         return {'id':self.id,
                 'players':[PlayerInLobbyWrapper(id, self.players[id]).toJSON() for id in self.players]}
+                
+    def toJSONForPlayer(self, playerId):
+        """ Return the more detailed JSON for the given player """
+        return {'id':self.id,
+                'you':PlayerInLobbyWrapper(playerId, self.players[playerId]).toJSON(),
+                'players':[PlayerInLobbyWrapper(id, self.players[id]).toJSON() for id in self.players if id != playerId]}
