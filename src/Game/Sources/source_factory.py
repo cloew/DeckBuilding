@@ -38,7 +38,7 @@ class SourceFactory:
         elif sourceType == EVENT:
             return Source(event)
         elif sourceType == GAINED:
-            return GainedSource(game.currentTurn.gainedCards, self.getSource(DISCARD_PILE, game, event=event))
+            return GainedSource(game.currentTurn.gainedCards, self.getSource(DISCARD_PILE, game, event=event, player=player))
         elif sourceType == HAND:
             return ListSource(player.hand)
         elif sourceType == KICK:
