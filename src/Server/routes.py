@@ -8,6 +8,7 @@ from Server.Controller.pick_card_controller import PickCardController
 from Server.Controller.play_card_controller import PlayCardController
 
 from Server.Lobby.Controller.get_lobby_controller import GetLobbyController
+from Server.Lobby.Controller.join_lobby_controller import JoinLobbyController
 from Server.Lobby.Controller.new_lobby_controller import NewLobbyController
 
 from kao_flask.endpoint import Endpoint
@@ -25,4 +26,5 @@ routes = [Endpoint('/', get=HTMLController('Server/templates/index.html')),
           Endpoint('/api/game/<int:gameId>/play', post=PlayCardController()),
           # Lobby Endpoints
           Endpoint('/api/lobbies', post=NewLobbyController()),
-          Endpoint('/api/lobbies/<int:lobbyId>', get=GetLobbyController())]
+          Endpoint('/api/lobbies/<int:lobbyId>', get=GetLobbyController()),
+          Endpoint('/api/lobbies/<int:lobbyId>/join', post=JoinLobbyController())]

@@ -8,10 +8,11 @@ class LobbyWrapper:
         self.id = id
         self.lobby = lobby
         self.players = {}
+        self.playerIdProvider = self.getPlayerId()
         
     def addPlayer(self):
         """ Add a player to the Lobby """
-        playerId = self.getPlayerId().next()
+        playerId = self.playerIdProvider.next()
         player = PlayerInLobby()
         self.players[playerId] = player
         self.lobby.addPlayer(player)
