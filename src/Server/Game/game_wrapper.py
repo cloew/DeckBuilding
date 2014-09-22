@@ -1,4 +1,5 @@
 from json_helper import GetCardListJSON
+from player_wrapper import PlayerWrapper
 from turn_wrapper import TurnWrapper
 
 from Server.Game.Requests.request_wrapper_factory import RequestWrapperFactory
@@ -35,8 +36,8 @@ class GameWrapper:
         """ Return the more detailed JSON for the given player """
         isYourTurn = self.players[playerId] is self.game.currentTurn.player
         json = self.toJSON(includeActions=isYourTurn)
-        json['you'] = None
-        json['players'] = None
+        json['you'] = PlayerWrapper(self.players[playerId], self.game).toJSON(includeActions=isYourTurn)
+        json['players'] = [PlayerWrapper(player, self.game).toJSON(includeActions=isYourTurn) for id, player in self.players if id != playerId]
         return {'id':self.id,
                 'you':PlayerInLobbyWrapper(playerId, self.players[playerId]).toJSON(),
                 'players':[PlayerInLobbyWrapper(id, self.players[id]).toJSON() for id in self.players if id != playerId]}
