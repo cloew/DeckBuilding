@@ -1,1 +1,6 @@
 <button ng-click="startNewLobby();">New Lobby</button>
+
+<div ng-repeat="lobby in lobbies">
+    <h2>{{lobby.id}}</h2>
+    <button>Join</button>
+</div>
