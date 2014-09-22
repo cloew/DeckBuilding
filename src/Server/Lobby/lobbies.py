@@ -1,3 +1,4 @@
+from lobby_wrapper import LobbyWrapper
 from Lobby.lobby import Lobby
 
 id = 1
@@ -10,6 +11,6 @@ def StartNewLobby():
     
     lobby = Lobby()
     currentId = id
-    lobbies[currentId] = lobby
+    lobbies[currentId] = LobbyWrapper(currentId, lobby)
     id += 1
-    return currentId
+    return lobbies[currentId]

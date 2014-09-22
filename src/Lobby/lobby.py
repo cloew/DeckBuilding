@@ -5,3 +5,7 @@ class Lobby:
     def __init__(self):
         """ Initialize the Lobby """
         self.players = []
+        
+    def addPlayer(self, player):
+        """ Add the plyaere to the game lobby """
+        self.players.append(player)
