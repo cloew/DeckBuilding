@@ -1,8 +1,8 @@
-from Server.Game.game_wrapper import GameWrapper
+from Server.Game.games import games
 from kao_flask.controllers.json_controller import JSONController
 
 class GetGameController(JSONController):
     """ Controller to return basic game details """
     
     def performWithJSON(self, gameId):
-        return GameWrapper(id=gameId).toJSON()
+        return games[gameId].toJSON()

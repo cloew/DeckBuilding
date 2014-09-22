@@ -1,6 +1,6 @@
 from Game.Commands.buy_card import BuyCard
 from Game.Sources.source_factory import SourceFactory
-from Server.Game.game_wrapper import GameWrapper
+from Server.Game.games import games
 
 from kao_flask.controllers.json_controller import JSONController
 
@@ -8,7 +8,7 @@ class BuyCardController(JSONController):
     """ Controller to buy a card """
     
     def performWithJSON(self, gameId):
-        game = GameWrapper(id=gameId)
+        game = games[gameId]
         cardIndex = self.json['index']
         sourceType = self.json['source']
         

@@ -8,7 +8,7 @@ def GetCardListJSON(cards, game, includeActions=False, actions=[], source=None):
         activatableJSON = GetActivatableActionJSON(card, game, source=source)
         if activatableJSON is not None:
             actionsForCard.append(activatableJSON)
-        wrappers.append(CardWrapper(card, actions=GetActions(actionsForCard, includeActions=includeActions))
+        wrappers.append(CardWrapper(card, actions=GetActions(actionsForCard, includeActions=includeActions)))
     return [wrapper.toJSON() for wrapper in wrappers]
     
 def GetActivatableActionJSON(card, game, source=None):

@@ -1,5 +1,4 @@
-from Server.Game.games import StartNewGame
-from Server.Game.game_wrapper import GameWrapper
+from Server.Game.games import games
 from kao_flask.controllers.json_controller import JSONController
 
 class StartGameController(JSONController):
@@ -7,4 +6,4 @@ class StartGameController(JSONController):
     
     def performWithJSON(self):
         id = StartNewGame()
-        return GameWrapper(id=id).toJSON(), 201
+        return games[id].toJSON(), 201

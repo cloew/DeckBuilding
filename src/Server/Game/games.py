@@ -1,18 +1,14 @@
-from Game.game import Game
-from Game.player import Player
+from game_wrapper import GameWrapper
 
 id = 1
 games = {}
 
-def StartNewGame(game=None):
+def StartNewGame(game, players):
     """ Start a New Game """
     global games
     global id
-    
-    if game is None:
-        game = Game([Player()])
         
     currentId = id
-    games[currentId] = game
+    games[currentId] = GameWrapper(currentId, game, players)
     id += 1
     return currentId

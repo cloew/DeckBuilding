@@ -30,7 +30,7 @@ class LobbyWrapper:
     def startGame(self):
         """ Start the game the lobby is for """
         game = self.lobby.buildGame()
-        return StartNewGame(game=game)
+        return StartNewGame(game, {id:self.players[id].player for id in self.players})
         
     def toJSON(self):
         """ Return the lobby as a JSON Dictionary """

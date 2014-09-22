@@ -1,5 +1,3 @@
-from games import games
-
 from json_helper import GetCardListJSON
 from turn_wrapper import TurnWrapper
 
@@ -8,12 +6,11 @@ from Server.Game.Requests.request_wrapper_factory import RequestWrapperFactory
 class GameWrapper:
     """ A Wrapper for a Game that handles its conversion to and from JSON """
     
-    def __init__(self, game=None, id=None):
+    def __init__(self, id, game, players):
         """ Initialize the Game Wrapper """
-        if id is not None:
-            game = games[id]
         self.id = id
         self.game = game
+        self.players = players
         
     def toJSON(self, includeActions=False):
         """ Return the game as a JSON Dictionary """
@@ -36,7 +33,8 @@ class GameWrapper:
                 
     def toJSONForPlayer(self, playerId):
         """ Return the more detailed JSON for the given player """
-        json = self.toJSON()
+        isYourTurn = self.players[playerId] is self.game.currentTurn.player
+        json = self.toJSON(includeActions=isYourTurn)
         json['you'] = None
         json['players'] = None
         return {'id':self.id,
