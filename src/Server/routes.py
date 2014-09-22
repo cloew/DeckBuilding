@@ -1,10 +1,10 @@
-from Server.Controller.get_game_controller import GetGameController
-from Server.Controller.activate_card_controller import ActivateCardController
-from Server.Controller.buy_card_controller import BuyCardController
-from Server.Controller.choose_controller import ChooseController
-from Server.Controller.end_turn_controller import EndTurnController
-from Server.Controller.pick_card_controller import PickCardController
-from Server.Controller.play_card_controller import PlayCardController
+from Server.Game.Controller.get_game_controller import GetGameController
+from Server.Game.Controller.activate_card_controller import ActivateCardController
+from Server.Game.Controller.buy_card_controller import BuyCardController
+from Server.Game.Controller.choose_controller import ChooseController
+from Server.Game.Controller.end_turn_controller import EndTurnController
+from Server.Game.Controller.pick_card_controller import PickCardController
+from Server.Game.Controller.play_card_controller import PlayCardController
 
 from Server.Lobby.Controller.change_character_controller import ChangeCharacterController
 from Server.Lobby.Controller.get_lobbies_controller import GetLobbiesController
