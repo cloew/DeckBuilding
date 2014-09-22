@@ -7,7 +7,7 @@ from kao_flask.controllers.json_controller import JSONController
 class ActivateCardController(JSONController):
     """ Controller to activate a card """
     
-    def performWithJSON(self, gameId):
+    def performWithJSON(self, gameId, playerId):
         game = games[gameId]
         cardIndex = self.json['index']
         sourceType = self.json['source']
@@ -17,4 +17,4 @@ class ActivateCardController(JSONController):
         card = source[cardIndex]
         
         game.game.currentTurn.perform(ActivateCard(card, game.game.currentTurn))
-        return game.toJSON()
+        return game.toJSONForPlayer(playerId)

@@ -6,10 +6,10 @@ from kao_flask.controllers.json_controller import JSONController
 class PickCardController(JSONController):
     """ Controller to pick a card """
     
-    def performWithJSON(self, gameId):
+    def performWithJSON(self, gameId, playerId):
         game = games[gameId]
         cardIndex = self.json['index']
         card = game.game.currentTurn.request.cards[cardIndex]
         
         PickCard(card, game.game.currentTurn).perform()
-        return game.toJSON()
+        return game.toJSONForPlayer(playerId)

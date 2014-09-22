@@ -87,55 +87,56 @@ controllers.controller('LobbyController', function($scope, $cookies, $http, $loc
     });
 });
 controllers.controller('GameController', function($scope, $cookies, $http, $routeParams, $modal) {
+    var rootUrl = '/api/game/'+$routeParams.gameId+'/player/'+$cookies.playerId;
     $scope.setGame = function(data) {
         $scope.game = data['game'];
         if ($scope.game.request) {
             $scope.openRequestModal()
         }
     };
-    $http.get('/api/game/'+$routeParams.gameId+'/player/'+$cookies.playerId).success(function(data) {
+    $http.get(rootUrl).success(function(data) {
             $scope.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     $scope.actions = {};
     $scope.actions.activateCard = function(index, source) {  
-        $http.post('/api/game/'+$routeParams.gameId+'/activate', {'index':index, 'source':source}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+        $http.post(rootUrl+'/activate', {'index':index, 'source':source}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
             $scope.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     };
     $scope.actions.buyCard = function(index, source) {  
-        $http.post('/api/game/'+$routeParams.gameId+'/buy', {'index':index, 'source':source}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+        $http.post(rootUrl+'/buy', {'index':index, 'source':source}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
             $scope.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     };
     $scope.actions.playCard = function(index) {
-        $http.post('/api/game/'+$routeParams.gameId+'/play', {'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+        $http.post(rootUrl+'/play', {'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
             $scope.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     };
     $scope.endTurn = function(index) {
-        $http.post('/api/game/'+$routeParams.gameId+'/endturn').success(function(data) {
+        $http.post(rootUrl+'/endturn').success(function(data) {
             $scope.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     };
     $scope.chooseOption = function(index) {
-        $http.post('/api/game/'+$routeParams.gameId+'/choose', {'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+        $http.post(rootUrl+'/choose', {'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
             $scope.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     };
     $scope.pickCard = function(index) {
-        $http.post('/api/game/'+$routeParams.gameId+'/pickcard', {'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+        $http.post(rootUrl+'/pickcard', {'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
             $scope.setGame(data);
         }).error(function(error) {
             alert(error);
