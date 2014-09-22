@@ -44,7 +44,7 @@ controllers.controller('LobbiesController', function($scope, $http, $location, $
         $timeout.cancel($scope.pollPromise);
     });
 });
-controllers.controller('LobbyController', function($scope, $http, $timeout, $routeParams) {
+controllers.controller('LobbyController', function($scope, $http, $location, $timeout, $routeParams) {
     (function tick() {
         $http.get('/api/lobbies/'+$routeParams.lobbyId).success(function(data) {
             $scope.lobby = data;
@@ -54,6 +54,13 @@ controllers.controller('LobbyController', function($scope, $http, $timeout, $rou
             $scope.pollPromise = $timeout(tick, 1000);
         });
     })();
+    $scope.startGame = function() {
+        $http.post('/api/lobbies/'+$routeParams.lobbyId+'/start', {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+            $location.path('/game/'+data.gameId);
+        }).error(function(error) {
+            alert(error);
+        });
+    };
     $scope.$on('$destroy', function() {
         $timeout.cancel($scope.pollPromise);
     });
