@@ -13,32 +13,51 @@ controllers.controller('StartGameController', function ($scope, $http, $location
     };
 });
 
-controllers.controller('LobbiesController', function($scope, $http, $timeout) {
+controllers.controller('LobbiesController', function($scope, $http, $location, $timeout) {
     (function tick() {
         $http.get('/api/lobbies').success(function(data) {
             $scope.lobbies = data['lobbies'];
-            $timeout(tick, 1000);
+            $scope.pollPromise = $timeout(tick, 1000);
         }).error(function(error) {
             alert(error);
-            $timeout(tick, 1000);
+            $scope.pollPromise = $timeout(tick, 1000);
         });
     })();
     $scope.startNewLobby = function() {
         $http.post('/api/lobbies', {headers: {'Content-Type': 'application/json'}}).success(function(data) {
-            alert('' + data.lobbyId + ':' + data.playerId);
+            $scope.goToLobby(data.lobbyId);
         }).error(function(error) {
             alert(error);
         });
     };
     $scope.joinLobby = function(lobbyId) {
         $http.post('/api/lobbies/'+lobbyId+'/join', {headers: {'Content-Type': 'application/json'}}).success(function(data) {
-            alert('' + data.lobbyId + ':' + data.playerId);
+            $scope.goToLobby(data.lobbyId);
         }).error(function(error) {
             alert(error);
         });
     };
+    $scope.goToLobby = function(lobbyId) {
+        $location.path('/lobbies/'+lobbyId);
+    };
+    $scope.$on('$destroy', function() {
+        $timeout.cancel($scope.pollPromise);
+    });
 });
-
+controllers.controller('LobbyController', function($scope, $http, $timeout, $routeParams) {
+    (function tick() {
+        $http.get('/api/lobbies/'+$routeParams.lobbyId).success(function(data) {
+            $scope.lobby = data;
+            $scope.pollPromise = $timeout(tick, 1000);
+        }).error(function(error) {
+            alert(error);
+            $scope.pollPromise = $timeout(tick, 1000);
+        });
+    })();
+    $scope.$on('$destroy', function() {
+        $timeout.cancel($scope.pollPromise);
+    });
+});
 controllers.controller('GameController', function($scope, $http, $routeParams, $modal) {
     $scope.setGame = function(data) {
         $scope.game = data['game'];
