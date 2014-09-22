@@ -1,3 +1,6 @@
+from Game.game import Game
+
+import random
 
 class Lobby:
     """ Represents the lobby for players wanting to play """
@@ -7,5 +10,12 @@ class Lobby:
         self.players = []
         
     def addPlayer(self, player):
-        """ Add the plyaere to the game lobby """
+        """ Add the player to the game lobby """
         self.players.append(player)
+        
+    def buildGame(self):
+        """ Build the Game """
+        players = [player.buildGamePlayer() for player in self.players]
+        random.shuffle(players)
+        return Game(players)
+        

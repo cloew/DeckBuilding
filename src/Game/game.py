@@ -11,11 +11,9 @@ class Game:
     """ Represents a game of the Deck Building Game """
     LINE_UP_SIZE = 5
     
-    def __init__(self, numberOfPlayers):
+    def __init__(self, players):
         """ Initialize the Game """
-        self.players = []
-        for i in range(numberOfPlayers):
-            self.players.append(Player())
+        self.players = players
             
         self.mainDeck = Deck(deck_initializer=MainDeckInitializer)
         self.mainDeck.shuffle()
