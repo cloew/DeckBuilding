@@ -6,6 +6,7 @@ from Server.Controller.end_turn_controller import EndTurnController
 from Server.Controller.pick_card_controller import PickCardController
 from Server.Controller.play_card_controller import PlayCardController
 
+from Server.Lobby.Controller.change_character_controller import ChangeCharacterController
 from Server.Lobby.Controller.get_lobbies_controller import GetLobbiesController
 from Server.Lobby.Controller.get_lobby_controller import GetLobbyController
 from Server.Lobby.Controller.get_lobby_for_player_controller import GetLobbyForPlayerController
@@ -30,4 +31,5 @@ routes = [Endpoint('/', get=HTMLController('Server/templates/index.html')),
           Endpoint('/api/lobbies/<int:lobbyId>', get=GetLobbyController()),
           Endpoint('/api/lobbies/<int:lobbyId>/join', post=JoinLobbyController()),
           Endpoint('/api/lobbies/<int:lobbyId>/start', post=StartGameController()),
-          Endpoint('/api/lobbies/<int:lobbyId>/player/<int:playerId>', get=GetLobbyForPlayerController())]
+          Endpoint('/api/lobbies/<int:lobbyId>/player/<int:playerId>', get=GetLobbyForPlayerController()),
+          Endpoint('/api/lobbies/<int:lobbyId>/player/<int:playerId>/changecharacter', post=ChangeCharacterController())]

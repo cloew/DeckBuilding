@@ -3,6 +3,8 @@
 
 <div>
     <h1>You are: Player #{{lobby.you.id}} as {{lobby.you.character}}</h1>
+    <input ng-model="newCharacter" />
+    <button ng-click="changeCharacter()">Change Character</button>
 </div>
 
 <div ng-repeat="player in lobby.players">

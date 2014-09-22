@@ -58,6 +58,13 @@ controllers.controller('LobbyController', function($scope, $cookies, $http, $loc
             $scope.pollPromise = $timeout(tick, 1000);
         });
     })();
+    $scope.changeCharacter = function() {
+        $http.post('/api/lobbies/'+$routeParams.lobbyId+'/player/'+$cookies.playerId+'/changecharacter', {'character':$scope.newCharacter}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+            $scope.lobby = data;
+        }).error(function(error) {
+            alert(error);
+        });
+    };
     $scope.startGame = function() {
         $http.post('/api/lobbies/'+$routeParams.lobbyId+'/start', {headers: {'Content-Type': 'application/json'}}).success(function(data) {
             $location.path('/game/'+data.gameId);
