@@ -13,6 +13,16 @@ controllers.controller('StartGameController', function ($scope, $http, $location
     };
 });
 
+controllers.controller('LobbiesController', function($scope, $http) {
+    $scope.startNewLobby = function() {
+        $http.post('/api/lobbies', {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+            alert('' + data.lobbyId + ':' + data.playerId);
+        }).error(function(error) {
+            alert(error);
+        });
+    }
+});
+
 controllers.controller('GameController', function($scope, $http, $routeParams, $modal) {
     $scope.setGame = function(data) {
         $scope.game = data['game'];
