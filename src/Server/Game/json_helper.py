@@ -1,6 +1,6 @@
 from card_wrapper import CardWrapper
 
-def GetCardListJSON(cards, game, actions=[], source=None):
+def GetCardListJSON(cards, game, includeActions=False, actions=[], source=None):
     """ Return the Card JSON for the given list of cards """
     wrappers = []
     for card in cards:
@@ -8,7 +8,7 @@ def GetCardListJSON(cards, game, actions=[], source=None):
         activatableJSON = GetActivatableActionJSON(card, game, source=source)
         if activatableJSON is not None:
             actionsForCard.append(activatableJSON)
-        wrappers.append(CardWrapper(card, actions=actionsForCard))
+        wrappers.append(CardWrapper(card, actions=GetActions(actionsForCard, includeActions=includeActions))
     return [wrapper.toJSON() for wrapper in wrappers]
     
 def GetActivatableActionJSON(card, game, source=None):
@@ -19,3 +19,10 @@ def GetActivatableActionJSON(card, game, source=None):
         if activatableEffect.canActivate(game):
             json = {'type':'ACTIVATE', 'source':source}
     return json
+    
+def GetActions(actions, includeActions=False):
+    """ Return the actions if possible """
+    if not includeActions:
+        return []
+    else:
+        return actions
