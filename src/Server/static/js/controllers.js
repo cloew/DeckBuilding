@@ -17,10 +17,14 @@ controllers.controller('LobbiesController', function($scope, $cookies, $http, $l
     (function tick() {
         $http.get('/api/lobbies').success(function(data) {
             $scope.lobbies = data['lobbies'];
-            $scope.pollPromise = $timeout(tick, 1000);
+            if (!$scope.donePolling) {
+                $scope.pollPromise = $timeout(tick, 1000);
+            }
         }).error(function(error) {
             alert(error);
-            $scope.pollPromise = $timeout(tick, 1000);
+            if (!$scope.donePolling) {
+                $scope.pollPromise = $timeout(tick, 1000);
+            }
         });
     })();
     $scope.startNewLobby = function() {
@@ -45,6 +49,7 @@ controllers.controller('LobbiesController', function($scope, $cookies, $http, $l
         $location.path('/lobbies/'+lobbyId);
     };
     $scope.$on('$destroy', function() {
+        $scope.donePolling = true;
         $timeout.cancel($scope.pollPromise);
     });
 });
@@ -52,10 +57,14 @@ controllers.controller('LobbyController', function($scope, $cookies, $http, $loc
     (function tick() {
         $http.get('/api/lobbies/'+$routeParams.lobbyId+'/player/'+$cookies.playerId).success(function(data) {
             $scope.lobby = data;
-            $scope.pollPromise = $timeout(tick, 1000);
+            if (!$scope.donePolling) {
+                $scope.pollPromise = $timeout(tick, 1000);
+            }
         }).error(function(error) {
             alert(error);
-            $scope.pollPromise = $timeout(tick, 1000);
+            if (!$scope.donePolling) {
+                $scope.pollPromise = $timeout(tick, 1000);
+            }
         });
     })();
     $scope.changeCharacter = function() {
@@ -73,17 +82,18 @@ controllers.controller('LobbyController', function($scope, $cookies, $http, $loc
         });
     };
     $scope.$on('$destroy', function() {
+        $scope.donePolling = true;
         $timeout.cancel($scope.pollPromise);
     });
 });
-controllers.controller('GameController', function($scope, $http, $routeParams, $modal) {
+controllers.controller('GameController', function($scope, $cookies, $http, $routeParams, $modal) {
     $scope.setGame = function(data) {
         $scope.game = data['game'];
         if ($scope.game.request) {
             $scope.openRequestModal()
         }
     };
-    $http.get('/api/game/'+$routeParams.gameId).success(function(data) {
+    $http.get('/api/game/'+$routeParams.gameId+'/player/'+$cookies.playerId).success(function(data) {
             $scope.setGame(data);
         }).error(function(error) {
             alert(error);
