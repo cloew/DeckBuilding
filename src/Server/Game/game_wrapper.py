@@ -36,8 +36,7 @@ class GameWrapper:
         """ Return the more detailed JSON for the given player """
         isYourTurn = self.players[playerId] is self.game.currentTurn.player
         json = self.toJSON(includeActions=isYourTurn)
-        json['you'] = PlayerWrapper(self.players[playerId], self.game).toJSON(includeActions=isYourTurn)
-        json['players'] = [PlayerWrapper(player, self.game).toJSON(includeActions=isYourTurn) for id, player in self.players if id != playerId]
-        return {'id':self.id,
-                'you':PlayerInLobbyWrapper(playerId, self.players[playerId]).toJSON(),
-                'players':[PlayerInLobbyWrapper(id, self.players[id]).toJSON() for id in self.players if id != playerId]}
+        json['you'] = PlayerWrapper(self.players[playerId], self.game).toJSONForYourself(includeActions=isYourTurn)
+        json['you']['isTurn'] = isYourTurn
+        json['players'] = [PlayerWrapper(player, self.game).toJSON(includeActions=isYourTurn) for id, player in self.players.items() if id != playerId]
+        return json

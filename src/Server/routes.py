@@ -1,4 +1,5 @@
 from Server.Game.Controller.get_game_controller import GetGameController
+from Server.Game.Controller.get_game_for_player_controller import GetGameForPlayerController
 from Server.Game.Controller.activate_card_controller import ActivateCardController
 from Server.Game.Controller.buy_card_controller import BuyCardController
 from Server.Game.Controller.choose_controller import ChooseController
@@ -26,6 +27,7 @@ routes = [Endpoint('/', get=HTMLController('Server/templates/index.html')),
           Endpoint('/api/game/<int:gameId>/endturn', post=EndTurnController()),
           Endpoint('/api/game/<int:gameId>/pickcard', post=PickCardController()),
           Endpoint('/api/game/<int:gameId>/play', post=PlayCardController()),
+          Endpoint('/api/game/<int:gameId>/player/<int:playerId>', get=GetGameForPlayerController()),
           # Lobby Endpoints
           Endpoint('/api/lobbies', get=GetLobbiesController(), post=NewLobbyController()),
           Endpoint('/api/lobbies/<int:lobbyId>', get=GetLobbyController()),
