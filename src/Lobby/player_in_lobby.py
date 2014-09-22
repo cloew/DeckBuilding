@@ -10,4 +10,5 @@ class PlayerInLobby:
         
     def buildGamePlayer(self):
         """ Build the Game Player for this player in the Lobby """
-        return Player(CharacterFactory.loadCharacter(self.character))
+        self.player = Player(CharacterFactory.loadCharacter(self.character))
+        return self.player
