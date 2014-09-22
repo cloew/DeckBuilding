@@ -9,3 +9,7 @@ class LobbyWrapper:
             lobby = lobbies[id]
         self.id = id
         self.lobby = lobby
+        
+    def toJSON(self):
+        """ Return the lobby as a JSON Dictionary """
+        return {'id':self.id }
