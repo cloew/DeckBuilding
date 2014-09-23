@@ -20,6 +20,10 @@ angular.module('DeckBuilding', ['ngRoute', 'DeckBuildingControllers', 'DeckBuild
 			templateUrl: 'static/partials/game.html',
 			controller: 'GameController'
 		})
+		.when('/game/:gameId/results', {
+			templateUrl: 'static/partials/game_results.html',
+			controller: 'GameResultsController'
+		})
 		.otherwise({
 			redirectTo: '/'
 		})

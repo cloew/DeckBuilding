@@ -178,6 +178,14 @@ controllers.controller('GameController', function($scope, $cookies, $http, $rout
         $timeout.cancel($scope.pollPromise);
     });
 });
+controllers.controller('GameResultsController', function($scope, $cookies, $http, $routeParams, $timeout, $modal) {
+    var rootUrl = '/api/game/'+$routeParams.gameId+'/player/'+$cookies.playerId+'/results';
+    $http.get(rootUrl).success(function(data) {
+        $scope.results = data;
+    }).error(function(error) {
+        console.log(error);
+    });
+});
 
 controllers.controller('ChooseOptionController', function($scope, $modalInstance, parent) {
     $scope.parent = parent;
