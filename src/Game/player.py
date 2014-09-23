@@ -41,7 +41,8 @@ class Player:
         self.nextHandSize += change
         
     def cleanupForEndOfGame(self):
-        """ Cleanup the PLayer so they have all their cards in their deck """
+        """ Cleanup the Player so they have all their cards in their deck """
+        print "Cleaning up Player for the end of the game"
         self.moveToDeck(self.ongoing)
         self.moveToDeck(self.hand)
         self.deck.shuffleInDiscardPile()
@@ -53,9 +54,8 @@ class Player:
         
     def moveToDeck(self, otherList):
         """ Move a card from the other list to the deck """
-        for card in list(otherList):
-            self.deck.add(card)
-            otherList.remove(card)
+        self.deck.add(otherList)
+        del otherList[:]
         
     @property
     def discardPile(self):
