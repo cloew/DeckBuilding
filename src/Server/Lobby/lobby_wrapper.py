@@ -9,6 +9,7 @@ class LobbyWrapper:
         """ Initialize the lobby """
         self.id = id
         self.lobby = lobby
+        self.gameId = None
         self.players = {}
         self.playerIdProvider = self.getPlayerId()
         
@@ -30,7 +31,8 @@ class LobbyWrapper:
     def startGame(self):
         """ Start the game the lobby is for """
         game = self.lobby.buildGame()
-        return StartNewGame(game, {id:self.players[id].player for id in self.players})
+        self.gameId = StartNewGame(game, {id:self.players[id].player for id in self.players})
+        return self.gameId
         
     def toJSON(self):
         """ Return the lobby as a JSON Dictionary """
@@ -39,6 +41,9 @@ class LobbyWrapper:
                 
     def toJSONForPlayer(self, playerId):
         """ Return the more detailed JSON for the given player """
-        return {'id':self.id,
+        json = {'id':self.id,
                 'you':PlayerInLobbyWrapper(playerId, self.players[playerId]).toJSON(),
                 'players':[PlayerInLobbyWrapper(id, self.players[id]).toJSON() for id in self.players if id != playerId]}
+        if self.gameId is not None:
+            json['gameId'] = self.gameId
+        return json

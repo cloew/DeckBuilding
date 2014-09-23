@@ -6,6 +6,6 @@ class StartGameController(JSONController):
     
     def performWithJSON(self, lobbyId):
         lobby = lobbies[lobbyId]
-        del lobbies[lobbyId]
+        # del lobbies[lobbyId]
         gameId = lobby.startGame()
         return {'gameId':gameId}, 201

@@ -57,6 +57,9 @@ controllers.controller('LobbyController', function($scope, $cookies, $http, $loc
     (function tick() {
         $http.get('/api/lobbies/'+$routeParams.lobbyId+'/player/'+$cookies.playerId).success(function(data) {
             $scope.lobby = data;
+            if (data.gameId) {
+                $location.path('/game/'+data.gameId);
+            }
             if (!$scope.donePolling) {
                 $scope.pollPromise = $timeout(tick, 1000);
             }
