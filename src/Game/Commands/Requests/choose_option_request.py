@@ -13,6 +13,6 @@ class ChooseOptionRequest:
     def relevantSource(self):
         """ Return the relevant source if any """
         if self.relevantSourceType is not None:
-            return SourceFactory.getSource(self.relevantSourceType, self.args.game, event=self.args.event)
+            return SourceFactory.getSourceForEffect(self.relevantSourceType, self.args)
         else:
             return None
