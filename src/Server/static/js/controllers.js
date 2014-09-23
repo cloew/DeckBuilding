@@ -21,7 +21,7 @@ controllers.controller('LobbiesController', function($scope, $cookies, $http, $l
                 $scope.pollPromise = $timeout(tick, 1000);
             }
         }).error(function(error) {
-            alert(error);
+            console.log(error);
             if (!$scope.donePolling) {
                 $scope.pollPromise = $timeout(tick, 1000);
             }
@@ -61,7 +61,7 @@ controllers.controller('LobbyController', function($scope, $cookies, $http, $loc
                 $scope.pollPromise = $timeout(tick, 1000);
             }
         }).error(function(error) {
-            alert(error);
+            console.log(error);
             if (!$scope.donePolling) {
                 $scope.pollPromise = $timeout(tick, 1000);
             }
@@ -90,7 +90,7 @@ controllers.controller('GameController', function($scope, $cookies, $http, $rout
     var rootUrl = '/api/game/'+$routeParams.gameId+'/player/'+$cookies.playerId;
     $scope.setGame = function(data) {
         $scope.game = data['game'];
-        if ($scope.game.request) {
+        if ($scope.game.request && !$scope.hasModal) {
             $scope.openRequestModal()
         }
     };
@@ -101,7 +101,7 @@ controllers.controller('GameController', function($scope, $cookies, $http, $rout
                 $scope.pollPromise = $timeout(tick, 1000);
             }
         }).error(function(error) {
-            alert(error);
+            console.log(error);
             if (!$scope.donePolling) {
                 $scope.pollPromise = $timeout(tick, 1000);
             }
@@ -157,6 +157,7 @@ controllers.controller('GameController', function($scope, $cookies, $http, $rout
                                         'controller':'PickCardController'}};
     
         var controller = controllers[$scope.game.request.type];
+        $scope.hasModal = true;
         var modalInstance = $modal.open({
           templateUrl: controller.templateUrl,
           backdrop: 'static',
@@ -182,6 +183,7 @@ controllers.controller('ChooseOptionController', function($scope, $modalInstance
     $scope.chooseOption = function(index) {
         $scope.parent.chooseOption(index);
         $modalInstance.dismiss('cancel');
+        $scope.parent.hasModal = false;
     };
 });
 
@@ -192,5 +194,6 @@ controllers.controller('PickCardController', function($scope, $modalInstance, pa
     $scope.actions.pickCard = function(index) {
         $scope.parent.pickCard(index);
         $modalInstance.dismiss('cancel');
+        $scope.parent.hasModal = false;
     };
 });
