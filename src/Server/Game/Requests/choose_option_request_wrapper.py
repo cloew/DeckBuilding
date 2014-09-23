@@ -8,12 +8,12 @@ class ChooseOptionRequestWrapper:
         self.request = request
         self.game = game
         
-    def toJSON(self):
+    def toJSON(self, includeActions=False):
         """ Return the request as a JSON Dictionary """
         cards = []
         relevantSource = self.request.relevantSource
         if relevantSource is not None:
-            cards = GetCardListJSON(relevantSource, self.game)
+            cards = GetCardListJSON(relevantSource, self.game, includeActions=includeActions)
         return {'type':'CHOICE',
                 'options':[option.description for option in self.request.options],
                 'cards':cards}
