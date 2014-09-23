@@ -20,6 +20,7 @@ class GameWrapper:
         lineUpJSON = GetCardListJSON(self.game.lineUp.cards, self.game, actions=[{'type':'BUY', 'source':'LINE_UP'}], includeActions=includeActions)
         
         gameJSON = {'id':self.id,
+                    'isOver':self.game.isOver,
                     'mainDeck':{'count':len(self.game.mainDeck),
                                 'hidden':True},
                     'kicks':{'cards':kicksJSON},

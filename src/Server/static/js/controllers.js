@@ -89,10 +89,13 @@ controllers.controller('LobbyController', function($scope, $cookies, $http, $loc
         $timeout.cancel($scope.pollPromise);
     });
 });
-controllers.controller('GameController', function($scope, $cookies, $http, $routeParams, $timeout, $modal) {
+controllers.controller('GameController', function($scope, $cookies, $http, $location, $routeParams, $timeout, $modal) {
     var rootUrl = '/api/game/'+$routeParams.gameId+'/player/'+$cookies.playerId;
     $scope.setGame = function(data) {
         $scope.game = data['game'];
+        if ($scope.game.isOver) {
+            $location.path('/game/'+$scope.game.id+'/results');
+        }
         if ($scope.game.request && !$scope.hasModal) {
             $scope.openRequestModal()
         }
