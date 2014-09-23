@@ -86,7 +86,7 @@ controllers.controller('LobbyController', function($scope, $cookies, $http, $loc
         $timeout.cancel($scope.pollPromise);
     });
 });
-controllers.controller('GameController', function($scope, $cookies, $http, $routeParams, $modal) {
+controllers.controller('GameController', function($scope, $cookies, $http, $routeParams, $timeout, $modal) {
     var rootUrl = '/api/game/'+$routeParams.gameId+'/player/'+$cookies.playerId;
     $scope.setGame = function(data) {
         $scope.game = data['game'];
@@ -94,11 +94,19 @@ controllers.controller('GameController', function($scope, $cookies, $http, $rout
             $scope.openRequestModal()
         }
     };
-    $http.get(rootUrl).success(function(data) {
+    (function tick() {
+        $http.get(rootUrl).success(function(data) {
             $scope.setGame(data);
+            if (!$scope.donePolling) {
+                $scope.pollPromise = $timeout(tick, 1000);
+            }
         }).error(function(error) {
             alert(error);
+            if (!$scope.donePolling) {
+                $scope.pollPromise = $timeout(tick, 1000);
+            }
         });
+    })();
     $scope.actions = {};
     $scope.actions.activateCard = function(index, source) {  
         $http.post(rootUrl+'/activate', {'index':index, 'source':source}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
@@ -161,6 +169,10 @@ controllers.controller('GameController', function($scope, $cookies, $http, $rout
           size: 'lg'
         });
     };
+    $scope.$on('$destroy', function() {
+        $scope.donePolling = true;
+        $timeout.cancel($scope.pollPromise);
+    });
 });
 
 controllers.controller('ChooseOptionController', function($scope, $modalInstance, parent) {
