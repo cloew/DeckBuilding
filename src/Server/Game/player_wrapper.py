@@ -1,5 +1,5 @@
 from card_wrapper import CardWrapper
-from character_wrapper import CharacterWrapper
+from game_character_wrapper import GameCharacterWrapper
 from json_helper import GetCardListJSON
 
 from Game.Sources.source_factory import ONGOING, PLAYED
@@ -17,7 +17,7 @@ class PlayerWrapper:
         handJSON = GetCardListJSON(self.player.hand, self.game, actions=[{'type':'PLAY'}], includeActions=includeActions)
         ongoingJSON = GetCardListJSON(self.player.ongoing, self.game, source=ONGOING, includeActions=includeActions)
         discardPileJSON = GetCardListJSON(self.player.deck.discardPile, self.game, includeActions=includeActions)
-        characterJSON = CharacterWrapper(self.player.character, self.game).toJSON()
+        characterJSON = GameCharacterWrapper(self.player.character, self.game).toJSON()
         
         return {'ongoing':ongoingJSON,
                 'character':characterJSON,
