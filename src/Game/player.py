@@ -46,6 +46,11 @@ class Player:
         self.moveToDeck(self.hand)
         self.deck.shuffleInDiscardPile()
         
+    @property
+    def points(self):
+        """ Calculate the Player's Victory Points """
+        return sum([card.points for card in self.deck])
+        
     def moveToDeck(self, otherList):
         """ Move a card from the other list to the deck """
         for card in list(otherList):
