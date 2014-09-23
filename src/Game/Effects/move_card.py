@@ -23,7 +23,7 @@ class MoveCard:
         if len(cards) == 1:
             card = cards[0]
         else:
-            card = yield PickCardRequest(cards)
+            card = yield PickCardRequest(cards, args.player)
         
         fromSource.remove(card)
         toSource.add(card)

@@ -1,6 +1,7 @@
+from request import Request
 from Game.Sources.source_factory import SourceFactory
 
-class ChooseOptionRequest:
+class ChooseOptionRequest(Request):
     """ Represents a Request to Choose an Option """
     
     def __init__(self, options, args, relevantSourceType=None):
@@ -8,6 +9,7 @@ class ChooseOptionRequest:
         self.options = options
         self.args = args
         self.relevantSourceType = relevantSourceType
+        Request.__init__(self, [args.player])
         
     @property
     def relevantSource(self):

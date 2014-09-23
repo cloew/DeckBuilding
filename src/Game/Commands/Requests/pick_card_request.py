@@ -1,7 +1,9 @@
+from request import Request
 
-class PickCardRequest:
+class PickCardRequest(Request):
     """ Represents a Request to Pick Cards """
     
-    def __init__(self, cards):
+    def __init__(self, cards, player):
         """ Initialize the Request with the potential options """
         self.cards = cards
+        Request.__init__(self, [player])
