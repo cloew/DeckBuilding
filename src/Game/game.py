@@ -1,3 +1,4 @@
+from game_over import GameOver
 from line_up import LineUp
 from player import Player
 from turn import Turn
@@ -21,15 +22,19 @@ class Game:
         self.weaknessDeck = None
         self.kickDeck = Deck(deck_initializer=KickDeckInitializer)
         self.destroyedDeck = Deck()
+        self.gameOver = GameOver(self)
         
         self.turnCoroutine = self.pickTurn()
         self.nextTurn()
+        self.isOver = False
         
     def endTurn(self):
         """ End the turn """
         self.currentTurn.cleanup()
         self.lineUp.refill()
-        self.nextTurn()
+        self.isOver = self.gameOver.isOver
+        if not self.isOver:
+            self.nextTurn()
             
     def nextTurn(self):
         """ Set the current turn to be the next turn """
