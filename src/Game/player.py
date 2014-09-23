@@ -40,6 +40,18 @@ class Player:
         """ Modify the Player's Next Hand Size """
         self.nextHandSize += change
         
+    def cleanupForEndOfGame(self):
+        """ Cleanup the PLayer so they have all their cards in their deck """
+        self.moveToDeck(self.ongoing)
+        self.moveToDeck(self.hand)
+        self.deck.shuffleInDiscardPile()
+        
+    def moveToDeck(self, otherList):
+        """ Move a card from the other list to the deck """
+        for card in list(otherList):
+            self.deck.add(card)
+            otherList.remove(card)
+        
     @property
     def discardPile(self):
         """ Return the Deck's Discard Pile """

@@ -35,6 +35,9 @@ class Game:
         self.isOver = self.gameOver.isOver
         if not self.isOver:
             self.nextTurn()
+        else:
+            for player in self.players:
+                player.cleanupForEndOfGame()
             
     def nextTurn(self):
         """ Set the current turn to be the next turn """
