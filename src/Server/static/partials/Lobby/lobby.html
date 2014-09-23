@@ -2,11 +2,11 @@
 <button ng-click="startGame();">Start Game</button>
 
 <div>
-    <h1>You are: Player #{{lobby.you.id}} as {{lobby.you.character}}</h1>
+    <h1>You are: Player #{{lobby.you.id}} as {{lobby.you.character.name}}</h1>
     <input ng-model="newCharacter" />
     <button ng-click="changeCharacter()">Change Character</button>
 </div>
 
 <div ng-repeat="player in lobby.players">
-    <h2>Player #{{player.id}} as {{player.character}}</h2>
+    <h2>Player #{{player.id}} as {{player.character.name}}</h2>
 </div>

@@ -1,3 +1,4 @@
+from Server.Json.character_wrapper import CharacterWrapper
 
 class PlayerInLobbyWrapper:
     """ Represents a Player in a Lobby and wraps its transformation into JSON """
@@ -10,4 +11,4 @@ class PlayerInLobbyWrapper:
     def toJSON(self):
         """ Return the lobby as a JSON Dictionary """
         return {'id':self.id,
-                'character':self.player.character}
+                'character':CharacterWrapper(self.player.character).toJSON()}

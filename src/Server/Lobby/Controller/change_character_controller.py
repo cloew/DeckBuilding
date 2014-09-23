@@ -7,5 +7,5 @@ class ChangeCharacterController(JSONController):
     def performWithJSON(self, lobbyId, playerId):
         lobby = lobbies[lobbyId]
         player = lobby.players[playerId]
-        player.character = self.json['character']
+        player.setCharacter(self.json['character'])
         return lobbies[lobbyId].toJSONForPlayer(playerId), 201
