@@ -60,6 +60,27 @@
                            "power":3}}]
 },
 {
+    "name":"Martian Manhunter",
+    "image":"batman.jpg",
+    "triggers":[{"type":"CARD_PLAYED",
+                 "singleUse":true,
+                 "condition":{"type":"OR",
+                              "conditions":[{"type":"NTH",
+                                             "n":2,
+                                             "criteria":{"type":"FIXED",
+                                                         "field":"cardType",
+                                                         "operation":"==",
+                                                         "value":"Hero"}},
+                                            {"type":"NTH",
+                                             "n":2,
+                                             "criteria":{"type":"FIXED",
+                                                         "field":"cardType",
+                                                         "operation":"==",
+                                                         "value":"Villain"}}]},
+                 "effect":{"type":"GAIN_POWER",
+                           "power":3}}]
+},
+{
     "name":"Shazam",
     "image":"shazam.jpg",
     "activatableEffect":{"singleUse":false,
