@@ -83,3 +83,11 @@
 .options {
     width: 300px;
 }
+.vcenter {
+    vertical-align: middle;
+}
+
+.row-container {
+    display: flex;
+    align-items: center;
+}

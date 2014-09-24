@@ -7,8 +7,9 @@
     <input ng-model="newCharacter" />
     <button ng-click="changeCharacter()">Change Character</button>
 </div>
-
-<div ng-repeat="player in lobby.players" style="vertical-align:center;">
-    <character character="player.character" thumbnail="true" style="float:left;"></character>
-    <h2>Player #{{player.id}} as {{player.character.name}}</h2>
+<div style="margin-left:25px;margin-right:25px;">
+    <div class="row row-container" ng-repeat="player in lobby.players">
+        <character character="player.character" thumbnail="true"></character>
+        <h2 style="vertical-align: middle;">Player #{{player.id}} as {{player.character.name}}</h2>
+    </div>
 </div>

@@ -61,12 +61,12 @@ controllers.controller('LobbyController', function($scope, $cookies, $http, $loc
                 $location.path('/game/'+data.gameId);
             }
             if (!$scope.donePolling) {
-                $scope.pollPromise = $timeout(tick, 1000);
+                // $scope.pollPromise = $timeout(tick, 1000);
             }
         }).error(function(error) {
             console.log(error);
             if (!$scope.donePolling) {
-                $scope.pollPromise = $timeout(tick, 1000);
+                // $scope.pollPromise = $timeout(tick, 1000);
             }
         });
     })();
