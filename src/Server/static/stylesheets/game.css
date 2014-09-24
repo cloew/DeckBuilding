@@ -13,6 +13,12 @@
     height: 188px;
     margin: 0px;
 }
+.character-thumbnail {
+    background-size: 71px 94px;
+    width: 71px;
+    height: 94px;
+    margin: 0px;
+}
 .center {
     margin-right: auto;
     margin-left: auto; 

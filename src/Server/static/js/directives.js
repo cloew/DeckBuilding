@@ -24,12 +24,22 @@ angular.module('DeckBuildingDirectives', [])
           replace: true,
           scope: {
               actions: '=actions',
-              character: '=character'
+              character: '=character',
+              thumbnail: '=thumbnail'
           },
           link: function(scope, elements, attrs) {
               scope.index = 0;
           },
           templateUrl: 'static/partials/directives/character.html'
+      }})
+    .directive('character-thumb', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          scope: {
+              character: '=character'
+          },
+          templateUrl: 'static/partials/directives/character-thumb.html'
       }})
       .directive('actionCard', function() {
       return {

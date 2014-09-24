@@ -3,12 +3,12 @@
 
 <div>
     <h1>You are: Player #{{lobby.you.id}} as {{lobby.you.character.name}}</h1>
-    <character character="lobby.you.character"></character>
+    <character character="lobby.you.character" thumbnail="true"></character>
     <input ng-model="newCharacter" />
     <button ng-click="changeCharacter()">Change Character</button>
 </div>
 
-<div ng-repeat="player in lobby.players">
+<div ng-repeat="player in lobby.players" style="vertical-align:center;">
+    <character character="player.character" thumbnail="true" style="float:left;"></character>
     <h2>Player #{{player.id}} as {{player.character.name}}</h2>
-    <character character="player.character"></character>
 </div>
