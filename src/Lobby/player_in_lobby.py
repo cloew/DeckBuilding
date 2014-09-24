@@ -10,7 +10,7 @@ class PlayerInLobby:
         
     def buildGamePlayer(self):
         """ Build the Game Player for this player in the Lobby """
-        self.player = Player()
+        self.player = Player(self.character)
         return self.player
         
     def setCharacter(self, characterName):
