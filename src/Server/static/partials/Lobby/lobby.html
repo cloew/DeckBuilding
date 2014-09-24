@@ -8,8 +8,8 @@
     <button ng-click="changeCharacter()">Change Character</button>
 </div>
 <div style="margin-left:25px;margin-right:25px;">
-    <div class="row row-container" ng-repeat="player in lobby.players">
+    <div class="row-container" ng-repeat="player in lobby.allPlayers">
         <character character="player.character" thumbnail="true"></character>
-        <h2 style="vertical-align: middle;">Player #{{player.id}} as {{player.character.name}}</h2>
+        <h2 style="vertical-align: middle;">Player #{{player.id}}</h2>
     </div>
 </div>

@@ -54,25 +54,30 @@ controllers.controller('LobbiesController', function($scope, $cookies, $http, $l
     });
 });
 controllers.controller('LobbyController', function($scope, $cookies, $http, $location, $timeout, $routeParams) {
+    $scope.setLobby = function(data) {
+        $scope.lobby = data;
+        $scope.lobby.allPlayers = [$scope.lobby.you];
+        $scope.lobby.allPlayers.push.apply($scope.lobby.allPlayers, $scope.lobby.players);
+        if (data.gameId) {
+            $location.path('/game/'+data.gameId);
+        }
+    };
     (function tick() {
         $http.get('/api/lobbies/'+$routeParams.lobbyId+'/player/'+$cookies.playerId).success(function(data) {
-            $scope.lobby = data;
-            if (data.gameId) {
-                $location.path('/game/'+data.gameId);
-            }
+            $scope.setLobby(data);
             if (!$scope.donePolling) {
-                // $scope.pollPromise = $timeout(tick, 1000);
+                $scope.pollPromise = $timeout(tick, 1000);
             }
         }).error(function(error) {
             console.log(error);
             if (!$scope.donePolling) {
-                // $scope.pollPromise = $timeout(tick, 1000);
+                $scope.pollPromise = $timeout(tick, 1000);
             }
         });
     })();
     $scope.changeCharacter = function() {
         $http.post('/api/lobbies/'+$routeParams.lobbyId+'/player/'+$cookies.playerId+'/changecharacter', {'character':$scope.newCharacter}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
-            $scope.lobby = data;
+            $scope.setLobby(data);
         }).error(function(error) {
             alert(error);
         });
