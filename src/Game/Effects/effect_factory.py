@@ -12,6 +12,7 @@ from Game.Effects.modify_hand_size import ModifyHandSize
 from Game.Effects.move_card import MoveCard
 from Game.Effects.ongoing import Ongoing
 from Game.Effects.per_match import PerMatch
+from Game.Effects.pick_cards import PickCards
 from Game.Effects.pick_random_card import PickRandomCard
 from Game.Effects.play_or_have_played import PlayOrHavePlayed
 from Game.Effects.spend_power import SpendPower
@@ -72,20 +73,21 @@ class EffectFactory:
         elif effectType == "MOD_HAND_SIZE":
             return ModifyHandSize(effectJson["change"])
         elif effectType == "MOVE_CARD":
-            filter = None
-            if "criteria" in effectJson:
-                filterJson = {"criteria":effectJson["criteria"]}
-                filterJson["sourceType"] = effectJson["from"]
-                filterJson["type"] = "COMPARISON"
-                filter = FilterFactory.loadFilter(filterJson)
-            
-            return MoveCard(effectJson["from"], effectJson["to"], filter=filter)
+            return MoveCard(effectJson["from"], effectJson["to"])
         elif effectType == "ONGOING":
             return Ongoing()
         elif effectType == "PER_MATCH":
             criteria = CriteriaFactory.loadCriteria(effectJson["criteria"])
             effect = EffectFactory.loadEffect(effectJson["effect"])
             return PerMatch(effectJson["sourceType"], criteria, effect)
+        elif effectType == "PICK_CARDS":
+            filter = None
+            if "criteria" in effectJson:
+                filterJson = {"criteria":effectJson["criteria"]}
+                filterJson["sourceType"] = effectJson["source"]
+                filterJson["type"] = "COMPARISON"
+                filter = FilterFactory.loadFilter(filterJson)
+            return PickCards(effectJson["source"], effectJson["number"], self.loadEffect(effectJson["then"]), filter=filter)
         elif effectType == "PICK_RANDOM":
             return PickRandomCard(effectJson["source"], self.loadEffect(effectJson["then"]))
         elif effectType == "PLAY_OR_HAVE_PLAYED":

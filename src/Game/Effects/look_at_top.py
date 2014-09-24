@@ -1,6 +1,6 @@
 from Game.Effects.conditional_effect import ConditionalEffect
 from Game.Effects.Conditions.has_cards import HasCards
-from Game.Events.top_card_event import TopCardEvent
+from Game.Events.cards_event import CardsEvent
 from Game.Sources.source_factory import SourceFactory
 
 class LookAtTop(ConditionalEffect):
@@ -15,7 +15,7 @@ class LookAtTop(ConditionalEffect):
         """ Perform the Game Effect """
         source = SourceFactory.getSourceForEffect(self.sourceType, args)
         card = source[0]
-        event = TopCardEvent(card, source, args)
+        event = CardsEvent([card], source, args)
         
         coroutine = ConditionalEffect.performEffect(self, event.args)
         response = yield coroutine.next()

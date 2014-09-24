@@ -1,15 +1,14 @@
 from Game.Effects.effect_arguments import EffectArguments
 
-class TopCardEvent:
-    """ Represents an Event for Playing a Card """
+class CardsEvent:
+    """ Represents an Event to wrap an arbitrary number of cards """
     
-    def __init__(self, card, fromSource, args):
-        """ Initialize the Top Card Event with the card """
-        self.cards = [card]
-        self.game = args.game
+    def __init__(self, cards, fromSource, args):
+        """ Initialize the Cards Event with the cards and where they came from """
+        self.cards = cards
         self.fromSource = fromSource
         
-        self.args = EffectArguments(args.game, card, event=self, player=args.player)
+        self.args = EffectArguments(args.game, cards, event=self, player=args.player)
         
     def remove(self, card):
         """ Remove the card from the deck """
