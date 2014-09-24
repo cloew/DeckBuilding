@@ -5,6 +5,7 @@ from matching import Matching
 from not_condition import NotCondition
 from nth_played import NthPlayed
 from nth_unique import NthUnique
+from or_condition import OrCondition
 from unique import Unique
 
 from Game.Effects.Conditions.Filters.filter_factory import FilterFactory
@@ -41,6 +42,8 @@ class ConditionFactory:
             if "criterion" in conditionJSON:
                 criterion = [CriteriaFactory.loadCriteria(criteriaJSON) for criteriaJSON in conditionJSON["criterion"]]
             return NthUnique(conditionJSON["n"], criterion)
+        if conditionJSON["type"] == "OR":
+            return OrCondition([self.loadCondition(subConditionJSON) for subConditionJSON in conditionJSON["conditions"]])
         elif conditionJSON["type"] == "UNIQUE":
             return Unique(conditionJSON["field"], conditionJSON["source"])
         else:
