@@ -21,11 +21,11 @@ class PickCards:
         
         card = None
         if len(source) == self.numberOfCards:
-            card = source[0]
+            cards = source
         else:
-            card = yield PickCardRequest(source, args.player)
+            cards = yield PickCardRequest(source, args.player, self.numberOfCards)
             
-        event = CardsEvent([card], source, args)
+        event = CardsEvent(cards, source, args)
         coroutine = PerformEffect(self.thenEffect, event.args)
         response = yield coroutine.next()
         while True:

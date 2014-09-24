@@ -8,8 +8,8 @@ class PickCardController(JSONController):
     
     def performWithJSON(self, gameId, playerId):
         game = games[gameId]
-        cardIndex = self.json['index']
-        card = game.game.currentTurn.request.cards[cardIndex]
+        cardIndices = self.json['indices']
+        cards = [game.game.currentTurn.request.cards[cardIndex] for cardIndex in cardIndices]
         
-        PickCard(card, game.game.currentTurn).perform()
+        PickCard(cards, game.game.currentTurn).perform()
         return game.toJSONForPlayer(playerId)

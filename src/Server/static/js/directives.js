@@ -61,7 +61,7 @@ angular.module('DeckBuildingDirectives', [])
               cards: '=cards',
               actions: '=actions',
           },
-          template: '<div style="display: inline-block; width: 100%;"><action-card actions="actions" card="card" index="$index" ng-repeat="card in cards"></action-card></div>'
+          template: '<div style="display: inline-block; width: 100%;"><action-card actions="actions" card="card" index="$index" ng-repeat="card in cards" ng-hide="$scope.indices.indexOf($index) > -1"></action-card></div>'
       }})
       .directive('deck', function() {
       return {

@@ -154,8 +154,8 @@ controllers.controller('GameController', function($scope, $cookies, $http, $loca
             alert(error);
         });
     };
-    $scope.pickCard = function(index) {
-        $http.post(rootUrl+'/pickcard', {'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+    $scope.pickCard = function(indices) {
+        $http.post(rootUrl+'/pickcard', {'indices':indices}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
             $scope.setGame(data);
         }).error(function(error) {
             alert(error);
@@ -210,8 +210,15 @@ controllers.controller('PickCardController', function($scope, $modalInstance, pa
     $scope.parent = parent;
     $scope.request = parent.game.request;
     $scope.actions = {};
+    $scope.indices = [];
     $scope.actions.pickCard = function(index) {
-        $scope.parent.pickCard(index);
+        $scope.indices.push(index);
+        if ($scope.indices.length ===  $scope.request.number) {
+            $scope.sendChoices();
+        }
+    };
+    $scope.sendChoices = function() {
+        $scope.parent.pickCard($scope.indices);
         $modalInstance.dismiss('cancel');
         $scope.parent.hasModal = false;
     };
