@@ -282,6 +282,23 @@
                               "power":2}}]
 },
 {
+    "name":"Teleportation",
+    "type":"Super Power",
+    "image":"teleportation.jpg",
+    "cost":{"type":"FIXED",
+            "cost":7},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"CONDITIONAL",
+                    "condition":{"type":"HAS_CARDS",
+                                 "sourceType":"MAIN_DECK"},
+                    "effect":{"type":"LOOK_AT_TOP",
+                              "source":"MAIN_DECK",
+                              "then":{"type":"GAIN_CARD",
+                                      "from":"EVENT",
+                                      "to":"HAND"}}}]
+},
+{
     "name":"Titans Tower",
     "type":"Location",
     "image":"titans_tower.jpg",
@@ -302,21 +319,20 @@
                            "count":1}}]
 },
 {
-    "name":"Teleportation",
-    "type":"Super Power",
-    "image":"teleportation.jpg",
+    "name":"The Penguin",
+    "type":"Villain",
+    "image":"the_penguin.jpg",
     "cost":{"type":"FIXED",
-            "cost":7},
+            "cost":3},
     "points":{"type":"FIXED",
               "points":1},
-    "playEffects":[{"type":"CONDITIONAL",
-                    "condition":{"type":"HAS_CARDS",
-                                 "sourceType":"MAIN_DECK"},
-                    "effect":{"type":"LOOK_AT_TOP",
-                              "source":"MAIN_DECK",
-                              "then":{"type":"GAIN_CARD",
-                                      "from":"EVENT",
-                                      "to":"HAND"}}}]
+    "playEffects":[{"type":"DRAW",
+                    "count":2},
+                   {"type":"PICK_CARDS",
+                    "number":2,
+                    "source":"HAND",
+                    "then":{"type":"DISCARD",
+                            "source":"EVENT"}}]
 },
 {
     "name":"The Rot",
