@@ -1,6 +1,6 @@
 from Game.Card.card import Card
 from Game.Card.Cost.fixed_cost import FixedCost
-from Game.Card.VictoryPoints.fixed_points import FixedPoints
+from Game.Card.VictoryPoints.points_factory import PointsFactory
 
 from Game.Effects.effect_factory import EffectFactory
 from Game.Effects.Activatables.activatable_factory import ActivatableFactory
@@ -29,7 +29,7 @@ class CardFactory:
             image = None
             if "image" in cardJson:
                 image = cardJson["image"]
-            return Card(name, cardType, costCalculator=FixedCost(cost), vpCalculator=FixedPoints(cardJson["points"]["points"]),
+            return Card(name, cardType, costCalculator=FixedCost(cost), vpCalculator=PointsFactory.loadPointsCalculator(cardJson["points"]),
                         playEffects=self.loadPlayEffects(cardJson), triggers=self.loadTriggers(cardJson), activatable=self.loadActivatable(cardJson), image=image)
         else:
             print "Unable to load Card:", cardName
