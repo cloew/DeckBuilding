@@ -23,6 +23,10 @@ class LineUp:
         """ Return the item at the given index """
         return self.cards[index]
         
+    def __len__(self):
+        """ Return the length of the Line Up """
+        return len(self.cards)
+        
     def __iter__(self):
         """ Return the Line-up Iterator """
         return self.cards.__iter__()

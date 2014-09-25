@@ -92,7 +92,10 @@ class EffectFactory:
         elif effectType == "PICK_RANDOM":
             return PickRandomCard(effectJson["source"], self.loadEffect(effectJson["then"]))
         elif effectType == "PLAY":
-            return Play(effectJson["source"])
+            remove = None
+            if "remove" in effectJson:
+                remove = effectJson["remove"]
+            return Play(effectJson["source"], remove=remove)
         elif effectType == "PLAY_OR_HAVE_PLAYED":
             criteria = CriteriaFactory.loadCriteria(effectJson["criteria"])
             effect = EffectFactory.loadEffect(effectJson["effect"])
