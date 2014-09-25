@@ -4,9 +4,9 @@ def inOperator(value, container):
     return operator.contains(container, value)
     
 def compareEvenOrOdd(value, expected):
-    return self.getEvenOrOdd(value) == expected
+    return getEvenOrOdd(value) == expected
     
-def getEvenOrOdd(self, value):
+def getEvenOrOdd(value):
     options = {0:"EVEN", 1:"ODD"}
     return options[value % 2]
 
