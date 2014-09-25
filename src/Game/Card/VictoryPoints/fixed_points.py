@@ -6,6 +6,6 @@ class FixedPoints:
         """ Initialize the points to provide """
         self.points = points
         
-    def calculatePoints(self):
+    def calculatePoints(self, args):
         """ Return the number of Points """
         return self.points
