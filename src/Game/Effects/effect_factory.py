@@ -14,6 +14,7 @@ from Game.Effects.ongoing import Ongoing
 from Game.Effects.per_match import PerMatch
 from Game.Effects.pick_cards import PickCards
 from Game.Effects.pick_random_card import PickRandomCard
+from Game.Effects.play import Play
 from Game.Effects.play_or_have_played import PlayOrHavePlayed
 from Game.Effects.spend_power import SpendPower
 
@@ -90,6 +91,8 @@ class EffectFactory:
             return PickCards(effectJson["source"], effectJson["number"], self.loadEffect(effectJson["then"]), filter=filter)
         elif effectType == "PICK_RANDOM":
             return PickRandomCard(effectJson["source"], self.loadEffect(effectJson["then"]))
+        elif effectType == "PLAY":
+            return Play(effectJson["source"])
         elif effectType == "PLAY_OR_HAVE_PLAYED":
             criteria = CriteriaFactory.loadCriteria(effectJson["criteria"])
             effect = EffectFactory.loadEffect(effectJson["effect"])

@@ -64,9 +64,16 @@ class Turn:
             self.command = None
             self.request = None
         
-    def playCard(self, card):
+    def playCardFromHand(self, card):
         """ Play the provided card """
         self.player.hand.remove(card)
+        coroutine = self.playCard(card)
+        response = yield coroutine.next()
+        while True:
+            response = yield coroutine.send(response)
+        
+    def playCard(self, card):
+        """ Play card """
         coroutine = card.play(self.game)
         try:
             response = yield coroutine.next()
