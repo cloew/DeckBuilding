@@ -20,14 +20,15 @@ class PickCards:
         if self.filter is not None:
             possibleCards = self.filter.evaluate(args)
         
-        card = None
-        if len(possibleCards) == self.numberOfCards:
-            cards = possibleCards
-        else:
-            cards = yield PickCardRequest(possibleCards, args.player, self.numberOfCards)
-            
-        event = CardsEvent(cards, source, args)
-        coroutine = PerformEffect(self.thenEffect, event.args)
-        response = yield coroutine.next()
-        while True:
-            response = yield coroutine.send(response)
+        if len(possibleCards) != 0:
+            card = None
+            if len(possibleCards) == self.numberOfCards:
+                cards = possibleCards
+            else:
+                cards = yield PickCardRequest(possibleCards, args.player, self.numberOfCards)
+                
+            event = CardsEvent(cards, source, args)
+            coroutine = PerformEffect(self.thenEffect, event.args)
+            response = yield coroutine.next()
+            while True:
+                response = yield coroutine.send(response)
