@@ -9,6 +9,10 @@ class CardsEvent:
         self.fromSource = fromSource
         
         self.args = EffectArguments(args.game, cards, event=self, player=args.player)
+    
+    def add(self, card):
+        """ Add the card from the deck """
+        self.fromSource.add(card)    
         
     def remove(self, card):
         """ Remove the card from the deck """

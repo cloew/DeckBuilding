@@ -8,7 +8,7 @@ class Source:
         
     def add(self, card):
         """ Add the given card to the source """
-        self.source.add([card])
+        self.source.add(card)
         
     def remove(self, card):
         """ Remove the card from the deck """

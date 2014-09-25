@@ -1,3 +1,4 @@
+from Game.Effects.add_to_source import AddToSource
 from Game.Effects.remove_played_card import RemovePlayedCard
 from Game.Sources.source_factory import SourceFactory
 
@@ -27,3 +28,5 @@ class Play:
                 pass
                 
             args.owner.cleanupEffects.append(RemovePlayedCard(card))
+            if self.remove:
+                args.owner.cleanupEffects.append(AddToSource(card, source))

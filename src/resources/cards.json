@@ -74,6 +74,21 @@
                               "source":"DECK"}}]
 },
 {
+    "name":"Emerald Knight",
+    "type":"Hero",
+    "image":"emerald_knight.jpg",
+    "cost":{"type":"FIXED",
+            "cost":5},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"PICK_CARDS",
+                    "number":1,
+                    "source":"LINE_UP",
+                    "then":{"type":"PLAY",
+                            "remove":true,
+                            "source":"EVENT"}}]
+},
+{
     "name":"Hawkgirl",
     "type":"Hero",
     "image":"hawkgirl.jpg",

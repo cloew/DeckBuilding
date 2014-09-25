@@ -15,6 +15,10 @@ class LineUp:
         if slotsToRefill > 0:
             self.cards += self.mainDeck.draw(count=slotsToRefill)
             
+    def add(self, card):
+        """ Add a card to the line up """
+        self.cards.append(card)
+            
     def remove(self, card):
         """ Remove a card from the line-up """
         self.cards.remove(card)

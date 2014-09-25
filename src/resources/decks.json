@@ -14,11 +14,11 @@
 },
 {
     "name":"Starting",
-    "cards":[{"name":"Deadshot",
+    "cards":[{"name":"Raven",
               "count":6},
-             {"name":"Raven",
-              "count":3},
+             {"name":"Emerald Knight",
+              "count":4},
              {"name":"Oa",
-              "count":1}]
+              "count":0}]
 }
 ]
