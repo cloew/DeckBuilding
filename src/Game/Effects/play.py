@@ -1,3 +1,4 @@
+from Game.Effects.remove_played_card import RemovePlayedCard
 from Game.Sources.source_factory import SourceFactory
 
 class Play:
@@ -18,3 +19,4 @@ class Play:
                     response = yield coroutine.send(response)
             except StopIteration:
                 pass
+            args.owner.cleanupEffects.append(RemovePlayedCard(card))
