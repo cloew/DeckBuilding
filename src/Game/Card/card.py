@@ -34,11 +34,6 @@ class Card:
     def cost(self):
         """ Return the cost of the Card """
         return self.calculateCost()
-            
-    @property
-    def points(self):
-        """ Return the points of the Card """
-        return self.calculatePoints()
         
     def __repr__(self):
         """ Return the String Representation of the card """

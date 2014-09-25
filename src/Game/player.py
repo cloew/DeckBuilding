@@ -1,5 +1,6 @@
 from Game.Characters.character_factory import CharacterFactory
 from Game.Decks.decks import StartingDeckInitializer
+from Game.Effects.effect_arguments import EffectArguments
 
 from kao_deck.deck_with_discard_pile import DeckWithDiscardPile
 
@@ -42,15 +43,14 @@ class Player:
         
     def cleanupForEndOfGame(self):
         """ Cleanup the Player so they have all their cards in their deck """
-        print "Cleaning up Player for the end of the game"
         self.moveToDeck(self.ongoing)
         self.moveToDeck(self.hand)
         self.deck.shuffleInDiscardPile()
         
-    @property
-    def points(self):
+    def calculatePoints(self, game):
         """ Calculate the Player's Victory Points """
-        return sum([card.points for card in self.deck])
+        args = EffectArguments(game, None, player=self)
+        return sum([card.calculatePoints(args) for card in self.deck])
         
     def moveToDeck(self, otherList):
         """ Move a card from the other list to the deck """
