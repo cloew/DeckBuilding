@@ -16,14 +16,15 @@ class PickCards:
     def perform(self, args):
         """ Perform the Game Effect """
         source = SourceFactory.getSourceForEffect(self.sourceType, args)
+        possibleCards = source
         if self.filter is not None:
-            source = self.filter.evaluate(args)
+            possibleCards = self.filter.evaluate(args)
         
         card = None
-        if len(source) == self.numberOfCards:
-            cards = source
+        if len(possibleCards) == self.numberOfCards:
+            cards = possibleCards
         else:
-            cards = yield PickCardRequest(source, args.player, self.numberOfCards)
+            cards = yield PickCardRequest(possibleCards, args.player, self.numberOfCards)
             
         event = CardsEvent(cards, source, args)
         coroutine = PerformEffect(self.thenEffect, event.args)
