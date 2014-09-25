@@ -217,6 +217,9 @@ controllers.controller('PickCardController', function($scope, $modalInstance, pa
             $scope.sendChoices();
         }
     };
+    $scope.hasCard = function(index) {
+        return $scope.indices.indexOf(index) > -1;
+    };
     $scope.sendChoices = function() {
         $scope.parent.pickCard($scope.indices);
         $modalInstance.dismiss('cancel');

@@ -2,5 +2,12 @@
     <h1>Choose a card</h1>
 </div>
 <div class="center card-list">
-    <card-list cards="request.cards" actions="actions"></card-list>
+    <h2>Chosen Cards</h2>
+    <div style="display: inline-block; width: 100%;">
+        <action-card card="card" index="$index" ng-repeat="card in request.cards" ng-show="hasCard($index)"></action-card>
+    </div>
+    <h2>Available Cards</h2>
+    <div style="display: inline-block; width: 100%;">
+        <action-card actions="actions" card="card" index="$index" ng-repeat="card in request.cards" ng-hide="hasCard($index)"></action-card>
+    </div>
 </div>
