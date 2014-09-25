@@ -30,8 +30,11 @@ class ConditionFactory:
                 
             return HasCards(conditionJSON["sourceType"], filter=filter)
         elif conditionJSON["type"] == "MATCHING":
+            number = None
+            if "number" in conditionJSON:
+                number = conditionJSON["number"]
             criteria = CriteriaFactory.loadCriteria(conditionJSON["criteria"])
-            return Matching(conditionJSON["sourceType"], criteria)
+            return Matching(conditionJSON["sourceType"], criteria, number=number)
         elif conditionJSON["type"] == "NOT":
             return NotCondition(self.loadCondition(conditionJSON["condition"]))
         elif conditionJSON["type"] == "NTH":
