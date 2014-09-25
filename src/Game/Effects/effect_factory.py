@@ -16,6 +16,7 @@ from Game.Effects.pick_cards import PickCards
 from Game.Effects.pick_random_card import PickRandomCard
 from Game.Effects.play import Play
 from Game.Effects.play_or_have_played import PlayOrHavePlayed
+from Game.Effects.put_on_bottom_cleanup import PutOnBottomCleanup
 from Game.Effects.spend_power import SpendPower
 
 from Game.Effects.Conditions.condition_factory import ConditionFactory
@@ -100,6 +101,8 @@ class EffectFactory:
             criteria = CriteriaFactory.loadCriteria(effectJson["criteria"])
             effect = EffectFactory.loadEffect(effectJson["effect"])
             return PlayOrHavePlayed(effect, criteria)
+        elif effectType == "PUT_ON_BOTTOM":
+            return PutOnBottomCleanup()
         elif effectType == "SPEND_POWER":
             return SpendPower(effectJson["power"])
         return None

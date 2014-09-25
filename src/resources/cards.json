@@ -246,6 +246,18 @@
                     "power":1}]
 },
 {
+    "name":"Ra's al Ghul",
+    "type":"Villain",
+    "image":"ras_al_ghul.jpg",
+    "cost":{"type":"FIXED",
+            "cost":8},
+    "points":{"type":"FIXED",
+              "points":4},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":3},
+                   {"type":"PUT_ON_BOTTOM"}]
+},
+{
     "name":"Raven",
     "type":"Hero",
     "image":"raven.jpg",
