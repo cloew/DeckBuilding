@@ -13,11 +13,18 @@
               "count":16}]
 },
 {
+    "name":"Weakness",
+    "cards":[{"name":"Weakness",
+              "count":20}]
+},
+{
     "name":"Starting",
     "cards":[{"name":"Raven",
               "count":4},
-             {"name":"Kid Flash",
+             {"name":"Scarecrow",
               "count":5},
+             {"name":"Suicide Squad",
+              "count":0},
              {"name":"Oa",
               "count":1}]
 },
