@@ -13,7 +13,7 @@ class FilterFactory:
             criteria = CriteriaFactory.loadCriteria(filterJSON["criteria"])
             return ComparisonFilter(filterJSON["sourceType"], criteria)
         elif filterJSON["type"] == "INTERSECTION":
-            filters = [self.loadJSON(subFilterJSON) for subFilterJSON in filterJSON["filters"]]
+            filters = [self.loadFilter(subFilterJSON) for subFilterJSON in filterJSON["filters"]]
             return IntersectionFilter(filters)
         elif filterJSON["type"] == "UNIQUE":
             return ComparisonFilter(filterJSON["field"], filterJSON["sourceType"])
