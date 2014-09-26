@@ -17,6 +17,7 @@ LINE_UP = "LINE_UP"
 MAIN_DECK = "MAIN_DECK"
 ONGOING = "ONGOING"
 PLAYED = "PLAYED"
+SUPERVILLAIN = "SUPERVILLAIN"
 
 class SourceFactory:
     """ Factory to construct card sources """
@@ -51,6 +52,8 @@ class SourceFactory:
             return ListSource(player.ongoing)
         elif sourceType == PLAYED:
             return ListSource(game.currentTurn.playedCards)
+        elif sourceType == SUPERVILLAIN:
+            return Source(game.superVillainStack)
         return None
         
 SourceFactory = SourceFactory()
