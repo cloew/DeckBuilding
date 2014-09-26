@@ -23,7 +23,7 @@ class PlayerWrapper:
                 'character':characterJSON,
                 'deck':{'count':len(self.player.deck),
                         'hidden':True},
-                'discardPile':{'cards':discardPileJSON}}
+                'discardPile':{'cards':discardPileJSON, 'count':len(discardPileJSON)}}
                 
     def toJSONForYourself(self, includeActions=False):
         """ Return the Player as a JSON Dictionary as if you are this player """

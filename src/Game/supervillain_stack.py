@@ -27,6 +27,7 @@ class SuperVillainStack:
             
     def remove(self, card):
         """ Remove a card from the stack """
+        self.topCard = None
         self.superVillains.remove(card)
         
     def __getitem__(self, index):

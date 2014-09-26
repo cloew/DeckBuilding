@@ -20,7 +20,7 @@ class GameWrapper:
         kicksJSON = GetCardListJSON(self.game.kickDeck, self.game, actions=[{'type':'BUY', 'source':KICK}], includeActions=includeActions)
         destroyedJSON = GetCardListJSON(self.game.destroyedDeck, self.game, includeActions=includeActions)
         lineUpJSON = GetCardListJSON(self.game.lineUp.cards, self.game, actions=[{'type':'BUY', 'source':LINE_UP}], includeActions=includeActions)
-        superVillainJSON = {'count':len(self.game.superVillainStack), 'hidden':self.game.superVillainStack.canPurchase}
+        superVillainJSON = {'count':len(self.game.superVillainStack), 'hidden':not self.game.superVillainStack.canPurchase}
         if self.game.superVillainStack.canPurchase and includeActions:
             superVillainJSON['cards'] = [CardWrapper(self.game.superVillainStack.topCard, actions=[{'type':'BUY', 'source':SUPERVILLAIN}]).toJSON()]
         
@@ -29,8 +29,8 @@ class GameWrapper:
                     'mainDeck':{'count':len(self.game.mainDeck),
                                 'hidden':True},
                     'superVillains':superVillainJSON,
-                    'kicks':{'cards':kicksJSON},
-                    'destroyed':{'cards':destroyedJSON},
+                    'kicks':{'cards':kicksJSON, 'count':len(kicksJSON)},
+                    'destroyed':{'cards':destroyedJSON, 'count':len(destroyedJSON)},
                     'lineUp':lineUpJSON,
                     'turn':TurnWrapper(self.game.currentTurn).toJSON(includeActions=includeActions)}
                     
