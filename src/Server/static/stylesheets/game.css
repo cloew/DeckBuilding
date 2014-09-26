@@ -1,3 +1,7 @@
+.deck-col {
+    padding-right: 0px;
+    padding-left: 0px;
+}
 .card {
     background-size: 124px 174px;
     width: 124px;
