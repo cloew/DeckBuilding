@@ -1,4 +1,5 @@
 from comparison_filter import ComparisonFilter
+from intersection_filter import IntersectionFilter
 from unique_filter import UniqueFilter
 
 from Game.Effects.Conditions.Filters.Criteria.criteria_factory import CriteriaFactory
@@ -11,6 +12,9 @@ class FilterFactory:
         if filterJSON["type"] == "COMPARISON":
             criteria = CriteriaFactory.loadCriteria(filterJSON["criteria"])
             return ComparisonFilter(filterJSON["sourceType"], criteria)
+        elif filterJSON["type"] == "INTERSECTION":
+            filters = [self.loadJSON(subFilterJSON) for subFilterJSON in filterJSON["filters"]]
+            return IntersectionFilter(filters)
         elif filterJSON["type"] == "UNIQUE":
             return ComparisonFilter(filterJSON["field"], filterJSON["sourceType"])
         else:

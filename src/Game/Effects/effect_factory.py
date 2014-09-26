@@ -79,9 +79,13 @@ class EffectFactory:
         elif effectType == "ONGOING":
             return Ongoing()
         elif effectType == "PER_MATCH":
-            criteria = CriteriaFactory.loadCriteria(effectJson["criteria"])
+            filterJson = effectJson["filter"]
+            if "sourceType" not in filterJson:
+                filterJson["sourceType"] = effectJson["sourceType"]
+            filter = FilterFactory.loadFilter(filterJson)
+            # criteria = CriteriaFactory.loadCriteria(effectJson["criteria"])
             effect = EffectFactory.loadEffect(effectJson["effect"])
-            return PerMatch(effectJson["sourceType"], criteria, effect)
+            return PerMatch(effectJson["sourceType"], filter, effect)
         elif effectType == "PICK_CARDS":
             filter = None
             if "criteria" in effectJson:
