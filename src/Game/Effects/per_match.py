@@ -1,4 +1,7 @@
+from Game.Effects.effect_arguments import EffectArguments
 from Game.Effects.Conditions.Filters.comparison_filter import ComparisonFilter
+from Game.Events.cards_event import CardsEvent
+from Game.Sources.source_factory import SourceFactory
 
 class PerMatch:
     """ Represents an effect that applies for each matching card """
@@ -10,5 +13,7 @@ class PerMatch:
         
     def perform(self, args):
         """ Perform the Game Effect """
+        source = SourceFactory.getSourceForEffect(self.filter.sourceType, args)
         for card in self.filter.evaluate(args):
-            self.effect.perform(args)
+            event = CardsEvent([card], source, args)
+            self.effect.perform(event.args)
