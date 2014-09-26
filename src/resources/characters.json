@@ -5,13 +5,16 @@
     "activatableEffect":{"singleUse":false,
                          "condition":{"type":"HAS_CARDS",
                                       "sourceType":"GAINED"},
-                         "effects":[{"type":"MOVE_CARD",
-                                     "from":"GAINED",
-                                     "to":"DECK",
+                         "effects":[{"type":"PICK_CARDS",
                                      "criteria":{"type":"FIXED",
                                                  "field":"cost",
                                                  "operation":"<=",
-                                                 "value":5}}]}
+                                                 "value":5},
+                                     "number":1,
+                                     "source":"GAINED",
+                                     "then":{"type":"MOVE_CARD",
+                                             "from":"EVENT",
+                                             "to":"DECK"}}]}
 },
 {
     "name":"Batman",
