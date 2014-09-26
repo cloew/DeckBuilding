@@ -1,10 +1,11 @@
 from game_over import GameOver
 from line_up import LineUp
 from player import Player
+from supervillain_stack import SuperVillainStack
 from turn import Turn
 
 from Game.Commands.start_turn import StartTurn
-from Game.Decks.decks import MainDeckInitializer, KickDeckInitializer
+from Game.Decks.decks import MainDeckInitializer, KickDeckInitializer, SuperVillainDeckInitializer
 
 from kao_deck.deck import Deck
 
@@ -22,6 +23,7 @@ class Game:
         self.weaknessDeck = None
         self.kickDeck = Deck(deck_initializer=KickDeckInitializer)
         self.destroyedDeck = Deck()
+        self.superVillainStack = SuperVillainStack(Deck(deck_initializer=SuperVillainDeckInitializer))
         self.gameOver = GameOver(self)
         
         self.turnCoroutine = self.pickTurn()

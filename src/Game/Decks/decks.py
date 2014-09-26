@@ -23,3 +23,5 @@ KickDeckInitializer = DeckFactory.loadDeck("Kick")
 
 MainDeckInitializer = DeckFactory.loadDeck("Deck 1")
 # MainDeckInitializer.addItem(kidFlash, count=20)
+
+SuperVillainDeckInitializer = DeckFactory.loadDeck("Super Villains")

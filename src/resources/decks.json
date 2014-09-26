@@ -3,7 +3,7 @@
     "name":"Deck 1",
     "cards":[{"name":"Kid Flash",
               "count":10},
-             {"name":"Wonder of the Knight",
+             {"name":"Talon",
               "count":10}]
     
 },
@@ -15,10 +15,15 @@
 {
     "name":"Starting",
     "cards":[{"name":"Raven",
-              "count":6},
-             {"name":"Emerald Knight",
               "count":4},
+             {"name":"Kid Flash",
+              "count":5},
              {"name":"Oa",
-              "count":0}]
+              "count":1}]
+},
+{
+    "name":"Super Villains",
+    "cards":[{"name":"Ra's al Ghul",
+              "count":1}]
 }
 ]
