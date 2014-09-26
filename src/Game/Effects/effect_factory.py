@@ -11,6 +11,7 @@ from Game.Effects.look_at_top import LookAtTop
 from Game.Effects.modify_hand_size import ModifyHandSize
 from Game.Effects.move_card import MoveCard
 from Game.Effects.ongoing import Ongoing
+from Game.Effects.per_foe import PerFoe
 from Game.Effects.per_match import PerMatch
 from Game.Effects.pick_cards import PickCards
 from Game.Effects.pick_random_card import PickRandomCard
@@ -78,6 +79,9 @@ class EffectFactory:
             return MoveCard(effectJson["from"], effectJson["to"])
         elif effectType == "ONGOING":
             return Ongoing()
+        elif effectType == "PER_FOE":
+            effects = EffectFactory.loadEffects(effectJson["effects"])
+            return PerFoe(effects)
         elif effectType == "PER_MATCH":
             filterJson = effectJson["filter"]
             if "sourceType" not in filterJson:
