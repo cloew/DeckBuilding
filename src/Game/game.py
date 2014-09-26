@@ -20,7 +20,6 @@ class Game:
         self.mainDeck = Deck(deck_initializer=MainDeckInitializer)
         self.mainDeck.shuffle()
         self.lineUp = LineUp(self.mainDeck)
-        self.weaknessDeck = None
         self.kickDeck = Deck(deck_initializer=KickDeckInitializer)
         self.weaknessDeck = Deck(deck_initializer=WeaknessDeckInitializer)
         self.destroyedDeck = Deck()

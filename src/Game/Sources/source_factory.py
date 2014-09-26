@@ -18,6 +18,7 @@ MAIN_DECK = "MAIN_DECK"
 ONGOING = "ONGOING"
 PLAYED = "PLAYED"
 SUPERVILLAIN = "SUPERVILLAIN"
+WEAKNESS = "WEAKNESS"
 
 class SourceFactory:
     """ Factory to construct card sources """
@@ -54,6 +55,8 @@ class SourceFactory:
             return ListSource(game.currentTurn.playedCards)
         elif sourceType == SUPERVILLAIN:
             return Source(game.superVillainStack)
+        elif sourceType == WEAKNESS:
+            return DeckSource(game.weaknessDeck)
         return None
         
 SourceFactory = SourceFactory()
