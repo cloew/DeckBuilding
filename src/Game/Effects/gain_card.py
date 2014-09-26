@@ -3,9 +3,11 @@ from Game.Sources.source_factory import SourceFactory, DISCARD_PILE
 class GainCard:
     """ Represents an effect to Gain a card """
     
-    def __init__(self, fromSourceType, toSourceType=DISCARD_PILE):
+    def __init__(self, fromSourceType, toSourceType=None):
         """ Initialize the Effect with the card to remove from play before discarding """
         self.fromSourceType = fromSourceType
+        if toSourceType is None:
+            toSourceType = DISCARD_PILE
         self.toSourceType = toSourceType
         
     def perform(self, args):

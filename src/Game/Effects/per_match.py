@@ -1,4 +1,5 @@
-from Game.Effects.effect_arguments import EffectArguments
+from effect_runner import PerformEffect
+
 from Game.Effects.Conditions.Filters.comparison_filter import ComparisonFilter
 from Game.Events.cards_event import CardsEvent
 from Game.Sources.source_factory import SourceFactory
@@ -16,4 +17,10 @@ class PerMatch:
         source = SourceFactory.getSourceForEffect(self.filter.sourceType, args)
         for card in self.filter.evaluate(args):
             event = CardsEvent([card], source, args)
-            self.effect.perform(event.args)
+            coroutine = PerformEffect(self.effect, event.args)
+            try:
+                response = yield coroutine.next()
+                while True:
+                    response = yield coroutine.send(response)
+            except StopIteration:
+                pass

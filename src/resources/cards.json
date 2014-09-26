@@ -235,6 +235,23 @@
                                              "count":1}}}}]
 },
 {
+    "name":"Princess Diana of Themyscira",
+    "type":"Hero",
+    "image":"princess_diana_of_themyscira.jpg",
+    "cost":{"type":"FIXED",
+            "cost":7},
+    "points":{"type":"FIXED",
+              "points":2},
+    "playEffects":[{"type":"PER_MATCH",
+                    "criteria":{"type":"FIXED",
+                                "field":"cardType",
+                                "operation":"==",
+                                "value":"Villain"},
+                    "sourceType":"LINE_UP",
+                    "effect":{"type":"GAIN_CARD",
+                              "from":"EVENT"}}]
+},
+{
     "name":"Punch",
     "type":"Starter",
     "image":"punch.jpg",
