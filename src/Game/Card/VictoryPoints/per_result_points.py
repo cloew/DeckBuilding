@@ -1,10 +1,10 @@
 
-class PerResultsPoints:
+class PerResultPoints:
     """ Represents a VP based on a condition """
     
     def __init__(self, filter):
         """ Initialize the filter to get results from """
-        self.fitler = filter
+        self.filter = filter
         
     def calculatePoints(self, args):
         """ Return the number of Points """

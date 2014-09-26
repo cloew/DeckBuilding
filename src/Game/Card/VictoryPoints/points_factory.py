@@ -1,8 +1,10 @@
 from Game.Card.VictoryPoints.conditional_points import ConditionalPoints
 from Game.Card.VictoryPoints.fixed_points import FixedPoints
+from Game.Card.VictoryPoints.per_result_points import PerResultPoints
 
 from Game.Effects.effect_factory import EffectFactory
 from Game.Effects.Conditions.condition_factory import ConditionFactory
+from Game.Effects.Conditions.Filters.filter_factory import FilterFactory
 
 class PointsFactory:
     """ Factory to create VP Calculators """
@@ -17,6 +19,9 @@ class PointsFactory:
                                      self.loadPointsCalculator(pointsJson["otherwise"]))
         elif pointsType == "FIXED":
             return FixedPoints(pointsJson["points"])
+        elif pointsType == "PER_RESULT":
+            filter = FilterFactory.loadFilter(pointsJson["filter"])
+            return PerResultPoints(filter)
         return None
         
 PointsFactory = PointsFactory()
