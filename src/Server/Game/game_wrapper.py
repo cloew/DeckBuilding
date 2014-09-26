@@ -1,9 +1,10 @@
 from card_wrapper import CardWrapper
 from json_helper import GetCardListJSON
 from player_wrapper import PlayerWrapper
+from supervillain_stack_wrapper import SuperVillainStackWrapper
 from turn_wrapper import TurnWrapper
 
-from Game.Sources.source_factory import KICK, LINE_UP, SUPERVILLAIN
+from Game.Sources.source_factory import KICK, LINE_UP
 from Server.Game.Requests.request_wrapper_factory import RequestWrapperFactory
 
 class GameWrapper:
@@ -20,15 +21,12 @@ class GameWrapper:
         kicksJSON = GetCardListJSON(self.game.kickDeck, self.game, actions=[{'type':'BUY', 'source':KICK}], includeActions=includeActions)
         destroyedJSON = GetCardListJSON(self.game.destroyedDeck, self.game, includeActions=includeActions)
         lineUpJSON = GetCardListJSON(self.game.lineUp.cards, self.game, actions=[{'type':'BUY', 'source':LINE_UP}], includeActions=includeActions)
-        superVillainJSON = {'count':len(self.game.superVillainStack), 'hidden':not self.game.superVillainStack.canPurchase}
-        if self.game.superVillainStack.canPurchase and includeActions:
-            superVillainJSON['cards'] = [CardWrapper(self.game.superVillainStack.topCard, actions=[{'type':'BUY', 'source':SUPERVILLAIN}]).toJSON()]
         
         gameJSON = {'id':self.id,
                     'isOver':self.game.isOver,
                     'mainDeck':{'count':len(self.game.mainDeck),
                                 'hidden':True},
-                    'superVillains':superVillainJSON,
+                    'superVillains':SuperVillainStackWrapper(self.game.superVillainStack).toJSON(includeActions=includeActions),
                     'kicks':{'cards':kicksJSON, 'count':len(kicksJSON)},
                     'destroyed':{'cards':destroyedJSON, 'count':len(destroyedJSON)},
                     'lineUp':lineUpJSON,
