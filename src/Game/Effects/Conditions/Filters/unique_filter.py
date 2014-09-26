@@ -17,7 +17,7 @@ class UniqueFilter:
         
         for card in source:
             value = getattr(card, self.field)
-            if value not in valueSet:
+            if value not in valueSet and value is not None:
                 cards.append(card)
                 valueSet.add(value)
         
