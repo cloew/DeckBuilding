@@ -253,6 +253,17 @@
                                              "count":1}}}}]
 },
 {
+    "name":"Parallax",
+    "type":"Villain",
+    "image":"parallax.jpg",
+    "cost":{"type":"FIXED",
+            "cost":12},
+    "points":{"type":"FIXED",
+              "points":6},
+    "playEffects":[{"type":"POWER_MOD",
+                    "modifier":2}]
+},
+{
     "name":"Princess Diana of Themyscira",
     "type":"Hero",
     "image":"princess_diana_of_themyscira.jpg",
