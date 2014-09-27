@@ -23,7 +23,9 @@ class CardFactory:
         cardJson = self.findCardJson(cardName)
         if cardJson is not None:
             name = cardJson["name"]
-            cardType = cardJson["type"]
+            cardType = None
+            if "type" in cardJson:
+                cardType = cardJson["type"]
             cost = cardJson["cost"]["cost"]
             
             image = None

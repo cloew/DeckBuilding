@@ -315,6 +315,22 @@
                     "count":1}]
 },
 {
+    "name":"Scarecrow",
+    "type":"Villain",
+    "image":"scarecrow.jpg",
+    "cost":{"type":"FIXED",
+            "cost":5},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":2},
+                   {"type":"ATTACK",
+                    "effect":{"type":"LOOK_AT_TOP",
+                              "source":"WEAKNESS",
+                              "then":{"type":"GAIN_CARD",
+                                      "from":"EVENT"}}}]
+},
+{
     "name":"Soultaker Sword",
     "type":"Equipment",
     "image":"soultaker_sword.jpg",
@@ -542,6 +558,14 @@
             "cost":0},
     "points":{"type":"FIXED",
               "points":0}
+},
+{
+    "name":"Weakness",
+    "image":"weakness.jpg",
+    "cost":{"type":"FIXED",
+            "cost":0},
+    "points":{"type":"FIXED",
+              "points":-1}
 },
 {
     "name":"Whirlwind",

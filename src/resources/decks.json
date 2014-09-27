@@ -13,6 +13,11 @@
               "count":16}]
 },
 {
+    "name":"Weakness",
+    "cards":[{"name":"Weakness",
+              "count":20}]
+},
+{
     "name":"Starting",
     "cards":[{"name":"Raven",
               "count":0},
