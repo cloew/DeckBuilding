@@ -1,5 +1,6 @@
 from Game.Effects.add_trigger import AddTrigger
 from Game.Effects.attack import Attack
+from Game.Effects.change_power_modifier import ChangePowerModifier
 from Game.Effects.choice import Choice, Option
 from Game.Effects.conditional_effect import ConditionalEffect
 from Game.Effects.destroy import Destroy
@@ -109,6 +110,8 @@ class EffectFactory:
             criteria = CriteriaFactory.loadCriteria(effectJson["criteria"])
             effect = EffectFactory.loadEffect(effectJson["effect"])
             return PlayOrHavePlayed(effect, criteria)
+        elif effectType == "POWER_MOD":
+            return ChangePowerModifier(effectJson["modifier"])
         elif effectType == "PUT_ON_BOTTOM":
             return PutOnBottomCleanup()
         elif effectType == "SPEND_POWER":
