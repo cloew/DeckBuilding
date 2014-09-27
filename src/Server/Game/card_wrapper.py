@@ -1,7 +1,7 @@
 
 class CardWrapper:
     """ A Wrapper for a Card """
-    IMAGES_DIRECTORY_URL = 'static/images/'
+    IMAGES_DIRECTORY_URL = 'static/images/Cards/'
     
     def __init__(self, card, actions=[]):
         """ Initialize the Card Wrapper """
