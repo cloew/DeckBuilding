@@ -16,4 +16,5 @@ class TurnWrapper:
         playedJSON = GetCardListJSON(self.turn.playedCards, self.turn.game, source=PLAYED, includeActions=includeActions)
         
         return {'played':playedJSON,
-                'power':self.turn.power}
+                'power':self.turn.power,
+                'modifier':self.turn.modifier}

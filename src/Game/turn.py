@@ -156,6 +156,11 @@ class Turn:
     def power(self):
         """ Return the current power level for the turn """
         return self.powerTracker.power
+       
+    @property
+    def modifier(self):
+        """ Return the current power modifier for the turn """
+        return self.powerTracker.modifier
         
     def __repr__(self):
         """ Return the String Representation of the Turn """
