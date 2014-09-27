@@ -2,9 +2,9 @@
 {
     "name":"Deck 1",
     "cards":[{"name":"Kid Flash",
-              "count":10},
+              "count":5},
              {"name":"Talon",
-              "count":10}]
+              "count":0}]
     
 },
 {
@@ -15,10 +15,10 @@
 {
     "name":"Starting",
     "cards":[{"name":"Raven",
-              "count":4},
-             {"name":"Kid Flash",
-              "count":5},
-             {"name":"Oa",
+              "count":0},
+             {"name":"Weakness",
+              "count":9},
+             {"name":"Bizarro",
               "count":1}]
 },
 {

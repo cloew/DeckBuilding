@@ -31,6 +31,23 @@
                                                                       "effects":[]}]}}}]}
 },
 {
+    "name":"Bizarro",
+    "type":"Villain",
+    "image":"bizarro.jpg",
+    "cost":{"type":"FIXED",
+            "cost":7},
+    "points":{"type":"PER_RESULT",
+              "points":2,
+              "filter":{"type":"COMPARISON",
+                        "criteria":{"type":"FIXED",
+                                    "field":"name",
+                                    "operation":"==",
+                                    "value":"Weakness"},
+                        "sourceType":"DECK"}},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":3}]
+},
+{
     "name":"Bo Staff",
     "type":"Equipment",
     "cost":{"type":"FIXED",
