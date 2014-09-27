@@ -18,6 +18,10 @@ class PowerTracker:
     def spendPower(self, power):
         """ Spend the given amount of power """
         self.spentPower += power
+        
+    def changeModifier(self, modifier):
+        """ Change the Modifier by the given modifier """
+        self.modifier *= modifier
        
     @property
     def power(self):

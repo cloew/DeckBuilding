@@ -18,6 +18,7 @@ class Turn:
         self.powerTracker = PowerTracker()
         self.gainPower = self.powerTracker.gainPower
         self.spendPower = self.powerTracker.spendPower
+        self.changeModifier = self.powerTracker.changeModifier
         
         self.playedCards = []
         self.gainedCards = []
