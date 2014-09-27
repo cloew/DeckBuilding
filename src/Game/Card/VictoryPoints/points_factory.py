@@ -20,8 +20,11 @@ class PointsFactory:
         elif pointsType == "FIXED":
             return FixedPoints(pointsJson["points"])
         elif pointsType == "PER_RESULT":
+            points = None
+            if "points" in pointsJson:
+                points = pointsJson["points"]
             filter = FilterFactory.loadFilter(pointsJson["filter"])
-            return PerResultPoints(filter)
+            return PerResultPoints(filter, points=points)
         return None
         
 PointsFactory = PointsFactory()
