@@ -8,5 +8,5 @@ class GainPower:
         
     def perform(self, args):
         """ Perform the Game Effect """
-        args.owner.gainPower(self.power)
+        args.owner.gainPower(args.parent, self.power)
         # Will probably return some kind of message object that says power was gained and by what

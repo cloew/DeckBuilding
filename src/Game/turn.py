@@ -1,3 +1,5 @@
+from power_tracker import PowerTracker
+
 from Game.Effects.effect_arguments import EffectArguments
 from Game.Events.gained_card_event import GainedCardEvent
 from Game.Events.played_card_event import PlayedCardEvent
@@ -13,7 +15,9 @@ class Turn:
         """ Initialize the Turn """
         self.player = player
         self.game = game
-        self.power = 0
+        self.powerTracker = PowerTracker()
+        self.gainPower = self.powerTracker.gainPower
+        self.spendPower = self.powerTracker.spendPower
         
         self.playedCards = []
         self.gainedCards = []
@@ -116,14 +120,6 @@ class Turn:
             pass
         self.gainedCards.append(card)
         
-    def gainPower(self, power):
-        """ Gain the proper amount of power """
-        self.power += power
-        
-    def spendPower(self, power):
-        """ Spend the provided amount of power """
-        self.power -= power
-        
     def registerTrigger(self, trigger):
         """ Register the given trigger """
         self.registerTriggers([trigger])
@@ -154,6 +150,11 @@ class Turn:
         self.player.deck.discardAll(self.playedCards)
         self.player.deck.discardAll(self.player.hand)
         self.player.drawHand()
+       
+    @property
+    def power(self):
+        """ Return the current power level for the turn """
+        return self.powerTracker.power
         
     def __repr__(self):
         """ Return the String Representation of the Turn """
