@@ -342,6 +342,40 @@
                                       "from":"EVENT"}}}]
 },
 {
+    "name":"Shazam!",
+    "type":"Super Power",
+    "image":"shazam.jpg",
+    "cost":{"type":"FIXED",
+            "cost":7},
+    "points":{"type":"FIXED",
+              "points":2},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":2},
+                   {"type":"LOOK_AT_TOP",
+                    "source":"MAIN_DECK",
+                    "then":{"type":"PLAY",
+                            "source":"EVENT"}}]
+},
+{
+    "name":"Solomon Grundy",
+    "type":"Villain",
+    "image":"solomon_grundy.jpg",
+    "cost":{"type":"FIXED",
+            "cost":6},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":3}],
+    "onGain":[{"type":"CHOICE",
+               "source":"EVENT",
+               "choices":[{"description":"Place on top of Deck",
+                           "effects":[{"type":"MOVE_CARD",
+                                       "from":"EVENT",
+                                       "to":"DECK"}]},
+                          {"description":"Do nothing",
+                           "effects":[]}]}]
+},
+{
     "name":"Soultaker Sword",
     "type":"Equipment",
     "image":"soultaker_sword.jpg",
@@ -364,21 +398,6 @@
                                                               "source":"EVENT"}}]},
                                          {"description":"Do nothing",
                                           "effects":[]}]}}]
-},
-{
-    "name":"Shazam!",
-    "type":"Super Power",
-    "image":"shazam.jpg",
-    "cost":{"type":"FIXED",
-            "cost":7},
-    "points":{"type":"FIXED",
-              "points":2},
-    "playEffects":[{"type":"GAIN_POWER",
-                    "power":2},
-                   {"type":"LOOK_AT_TOP",
-                    "source":"MAIN_DECK",
-                    "then":{"type":"PLAY",
-                            "source":"EVENT"}}]
 },
 {
     "name":"Suicide Squad",
