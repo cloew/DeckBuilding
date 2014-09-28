@@ -111,7 +111,14 @@ class Turn:
         
     def gainCard(self, card, fromSource, toSource=None):
         """ Gain the provided card """
-        self.player.gainCard(card, fromSource, toSource=toSource)
+        coroutine = self.player.gainCard(card, fromSource, toSource=toSource, game=self.game)
+        try:
+            response = yield coroutine.next()
+            while True:
+                response = yield coroutine.send(response)
+        except StopIteration:
+            pass
+            
         coroutine = self.eventListener.send(GainedCardEvent(card, self.game))
         try:
             response = yield coroutine.next()
@@ -119,6 +126,7 @@ class Turn:
                 response = yield coroutine.send(response)
         except StopIteration:
             pass
+            
         self.gainedCards.append(card)
         
     def registerTrigger(self, trigger):

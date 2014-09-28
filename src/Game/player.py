@@ -1,6 +1,8 @@
 from Game.Characters.character_factory import CharacterFactory
 from Game.Decks.decks import StartingDeckInitializer
 from Game.Effects.effect_arguments import EffectArguments
+from Game.Effects.effect_runner import PerformEffects
+from Game.Events.cards_event import CardsEvent
 
 from kao_deck.deck_with_discard_pile import DeckWithDiscardPile
 
@@ -32,10 +34,15 @@ class Player:
         newCards = self.deck.draw(count=count)
         self.hand += newCards
         
-    def gainCard(self, card, fromSource, toSource=None):
+    def gainCard(self, card, fromSource, toSource=None, game=None):
         """ Gain the provided card """
         fromSource.remove(card)
         toSource.add(card)
+        event = CardsEvent([card], toSource, EffectArguments(game, card, player=self))
+        coroutine = PerformEffects(card.onGainEffects, event.args)
+        response = yield coroutine.next()
+        while True:
+            response = yield coroutine.send(response)
         
     def modifyHandSize(self, change):
         """ Modify the Player's Next Hand Size """
