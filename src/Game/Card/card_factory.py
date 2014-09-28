@@ -28,11 +28,17 @@ class CardFactory:
                 cardType = cardJson["type"]
             cost = cardJson["cost"]["cost"]
             
+            onGainEffects = []
+            if "onGain" in cardJson:
+                onGainEffects = cardJson["type"]
+            cost = cardJson["cost"]["cost"]
+            
             image = None
             if "image" in cardJson:
                 image = cardJson["image"]
             return Card(name, cardType, costCalculator=FixedCost(cost), vpCalculator=PointsFactory.loadPointsCalculator(cardJson["points"]),
-                        playEffects=self.loadPlayEffects(cardJson), triggers=self.loadTriggers(cardJson), activatable=self.loadActivatable(cardJson), image=image)
+                        playEffects=self.loadPlayEffects(cardJson), onGainEffects=self.loadOnGainEffects(cardJson),
+                        triggers=self.loadTriggers(cardJson), activatable=self.loadActivatable(cardJson), image=image)
         else:
             print "Unable to load Card:", cardName
         return None
@@ -50,6 +56,13 @@ class CardFactory:
         if "playEffects" in cardJson:
             playEffects = EffectFactory.loadEffects(cardJson["playEffects"])
         return playEffects
+        
+    def loadOnGainEffects(self, cardJson):
+        """ Load the Card's On Gain Effects """
+        onGainEffects = []
+        if "onGain" in cardJson:
+            onGainEffects = EffectFactory.loadEffects(cardJson["onGain"])
+        return onGainEffects
         
     def loadTriggers(self, cardJson):
         """ Load the Card's Trigger Effects """
