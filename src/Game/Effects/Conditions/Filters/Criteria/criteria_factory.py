@@ -1,17 +1,10 @@
 from fixed_criteria import FixedCriteria
 from source_criteria import SourceCriteria
 
-class CriteriaFactory:
-    """ Factory to build Criterion """
-    
-    def loadCriteria(self, criteriaJSON):
-        """ Load the Criteria from the given JSON """
-        if criteriaJSON["type"] == "FIXED":
-            return FixedCriteria(criteriaJSON["field"], criteriaJSON["value"], criteriaJSON["operation"])
-        elif criteriaJSON["type"] == "SOURCE":
-            return SourceCriteria(criteriaJSON["field"], criteriaJSON["source"])
-        else:
-            print "Cannot find Criteria:", criteriaJSON["type"]
-        return None
-        
-CriteriaFactory = CriteriaFactory()
+from kao_factory.factory import Factory
+from kao_factory.typed_factory import TypedFactory
+from kao_factory.Parameter.complex_parameter import ComplexParameter
+from kao_factory.Parameter.primitive_parameter import PrimitiveParameter
+
+CriteriaFactory = TypedFactory('type', {"FIXED":Factory(FixedCriteria, [PrimitiveParameter("field"), PrimitiveParameter("value"), PrimitiveParameter("operation")]),
+                                      "SOURCE":Factory(SourceCriteria, [PrimitiveParameter("field"), PrimitiveParameter("source")])})

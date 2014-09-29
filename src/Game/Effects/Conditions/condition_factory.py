@@ -33,17 +33,17 @@ class ConditionFactory:
             number = None
             if "number" in conditionJSON:
                 number = conditionJSON["number"]
-            criteria = CriteriaFactory.loadCriteria(conditionJSON["criteria"])
+            criteria = CriteriaFactory.load(conditionJSON["criteria"])
             return Matching(conditionJSON["sourceType"], criteria, number=number)
         elif conditionJSON["type"] == "NOT":
             return NotCondition(self.loadCondition(conditionJSON["condition"]))
         elif conditionJSON["type"] == "NTH":
-            criteria = CriteriaFactory.loadCriteria(conditionJSON["criteria"])
+            criteria = CriteriaFactory.load(conditionJSON["criteria"])
             return NthPlayed(conditionJSON["n"], criteria)
         elif conditionJSON["type"] == "NTH_UNIQUE":
             criterion = []
             if "criterion" in conditionJSON:
-                criterion = [CriteriaFactory.loadCriteria(criteriaJSON) for criteriaJSON in conditionJSON["criterion"]]
+                criterion = [CriteriaFactory.load(criteriaJSON) for criteriaJSON in conditionJSON["criterion"]]
             return NthUnique(conditionJSON["n"], criterion)
         if conditionJSON["type"] == "OR":
             return OrCondition([self.loadCondition(subConditionJSON) for subConditionJSON in conditionJSON["conditions"]])

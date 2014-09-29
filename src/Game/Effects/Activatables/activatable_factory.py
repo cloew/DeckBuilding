@@ -3,16 +3,12 @@ from Game.Effects.Activatables.activatable import Activatable
 from Game.Effects.effect_factory import EffectFactory
 from Game.Effects.Conditions.condition_factory import ConditionFactory
 
-class ActivatableFactory:
-    """ Factory to construct Activatables """
+from kao_factory.factory import Factory
+from kao_factory.Parameter.complex_parameter import ComplexParameter
+from kao_factory.Parameter.primitive_parameter import PrimitiveParameter
+
+parameters = [ComplexParameter("effects", EffectFactory.loadEffects),
+              ComplexParameter("condition", ConditionFactory.loadCondition, optional=True),
+              PrimitiveParameter("singleUse")]
     
-    def loadActivatable(self, activatableJson):
-        """ Load the trigger in the given JSON """
-        singleUse = activatableJson["singleUse"]
-        condition = None
-        if "condition" in activatableJson:
-            condition = ConditionFactory.loadCondition(activatableJson["condition"])
-        effects = EffectFactory.loadEffects(activatableJson["effects"])
-        return Activatable(effects, condition=condition, singleUse=singleUse)
-        
-ActivatableFactory = ActivatableFactory()
+ActivatableFactory = Factory(Activatable, parameters)

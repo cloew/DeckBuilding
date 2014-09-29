@@ -10,7 +10,7 @@ class FilterFactory:
     def loadFilter(self, filterJSON):
         """ Load the Filter from the given JSON """
         if filterJSON["type"] == "COMPARISON":
-            criteria = CriteriaFactory.loadCriteria(filterJSON["criteria"])
+            criteria = CriteriaFactory.load(filterJSON["criteria"])
             return ComparisonFilter(filterJSON["sourceType"], criteria)
         elif filterJSON["type"] == "INTERSECTION":
             filters = [self.loadFilter(subFilterJSON) for subFilterJSON in filterJSON["filters"]]

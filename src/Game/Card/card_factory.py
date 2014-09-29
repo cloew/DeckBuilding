@@ -26,7 +26,7 @@ parameters = [PrimitiveParameter("name"),
               ComplexParameter("playEffects", EffectFactory.loadEffects, optional=True, default=[]),
               ComplexParameter("onGain", EffectFactory.loadEffects, optional=True, default=[]),
               ComplexParameter("triggers", TriggerFactory.loadTriggers, optional=True, default=[]),
-              ComplexParameter("activatableEffect", ActivatableFactory.loadActivatable, optional=True),
+              ComplexParameter("activatableEffect", ActivatableFactory.load, optional=True),
               PrimitiveParameter("image", optional=True)]
     
 CardFactory = DataSourceFactory(Card, parameters, JsonSource(CARD_FILENAME), "name")

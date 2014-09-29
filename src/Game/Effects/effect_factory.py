@@ -88,7 +88,7 @@ class EffectFactory:
             if "sourceType" not in filterJson:
                 filterJson["sourceType"] = effectJson["sourceType"]
             filter = FilterFactory.loadFilter(filterJson)
-            # criteria = CriteriaFactory.loadCriteria(effectJson["criteria"])
+            # criteria = CriteriaFactory.load(effectJson["criteria"])
             effect = EffectFactory.loadEffect(effectJson["effect"])
             return PerMatch(effectJson["sourceType"], filter, effect)
         elif effectType == "PICK_CARDS":
@@ -107,7 +107,7 @@ class EffectFactory:
                 remove = effectJson["remove"]
             return Play(effectJson["source"], remove=remove)
         elif effectType == "PLAY_OR_HAVE_PLAYED":
-            criteria = CriteriaFactory.loadCriteria(effectJson["criteria"])
+            criteria = CriteriaFactory.load(effectJson["criteria"])
             effect = EffectFactory.loadEffect(effectJson["effect"])
             return PlayOrHavePlayed(effect, criteria)
         elif effectType == "POWER_MOD":
