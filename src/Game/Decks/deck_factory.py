@@ -22,7 +22,7 @@ class DeckFactory:
             for cardJson in deckJson["cards"]:
                 cardName = cardJson["name"]
                 count = cardJson["count"]
-                card = CardFactory.loadCard(cardName)
+                card = CardFactory.load(cardName)
                 deckInitializer.addItem(card, count)
             return deckInitializer
         return None

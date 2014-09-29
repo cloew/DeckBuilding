@@ -10,80 +10,25 @@ import resources.resource_manager as resource_manager
 
 import json
 
-class CardFactory:
-    """ Factory to load Cards from the Card JSON file """
-    CARD_FILENAME = resource_manager.GetResourcePath("cards.json")
+from kao_factory.data_source_factory import DataSourceFactory
+from kao_factory.Parameter.complex_parameter import ComplexParameter
+from kao_factory.Parameter.primitive_parameter import PrimitiveParameter
+from kao_factory.Source.json_source import JsonSource
+
+def loadCost(data):
+    """ Load the Cost """
+    return FixedCost(data["cost"])
+
+CARD_FILENAME = resource_manager.GetResourcePath("cards.json")
+
+parameters = [PrimitiveParameter("name"),
+              PrimitiveParameter("type", optional=True),
+              ComplexParameter("cost", loadCost),
+              ComplexParameter("points", PointsFactory.load),
+              ComplexParameter("playEffects", EffectFactory.loadEffects, optional=True, default=[]),
+              ComplexParameter("onGain", EffectFactory.loadEffects, optional=True, default=[]),
+              ComplexParameter("triggers", TriggerFactory.loadTriggers, optional=True, default=[]),
+              ComplexParameter("activatableEffect", ActivatableFactory.loadActivatable, optional=True),
+              PrimitiveParameter("image", optional=True)]
     
-    def __init__(self):
-        """ Initialize the Card Factory """
-        self.__cardsJson__ = None
-        
-    def loadCard(self, cardName):
-        """ Load the card with the given name """
-        cardJson = self.findCardJson(cardName)
-        if cardJson is not None:
-            name = cardJson["name"]
-            cardType = None
-            if "type" in cardJson:
-                cardType = cardJson["type"]
-            cost = cardJson["cost"]["cost"]
-            
-            image = None
-            if "image" in cardJson:
-                image = cardJson["image"]
-            return Card(name, cardType, costCalculator=FixedCost(cost), vpCalculator=PointsFactory.load(cardJson["points"]),
-                        playEffects=self.loadPlayEffects(cardJson), onGainEffects=self.loadOnGainEffects(cardJson),
-                        triggers=self.loadTriggers(cardJson), activatable=self.loadActivatable(cardJson), image=image)
-        else:
-            print "Unable to load Card:", cardName
-        return None
-        
-    def findCardJson(self, cardName):
-        """ Find the proper card JSON """
-        matchingCardsJson = [cardJson for cardJson in self.cardsJson if cardJson["name"] == cardName]
-        if len(matchingCardsJson) > 0:
-            return matchingCardsJson[0]
-        return None
-        
-    def loadPlayEffects(self, cardJson):
-        """ Load the Card's Play Effects """
-        playEffects = []
-        if "playEffects" in cardJson:
-            playEffects = EffectFactory.loadEffects(cardJson["playEffects"])
-        return playEffects
-        
-    def loadOnGainEffects(self, cardJson):
-        """ Load the Card's On Gain Effects """
-        onGainEffects = []
-        if "onGain" in cardJson:
-            onGainEffects = EffectFactory.loadEffects(cardJson["onGain"])
-        return onGainEffects
-        
-    def loadTriggers(self, cardJson):
-        """ Load the Card's Trigger Effects """
-        triggers = []
-        if "triggers" in cardJson:
-            triggers = TriggerFactory.loadTriggers(cardJson["triggers"])
-        return triggers
-        
-    def loadActivatable(self, cardJson):
-        """ Load the Card's Activatble Effect, if any """
-        activatableEffect = None
-        if "activatableEffect" in cardJson:
-            activatableEffect = ActivatableFactory.loadActivatable(cardJson["activatableEffect"])
-        return activatableEffect
-            
-    @property
-    def cardsJson(self):
-        """ Lazy-load the card Json """
-        if self.__cardsJson__ is None:
-            self.loadJson()
-        return self.__cardsJson__
-        
-    def loadJson(self):
-        """ Load the Card JSON """
-        with open(self.CARD_FILENAME, 'r') as file:
-            self.__cardsJson__ = json.load(file)
-            
-            
-CardFactory = CardFactory()
+CardFactory = DataSourceFactory(Card, parameters, JsonSource(CARD_FILENAME), "name")
