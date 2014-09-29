@@ -11,46 +11,33 @@ from unique import Unique
 from Game.Effects.Conditions.Filters.filter_factory import FilterFactory
 from Game.Effects.Conditions.Filters.Criteria.criteria_factory import CriteriaFactory
 
-class ConditionFactory:
-    """ Factory to build Conditions """
+from kao_factory.factory import Factory
+from kao_factory.typed_factory import TypedFactory
+from kao_factory.Parameter.complex_parameter import ComplexParameter
+from kao_factory.Parameter.primitive_parameter import PrimitiveParameter
+from kao_factory.Parameter.parameter import Parameter
+
+class ComparisonFilterParameter(Parameter):
+    """ Parameter that should become a Comparison Filter """
     
-    def loadCondition(self, conditionJSON):
-        """ Load the Condition from the given JSON """
-        if conditionJSON["type"] == "AND":
-            return AndCondition([self.loadCondition(subConditionJSON) for subConditionJSON in conditionJSON["conditions"]])
-        elif conditionJSON["type"] == "ENOUGH_POWER":
-            return EnoughPower(conditionJSON["power"])
-        elif conditionJSON["type"] == "HAS_CARDS":
-            filter = None
-            if "criteria" in conditionJSON:
-                filterJson = {"criteria":conditionJSON["criteria"]}
-                filterJson["sourceType"] = conditionJSON["sourceType"]
-                filterJson["type"] = "COMPARISON"
-                filter = FilterFactory.load(filterJson)
-                
-            return HasCards(conditionJSON["sourceType"], filter=filter)
-        elif conditionJSON["type"] == "MATCHING":
-            number = None
-            if "number" in conditionJSON:
-                number = conditionJSON["number"]
-            criteria = CriteriaFactory.load(conditionJSON["criteria"])
-            return Matching(conditionJSON["sourceType"], criteria, number=number)
-        elif conditionJSON["type"] == "NOT":
-            return NotCondition(self.loadCondition(conditionJSON["condition"]))
-        elif conditionJSON["type"] == "NTH":
-            criteria = CriteriaFactory.load(conditionJSON["criteria"])
-            return NthPlayed(conditionJSON["n"], criteria)
-        elif conditionJSON["type"] == "NTH_UNIQUE":
-            criterion = []
-            if "criterion" in conditionJSON:
-                criterion = [CriteriaFactory.load(criteriaJSON) for criteriaJSON in conditionJSON["criterion"]]
-            return NthUnique(conditionJSON["n"], criterion)
-        if conditionJSON["type"] == "OR":
-            return OrCondition([self.loadCondition(subConditionJSON) for subConditionJSON in conditionJSON["conditions"]])
-        elif conditionJSON["type"] == "UNIQUE":
-            return Unique(conditionJSON["field"], conditionJSON["source"])
-        else:
-            print "Cannot find Condition:", conditionJSON["type"]
-        return None
-        
-ConditionFactory = ConditionFactory()
+    def __init__(self, optional=False, default=None):
+        """ Initialize the Comparison Filter Parameter """
+        self.field = "criteria"
+    
+    def __getvalue__(self, data):
+        """ Build the Filter """
+        filterJson = {"criteria":data["criteria"]}
+        filterJson["sourceType"] = data["sourceType"]
+        filterJson["type"] = "COMPARISON"
+        return FilterFactory.load(filterJson)
+
+ConditionFactory = TypedFactory('type', {"ENOUGH_POWER":Factory(EnoughPower, [PrimitiveParameter("power")]),
+                                         "HAS_CARDS":Factory(HasCards, [PrimitiveParameter("sourceType"), ComparisonFilterParameter(optional=True)]),
+                                         "MATCHING":Factory(Matching, [PrimitiveParameter("sourceType"), ComplexParameter("criteria", CriteriaFactory.load), PrimitiveParameter("number", optional=True)]),
+                                         "NTH":Factory(NthPlayed, [PrimitiveParameter("n"), ComplexParameter("criteria", CriteriaFactory.load)]),
+                                         "NTH_UNIQUE":Factory(NthUnique, [PrimitiveParameter("n"), ComplexParameter("criterion", CriteriaFactory.loadAll, optional=True, default=[])]),
+                                         "UNIQUE":Factory(Unique, [PrimitiveParameter("field"), PrimitiveParameter("source")]),
+                                         })
+ConditionFactory.addFactory("AND", Factory(AndCondition, [ComplexParameter("conditions", ConditionFactory.loadAll)]))
+ConditionFactory.addFactory("NOT", Factory(NotCondition, [ComplexParameter("condition", ConditionFactory.load)]))
+ConditionFactory.addFactory("OR", Factory(OrCondition, [ComplexParameter("conditions", ConditionFactory.loadAll)]))

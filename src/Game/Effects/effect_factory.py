@@ -53,7 +53,7 @@ class EffectFactory:
                 relevantSourceType = effectJson["source"]
             return Choice(options, relevantSourceType=relevantSourceType)
         elif effectType == "CONDITIONAL":
-            condition = ConditionFactory.loadCondition(effectJson["condition"])
+            condition = ConditionFactory.load(effectJson["condition"])
             effect = EffectFactory.loadEffect(effectJson["effect"])
             otherwiseEffect = None
             if "otherwise" in effectJson:
