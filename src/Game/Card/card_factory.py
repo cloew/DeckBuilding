@@ -28,11 +28,6 @@ class CardFactory:
                 cardType = cardJson["type"]
             cost = cardJson["cost"]["cost"]
             
-            onGainEffects = []
-            if "onGain" in cardJson:
-                onGainEffects = cardJson["type"]
-            cost = cardJson["cost"]["cost"]
-            
             image = None
             if "image" in cardJson:
                 image = cardJson["image"]
