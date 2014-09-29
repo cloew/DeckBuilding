@@ -15,4 +15,4 @@ class PlayerInLobby:
         
     def setCharacter(self, characterName):
         """ Set the current Player's Character """
-        self.character = CharacterFactory.loadCharacter(characterName)
+        self.character = CharacterFactory.load(characterName)

@@ -8,8 +8,6 @@ from Game.Effects.Triggers.trigger_factory import TriggerFactory
 
 import resources.resource_manager as resource_manager
 
-import json
-
 from kao_factory.data_source_factory import DataSourceFactory
 from kao_factory.Parameter.complex_parameter import ComplexParameter
 from kao_factory.Parameter.primitive_parameter import PrimitiveParameter
