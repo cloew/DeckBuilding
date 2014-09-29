@@ -31,7 +31,7 @@ class CardFactory:
             image = None
             if "image" in cardJson:
                 image = cardJson["image"]
-            return Card(name, cardType, costCalculator=FixedCost(cost), vpCalculator=PointsFactory.loadPointsCalculator(cardJson["points"]),
+            return Card(name, cardType, costCalculator=FixedCost(cost), vpCalculator=PointsFactory.load(cardJson["points"]),
                         playEffects=self.loadPlayEffects(cardJson), onGainEffects=self.loadOnGainEffects(cardJson),
                         triggers=self.loadTriggers(cardJson), activatable=self.loadActivatable(cardJson), image=image)
         else:
