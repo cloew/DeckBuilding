@@ -87,7 +87,7 @@ class EffectFactory:
             filterJson = effectJson["filter"]
             if "sourceType" not in filterJson:
                 filterJson["sourceType"] = effectJson["sourceType"]
-            filter = FilterFactory.loadFilter(filterJson)
+            filter = FilterFactory.load(filterJson)
             # criteria = CriteriaFactory.load(effectJson["criteria"])
             effect = EffectFactory.loadEffect(effectJson["effect"])
             return PerMatch(effectJson["sourceType"], filter, effect)
@@ -97,7 +97,7 @@ class EffectFactory:
                 filterJson = {"criteria":effectJson["criteria"]}
                 filterJson["sourceType"] = effectJson["source"]
                 filterJson["type"] = "COMPARISON"
-                filter = FilterFactory.loadFilter(filterJson)
+                filter = FilterFactory.load(filterJson)
             return PickCards(effectJson["source"], effectJson["number"], self.loadEffect(effectJson["then"]), filter=filter)
         elif effectType == "PICK_RANDOM":
             return PickRandomCard(effectJson["source"], self.loadEffect(effectJson["then"]))

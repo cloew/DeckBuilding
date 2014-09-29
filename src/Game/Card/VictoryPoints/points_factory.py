@@ -12,7 +12,7 @@ from kao_factory.Parameter.complex_parameter import ComplexParameter
 from kao_factory.Parameter.primitive_parameter import PrimitiveParameter
 
 PointsFactory = TypedFactory('type', {"FIXED":Factory(FixedPoints, [PrimitiveParameter("points")]),
-                                      "PER_RESULT":Factory(PerResultPoints, [ComplexParameter("filter", FilterFactory.loadFilter), PrimitiveParameter("points", optional=True)])})
+                                      "PER_RESULT":Factory(PerResultPoints, [ComplexParameter("filter", FilterFactory.load), PrimitiveParameter("points", optional=True)])})
 PointsFactory.addFactory("CONDITIONAL", Factory(ConditionalPoints, [ComplexParameter("condition", ConditionFactory.loadCondition),
                                                                     ComplexParameter("points", PointsFactory.load),
                                                                     ComplexParameter("otherwise", PointsFactory.load)]))

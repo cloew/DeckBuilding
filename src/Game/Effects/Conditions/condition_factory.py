@@ -26,7 +26,7 @@ class ConditionFactory:
                 filterJson = {"criteria":conditionJSON["criteria"]}
                 filterJson["sourceType"] = conditionJSON["sourceType"]
                 filterJson["type"] = "COMPARISON"
-                filter = FilterFactory.loadFilter(filterJson)
+                filter = FilterFactory.load(filterJson)
                 
             return HasCards(conditionJSON["sourceType"], filter=filter)
         elif conditionJSON["type"] == "MATCHING":
