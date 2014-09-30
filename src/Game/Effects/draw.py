@@ -8,4 +8,4 @@ class Draw:
         
     def perform(self, args):
         """ Perform the Game Effect """
-        args.owner.draw(count=self.count)
+        args.player.draw(count=self.count)

@@ -10,7 +10,8 @@ class DefendRequest(Request):
     def __init__(self, attackCard, target, args):
         """ Initialize the Request with the attack """
         self.attackCard = attackCard
-        self.args = args
+        self.args = args.copy()
+        self.args.player = target
         self.defenseRequest = ComparisonFilter(HAND, FixedCriteria("isDefense", True, "=="))
         Request.__init__(self, [target])
         

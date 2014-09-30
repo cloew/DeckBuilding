@@ -105,10 +105,6 @@ class Turn:
         self.registerTriggers(card.triggerEffects)
         self.registerActivatable(card, card.activatableEffect)
         
-    def draw(self, count=1):
-        """ Draw the given number of cards """
-        self.player.draw(count=count)
-        
     def gainCard(self, card, fromSource, toSource=None):
         """ Gain the provided card """
         coroutine = self.player.gainCard(card, fromSource, toSource=toSource, game=self.game)

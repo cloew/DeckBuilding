@@ -427,6 +427,21 @@
                                           "source":"HAND"}]}}]
 },
 {
+    "name":"Super Speed",
+    "type":"Super Power",
+    "image":"super_speed.jpg",
+    "cost":{"type":"FIXED",
+            "cost":3},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"DRAW",
+                    "count":1}],
+    "onDefense":[{"type":"DISCARD",
+                  "source":"EVENT"},
+                 {"type":"DRAW",
+                  "count":2}]
+},
+{
     "name":"Talon",
     "type":"Villain",
     "image":"talon.jpg",
