@@ -10,8 +10,8 @@ class Attack:
     def perform(self, args):
         """ Perform the Game Effect """
         targets = []
-        for foe in foes:
-            defended = yield DefendRequest(args.parent, args)
+        for foe in args.foes:
+            defended = yield DefendRequest(args.parent, foe, args)
             if not defended:
                 targets.append(foe)
             else:
