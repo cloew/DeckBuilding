@@ -18,7 +18,7 @@ class TriggerFactory:
         eventType = triggerJson["type"]
         singleUse = triggerJson["singleUse"]
         condition = ConditionFactory.load(triggerJson["condition"])
-        effect = EffectFactory.loadEffect(triggerJson["effect"])
+        effect = EffectFactory.load(triggerJson["effect"])
         return Trigger(eventType, condition, effect, singleUse=singleUse)
         
 TriggerFactory = TriggerFactory()

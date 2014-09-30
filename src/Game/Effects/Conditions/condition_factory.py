@@ -8,28 +8,14 @@ from nth_unique import NthUnique
 from or_condition import OrCondition
 from unique import Unique
 
-from Game.Effects.Conditions.Filters.filter_factory import FilterFactory
 from Game.Effects.Conditions.Filters.Criteria.criteria_factory import CriteriaFactory
+
+from Game.Factory.comparison_filter_parameter import ComparisonFilterParameter
 
 from kao_factory.factory import Factory
 from kao_factory.typed_factory import TypedFactory
 from kao_factory.Parameter.complex_parameter import ComplexParameter
 from kao_factory.Parameter.primitive_parameter import PrimitiveParameter
-from kao_factory.Parameter.parameter import Parameter
-
-class ComparisonFilterParameter(Parameter):
-    """ Parameter that should become a Comparison Filter """
-    
-    def __init__(self, optional=False, default=None):
-        """ Initialize the Comparison Filter Parameter """
-        self.field = "criteria"
-    
-    def __getvalue__(self, data):
-        """ Build the Filter """
-        filterJson = {"criteria":data["criteria"]}
-        filterJson["sourceType"] = data["sourceType"]
-        filterJson["type"] = "COMPARISON"
-        return FilterFactory.load(filterJson)
 
 ConditionFactory = TypedFactory('type', {"ENOUGH_POWER":Factory(EnoughPower, [PrimitiveParameter("power")]),
                                          "HAS_CARDS":Factory(HasCards, [PrimitiveParameter("sourceType"), ComparisonFilterParameter(optional=True)]),

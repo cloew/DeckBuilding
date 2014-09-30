@@ -7,7 +7,7 @@ from kao_factory.factory import Factory
 from kao_factory.Parameter.complex_parameter import ComplexParameter
 from kao_factory.Parameter.primitive_parameter import PrimitiveParameter
 
-parameters = [ComplexParameter("effects", EffectFactory.loadEffects),
+parameters = [ComplexParameter("effects", EffectFactory.loadAll),
               ComplexParameter("condition", ConditionFactory.load, optional=True),
               PrimitiveParameter("singleUse")]
     

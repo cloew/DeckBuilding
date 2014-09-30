@@ -25,97 +25,46 @@ from Game.Effects.Conditions.condition_factory import ConditionFactory
 from Game.Effects.Conditions.Filters.filter_factory import FilterFactory
 from Game.Effects.Conditions.Filters.Criteria.criteria_factory import CriteriaFactory
 
+from Game.Factory.comparison_filter_parameter import ComparisonFilterParameter
+from Game.Factory.filter_parameter import FilterParameter
 
-class EffectFactory:
-    """ Factory to create Game Effects """
+from kao_factory.factory import Factory
+from kao_factory.typed_factory import TypedFactory
+from kao_factory.Parameter.complex_parameter import ComplexParameter
+from kao_factory.Parameter.primitive_parameter import PrimitiveParameter
+        
+def LoadTrigger(data):
+    """ Load a trigger from the data given """
+    from Game.Effects.Triggers.trigger_factory import TriggerFactory
+    TriggerFactory.loadTrigger(data)
     
-    def loadEffects(self, effectsJson):
-        """ Load the effects in the given JSON """
-        effects = []
-        for effectJson in effectsJson:
-            effects.append(self.loadEffect(effectJson))
-        return effects
-        
-    def loadEffect(self, effectJson):
-        """ Load the effect in the given JSON """
-        effectType = effectJson['type']
-        
-        if effectType == "ADD_TRIGGER":
-            from Game.Effects.Triggers.trigger_factory import TriggerFactory
-            return AddTrigger(TriggerFactory.loadTrigger(effectJson["trigger"]))
-        elif effectType == "ATTACK":
-            effect = EffectFactory.loadEffect(effectJson["effect"])
-            return Attack(effect)
-        elif effectType == "CHOICE":
-            options = [Option(optionJSON['description'], self.loadEffects(optionJSON['effects'])) for optionJSON in effectJson['choices']]
-            relevantSourceType = None
-            if "source" in effectJson:
-                relevantSourceType = effectJson["source"]
-            return Choice(options, relevantSourceType=relevantSourceType)
-        elif effectType == "CONDITIONAL":
-            condition = ConditionFactory.load(effectJson["condition"])
-            effect = EffectFactory.loadEffect(effectJson["effect"])
-            otherwiseEffect = None
-            if "otherwise" in effectJson:
-                otherwiseEffect = EffectFactory.loadEffect(effectJson["otherwise"])
-            return ConditionalEffect(condition, effect, otherwiseEffect=otherwiseEffect)
-        elif effectType == "DESTROY":
-            return Destroy(effectJson["source"])
-        elif effectType == "DISCARD":
-            return Discard(effectJson["source"])
-        elif effectType == "DRAW":
-            return Draw(effectJson["count"])
-        elif effectType == "GAIN_CARD":
-            toSource = None
-            if "to" in effectJson:
-                toSource = effectJson["to"]
-            return GainCard(effectJson["from"], toSourceType=toSource)
-        elif effectType == "GAIN_POWER":
-            return GainPower(effectJson["power"])
-        elif effectType == "LOOK_AT_TOP":
-            return LookAtTop(effectJson["source"], self.loadEffect(effectJson["then"]))
-        elif effectType == "MOD_HAND_SIZE":
-            return ModifyHandSize(effectJson["change"])
-        elif effectType == "MOVE_CARD":
-            return MoveCard(effectJson["from"], effectJson["to"])
-        elif effectType == "ONGOING":
-            return Ongoing()
-        elif effectType == "PER_FOE":
-            effects = EffectFactory.loadEffects(effectJson["effects"])
-            return PerFoe(effects)
-        elif effectType == "PER_MATCH":
-            filterJson = effectJson["filter"]
-            if "sourceType" not in filterJson:
-                filterJson["sourceType"] = effectJson["sourceType"]
-            filter = FilterFactory.load(filterJson)
-            # criteria = CriteriaFactory.load(effectJson["criteria"])
-            effect = EffectFactory.loadEffect(effectJson["effect"])
-            return PerMatch(effectJson["sourceType"], filter, effect)
-        elif effectType == "PICK_CARDS":
-            filter = None
-            if "criteria" in effectJson:
-                filterJson = {"criteria":effectJson["criteria"]}
-                filterJson["sourceType"] = effectJson["source"]
-                filterJson["type"] = "COMPARISON"
-                filter = FilterFactory.load(filterJson)
-            return PickCards(effectJson["source"], effectJson["number"], self.loadEffect(effectJson["then"]), filter=filter)
-        elif effectType == "PICK_RANDOM":
-            return PickRandomCard(effectJson["source"], self.loadEffect(effectJson["then"]))
-        elif effectType == "PLAY":
-            remove = None
-            if "remove" in effectJson:
-                remove = effectJson["remove"]
-            return Play(effectJson["source"], remove=remove)
-        elif effectType == "PLAY_OR_HAVE_PLAYED":
-            criteria = CriteriaFactory.load(effectJson["criteria"])
-            effect = EffectFactory.loadEffect(effectJson["effect"])
-            return PlayOrHavePlayed(effect, criteria)
-        elif effectType == "POWER_MOD":
-            return ChangePowerModifier(effectJson["modifier"])
-        elif effectType == "PUT_ON_BOTTOM":
-            return PutOnBottomCleanup()
-        elif effectType == "SPEND_POWER":
-            return SpendPower(effectJson["power"])
-        return None
-        
-EffectFactory = EffectFactory()
+def LoadOptions(data):
+    """ Load options from the data given """
+    return [Option(optionJSON['description'], EffectFactory.loadAll(optionJSON['effects'])) for optionJSON in data]
+
+EffectFactory = TypedFactory('type', {"ADD_TRIGGER":Factory(AddTrigger, [PrimitiveParameter("power")]),
+                                      "CHOICE":Factory(Choice, [ComplexParameter("choices", LoadOptions), PrimitiveParameter("source")]),
+                                      "DESTROY":Factory(Destroy, [PrimitiveParameter("source")]),
+                                      "DISCARD":Factory(Discard, [PrimitiveParameter("source")]),
+                                      "DRAW":Factory(Draw, [PrimitiveParameter("count")]),
+                                      "GAIN_CARD":Factory(GainCard, [PrimitiveParameter("from"), PrimitiveParameter("to", optional=True)]),
+                                      "GAIN_POWER":Factory(GainPower, [PrimitiveParameter("power")]),
+                                      "MOD_HAND_SIZE":Factory(ModifyHandSize, [PrimitiveParameter("change")]),
+                                      "MOVE_CARD":Factory(MoveCard, [PrimitiveParameter("from"), PrimitiveParameter("to")]),
+                                      "ONGOING":Factory(Ongoing, []),
+                                      "PLAY":Factory(Play, [PrimitiveParameter("source"), PrimitiveParameter("remove", optional=True)]),
+                                      "POWER_MOD":Factory(ChangePowerModifier, [PrimitiveParameter("modifier")]),
+                                      "PUT_ON_BOTTOM":Factory(PutOnBottomCleanup, []),
+                                      "SPEND_POWER":Factory(SpendPower, [PrimitiveParameter("power")])})
+                                      
+EffectFactory.addFactory("ATTACK", Factory(Attack, [ComplexParameter("effect", EffectFactory.load)]))
+EffectFactory.addFactory("CONDITIONAL", Factory(ConditionalEffect, [ComplexParameter("condition", ConditionFactory.load), 
+                                                                    ComplexParameter("effect", EffectFactory.load), 
+                                                                    ComplexParameter("otherwise", EffectFactory.load, optional=True)]))
+EffectFactory.addFactory("LOOK_AT_TOP", Factory(LookAtTop, [PrimitiveParameter("source"), ComplexParameter("then", EffectFactory.load)]))
+EffectFactory.addFactory("PER_FOE", Factory(PerFoe, [ComplexParameter("effects", EffectFactory.loadAll)]))
+EffectFactory.addFactory("PER_MATCH", Factory(PerMatch, [PrimitiveParameter("source"), FilterParameter(), ComplexParameter("effect", EffectFactory.load)]))
+EffectFactory.addFactory("PICK_CARDS", Factory(PickCards, [PrimitiveParameter("source"), PrimitiveParameter("number"), 
+                                                           ComplexParameter("then", EffectFactory.load), ComparisonFilterParameter(optional=True)]))
+EffectFactory.addFactory("PICK_RANDOM", Factory(PickRandomCard, [PrimitiveParameter("source"), ComplexParameter("then", EffectFactory.load)]))
+EffectFactory.addFactory("PLAY_OR_HAVE_PLAYED", Factory(PlayOrHavePlayed, [ComplexParameter("effect", EffectFactory.load), ComplexParameter("criteria", CriteriaFactory.load)]))
