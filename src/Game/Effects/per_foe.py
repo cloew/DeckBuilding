@@ -1,4 +1,4 @@
-from Game.Effects.effect_runner import PerformEffects
+from Game.Effects.effect_runner import PerformEffectsForEachPlayer
 
 class PerFoe:
     """ Represents an effect to perform for each foe """

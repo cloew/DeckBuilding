@@ -1,4 +1,5 @@
 from Game.Commands.Requests.defend_request import DefendRequest
+from Game.Effects.effect_runner import PerformEffectsForEachPlayer
 
 class Attack:
     """ Represents an effect to Attack other Players """

@@ -6,7 +6,7 @@ def PerformEffectsForEachPlayer(effects, players, args):
         args = args.copy()
         args.player = player
         
-        coroutine = PerformEffects(self.effects, args)
+        coroutine = PerformEffects(effects, args)
         try:
             response = yield coroutine.next()
             while True:
