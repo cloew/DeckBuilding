@@ -1,0 +1,14 @@
+<div class="center">
+    <h1>Choose a card to defend with</h1>
+</div>
+<div class="center card-list">
+    <h2>Attack Card</h2>
+    <div style="display: inline-block; width: 100%;">
+        <action-card card="request.attack"></action-card>
+    </div>
+    <h2 ng-hide="request.defenses.length === 0">Available Defenses</h2>
+    <div style="display: inline-block; width: 100%;">
+        <action-card actions="actions" card="card" index="$index" ng-repeat="card in request.defenses"></action-card>
+    </div>
+    <button ng-click="abortDefense();">Cancel</button>
+</div>

@@ -161,9 +161,18 @@ controllers.controller('GameController', function($scope, $cookies, $http, $loca
             alert(error);
         });
     };
+    $scope.defend = function(defending, index) {
+        $http.post(rootUrl+'/defend', {'defending':defending, 'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+            $scope.setGame(data);
+        }).error(function(error) {
+            alert(error);
+        });
+    };
     $scope.openRequestModal = function() {
         var controllers = {'CHOICE':{'templateUrl':'static/partials/choose_option.html',
                                      'controller':'ChooseOptionController'},
+                           'DEFEND':{'templateUrl':'static/partials/defend.html',
+                                     'controller':'DefendController'},
                            'PICK_CARD':{'templateUrl':'static/partials/pick_card.html',
                                         'controller':'PickCardController'}};
     
@@ -222,6 +231,24 @@ controllers.controller('PickCardController', function($scope, $modalInstance, pa
     };
     $scope.sendChoices = function() {
         $scope.parent.pickCard($scope.indices);
+        $modalInstance.dismiss('cancel');
+        $scope.parent.hasModal = false;
+    };
+});
+
+controllers.controller('DefendController', function($scope, $modalInstance, parent) {
+    $scope.parent = parent;
+    $scope.request = parent.game.request;
+    $scope.actions = {};
+    $scope.actions.pickCard = function(index) {
+        $scope.parent.defend(true, index);
+        $scope.dismissModal();
+    };
+    $scope.abortDefense = function() {
+        $scope.parent.defend(false);
+        $scope.dismissModal();
+    };
+    $scope.dismissModal = function() {
         $modalInstance.dismiss('cancel');
         $scope.parent.hasModal = false;
     };
