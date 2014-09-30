@@ -1,3 +1,5 @@
+from Game.Effects.effect_arguments import SystemEffectArguments
+from Game.Effects.effect_runner import PerformEffects
 
 class SuperVillainStack:
     """ Represents the Super Villain Stack of available cards in the game """
@@ -17,6 +19,15 @@ class SuperVillainStack:
         """ Refill the supervillain stack if needed """
         if self.topCard is None:
             self.getTopCard()
+            
+    def performFirstAppearanceEffects(self, game):
+        """ Perform the Super Villain's First Appearance Effects """
+        if self.hasAppeared:
+            self.hasAppeared = False
+            coroutine = PerformEffects(self.topCard.appearanceEffects, SystemEffectArguments(game, self.topCard))
+            response = yield coroutine.next()
+            while True:
+                response = yield coroutine.send(response)
         
     @property
     def cards(self):

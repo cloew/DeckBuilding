@@ -42,6 +42,14 @@ class Turn:
             
     def start(self):
         """ Start the Turn """
+        coroutine = self.game.superVillainStack.performFirstAppearanceEffects(self.game)
+        try:
+            response = yield coroutine.next()
+            while True:
+                response = yield coroutine.send(response)
+        except StopIteration:
+            pass
+            
         coroutine = self.eventListener.send(StartOfTurnEvent(self.game))
         response = yield coroutine.next()
         while True:
