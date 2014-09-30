@@ -6,6 +6,7 @@ from Game.Effects.conditional_effect import ConditionalEffect
 from Game.Effects.destroy import Destroy
 from Game.Effects.discard import Discard
 from Game.Effects.draw import Draw
+from Game.Effects.filter import Filter
 from Game.Effects.gain_card import GainCard
 from Game.Effects.gain_power import GainPower
 from Game.Effects.look_at_top import LookAtTop
@@ -61,6 +62,7 @@ EffectFactory.addFactory("ATTACK", Factory(Attack, [ComplexParameter("effect", E
 EffectFactory.addFactory("CONDITIONAL", Factory(ConditionalEffect, [ComplexParameter("condition", ConditionFactory.load), 
                                                                     ComplexParameter("effect", EffectFactory.load), 
                                                                     ComplexParameter("otherwise", EffectFactory.load, optional=True)]))
+EffectFactory.addFactory("FILTER", Factory(Filter, [PrimitiveParameter("source"), FilterParameter(), ComplexParameter("then", EffectFactory.loadAll)]))
 EffectFactory.addFactory("LOOK_AT_TOP", Factory(LookAtTop, [PrimitiveParameter("source"), ComplexParameter("then", EffectFactory.load)]))
 EffectFactory.addFactory("PER_FOE", Factory(PerFoe, [ComplexParameter("effects", EffectFactory.loadAll)]))
 EffectFactory.addFactory("PER_MATCH", Factory(PerMatch, [PrimitiveParameter("source"), FilterParameter(), ComplexParameter("effect", EffectFactory.load)]))
