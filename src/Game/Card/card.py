@@ -4,7 +4,8 @@ from Game.Effects.effect_runner import PerformEffects
 class Card:
     """ Represents a Card in the Deck Building Game """
     
-    def __init__(self, name, cardType, costCalculator=None, vpCalculator=None, playEffects=[], onGainEffects=[], defenseEffects=[], triggers=[], activatable=None, image=None):
+    def __init__(self, name, cardType, costCalculator=None, vpCalculator=None, playEffects=[], onGainEffects=[],
+                       defenseEffects=[], appearanceEffects=[], triggers=[], activatable=None, image=None):
         """ Initialize the Card """
         self.name = name
         self.cardType = cardType
@@ -17,6 +18,7 @@ class Card:
         self.playEffects = playEffects
         self.onGainEffects = onGainEffects
         self.defenseEffects = defenseEffects
+        self.appearanceEffects = appearanceEffects
         self.activatableEffect = activatable
         self.triggerEffects = triggers
         
