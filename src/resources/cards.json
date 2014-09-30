@@ -261,7 +261,17 @@
     "points":{"type":"FIXED",
               "points":6},
     "playEffects":[{"type":"POWER_MOD",
-                    "modifier":2}]
+                    "modifier":2}],
+    "onAppearance":[{"type":"ATTACK",
+                     "effect":{"type":"FILTER",
+                               "source":"HAND",
+                               "filter":{"type":"COMPARISON",
+                                         "criteria":{"type":"FIXED",
+                                                      "field":"cost",
+                                                      "operation":"<=",
+                                                      "value":2}},
+                               "then":[{"type":"DISCARD",
+                                        "source":"EVENT"}]}}]
 },
 {
     "name":"Princess Diana of Themyscira",
