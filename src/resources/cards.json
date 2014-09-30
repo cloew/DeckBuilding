@@ -386,6 +386,28 @@
                            "effects":[]}]}]
 },
 {
+    "name":"Sonic Siren",
+    "type":"Hero",
+    "image":"sonic_siren.jpg",
+    "cost":{"type":"FIXED",
+            "cost":4},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":2},
+                   {"type":"CHOICE",
+                    "source":"LINE_UP",
+                    "choices":[{"description":"Replace a card in the line up",
+                                "effects":[{"type":"PICK_CARDS",  
+                                            "number":1,
+                                            "source":"LINE_UP",
+                                            "then":{"type":"DESTROY",
+                                                    "source":"EVENT"}},
+                                           {"type":"ADD_TO_LINE_UP"}]},
+                               {"description":"Do nothing",
+                                "effects":[]}]}]
+},
+{
     "name":"Soultaker Sword",
     "type":"Equipment",
     "image":"soultaker_sword.jpg",
