@@ -1,7 +1,7 @@
 from request import Request
 
-from Game.Effects.Filters.comparison_filter import ComparisonFilter
-from Game.Effects.Filters.Criteria.fixed_criteria import FixedCriteria
+from Game.Effects.Conditions.Filters.comparison_filter import ComparisonFilter
+from Game.Effects.Conditions.Filters.Criteria.fixed_criteria import FixedCriteria
 from Game.Sources.source_factory import HAND
 
 class DefendRequest(Request):

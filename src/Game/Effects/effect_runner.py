@@ -1,5 +1,19 @@
 import inspect
 
+def PerformEffectsForEachPlayer(effects, players, args):
+    """ Perform the given effects """
+    for player in players:
+        args = args.copy()
+        args.player = player
+        
+        coroutine = PerformEffects(self.effects, args)
+        try:
+            response = yield coroutine.next()
+            while True:
+                response = yield coroutine.send(response)
+        except StopIteration:
+            pass
+
 def PerformEffects(effects, args):
     """ Perform the given effects """
     for effect in effects:
