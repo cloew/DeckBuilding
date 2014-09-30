@@ -2,9 +2,9 @@
 {
     "name":"Test",
     "cards":[{"name":"Kid Flash",
-              "count":10},
+              "count":5},
              {"name":"Solomon Grundy",
-              "count":10}]
+              "count":0}]
     
 },
 {
