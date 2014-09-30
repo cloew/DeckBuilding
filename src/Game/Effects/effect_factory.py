@@ -36,7 +36,7 @@ from kao_factory.Parameter.primitive_parameter import PrimitiveParameter
 def LoadTrigger(data):
     """ Load a trigger from the data given """
     from Game.Effects.Triggers.trigger_factory import TriggerFactory
-    TriggerFactory.loadTrigger(data)
+    return TriggerFactory.load(data)
     
 def LoadOptions(data):
     """ Load options from the data given """

@@ -13,7 +13,7 @@ from kao_factory.Source.json_source import JsonSource
 CHARACTER_FILENAME = resource_manager.GetResourcePath("characters.json")
 
 parameters = [PrimitiveParameter("name"),
-              ComplexParameter("triggers", TriggerFactory.loadTriggers, optional=True, default=[]),
+              ComplexParameter("triggers", TriggerFactory.loadAll, optional=True, default=[]),
               ComplexParameter("activatableEffect", ActivatableFactory.load, optional=True),
               PrimitiveParameter("image", optional=True)]
     
