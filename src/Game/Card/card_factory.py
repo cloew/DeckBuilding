@@ -25,6 +25,7 @@ parameters = [PrimitiveParameter("name"),
               ComplexParameter("points", PointsFactory.load),
               ComplexParameter("playEffects", EffectFactory.loadAll, optional=True, default=[]),
               ComplexParameter("onGain", EffectFactory.loadAll, optional=True, default=[]),
+              ComplexParameter("onDefense", EffectFactory.loadAll, optional=True, default=[]),
               ComplexParameter("triggers", TriggerFactory.loadAll, optional=True, default=[]),
               ComplexParameter("activatableEffect", ActivatableFactory.load, optional=True),
               PrimitiveParameter("image", optional=True)]

@@ -4,7 +4,7 @@ from Game.Effects.effect_runner import PerformEffects
 class Card:
     """ Represents a Card in the Deck Building Game """
     
-    def __init__(self, name, cardType, costCalculator=None, vpCalculator=None, playEffects=[], onGainEffects=[], triggers=[], activatable=None, image=None):
+    def __init__(self, name, cardType, costCalculator=None, vpCalculator=None, playEffects=[], onGainEffects=[], defenseEffects=[], triggers=[], activatable=None, image=None):
         """ Initialize the Card """
         self.name = name
         self.cardType = cardType
@@ -16,6 +16,7 @@ class Card:
         
         self.playEffects = playEffects
         self.onGainEffects = onGainEffects
+        self.defenseEffects = defenseEffects
         self.activatableEffect = activatable
         self.triggerEffects = triggers
         
@@ -35,6 +36,11 @@ class Card:
     def cost(self):
         """ Return the cost of the Card """
         return self.calculateCost()
+        
+    @property
+    def isDefense(self):
+        """ Return if the Card is a defense """
+        return len(self.defenseEffects) > 0
         
     def __repr__(self):
         """ Return the String Representation of the card """
