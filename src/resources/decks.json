@@ -23,12 +23,14 @@
               "count":0},
              {"name":"Deadshot",
               "count":2},
-             {"name":"Super Speed",
+             {"name":"Kid Flash",
               "count":8}]
 },
 {
     "name":"Super Villains",
-    "cards":[{"name":"Ra's al Ghul",
+    "cards":[{"name":"Parallax",
+              "count":1},
+             {"name":"Ra's al Ghul",
               "count":1}]
 },
 {
