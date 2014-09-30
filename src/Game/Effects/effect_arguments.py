@@ -1,3 +1,4 @@
+import copy
 
 class EffectArguments:
     """ Wrapper for the arguments to an effect """
@@ -21,3 +22,7 @@ class EffectArguments:
     def owner(self):
         """ Return the owner aka the current turn """
         return self.game.currentTurn
+        
+    def copy(self):
+        """ Copy the Arguments """
+        return copy.copy(self)

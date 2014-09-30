@@ -1,7 +1,5 @@
 from Game.Effects.effect_runner import PerformEffects
 
-import copy
-
 class PerFoe:
     """ Represents an effect to perform for each foe """
     
@@ -13,7 +11,7 @@ class PerFoe:
         """ Perform the Game Effect """
         foes = args.foes
         for foe in args.foes:
-            args = copy.copy(args)
+            args = args.copy()
             args.player = foe
             
             coroutine = PerformEffects(self.effects, args)
