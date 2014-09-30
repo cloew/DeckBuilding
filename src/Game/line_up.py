@@ -23,6 +23,10 @@ class LineUp:
         """ Remove a card from the line-up """
         self.cards.remove(card)
         
+    def isFull(self):
+        """ Return if the Line Up is full """
+        return len(self) == self.LINE_UP_SIZE
+        
     def __getitem__(self, index):
         """ Return the item at the given index """
         return self.cards[index]
