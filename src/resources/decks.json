@@ -2,9 +2,9 @@
 {
     "name":"Test",
     "cards":[{"name":"Kid Flash",
-              "count":5},
-             {"name":"Talon",
-              "count":0}]
+              "count":10},
+             {"name":"Solomon Grundy",
+              "count":10}]
     
 },
 {
@@ -21,10 +21,10 @@
     "name":"Starting",
     "cards":[{"name":"Raven",
               "count":0},
-             {"name":"Killer Croc",
-              "count":7},
-             {"name":"Parallax",
-              "count":3}]
+             {"name":"Deadshot",
+              "count":2},
+             {"name":"Super Speed",
+              "count":8}]
 },
 {
     "name":"Super Villains",
