@@ -34,6 +34,7 @@ class Game:
         """ End the turn """
         self.currentTurn.cleanup()
         self.lineUp.refill()
+        self.superVillainStack.refill()
         self.isOver = self.gameOver.isOver
         if not self.isOver:
             self.nextTurn()

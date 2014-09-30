@@ -11,6 +11,12 @@ class SuperVillainStack:
     def getTopCard(self):
         """ Get the top card of the super villain stack """
         self.topCard = self.superVillains.peek()
+        self.hasAppeared = True
+        
+    def refill(self):
+        """ Refill the supervillain stack if needed """
+        if self.topCard is None:
+            self.getTopCard()
         
     @property
     def cards(self):
