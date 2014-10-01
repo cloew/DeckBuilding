@@ -11,7 +11,5 @@ class ComparisonFilter:
         
     def evaluate(self, args):
         """ Evaluate the condition """
-        print "Source Type:", self.sourceType
         source = SourceFactory.getSourceForEffect(self.sourceType, args)
-        print "Source:", source
         return [card for card in source if self.criteria.compare(card, args)]
