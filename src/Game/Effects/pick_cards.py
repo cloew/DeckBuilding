@@ -5,6 +5,7 @@ from Game.Sources.source_factory import SourceFactory
 
 class PickCards:
     """ Represents an effect to pick cards from a source and an optional filter """
+    REQUEST_CLASS = PickCardRequest
     
     def __init__(self, sourceType, numberOfCards, thenEffect, filter=None):
         """ Initialize the options """
@@ -25,7 +26,7 @@ class PickCards:
             if len(possibleCards) == self.numberOfCards:
                 cards = possibleCards
             else:
-                cards = yield PickCardRequest(possibleCards, args.player, self.numberOfCards)
+                cards = yield self.REQUEST_CLASS(possibleCards, args.player, self.numberOfCards)
                 
             event = CardsEvent(cards, source, args)
             coroutine = PerformEffect(self.thenEffect, event.args)
