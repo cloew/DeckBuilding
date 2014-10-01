@@ -10,6 +10,6 @@ class PickUpToAllCards(PickUpToNCards):
     def findPossibleCards(self, args):
         """ Return the possible cards """
         source, possibleCards = PickUpToNCards.findPossibleCards(self, args)
-        self.number = len(possibleCards)
+        self.setNumberOfCards(len(possibleCards))
         return source, possibleCards
         

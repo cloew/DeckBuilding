@@ -40,3 +40,7 @@ class PickCards:
             possibleCards = self.filter.evaluate(args)
         
         return source, possibleCards
+        
+    def setNumberOfCards(self, number):
+        """ Set the Number of Cards that can be requested """
+        self.numberOfCards = number
