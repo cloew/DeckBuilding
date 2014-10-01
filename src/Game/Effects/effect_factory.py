@@ -1,4 +1,5 @@
 from Game.Effects.activate_character import ActivateCharacter
+from Game.Effects.add_activatable import AddActivatable
 from Game.Effects.add_to_line_up import AddToLineUp
 from Game.Effects.add_trigger import AddTrigger
 from Game.Effects.as_next_player import AsNextPlayer
@@ -43,6 +44,11 @@ from kao_factory.typed_factory import TypedFactory
 from kao_factory.Parameter.complex_parameter import ComplexParameter
 from kao_factory.Parameter.primitive_parameter import PrimitiveParameter
         
+def LoadActivatable(data):
+    """ Load an activatable from the data given """
+    from Game.Effects.Activatables.activatable_factory import ActivatableFactory
+    return ActivatableFactory.load(data)
+    
 def LoadTrigger(data):
     """ Load a trigger from the data given """
     from Game.Effects.Triggers.trigger_factory import TriggerFactory
@@ -53,8 +59,9 @@ def LoadOptions(data):
     return [Option(optionJSON['description'], EffectFactory.loadAll(optionJSON['effects'])) for optionJSON in data]
 
 EffectFactory = TypedFactory('type', {"ACTIVATE_CHARACTER":Factory(ActivateCharacter, []),
+                                      "ADD_ACTIVATABLE":Factory(AddActivatable, [ComplexParameter("activatable", LoadActivatable)]),
                                       "ADD_TO_LINE_UP":Factory(AddToLineUp, [PrimitiveParameter("count", optional=True)]),
-                                      "ADD_TRIGGER":Factory(AddTrigger, [PrimitiveParameter("power")]),
+                                      "ADD_TRIGGER":Factory(AddTrigger, [ComplexParameter("trigger", LoadTrigger)]),
                                       "CHOICE":Factory(Choice, [ComplexParameter("choices", LoadOptions), PrimitiveParameter("source")]),
                                       "DEACTIVATE_CHARACTER":Factory(DeactivateCharacter, []),
                                       "DESTROY":Factory(Destroy, [PrimitiveParameter("source")]),
