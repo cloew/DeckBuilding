@@ -320,7 +320,7 @@
               "points":4},
     "playEffects":[{"type":"GAIN_POWER",
                     "power":3},
-                   {"type":"PUT_ON_BOTTOM"}]
+                   {"type":"PUT_ON_BOTTOM_CLEANUP"}]
 },
 {
     "name":"Raven",
@@ -694,5 +694,22 @@
                                       "to":"HAND"}}},
                    {"type":"DRAW",
                     "count":1}]
+},
+{
+    "name":"Zatanna Zatara",
+    "type":"Hero",
+    "image":"zatanna_zatara.jpg",
+    "cost":{"type":"FIXED",
+            "cost":4},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":1},
+                   {"type":"PICK_UP_TO_N_CARDS",
+                    "number":2,
+                    "source":"DISCARD_PILE",
+                    "then":{"type":"PUT_ON_BOTTOM",
+                            "from":"EVENT",
+                            "to":"DECK"}}]
 }
 ]
