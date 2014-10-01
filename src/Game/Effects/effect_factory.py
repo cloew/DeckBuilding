@@ -18,6 +18,7 @@ from Game.Effects.per_foe import PerFoe
 from Game.Effects.per_match import PerMatch
 from Game.Effects.pick_cards import PickCards
 from Game.Effects.pick_random_card import PickRandomCard
+from Game.Effects.pick_up_to_all_cards import PickUpToAllCards
 from Game.Effects.pick_up_to_n_cards import PickUpToNCards
 from Game.Effects.play import Play
 from Game.Effects.play_or_have_played import PlayOrHavePlayed
@@ -74,6 +75,8 @@ EffectFactory.addFactory("PER_MATCH", Factory(PerMatch, [PrimitiveParameter("sou
 EffectFactory.addFactory("PICK_CARDS", Factory(PickCards, [PrimitiveParameter("source"), PrimitiveParameter("number"), 
                                                            ComplexParameter("then", EffectFactory.load), ComparisonFilterParameter(optional=True)]))
 EffectFactory.addFactory("PICK_RANDOM", Factory(PickRandomCard, [PrimitiveParameter("source"), ComplexParameter("then", EffectFactory.load)]))
+EffectFactory.addFactory("PICK_UP_TO_ALL_CARDS", Factory(PickUpToAllCards, [PrimitiveParameter("source"), ComplexParameter("then", EffectFactory.load), 
+                                                                            ComparisonFilterParameter(optional=True)]))
 EffectFactory.addFactory("PICK_UP_TO_N_CARDS", Factory(PickUpToNCards, [PrimitiveParameter("source"), PrimitiveParameter("number"), 
                                                                         ComplexParameter("then", EffectFactory.load), ComparisonFilterParameter(optional=True)]))
 EffectFactory.addFactory("PLAY_OR_HAVE_PLAYED", Factory(PlayOrHavePlayed, [ComplexParameter("effect", EffectFactory.load), ComplexParameter("criteria", CriteriaFactory.load)]))
