@@ -58,7 +58,8 @@ EffectFactory = TypedFactory('type', {"ADD_TO_LINE_UP":Factory(AddToLineUp, [Pri
                                       "ONGOING":Factory(Ongoing, []),
                                       "PLAY":Factory(Play, [PrimitiveParameter("source"), PrimitiveParameter("remove", optional=True)]),
                                       "POWER_MOD":Factory(ChangePowerModifier, [PrimitiveParameter("modifier")]),
-                                      "PUT_ON_BOTTOM":Factory(PutOnBottomCleanup, []),
+                                      "PUT_ON_BOTTOM":Factory(PutOnBottom, [PrimitiveParameter("from"), PrimitiveParameter("to")]),
+                                      "PUT_ON_BOTTOM_CLEANUP":Factory(PutOnBottomCleanup, []),
                                       "SPEND_POWER":Factory(SpendPower, [PrimitiveParameter("power")])})
                                       
 EffectFactory.addFactory("ATTACK", Factory(Attack, [ComplexParameter("effect", EffectFactory.load)]))
