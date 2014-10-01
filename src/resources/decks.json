@@ -20,11 +20,11 @@
 {
     "name":"Starting",
     "cards":[{"name":"Raven",
-              "count":0},
+              "count":4},
              {"name":"Deadshot",
               "count":0},
-             {"name":"Teleportation",
-              "count":10}]
+             {"name":"Super Speed",
+              "count":6}]
 },
 {
     "name":"Super Villains",
@@ -33,6 +33,8 @@
              {"name":"The Anti-Monitor",
               "count":1},
              {"name":"Lex Luthor",
+              "count":1},
+             {"name":"Captain Cold",
               "count":1},
              {"name":"Ra's al Ghul",
               "count":1}]
