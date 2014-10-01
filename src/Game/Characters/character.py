@@ -14,6 +14,13 @@ class Character:
         """ Add Starting Effects for the current player """            
         if self.active:
             addOngoingEffects(self)
+            
+    def activate(self, turn):
+        """ Activate the character and add the ongoing effects if it is the player's turn """
+        wasInactive = self.active == False
+        self.active = True
+        if wasInactive and turn.player.character is self:
+            self.addOngoingEffects(turn.addOngoingEffects)
         
     def deactivate(self):
         """ Deactivate the character """
