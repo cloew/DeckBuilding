@@ -10,4 +10,5 @@ class CharacterWrapper:
     def toJSON(self):
         """ Return the card as a JSON Dictionary """
         return {'image':self.CHARACTER_IMAGES_DIRECTORY_URL+self.character.image,
-                'name':self.character.name}
+                'name':self.character.name,
+                'active':self.character.active}
