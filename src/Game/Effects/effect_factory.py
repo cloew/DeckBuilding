@@ -21,6 +21,7 @@ from Game.Effects.pick_random_card import PickRandomCard
 from Game.Effects.pick_up_to_n_cards import PickUpToNCards
 from Game.Effects.play import Play
 from Game.Effects.play_or_have_played import PlayOrHavePlayed
+from Game.Effects.put_on_bottom import PutOnBottom
 from Game.Effects.put_on_bottom_cleanup import PutOnBottomCleanup
 from Game.Effects.spend_power import SpendPower
 
