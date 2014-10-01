@@ -6,6 +6,7 @@ from Game.Sources.source_factory import SourceFactory
 class PickCards:
     """ Represents an effect to pick cards from a source and an optional filter """
     REQUEST_CLASS = PickCardRequest
+    AUTO_PICK = True
     
     def __init__(self, sourceType, numberOfCards, thenEffect, filter=None):
         """ Initialize the options """
@@ -16,14 +17,11 @@ class PickCards:
         
     def perform(self, args):
         """ Perform the Game Effect """
-        source = SourceFactory.getSourceForEffect(self.sourceType, args)
-        possibleCards = source
-        if self.filter is not None:
-            possibleCards = self.filter.evaluate(args)
+        source, possibleCards = self.findPossibleCards(args)
         
         if len(possibleCards) != 0:
             card = None
-            if len(possibleCards) == self.numberOfCards:
+            if len(possibleCards) == self.numberOfCards and self.AUTO_PICK:
                 cards = possibleCards
             else:
                 cards = yield self.REQUEST_CLASS(possibleCards, args.player, self.numberOfCards)
@@ -33,3 +31,12 @@ class PickCards:
             response = yield coroutine.next()
             while True:
                 response = yield coroutine.send(response)
+                
+    def findPossibleCards(self, args):
+        """ Return the possible cards """
+        source = SourceFactory.getSourceForEffect(self.sourceType, args)
+        possibleCards = source
+        if self.filter is not None:
+            possibleCards = self.filter.evaluate(args)
+        
+        return source, possibleCards
