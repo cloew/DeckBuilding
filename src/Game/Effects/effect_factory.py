@@ -1,6 +1,7 @@
 from Game.Effects.activate_character import ActivateCharacter
 from Game.Effects.add_to_line_up import AddToLineUp
 from Game.Effects.add_trigger import AddTrigger
+from Game.Effects.as_owner import AsOwner
 from Game.Effects.attack import Attack
 from Game.Effects.change_power_modifier import ChangePowerModifier
 from Game.Effects.choice import Choice, Option
@@ -70,6 +71,7 @@ EffectFactory = TypedFactory('type', {"ACTIVATE_CHARACTER":Factory(ActivateChara
                                       "PUT_ON_BOTTOM_CLEANUP":Factory(PutOnBottomCleanup, []),
                                       "SPEND_POWER":Factory(SpendPower, [PrimitiveParameter("power")])})
                                       
+EffectFactory.addFactory("AS_OWNER", Factory(AsOwner, [ComplexParameter("then", EffectFactory.loadAll)]))
 EffectFactory.addFactory("ATTACK", Factory(Attack, [ComplexParameter("effect", EffectFactory.load)]))
 EffectFactory.addFactory("CONDITIONAL", Factory(ConditionalEffect, [ComplexParameter("condition", ConditionFactory.load), 
                                                                     ComplexParameter("effect", EffectFactory.load), 
