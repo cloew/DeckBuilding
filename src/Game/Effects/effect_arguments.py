@@ -3,7 +3,7 @@ import copy
 class EffectArguments:
     """ Wrapper for the arguments to an effect """
     
-    def __init__(self, game, parent, event=None, player=None):
+    def __init__(self, game, parent, event=None, player=None, potentialPlayers=None):
         """ Initialize the Arguments """
         self.parent = parent
         self.game = game
@@ -13,10 +13,25 @@ class EffectArguments:
             player = self.owner.player
         self.player = player
         
+        if potentialPlayers is None:
+            potentialPlayers = self.game.players
+        self.potentialPlayers = potentialPlayers
+        
     @property
     def foes(self):
         """ Return the foes of the current player """
         return [player for player in self.game.players if player is not self.player]
+        
+    @property
+    def nextPlayer(self):
+        """ Return the next player """
+        return self.getNextPlayer(self.player)
+            
+    def getNextPlayer(self, player):
+        """ Get the player next to the given player """
+        index = self.potentialPlayers.index(player)
+        index = (index + 1) % len(self.players)
+        return self.potentialPlayers[index]
         
     @property
     def owner(self):

@@ -1,7 +1,7 @@
 from Game.Effects.effect_runner import PerformEffects
 
-class AsOwner:
-    """ Represents an effect to run as the Owner of the Current Turn """
+class AsNextPlayer:
+    """ Represents an effect to run as the Next Player """
     
     def __init__(self, thenEffects):
         """ Initialize the Effect with the children effects """
@@ -10,7 +10,7 @@ class AsOwner:
     def perform(self, args):
         """ Perform the Game Effect """
         newArgs = args.copy()
-        newArgs.player = args.owner.player
+        newArgs.player = args.nextPlayer
         
         coroutine = PerformEffects(self.thenEffects, newArgs)
         response = yield coroutine.next()
