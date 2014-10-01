@@ -10,6 +10,11 @@ class Character:
         self.image = image
         self.active = True
         
+    def addOngoingEffects(self, addOngoingEffects):
+        """ Add Starting Effects for the current player """            
+        if self.active:
+            addOngoingEffects(self)
+        
     def deactivate(self):
         """ Deactivate the character """
         self.active = False

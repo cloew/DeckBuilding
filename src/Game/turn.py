@@ -1,4 +1,5 @@
 from power_tracker import PowerTracker
+from ongoing_effects import OngoingEffects
 
 from Game.Effects.effect_arguments import EffectArguments
 from Game.Events.gained_card_event import GainedCardEvent
@@ -20,28 +21,19 @@ class Turn:
         self.spendPower = self.powerTracker.spendPower
         self.changeModifier = self.powerTracker.changeModifier
         
+        self.ongoingEffects = OngoingEffects()
+        self.registerTrigger = self.ongoingEffects.registerTrigger
+        self.unregisterTrigger = self.ongoingEffects.unregisterTrigger
+        self.registerActivatable = self.ongoingEffects.registerActivatable
+        self.unregisterActivatable = self.ongoingEffects.unregisterActivatable
+        self.addOngoingEffects = self.ongoingEffects.addOngoingEffects
+        
         self.playedCards = []
         self.gainedCards = []
-        
-        self.activatableEffects = {}
         self.cleanupEffects = []
 
         self.command = None
         self.request = None
-        
-        self.setupEventListener()
-        
-    def setupEventListener(self):
-        """ Setup the Event Listener """
-        self.eventListener = GameEventListener()
-        
-    def addStartingEffects(self):
-        cardsToAddEffectsFor = list(self.player.ongoing)
-        if self.player.character.active:
-            cardsToAddEffectsFor += [self.player.character]
-            
-        for card in cardsToAddEffectsFor:
-            self.addOngoingEffects(card)
             
     def start(self):
         """ Start the Turn """
@@ -53,9 +45,9 @@ class Turn:
         except StopIteration:
             pass
         
-        self.addStartingEffects()
+        self.ongoingEffects.addStartingEffects(self.game)
             
-        coroutine = self.eventListener.send(StartOfTurnEvent(self.game))
+        coroutine = self.ongoingEffects.send(StartOfTurnEvent(self.game))
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)
@@ -100,7 +92,7 @@ class Turn:
         except StopIteration:
             pass
         
-        coroutine = self.eventListener.send(PlayedCardEvent(card, self.game))
+        coroutine = self.ongoingEffects.send(PlayedCardEvent(card, self.game))
         try:
             response = yield coroutine.next()
             while True:
@@ -114,10 +106,6 @@ class Turn:
         self.player.addOngoing(card)
         self.addOngoingEffects(card)
         
-    def addOngoingEffects(self, card):
-        self.registerTriggers(card.triggerEffects)
-        self.registerActivatable(card, card.activatableEffect)
-        
     def gainCard(self, card, fromSource, toSource=None):
         """ Gain the provided card """
         coroutine = self.player.gainCard(card, fromSource, toSource=toSource, game=self.game)
@@ -128,7 +116,7 @@ class Turn:
         except StopIteration:
             pass
             
-        coroutine = self.eventListener.send(GainedCardEvent(card, self.game))
+        coroutine = self.ongoingEffects.send(GainedCardEvent(card, self.game))
         try:
             response = yield coroutine.next()
             while True:
@@ -137,27 +125,6 @@ class Turn:
             pass
             
         self.gainedCards.append(card)
-        
-    def registerTrigger(self, trigger):
-        """ Register the given trigger """
-        self.registerTriggers([trigger])
-        
-    def registerTriggers(self, triggers):
-        """ Register the given triggers """
-        self.eventListener.registerTriggers(triggers)
-        
-    def unregisterTrigger(self, trigger):
-        """ Unregister the given trigger """
-        self.eventListener.unregisterTriggers([trigger])
-        
-    def registerActivatable(self, card, activatable):
-        """ Register the given activatable """
-        if activatable is not None:
-            self.activatableEffects[card] = activatable
-        
-    def unregisterActivatable(self, card):
-        """ Unregister the given card's activatable effect """
-        del self.activatableEffects[card]
         
     def cleanup(self):
         """ Cleanup the turn """
@@ -178,6 +145,11 @@ class Turn:
     def modifier(self):
         """ Return the current power modifier for the turn """
         return self.powerTracker.modifier
+        
+    @property
+    def activatableEffects(self):
+        """ Return the current activatable effects for the turn """
+        return self.ongoingEffects.activatableEffects
         
     def __repr__(self):
         """ Return the String Representation of the Turn """

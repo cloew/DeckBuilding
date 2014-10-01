@@ -64,6 +64,12 @@ class Player:
         self.deck.add(otherList)
         del otherList[:]
         
+    def addStartingEffects(self, addOngoingEffects):
+        """ Add Starting Effects for the current player """            
+        for card in self.ongoing:
+            addOngoingEffects(card)
+        self.character.addOngoingEffects(addOngoingEffects)
+        
     @property
     def discardPile(self):
         """ Return the Deck's Discard Pile """
