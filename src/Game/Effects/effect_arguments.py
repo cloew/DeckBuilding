@@ -30,7 +30,7 @@ class EffectArguments:
     def getNextPlayer(self, player):
         """ Get the player next to the given player """
         index = self.potentialPlayers.index(player)
-        index = (index + 1) % len(self.players)
+        index = (index + 1) % len(self.potentialPlayers)
         return self.potentialPlayers[index]
         
     @property

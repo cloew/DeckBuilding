@@ -48,7 +48,7 @@ class GameWrapper:
                     
         request = self.game.currentTurn.request
         if request is not None and yourPlayer in request.players:
-            gameJSON['request'] = RequestWrapperFactory.buildRequestWrapper(self.game.currentTurn.request, self.game).toJSON(includeActions=isYourTurn)
+            gameJSON['request'] = RequestWrapperFactory.buildRequestWrapper(self.game.currentTurn.request, self.game).toJSON(includeActions=True)
         return json
                 
     def toResultJSONForPlayer(self, playerId):
