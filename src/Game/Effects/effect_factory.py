@@ -4,6 +4,7 @@ from Game.Effects.attack import Attack
 from Game.Effects.change_power_modifier import ChangePowerModifier
 from Game.Effects.choice import Choice, Option
 from Game.Effects.conditional_effect import ConditionalEffect
+from Game.Effects.deactivate_character import DeactivateCharacter
 from Game.Effects.destroy import Destroy
 from Game.Effects.discard import Discard
 from Game.Effects.draw import Draw
@@ -51,6 +52,7 @@ def LoadOptions(data):
 EffectFactory = TypedFactory('type', {"ADD_TO_LINE_UP":Factory(AddToLineUp, [PrimitiveParameter("count", optional=True)]),
                                       "ADD_TRIGGER":Factory(AddTrigger, [PrimitiveParameter("power")]),
                                       "CHOICE":Factory(Choice, [ComplexParameter("choices", LoadOptions), PrimitiveParameter("source")]),
+                                      "DEACTIVATE_CHARACTER":Factory(DeactivateCharacter, []),
                                       "DESTROY":Factory(Destroy, [PrimitiveParameter("source")]),
                                       "DISCARD":Factory(Discard, [PrimitiveParameter("source")]),
                                       "DRAW":Factory(Draw, [PrimitiveParameter("count")]),

@@ -8,3 +8,8 @@ class Character:
         self.activatableEffect = activatable
         self.triggerEffects = triggers
         self.image = image
+        self.active = True
+        
+    def deactivate(self):
+        """ Deactivate the character """
+        self.active = False

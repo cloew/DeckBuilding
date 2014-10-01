@@ -34,10 +34,13 @@ class Turn:
     def setupEventListener(self):
         """ Setup the Event Listener """
         self.eventListener = GameEventListener()
-        self.addStartingEffects()
         
     def addStartingEffects(self):
-        for card in self.player.ongoing + [self.player.character]:
+        cardsToAddEffectsFor = list(self.player.ongoing)
+        if self.player.character.active:
+            cardsToAddEffectsFor += [self.player.character]
+            
+        for card in cardsToAddEffectsFor:
             self.addOngoingEffects(card)
             
     def start(self):
@@ -49,6 +52,8 @@ class Turn:
                 response = yield coroutine.send(response)
         except StopIteration:
             pass
+        
+        self.addStartingEffects()
             
         coroutine = self.eventListener.send(StartOfTurnEvent(self.game))
         response = yield coroutine.next()
