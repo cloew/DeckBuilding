@@ -1,5 +1,5 @@
 from Game.Commands.Requests.pick_card_request import PickCardRequest
-from Game.Effects.effect_runner import PerformEffect
+from Game.Effects.effect_runner import PerformEffects
 from Game.Events.cards_event import CardsEvent
 from Game.Sources.source_factory import SourceFactory
 
@@ -8,11 +8,11 @@ class PickCards:
     REQUEST_CLASS = PickCardRequest
     AUTO_PICK = True
     
-    def __init__(self, sourceType, numberOfCards, thenEffect, filter=None):
+    def __init__(self, sourceType, numberOfCards, thenEffects, filter=None):
         """ Initialize the options """
         self.sourceType = sourceType
         self.numberOfCards = numberOfCards
-        self.thenEffect = thenEffect
+        self.thenEffects = thenEffects
         self.filter = filter
         
     def perform(self, args):
@@ -27,7 +27,7 @@ class PickCards:
                 cards = yield self.REQUEST_CLASS(possibleCards, args.player, self.numberOfCards)
                 
             event = CardsEvent(cards, source, args)
-            coroutine = PerformEffect(self.thenEffect, event.args)
+            coroutine = PerformEffects(self.thenEffects, event.args)
             response = yield coroutine.next()
             while True:
                 response = yield coroutine.send(response)
