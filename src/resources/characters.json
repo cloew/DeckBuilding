@@ -16,9 +16,9 @@
                                                  "value":5},
                                      "number":1,
                                      "source":"GAINED",
-                                     "then":{"type":"MOVE_CARD",
-                                             "from":"EVENT",
-                                             "to":"DECK"}}]}
+                                     "then":[{"type":"MOVE_CARD",
+                                              "from":"EVENT",
+                                              "to":"DECK"}]}]}
 },
 {
     "name":"Batman",

@@ -105,9 +105,9 @@
                                 "value":["Equipment", "Hero", "Super Power"]},
                     "number":1,
                     "source":"LINE_UP",
-                    "then":{"type":"PLAY",
-                            "remove":true,
-                            "source":"EVENT"}}]
+                    "then":[{"type":"PLAY",
+                             "remove":true,
+                             "source":"EVENT"}]}]
 },
 {
     "name":"Hawkgirl",
@@ -401,8 +401,8 @@
                                 "effects":[{"type":"PICK_CARDS",  
                                             "number":1,
                                             "source":"LINE_UP",
-                                            "then":{"type":"DESTROY",
-                                                    "source":"EVENT"}},
+                                            "then":[{"type":"DESTROY",
+                                                     "source":"EVENT"}]},
                                            {"type":"ADD_TO_LINE_UP"}]},
                                {"description":"Do nothing",
                                 "effects":[]}]}]
@@ -426,8 +426,8 @@
                                           "effects":[{"type":"PICK_CARDS",  
                                                       "number":1,
                                                       "source":"HAND",
-                                                      "then":{"type":"DESTROY",
-                                                              "source":"EVENT"}}]},
+                                                      "then":[{"type":"DESTROY",
+                                                               "source":"EVENT"}]}]},
                                          {"description":"Do nothing",
                                           "effects":[]}]}}]
 },
@@ -529,6 +529,24 @@
                            "count":1}}]
 },
 {
+    "name":"The Anti-Monitor",
+    "type":"Villain",
+    "image":"the_anti_monitor.jpg",
+    "cost":{"type":"FIXED",
+            "cost":12},
+    "points":{"type":"FIXED",
+              "points":6},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":2},
+                   {"type":"PICK_UP_TO_ALL_CARDS",
+                    "source":"LINE_UP",
+                    "then":[{"type":"DESTROY",
+                             "source":"EVENT"},
+                            {"type":"PER_MATCH",
+                             "source":"EVENT",
+                             "effect":{"type":"ADD_TO_LINE_UP"}}]}]
+},
+{
     "name":"The Penguin",
     "type":"Villain",
     "image":"the_penguin.jpg",
@@ -541,8 +559,8 @@
                    {"type":"PICK_CARDS",
                     "number":2,
                     "source":"HAND",
-                    "then":{"type":"DISCARD",
-                            "source":"EVENT"}}]
+                    "then":[{"type":"DISCARD",
+                             "source":"EVENT"}]}]
 },
 {
     "name":"The Rot",
@@ -689,9 +707,9 @@
                                           "field":"cardType",
                                           "operation":"==",
                                           "value":"Equipment"},
-                              "then":{"type":"MOVE_CARD",
-                                      "from":"EVENT",
-                                      "to":"HAND"}}},
+                              "then":[{"type":"MOVE_CARD",
+                                       "from":"EVENT",
+                                       "to":"HAND"}]}},
                    {"type":"DRAW",
                     "count":1}]
 },
@@ -708,8 +726,8 @@
                    {"type":"PICK_UP_TO_N_CARDS",
                     "number":2,
                     "source":"DISCARD_PILE",
-                    "then":{"type":"PUT_ON_BOTTOM",
-                            "from":"EVENT",
-                            "to":"DECK"}}]
+                    "then":[{"type":"PUT_ON_BOTTOM",
+                             "from":"EVENT",
+                             "to":"DECK"}]}]
 }
 ]

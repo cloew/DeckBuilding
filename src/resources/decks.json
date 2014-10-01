@@ -2,9 +2,9 @@
 {
     "name":"Test",
     "cards":[{"name":"Kid Flash",
-              "count":5},
-             {"name":"Solomon Grundy",
-              "count":0}]
+              "count":10},
+             {"name":"Super Speed",
+              "count":10}]
     
 },
 {
@@ -22,9 +22,9 @@
     "cards":[{"name":"Raven",
               "count":0},
              {"name":"Deadshot",
-              "count":2},
-             {"name":"Kid Flash",
-              "count":8}]
+              "count":0},
+             {"name":"The Anti-Monitor",
+              "count":10}]
 },
 {
     "name":"Super Villains",
