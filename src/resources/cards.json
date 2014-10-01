@@ -189,6 +189,27 @@
                               "power":1}}]
 },
 {
+    "name":"Lex Luthor",
+    "type":"Villain",
+    "image":"lex_luthor.jpg",
+    "cost":{"type":"FIXED",
+            "cost":10},
+    "points":{"type":"FIXED",
+              "points":5},
+    "playEffects":[{"type":"DRAW",
+                    "count":3}],
+    "onAppearance":[{"type":"ATTACK",
+                     "effect":{"type":"PER_MATCH",
+                               "source":"LINE_UP",
+                               "filter":{"type":"COMPARISON",
+                                         "criteria":{"type":"FIXED",
+                                                     "field":"cardType",
+                                                     "operation":"==",
+                                                     "value":"Villain"}},
+                               "effect":{"type":"GAIN_TOP_CARD",
+                                         "from":"WEAKNESS"}}}]
+},
+{
     "name":"Manhunter",
     "type":"Villain",
     "image":"manhunter.jpg",
@@ -346,10 +367,8 @@
     "playEffects":[{"type":"GAIN_POWER",
                     "power":2},
                    {"type":"ATTACK",
-                    "effect":{"type":"LOOK_AT_TOP",
-                              "source":"WEAKNESS",
-                              "then":{"type":"GAIN_CARD",
-                                      "from":"EVENT"}}}]
+                    "effect":{"type":"GAIN_TOP_CARD",
+                              "from":"WEAKNESS"}}]
 },
 {
     "name":"Shazam!",
@@ -499,14 +518,9 @@
             "cost":7},
     "points":{"type":"FIXED",
               "points":1},
-    "playEffects":[{"type":"CONDITIONAL",
-                    "condition":{"type":"HAS_CARDS",
-                                 "source":"MAIN_DECK"},
-                    "effect":{"type":"LOOK_AT_TOP",
-                              "source":"MAIN_DECK",
-                              "then":{"type":"GAIN_CARD",
-                                      "from":"EVENT",
-                                      "to":"HAND"}}}]
+    "playEffects":[{"type":"GAIN_TOP_CARD",
+                    "from":"MAIN_DECK",
+                    "to":"HAND"}]
 },
 {
     "name":"Titans Tower",
