@@ -6,4 +6,4 @@ class PutOnBottomCleanup:
         
     def perform(self, args):
         """ Perform the Game Effect """
-        args.owner.cleanupEffects.append(PutOnBottom(args.parent, PLAYED, DECK))
+        args.owner.cleanupEffects.append(PutOnBottom(PLAYED, DECK, card=args.parent))
