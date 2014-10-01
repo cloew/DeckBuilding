@@ -174,7 +174,9 @@ controllers.controller('GameController', function($scope, $cookies, $http, $loca
                            'DEFEND':{'templateUrl':'static/partials/defend.html',
                                      'controller':'DefendController'},
                            'PICK_CARD':{'templateUrl':'static/partials/pick_card.html',
-                                        'controller':'PickCardController'}};
+                                        'controller':'PickCardController'},
+                           'PICK_UP_TO_N_CARD':{'templateUrl':'static/partials/pick_up_to_n_cards.html',
+                                                'controller':'PickCardController'}};
     
         var controller = controllers[$scope.game.request.type];
         $scope.hasModal = true;

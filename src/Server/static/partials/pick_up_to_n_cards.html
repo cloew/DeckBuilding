@@ -1,0 +1,15 @@
+<div class="center">
+    <h1 ng-show="request.number === 1">Choose a card</h1>
+    <h1 ng-hide="request.number === 1">Choose {{request.number}} cards</h1>
+</div>
+<div class="center card-list">
+    <h2 ng-hide="request.number === 1">Chosen Cards</h2>
+    <div style="display: inline-block; width: 100%;" ng-hide="request.number === 1">
+        <action-card card="card" index="$index" ng-repeat="card in request.cards" ng-show="hasCard($index)"></action-card>
+    </div>
+    <h2 ng-hide="request.number === 1">Available Cards</h2>
+    <div style="display: inline-block; width: 100%;">
+        <action-card actions="actions" card="card" index="$index" ng-repeat="card in request.cards" ng-hide="hasCard($index)"></action-card>
+    </div>
+    <button ng-click="sendChoices();">Done</button>
+</div>
