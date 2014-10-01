@@ -15,7 +15,7 @@ class GameCharacterWrapper(CharacterWrapper):
         """ Return the card as a JSON Dictionary """
         actions = []
         activatableJSON = GetActivatableActionJSON(self.character, self.game, source=CHARACTER)
-        if activatableJSON is not None and self.character.active:
+        if activatableJSON is not None:
             actions.append(activatableJSON)
             
         json = CharacterWrapper.toJSON(self)
