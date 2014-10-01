@@ -20,11 +20,15 @@
 {
     "name":"Starting",
     "cards":[{"name":"Raven",
-              "count":4},
+              "count":2},
              {"name":"Deadshot",
-              "count":0},
-             {"name":"Super Speed",
-              "count":6}]
+              "count":2},
+             {"name":"Teleportation",
+              "count":2},
+             {"name":"Kid Flash",
+              "count":2},
+             {"name":"Punch",
+              "count":2}]
 },
 {
     "name":"Super Villains",
@@ -35,6 +39,8 @@
              {"name":"Lex Luthor",
               "count":1},
              {"name":"Captain Cold",
+              "count":1},
+             {"name":"The Joker",
               "count":1},
              {"name":"Ra's al Ghul",
               "count":1}]
