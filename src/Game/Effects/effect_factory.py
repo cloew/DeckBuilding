@@ -1,3 +1,4 @@
+from Game.Effects.activate_character import ActivateCharacter
 from Game.Effects.add_to_line_up import AddToLineUp
 from Game.Effects.add_trigger import AddTrigger
 from Game.Effects.attack import Attack
@@ -49,7 +50,8 @@ def LoadOptions(data):
     """ Load options from the data given """
     return [Option(optionJSON['description'], EffectFactory.loadAll(optionJSON['effects'])) for optionJSON in data]
 
-EffectFactory = TypedFactory('type', {"ADD_TO_LINE_UP":Factory(AddToLineUp, [PrimitiveParameter("count", optional=True)]),
+EffectFactory = TypedFactory('type', {"ACTIVATE_CHARACTER":Factory(ActivateCharacter, []),
+                                      "ADD_TO_LINE_UP":Factory(AddToLineUp, [PrimitiveParameter("count", optional=True)]),
                                       "ADD_TRIGGER":Factory(AddTrigger, [PrimitiveParameter("power")]),
                                       "CHOICE":Factory(Choice, [ComplexParameter("choices", LoadOptions), PrimitiveParameter("source")]),
                                       "DEACTIVATE_CHARACTER":Factory(DeactivateCharacter, []),
