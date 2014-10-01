@@ -6,6 +6,6 @@ class PickUpToNCardRequestWrapper(PickCardRequestWrapper):
         
     def toJSON(self, includeActions=False):
         """ Return the request as a JSON Dictionary """
-        json = PickCardRequestWrapper.toJSON(includeActions=includeActions)
+        json = PickCardRequestWrapper.toJSON(self, includeActions=includeActions)
         json['type'] = 'PICK_UP_TO_N_CARD'
         return json
