@@ -1,5 +1,19 @@
 import copy
 
+def GetPlayersStartingWith(player, players):
+    """ Get the players in order starting with the given player """
+    foes = [player]
+    for i in range(len(players)-1):
+        player = GetNextPlayer(player, players)
+        foes.append(player)
+    return foes
+
+def GetNextPlayer(player, players):
+    """ Get the player next to the given player """
+    index = players.index(player)
+    index = (index + 1) % len(players)
+    return players[index]
+
 class EffectArguments:
     """ Wrapper for the arguments to an effect """
     
@@ -20,18 +34,14 @@ class EffectArguments:
     @property
     def foes(self):
         """ Return the foes of the current player """
-        return [player for player in self.game.players if player is not self.player]
+        foes = GetPlayersStartingWith(self.player, self.potentialPlayers)
+        foes.remove(self.player)
+        return foes
         
     @property
     def nextPlayer(self):
         """ Return the next player """
-        return self.getNextPlayer(self.player)
-            
-    def getNextPlayer(self, player):
-        """ Get the player next to the given player """
-        index = self.potentialPlayers.index(player)
-        index = (index + 1) % len(self.potentialPlayers)
-        return self.potentialPlayers[index]
+        return GetNextPlayer(self.player, self.potentialPlayers)
         
     @property
     def owner(self):
@@ -55,7 +65,7 @@ class SystemEffectArguments:
     @property
     def foes(self):
         """ Return the foes of the current player """
-        return self.game.players
+        return GetPlayersStartingWith(self.owner.player, self.game.players)
         
     @property
     def owner(self):
