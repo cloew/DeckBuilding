@@ -10,6 +10,7 @@ from Game.Effects.draw import Draw
 from Game.Effects.filter import Filter
 from Game.Effects.gain_card import GainCard
 from Game.Effects.gain_power import GainPower
+from Game.Effects.gain_top_card import GainTopCard
 from Game.Effects.look_at_top import LookAtTop
 from Game.Effects.modify_hand_size import ModifyHandSize
 from Game.Effects.move_card import MoveCard
@@ -55,6 +56,7 @@ EffectFactory = TypedFactory('type', {"ADD_TO_LINE_UP":Factory(AddToLineUp, [Pri
                                       "DRAW":Factory(Draw, [PrimitiveParameter("count")]),
                                       "GAIN_CARD":Factory(GainCard, [PrimitiveParameter("from"), PrimitiveParameter("to", optional=True)]),
                                       "GAIN_POWER":Factory(GainPower, [PrimitiveParameter("power")]),
+                                      "GAIN_TOP_CARD":Factory(GainTopCard, [PrimitiveParameter("from"), PrimitiveParameter("to", optional=True)]),
                                       "MOD_HAND_SIZE":Factory(ModifyHandSize, [PrimitiveParameter("change")]),
                                       "MOVE_CARD":Factory(MoveCard, [PrimitiveParameter("from"), PrimitiveParameter("to")]),
                                       "ONGOING":Factory(Ongoing, []),
