@@ -30,6 +30,8 @@
     "name":"Super Villains",
     "cards":[{"name":"Parallax",
               "count":1},
+             {"name":"The Anti-Monitor",
+              "count":1},
              {"name":"Ra's al Ghul",
               "count":1}]
 },

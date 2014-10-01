@@ -544,7 +544,18 @@
                              "source":"EVENT"},
                             {"type":"PER_MATCH",
                              "source":"EVENT",
-                             "effect":{"type":"ADD_TO_LINE_UP"}}]}]
+                             "effect":{"type":"ADD_TO_LINE_UP"}}]}],
+    "onAppearance":[{"type":"ATTACK",
+                     "effect":{"type":"PICK_CARDS",
+                               "number":1,
+                               "source":"HAND",
+                               "criteria":{"type":"FIXED",
+                                           "field":"cost",
+                                           "operation":">=",
+                                           "value":1},
+                                "then":[{"type":"MOVE_CARD",
+                                         "from":"EVENT",
+                                         "to":"LINE_UP"}]}}]
 },
 {
     "name":"The Penguin",
