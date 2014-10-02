@@ -118,4 +118,10 @@ angular.module('DeckBuildingDirectives', [])
               count: '=count',
           },
           templateUrl: 'static/partials/directives/deck_counter.html'
+      }})
+    .directive('opponent', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          templateUrl: 'static/partials/directives/opponent.html'
       }});

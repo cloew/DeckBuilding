@@ -1,10 +1,5 @@
 <div class="col-md-12">
-    <div class="col-md-3" ng-repeat="player in game.players">
-        <div class="row-container">
-            <character character="player.character" thumbnail="true"></character>
-            <h2 style="vertical-align: middle;">{{player.name}}</h2>
-        </div>
-    </div>
+    <opponent ng-repeat="player in game.players"></opponent>
 </div>
 <div class="clearfix visible-md-block"></div>
 <div class="col-md-12 deck-col">
