@@ -20,15 +20,15 @@
 {
     "name":"Starting",
     "cards":[{"name":"Raven",
-              "count":0},
+              "count":5},
              {"name":"Deadshot",
               "count":0},
              {"name":"Teleportation",
               "count":0},
-             {"name":"X-ray Vision",
-              "count":1},
+             {"name":"Starro",
+              "count":5},
              {"name":"Oa",
-              "count":9}]
+              "count":0}]
 },
 {
     "name":"Super Villains",
