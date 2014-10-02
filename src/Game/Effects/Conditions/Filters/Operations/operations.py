@@ -11,6 +11,7 @@ def getEvenOrOdd(value):
     return options[value % 2]
 
 operations = {"==":operator.eq,
+              "!=":operator.ne,
               ">=":operator.ge,
               "<=":operator.le,
               "IN":inOperator,
