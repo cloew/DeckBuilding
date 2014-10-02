@@ -14,8 +14,8 @@ def GetNextPlayer(player, players):
     index = (index + 1) % len(players)
     return players[index]
 
-class EffectArguments:
-    """ Wrapper for the arguments to an effect """
+class PlayerContext:
+    """ Represents the game context for a particular player """
     
     def __init__(self, game, parent, event=None, player=None, potentialPlayers=None):
         """ Initialize the Arguments """
@@ -49,15 +49,15 @@ class EffectArguments:
         return self.game.currentTurn
         
     def copy(self):
-        """ Copy the Arguments """
-        return EffectArguments(self.game, self.parent, event=self.event, player=self.player)
+        """ Copy the Context """
+        return PlayerContext(self.game, self.parent, event=self.event, player=self.player)
         
-    def copyForPlayer(self, player):
-        """ Copy the Arguments """
-        return EffectArguments(self.game, self.parent, event=self.event, player=player)
+    def getPlayerContext(self, player):
+        """ Get the Context for the given player """
+        return PlayerContext(self.game, self.parent, event=self.event, player=player)
 
-class SystemEffectArguments:
-    """ Wrapper for the arguments to an effect for the System to use """
+class SystemContext:
+    """ Represents the game context for the System to use """
     
     def __init__(self, game, parent, event=None):
         """ Initialize the Arguments """
@@ -77,9 +77,9 @@ class SystemEffectArguments:
         return self.game.currentTurn
         
     def copy(self):
-        """ Copy the Arguments """
-        return SystemEffectArguments(self.game, self.parent, event=self.event)
+        """ Copy the Conotext """
+        return SystemContext(self.game, self.parent, event=self.event)
         
-    def copyForPlayer(self, player):
-        """ Copy the Arguments """
-        return EffectArguments(self.game, self.parent, event=self.event, player=player)
+    def getPlayerContext(self, player):
+        """ Get the Context for the given player """
+        return PlayerContext(self.game, self.parent, event=self.event, player=player)

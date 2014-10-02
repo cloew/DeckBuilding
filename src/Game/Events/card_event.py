@@ -1,4 +1,4 @@
-from Game.Effects.effect_arguments import EffectArguments
+from Game.Effects.game_contexts import PlayerContext
 
 class CardEvent:
     """ Represents an event wrapping a single card """
@@ -9,7 +9,7 @@ class CardEvent:
         self.card = card
         self.game = game
         
-        self.args = EffectArguments(game, card, event=self)
+        self.context = PlayerContext(game, card, event=self)
         
     def __len__(self):
         """ Return the iterator for the event when it is used as a source """

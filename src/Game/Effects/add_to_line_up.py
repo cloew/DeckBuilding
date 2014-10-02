@@ -8,6 +8,6 @@ class AddToLineUp:
             count = 1
         self.count = count
         
-    def perform(self, args):
+    def perform(self, context):
         """ Perform the Game Effect """
-        args.game.lineUp.refillCards(self.count)
+        context.game.lineUp.refillCards(self.count)

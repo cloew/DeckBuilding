@@ -12,12 +12,12 @@ class CollectCards:
             sourceType = DECK
         self.sourceType = sourceType
         
-    def perform(self, args):
+    def perform(self, context):
         """ Perform the Game Effect """
-        collectedCards = [SourceFactory.getSourceForEffect(self.sourceType, args.copyForPlayer(foe))[0] for foe in args.foes]
+        collectedCards = [SourceFactory.getSourceForEffect(self.sourceType, context.getPlayerContext(foe))[0] for foe in context.foes]
                 
-        event = CardsEvent(collectedCards, None, args)
-        coroutine = PerformEffects(self.thenEffects, event.args)
+        event = CardsEvent(collectedCards, None, context)
+        coroutine = PerformEffects(self.thenEffects, event.context)
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)

@@ -7,9 +7,9 @@ class PickUpToAllCards(PickUpToNCards):
         """ Initialize the options """
         PickUpToNCards.__init__(self, sourceType, 0, thenEffects, filter=filter)
                 
-    def findPossibleCards(self, args):
+    def findPossibleCards(self, context):
         """ Return the possible cards """
-        source, possibleCards = PickUpToNCards.findPossibleCards(self, args)
+        source, possibleCards = PickUpToNCards.findPossibleCards(self, context)
         self.setNumberOfCards(len(possibleCards))
         return source, possibleCards
         

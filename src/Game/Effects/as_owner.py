@@ -7,11 +7,11 @@ class AsOwner:
         """ Initialize the Effect with the children effects """
         self.thenEffects = thenEffects
         
-    def perform(self, args):
+    def perform(self, context):
         """ Perform the Game Effect """
-        newArgs = args.copyForPlayer(args.owner.player)
+        newContext = context.getPlayerContext(context.owner.player)
         
-        coroutine = PerformEffects(self.thenEffects, newArgs)
+        coroutine = PerformEffects(self.thenEffects, newContext)
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)

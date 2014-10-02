@@ -1,7 +1,7 @@
 from power_tracker import PowerTracker
 from ongoing_effects import OngoingEffects
 
-from Game.Effects.effect_arguments import EffectArguments
+from Game.Effects.game_contexts import PlayerContext
 from Game.Events.gained_card_event import GainedCardEvent
 from Game.Events.played_card_event import PlayedCardEvent
 from Game.Events.start_of_turn_event import StartOfTurnEvent
@@ -128,9 +128,9 @@ class Turn:
         
     def cleanup(self):
         """ Cleanup the turn """
-        args = EffectArguments(self.game, None)
+        context = PlayerContext(self.game, None)
         for effect in self.cleanupEffects:
-            effect.perform(args)
+            effect.perform(context)
         
         self.player.deck.discardAll(self.playedCards)
         self.player.deck.discardAll(self.player.hand)

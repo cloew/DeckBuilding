@@ -12,6 +12,6 @@ class Unique:
         matchingCondition = Matching(EVENT, SourceCriteria(field, sourceType))
         self.condition = NotCondition(matchingCondition)
         
-    def evaluate(self, args):
+    def evaluate(self, context):
         """ Evaluate the condition """
-        return self.condition.evaluate(args)
+        return self.condition.evaluate(context)

@@ -12,14 +12,14 @@ class Play:
             remove = False
         self.remove = remove
         
-    def perform(self, args):
+    def perform(self, context):
         """ Perform the Game Effect """
-        source = SourceFactory.getSourceForEffect(self.sourceType, args)
+        source = SourceFactory.getSourceForEffect(self.sourceType, context)
         for card in source:
             if self.remove:
                 source.remove(card)
                 
-            coroutine = args.owner.playCard(card)
+            coroutine = context.owner.playCard(card)
             try:
                 response = yield coroutine.next()
                 while True:
@@ -27,6 +27,6 @@ class Play:
             except StopIteration:
                 pass
                 
-            args.owner.cleanupEffects.append(RemovePlayedCard(card))
+            context.owner.cleanupEffects.append(RemovePlayedCard(card))
             if self.remove:
-                args.owner.cleanupEffects.append(AddToSource(card, source))
+                context.owner.cleanupEffects.append(AddToSource(card, source))

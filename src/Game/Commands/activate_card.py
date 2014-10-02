@@ -1,4 +1,4 @@
-from Game.Effects.effect_arguments import EffectArguments
+from Game.Effects.game_contexts import PlayerContext
 
 class ActivateCard:
     """ Represents a command to activate a card """
@@ -10,8 +10,8 @@ class ActivateCard:
         
     def perform(self):
         """ Perform the command """
-        args = EffectArguments(self.owner.game, self.card)
-        coroutine = self.owner.activatableEffects[self.card].activate(args)
+        context = PlayerContext(self.owner.game, self.card)
+        coroutine = self.owner.activatableEffects[self.card].activate(context)
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)

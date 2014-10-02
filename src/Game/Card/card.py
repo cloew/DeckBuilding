@@ -1,4 +1,4 @@
-from Game.Effects.effect_arguments import EffectArguments
+from Game.Effects.game_contexts import PlayerContext
 from Game.Effects.effect_runner import PerformEffects
 
 class Card:
@@ -28,8 +28,8 @@ class Card:
         
     def play(self, game):
         """ Play the card and perform any effects """
-        args = EffectArguments(game, self)
-        coroutine = PerformEffects(self.playEffects, args)
+        context = PlayerContext(game, self)
+        coroutine = PerformEffects(self.playEffects, context)
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)

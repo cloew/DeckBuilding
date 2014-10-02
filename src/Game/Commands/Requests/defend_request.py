@@ -7,16 +7,16 @@ from Game.Sources.source_factory import HAND
 class DefendRequest(Request):
     """ Represents a Request to Defend """
     
-    def __init__(self, attackCard, args):
+    def __init__(self, attackCard, context):
         """ Initialize the Request with the attack """
         self.attackCard = attackCard
-        self.args = args
+        self.context = context
         self.defenseFilter = ComparisonFilter(HAND, FixedCriteria("isDefense", True, "=="))
-        Request.__init__(self, [args.player])
+        Request.__init__(self, [context.player])
         
     @property
     def defenses(self):
         """ Return the relevant source if any """
-        args = self.args.copy()
-        args.parent = None
-        return self.defenseFilter.evaluate(args)
+        context = self.context.copy()
+        context.parent = None
+        return self.defenseFilter.evaluate(context)

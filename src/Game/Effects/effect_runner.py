@@ -1,11 +1,11 @@
 import inspect
 
-def PerformEffectsForEachPlayer(effects, players, args):
+def PerformEffectsForEachPlayer(effects, players, context):
     """ Perform the given effects """
     for player in players:
-        args = args.copyForPlayer(player)
+        context = context.copyForPlayer(player)
         
-        coroutine = PerformEffects(effects, args)
+        coroutine = PerformEffects(effects, context)
         try:
             response = yield coroutine.next()
             while True:
@@ -13,10 +13,10 @@ def PerformEffectsForEachPlayer(effects, players, args):
         except StopIteration:
             pass
 
-def PerformEffects(effects, args):
+def PerformEffects(effects, context):
     """ Perform the given effects """
     for effect in effects:
-        coroutine = PerformEffect(effect, args)
+        coroutine = PerformEffect(effect, context)
         try:
             response = yield coroutine.next()
             while True:
@@ -24,12 +24,12 @@ def PerformEffects(effects, args):
         except StopIteration:
             pass
 
-def PerformEffect(effect, args):
+def PerformEffect(effect, context):
     """ Perform the given effect """
     if inspect.isgeneratorfunction(effect.perform):
-        coroutine = effect.perform(args)
+        coroutine = effect.perform(context)
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)
     else:
-        effect.perform(args)
+        effect.perform(context)

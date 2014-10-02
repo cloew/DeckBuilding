@@ -10,13 +10,13 @@ class GainCard:
             toSourceType = DISCARD_PILE
         self.toSourceType = toSourceType
         
-    def perform(self, args):
+    def perform(self, context):
         """ Perform the Game Effect """
-        fromSource = SourceFactory.getSourceForEffect(self.fromSourceType, args)
-        toSource = SourceFactory.getSourceForEffect(self.toSourceType, args)
+        fromSource = SourceFactory.getSourceForEffect(self.fromSourceType, context)
+        toSource = SourceFactory.getSourceForEffect(self.toSourceType, context)
         
         for card in fromSource:
-            coroutine = args.owner.gainCard(card, fromSource, toSource=toSource)
+            coroutine = context.owner.gainCard(card, fromSource, toSource=toSource)
             try:
                 response = yield coroutine.next()
                 while True:

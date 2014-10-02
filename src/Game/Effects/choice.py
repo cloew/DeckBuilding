@@ -10,9 +10,9 @@ class Option:
         self.description = description
         self.effects = effects
         
-    def performEffects(self, args):
+    def performEffects(self, context):
         """ Perform the Option's Effects """
-        coroutine = PerformEffects(self.effects, args)
+        coroutine = PerformEffects(self.effects, context)
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)
@@ -26,21 +26,21 @@ class Choice:
         self.relevantSourceType = relevantSourceType
         self.filter = filter
         
-    def perform(self, args):
+    def perform(self, context):
         """ Perform the Game Effect """
-        option = yield ChooseOptionRequest(self.options, args.player, self.findPossibleCards(args))
-        coroutine = option.performEffects(args)
+        option = yield ChooseOptionRequest(self.options, context.player, self.findPossibleCards(context))
+        coroutine = option.performEffects(context)
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)
                 
-    def findPossibleCards(self, args):
+    def findPossibleCards(self, context):
         """ Return the possible cards """
         possibleCards = None
         if self.relevantSourceType is not None:
-            source = SourceFactory.getSourceForEffect(self.relevantSourceType, args)
+            source = SourceFactory.getSourceForEffect(self.relevantSourceType, context)
             possibleCards = source
             if self.filter is not None:
-                possibleCards = self.filter.evaluate(args)
+                possibleCards = self.filter.evaluate(context)
         
         return possibleCards

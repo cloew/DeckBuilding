@@ -10,19 +10,19 @@ class Attack:
         """ Initialize with the effects to attack with """
         self.thenEffects = thenEffects
         
-    def perform(self, args):
+    def perform(self, context):
         """ Perform the Game Effect """
         targets = []
-        for foe in args.foes:
-            defended = yield DefendRequest(args.parent, args.copyForPlayer(foe))
+        for foe in context.foes:
+            defended = yield DefendRequest(context.parent, context.getPlayerContext(foe))
             if not defended:
                 targets.append(foe)
             else:
-                playerArgs = args.copyForPlayer(foe)
+                playerArgs = context.getPlayerContext(foe)
                 source = SourceFactory.getSourceForEffect(HAND, playerArgs)
                 event = CardsEvent([defended], source, playerArgs)
                 
-                coroutine = PerformEffects(defended.defenseEffects, event.args)
+                coroutine = PerformEffects(defended.defenseEffects, event.context)
                 try:
                     response = yield coroutine.next()
                     while True:
@@ -30,9 +30,9 @@ class Attack:
                 except StopIteration:
                     pass
                 
-        args = args.copy()
-        args.foes = targets
-        coroutine = PerformEffects(self.thenEffects, args)
+        context = context.copy()
+        context.foes = targets
+        coroutine = PerformEffects(self.thenEffects, context)
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)

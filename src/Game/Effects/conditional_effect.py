@@ -9,29 +9,29 @@ class ConditionalEffect:
         self.effect = effect
         self.otherwiseEffect = otherwiseEffect
         
-    def perform(self, args):
+    def perform(self, context):
         """ Perform the Game Effect """
         coroutine = None
-        if self.condition.evaluate(args):
-            coroutine = self.performEffect(args)
+        if self.condition.evaluate(context):
+            coroutine = self.performEffect(context)
         elif self.otherwiseEffect is not None:
-            coroutine = self.performOtherwiseEffect(args)
+            coroutine = self.performOtherwiseEffect(context)
             
         if coroutine is not None:
             response = yield coroutine.next()
             while True:
                 response = yield coroutine.send(response)
                 
-    def performEffect(self, args):
+    def performEffect(self, context):
         """ Perform the conditional effect """
-        coroutine = PerformEffect(self.effect, args)
+        coroutine = PerformEffect(self.effect, context)
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)
             
-    def performOtherwiseEffect(self, args):
+    def performOtherwiseEffect(self, context):
         """ Perform the conditional effect """
-        coroutine = PerformEffect(self.otherwiseEffect, args)
+        coroutine = PerformEffect(self.otherwiseEffect, context)
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)

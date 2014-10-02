@@ -12,8 +12,8 @@ class Trigger:
         
     def receive(self, event):
         """ Receive the event """
-        if self.condition.evaluate(event.args):
-            coroutine = PerformEffect(self.effect, event.args)
+        if self.condition.evaluate(event.context):
+            coroutine = PerformEffect(self.effect, event.context)
             try:
                 response = yield coroutine.next()
                 while True:
@@ -22,4 +22,4 @@ class Trigger:
                 pass
         
             if self.singleUse:
-                event.args.owner.unregisterTrigger(self)
+                event.context.owner.unregisterTrigger(self)

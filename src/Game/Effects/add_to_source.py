@@ -7,6 +7,6 @@ class AddToSource:
         self.card = card
         self.source = source
         
-    def perform(self, args):
+    def perform(self, context):
         """ Perform the Game Effect """
         self.source.add(self.card)

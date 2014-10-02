@@ -13,13 +13,13 @@ class PickRandomCard(ConditionalEffect):
         self.sourceType = sourceType
         ConditionalEffect.__init__(self, HasCards(self.sourceType), thenEffect)
         
-    def performEffect(self, args):
+    def performEffect(self, context):
         """ Perform the Game Effect """
-        source = SourceFactory.getSourceForEffect(self.sourceType, args)
+        source = SourceFactory.getSourceForEffect(self.sourceType, context)
         card = random.choice(source)
-        event = TopCardEvent(card, source, args)
+        event = TopCardEvent(card, source, context)
         
-        coroutine = ConditionalEffect.performEffect(self, event.args)
+        coroutine = ConditionalEffect.performEffect(self, event.context)
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)

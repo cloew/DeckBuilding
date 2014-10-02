@@ -1,4 +1,4 @@
-from Game.Effects.effect_arguments import SystemEffectArguments
+from Game.Effects.game_contexts import SystemContext
 from Game.Effects.effect_runner import PerformEffects
 
 class SuperVillainStack:
@@ -24,7 +24,7 @@ class SuperVillainStack:
         """ Perform the Super Villain's First Appearance Effects """
         if self.hasAppeared:
             self.hasAppeared = False
-            coroutine = PerformEffects(self.topCard.appearanceEffects, SystemEffectArguments(game, self.topCard))
+            coroutine = PerformEffects(self.topCard.appearanceEffects, SystemContext(game, self.topCard))
             response = yield coroutine.next()
             while True:
                 response = yield coroutine.send(response)

@@ -6,6 +6,6 @@ class AddActivatable:
         """ Initialize the add activatable effect with the activatable to add """
         self.activatable = activatable
         
-    def perform(self, args):
+    def perform(self, context):
         """ Perform the Game Effect """
-        args.owner.registerActivatable(args.parent, self.activatable)
+        context.owner.registerActivatable(context.parent, self.activatable)

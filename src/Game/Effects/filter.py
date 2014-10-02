@@ -12,13 +12,13 @@ class Filter:
         self.filter = filter
         self.thenEffects = thenEffects
         
-    def perform(self, args):
+    def perform(self, context):
         """ Perform the Game Effect """
-        source = SourceFactory.getSourceForEffect(self.sourceType, args)
-        possibleCards = self.filter.evaluate(args)
+        source = SourceFactory.getSourceForEffect(self.sourceType, context)
+        possibleCards = self.filter.evaluate(context)
                 
-        event = CardsEvent(possibleCards, source, args)
-        coroutine = PerformEffects(self.thenEffects, event.args)
+        event = CardsEvent(possibleCards, source, context)
+        coroutine = PerformEffects(self.thenEffects, event.context)
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)

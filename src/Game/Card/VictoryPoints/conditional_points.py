@@ -8,11 +8,11 @@ class ConditionalPoints:
         self.vpCalculator = vpCalculator
         self.otherwise = otherwise
         
-    def calculatePoints(self, args):
+    def calculatePoints(self, context):
         """ Return the number of Points """
         points = 0
-        if self.condition.evaluate(args):
-            points = self.vpCalculator.calculatePoints(args)
+        if self.condition.evaluate(context):
+            points = self.vpCalculator.calculatePoints(context)
         else:
-            points = self.otherwise.calculatePoints(args)
+            points = self.otherwise.calculatePoints(context)
         return points

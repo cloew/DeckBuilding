@@ -6,6 +6,6 @@ class ChangePowerModifier:
         """ Initialize the Effect with the modifier to add """
         self.modifier = modifier
         
-    def perform(self, args):
+    def perform(self, context):
         """ Perform the Game Effect """
-        args.owner.changeModifier(self.modifier)
+        context.owner.changeModifier(self.modifier)

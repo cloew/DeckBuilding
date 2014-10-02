@@ -6,6 +6,6 @@ class SpendPower:
         """ Initialize the Effect with the power to spend """
         self.power = power
         
-    def perform(self, args):
+    def perform(self, context):
         """ Perform the Game Effect """
-        args.owner.spendPower(self.power)
+        context.owner.spendPower(self.power)

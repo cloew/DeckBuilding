@@ -8,9 +8,9 @@ class UniqueFilter:
         self.field = field
         self.sourceType = sourceType
     
-    def evaluate(self, args):
+    def evaluate(self, context):
         """ Evaluate the condition """
-        source = SourceFactory.getSourceForEffect(self.sourceType, args)
+        source = SourceFactory.getSourceForEffect(self.sourceType, context)
         
         cards = []
         valueSet = set()

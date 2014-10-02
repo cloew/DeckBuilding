@@ -6,7 +6,7 @@ class AndCondition:
         """ Initialize the And Condition with the conditions to check """
         self.conditions = conditions
         
-    def evaluate(self, args):
+    def evaluate(self, context):
         """ Evaluate the condition """
-        return all([condition.evaluate(args) for condition in self.conditions])
+        return all([condition.evaluate(context) for condition in self.conditions])
         

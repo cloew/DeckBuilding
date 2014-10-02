@@ -14,7 +14,6 @@ class LineUp:
         slotsToRefill = self.LINE_UP_SIZE - len(self.cards)
         if slotsToRefill > 0:
             self.refillCards(count=slotsToRefill)
-            # self.cards += self.mainDeck.draw(count=slotsToRefill)
             
     def refillCards(self, count):
         """ Refill the given number of cards """

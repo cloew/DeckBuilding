@@ -6,6 +6,6 @@ class AddTrigger:
         """ Initialize the add trigger effect with the trigger to add """
         self.trigger = trigger
         
-    def perform(self, args):
+    def perform(self, context):
         """ Perform the Game Effect """
-        args.owner.registerTrigger(self.trigger)
+        context.owner.registerTrigger(self.trigger)

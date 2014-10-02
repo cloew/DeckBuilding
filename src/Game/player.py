@@ -1,6 +1,6 @@
 from Game.Characters.character_factory import CharacterFactory
 from Game.Decks.decks import StartingDeckInitializer
-from Game.Effects.effect_arguments import EffectArguments
+from Game.Effects.game_contexts import PlayerContext
 from Game.Effects.effect_runner import PerformEffects
 from Game.Events.cards_event import CardsEvent
 
@@ -38,8 +38,8 @@ class Player:
         """ Gain the provided card """
         fromSource.remove(card)
         toSource.add(card)
-        event = CardsEvent([card], toSource, EffectArguments(game, card, player=self))
-        coroutine = PerformEffects(card.onGainEffects, event.args)
+        event = CardsEvent([card], toSource, PlayerContext(game, card, player=self))
+        coroutine = PerformEffects(card.onGainEffects, event.context)
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)
@@ -56,8 +56,8 @@ class Player:
         
     def calculatePoints(self, game):
         """ Calculate the Player's Victory Points """
-        args = EffectArguments(game, None, player=self)
-        return sum([card.calculatePoints(args) for card in self.deck])
+        context = PlayerContext(game, None, player=self)
+        return sum([card.calculatePoints(context) for card in self.deck])
         
     def moveToDeck(self, otherList):
         """ Move a card from the other list to the deck """

@@ -23,9 +23,9 @@ WEAKNESS = "WEAKNESS"
 class SourceFactory:
     """ Factory to construct card sources """
     
-    def getSourceForEffect(self, sourceType, args):
+    def getSourceForEffect(self, sourceType, context):
         """ Gat a Source based on Effect Arguments """
-        return self.getSource(sourceType, args.game, event=args.event, player=args.player)
+        return self.getSource(sourceType, context.game, event=context.event, player=context.player)
     
     def getSource(self, sourceType, game, event=None, player=None):
         """ Return the source for the given source type and game """

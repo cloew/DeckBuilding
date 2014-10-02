@@ -6,6 +6,6 @@ class ModifyHandSize:
         """ Initialize the Effect with the amount to change a player's hand by """
         self.change = change
         
-    def perform(self, args):
+    def perform(self, context):
         """ Perform the Game Effect """
-        args.player.modifyHandSize(self.change)
+        context.player.modifyHandSize(self.change)

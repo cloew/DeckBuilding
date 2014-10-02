@@ -15,29 +15,29 @@ class PickCards:
         self.thenEffects = thenEffects
         self.filter = filter
         
-    def perform(self, args):
+    def perform(self, context):
         """ Perform the Game Effect """
-        source, possibleCards = self.findPossibleCards(args)
+        source, possibleCards = self.findPossibleCards(context)
         
         if len(possibleCards) != 0:
             card = None
             if len(possibleCards) == self.numberOfCards and self.AUTO_PICK:
                 cards = possibleCards
             else:
-                cards = yield self.REQUEST_CLASS(possibleCards, args.player, self.numberOfCards)
+                cards = yield self.REQUEST_CLASS(possibleCards, context.player, self.numberOfCards)
                 
-            event = CardsEvent(cards, source, args)
-            coroutine = PerformEffects(self.thenEffects, event.args)
+            event = CardsEvent(cards, source, context)
+            coroutine = PerformEffects(self.thenEffects, event.context)
             response = yield coroutine.next()
             while True:
                 response = yield coroutine.send(response)
                 
-    def findPossibleCards(self, args):
+    def findPossibleCards(self, context):
         """ Return the possible cards """
-        source = SourceFactory.getSourceForEffect(self.sourceType, args)
+        source = SourceFactory.getSourceForEffect(self.sourceType, context)
         possibleCards = source
         if self.filter is not None:
-            possibleCards = self.filter.evaluate(args)
+            possibleCards = self.filter.evaluate(context)
         
         return source, possibleCards
         

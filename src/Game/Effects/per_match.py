@@ -13,12 +13,12 @@ class PerMatch:
         self.effect = effect
         self.filter = filter
         
-    def perform(self, args):
+    def perform(self, context):
         """ Perform the Game Effect """
-        source, cards = self.findPossibleCards(args)
+        source, cards = self.findPossibleCards(context)
         for card in cards:
-            event = CardsEvent([card], source, args)
-            coroutine = PerformEffect(self.effect, event.args)
+            event = CardsEvent([card], source, context)
+            coroutine = PerformEffect(self.effect, event.context)
             try:
                 response = yield coroutine.next()
                 while True:
@@ -26,11 +26,11 @@ class PerMatch:
             except StopIteration:
                 pass
                 
-    def findPossibleCards(self, args):
+    def findPossibleCards(self, context):
         """ Return the possible cards """
-        source = SourceFactory.getSourceForEffect(self.sourceType, args)
+        source = SourceFactory.getSourceForEffect(self.sourceType, context)
         possibleCards = source
         if self.filter is not None:
-            possibleCards = self.filter.evaluate(args)
+            possibleCards = self.filter.evaluate(context)
         
         return source, possibleCards

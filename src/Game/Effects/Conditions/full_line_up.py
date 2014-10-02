@@ -2,6 +2,6 @@
 class FullLineUp:
     """ Represents a condition where the Line Up must be full """
         
-    def evaluate(self, args):
+    def evaluate(self, context):
         """ Evaluate the condition """
-        return args.game.lineUp.isFull()
+        return context.game.lineUp.isFull()

@@ -4,6 +4,6 @@ from Game.Sources.source_factory import PLAYED, DECK
 class PutOnBottomCleanup:
     """ Represents an effect to place the card on the Bottom of the deck instead of the Discard Pile """
         
-    def perform(self, args):
+    def perform(self, context):
         """ Perform the Game Effect """
-        args.owner.cleanupEffects.append(PutOnBottom(PLAYED, DECK, card=args.parent))
+        context.owner.cleanupEffects.append(PutOnBottom(PLAYED, DECK, card=context.parent))

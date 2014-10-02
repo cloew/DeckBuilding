@@ -2,6 +2,6 @@
 class ActivateCharacter:
     """ Represents an effect to Activate the Player's Character """
         
-    def perform(self, args):
+    def perform(self, context):
         """ Perform the Game Effect """
-        args.player.character.activate(args.owner)
+        context.player.character.activate(context.owner)

@@ -9,6 +9,6 @@ class PerResultPoints:
             points = 1
         self.points = points
         
-    def calculatePoints(self, args):
+    def calculatePoints(self, context):
         """ Return the number of Points """
-        return len(self.filter.evaluate(args))*self.points
+        return len(self.filter.evaluate(context))*self.points

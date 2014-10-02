@@ -11,7 +11,7 @@ class Matching:
             number = 1
         self.number = number
         
-    def evaluate(self, args):
+    def evaluate(self, context):
         """ Evaluate the condition """
-        return len(self.filter.evaluate(args)) >= self.number
+        return len(self.filter.evaluate(context)) >= self.number
         

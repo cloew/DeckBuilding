@@ -6,6 +6,6 @@ class EnoughPower:
         """ Initialize the Enough Power COndition with the amount of power needed """
         self.power = power
         
-    def evaluate(self, args):
+    def evaluate(self, context):
         """ Evaluate the condition """
-        return args.owner.power >= self.power
+        return context.owner.power >= self.power

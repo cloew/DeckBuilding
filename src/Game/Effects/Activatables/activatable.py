@@ -1,4 +1,4 @@
-from Game.Effects.effect_arguments import EffectArguments
+from Game.Effects.game_contexts import PlayerContext
 from Game.Effects.effect_runner import PerformEffects
 
 class Activatable:
@@ -12,12 +12,12 @@ class Activatable:
         
     def canActivate(self, game):
         """ Return if the Activatable can activate """
-        args = EffectArguments(game, None)
-        return self.condition is None or self.condition.evaluate(args)
+        context = PlayerContext(game, None)
+        return self.condition is None or self.condition.evaluate(context)
         
-    def activate(self, args):
+    def activate(self, context):
         """ Activate the effect """
-        coroutine = PerformEffects(self.effects, args)
+        coroutine = PerformEffects(self.effects, context)
         try:
             response = yield coroutine.next()
             while True:
@@ -26,4 +26,4 @@ class Activatable:
             pass
         
         if self.singleUse:
-            args.owner.unregisterActivatable(args.parent)
+            context.owner.unregisterActivatable(context.parent)

@@ -6,9 +6,9 @@ class IntersectionFilter:
         """ Initialize the filter """
         self.filters = filters
     
-    def evaluate(self, args):
+    def evaluate(self, context):
         """ Evaluate the condition """
-        cardSets = [set(filter.evaluate(args)) for filter in self.filters]
+        cardSets = [set(filter.evaluate(context)) for filter in self.filters]
         
         intersection = cardSets[0]
         for cardSet in cardSets[1:]:

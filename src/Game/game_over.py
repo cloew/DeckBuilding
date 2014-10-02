@@ -1,4 +1,4 @@
-from Game.Effects.effect_arguments import EffectArguments
+from Game.Effects.game_contexts import PlayerContext
 from Game.Effects.Conditions.full_line_up import FullLineUp
 from Game.Effects.Conditions.has_cards import HasCards
 from Game.Effects.Conditions.not_condition import NotCondition
@@ -17,4 +17,4 @@ class GameOver:
     @property
     def isOver(self):
         """ Return if the game is over """
-        return self.condition.evaluate(EffectArguments(self.game, None))
+        return self.condition.evaluate(PlayerContext(self.game, None))
