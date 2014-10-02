@@ -10,9 +10,9 @@ class CollectCards:
         
     def perform(self, args):
         """ Perform the Game Effect """
-        colelctedCards = [foe.deck[0] for foe in args.foes]
+        collectedCards = [foe.deck[0] for foe in args.foes]
                 
-        event = CardsEvent(colelctedCards, None, args)
+        event = CardsEvent(collectedCards, None, args)
         coroutine = PerformEffects(self.thenEffects, event.args)
         response = yield coroutine.next()
         while True:
