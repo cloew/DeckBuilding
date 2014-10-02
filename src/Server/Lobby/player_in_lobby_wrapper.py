@@ -11,4 +11,5 @@ class PlayerInLobbyWrapper:
     def toJSON(self):
         """ Return the lobby as a JSON Dictionary """
         return {'id':self.id,
+                'name':self.player.name,
                 'character':CharacterWrapper(self.player.character).toJSON()}
