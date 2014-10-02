@@ -19,7 +19,7 @@ class Context:
     
     def loadSource(self, sourceType):
         """ Load the given source using this context """
-        return SourceFactory.getSourceInContext(sourceType)
+        return SourceFactory.getSourceInContext(sourceType, self)
     
 class PlayerContext(Context):
     """ Represents the game context for a particular player """

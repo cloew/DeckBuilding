@@ -3,7 +3,7 @@ import inspect
 def PerformEffectsForEachPlayer(effects, players, context):
     """ Perform the given effects """
     for player in players:
-        context = context.copyForPlayer(player)
+        context = context.getPlayerContext(player)
         
         coroutine = PerformEffects(effects, context)
         try:
