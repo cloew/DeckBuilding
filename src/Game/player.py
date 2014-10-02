@@ -10,14 +10,16 @@ class Player:
     """ Represents a Player in the Game """
     STANDARD_HAND_SIZE = 5
     
-    def __init__(self, character):
+    def __init__(self, name, character):
         """ Initialize a Player """
+        self.name = name
+        self.character = character
+        
         self.nextHandSize = self.STANDARD_HAND_SIZE
         self.deck = DeckWithDiscardPile(deck_initializer=StartingDeckInitializer, reshuffle=True)
         self.deck.shuffle()
         self.drawHand()
         self.ongoing = []
-        self.character = character
         
     def addOngoing(self, card):
         """ Add the given card as an ongoing effect """

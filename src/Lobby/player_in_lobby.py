@@ -6,11 +6,12 @@ class PlayerInLobby:
     
     def __init__(self):
         """ Initialize the Player """
+        self.name = ""
         self.setCharacter("Green Lantern")
         
     def buildGamePlayer(self):
         """ Build the Game Player for this player in the Lobby """
-        self.player = Player(self.character)
+        self.player = Player(self.name, self.character)
         return self.player
         
     def setCharacter(self, characterName):
