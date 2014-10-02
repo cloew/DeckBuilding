@@ -14,7 +14,7 @@ class Attack:
         """ Perform the Game Effect """
         targets = []
         for foe in args.foes:
-            defended = yield DefendRequest(args.parent, foe, args)
+            defended = yield DefendRequest(args.parent, args.copyForPlayer(foe))
             if not defended:
                 targets.append(foe)
             else:
