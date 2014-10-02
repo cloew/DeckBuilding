@@ -1,4 +1,4 @@
-import copy
+from Game.Sources.source_factory import SourceFactory
 
 def GetPlayersStartingWith(player, players):
     """ Get the players in order starting with the given player """
@@ -14,7 +14,14 @@ def GetNextPlayer(player, players):
     index = (index + 1) % len(players)
     return players[index]
 
-class PlayerContext:
+class Context:
+    """ Represents a Game Context """
+    
+    def loadSource(self, sourceType):
+        """ Load the given source using this context """
+        return SourceFactory.getSourceInContext(sourceType)
+    
+class PlayerContext(Context):
     """ Represents the game context for a particular player """
     
     def __init__(self, game, parent, event=None, player=None, potentialPlayers=None):
@@ -56,7 +63,7 @@ class PlayerContext:
         """ Get the Context for the given player """
         return PlayerContext(self.game, self.parent, event=self.event, player=player)
 
-class SystemContext:
+class SystemContext(Context):
     """ Represents the game context for the System to use """
     
     def __init__(self, game, parent, event=None):

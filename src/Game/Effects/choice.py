@@ -1,6 +1,5 @@
 from Game.Commands.Requests.choose_option_request import ChooseOptionRequest
 from Game.Effects.effect_runner import PerformEffects
-from Game.Sources.source_factory import SourceFactory
 
 class Option:
     """ Represents an option for a Choice Effect """
@@ -38,7 +37,7 @@ class Choice:
         """ Return the possible cards """
         possibleCards = None
         if self.relevantSourceType is not None:
-            source = SourceFactory.getSourceForEffect(self.relevantSourceType, context)
+            source = context.loadSource(self.relevantSourceType)
             possibleCards = source
             if self.filter is not None:
                 possibleCards = self.filter.evaluate(context)

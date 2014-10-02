@@ -1,7 +1,6 @@
 from Game.Effects.conditional_effect import ConditionalEffect
 from Game.Effects.Conditions.has_cards import HasCards
-from Game.Events.top_card_event import TopCardEvent
-from Game.Sources.source_factory import SourceFactory
+from Game.Events.cards_event import CardsEvent
 
 import random
 
@@ -15,9 +14,9 @@ class PickRandomCard(ConditionalEffect):
         
     def performEffect(self, context):
         """ Perform the Game Effect """
-        source = SourceFactory.getSourceForEffect(self.sourceType, context)
+        source = context.loadSource(self.sourceType)
         card = random.choice(source)
-        event = TopCardEvent(card, source, context)
+        event = CardsEvent([card], source, context)
         
         coroutine = ConditionalEffect.performEffect(self, event.context)
         response = yield coroutine.next()

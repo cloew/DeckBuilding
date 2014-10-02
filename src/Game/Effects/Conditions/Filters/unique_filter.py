@@ -1,4 +1,3 @@
-from Game.Sources.source_factory import SourceFactory
 
 class UniqueFilter:
     """ Represents a filter that returns only unique values """
@@ -10,7 +9,7 @@ class UniqueFilter:
     
     def evaluate(self, context):
         """ Evaluate the condition """
-        source = SourceFactory.getSourceForEffect(self.sourceType, context)
+        source = context.loadSource(self.sourceType)
         
         cards = []
         valueSet = set()

@@ -1,5 +1,5 @@
 from Game.Effects.game_contexts import PlayerContext
-from Game.Sources.source_factory import SourceFactory, DISCARD_PILE
+from Game.Sources.source_factory import DISCARD_PILE
 
 class BuyCard:
     """ Represents a command to buy a card """
@@ -14,7 +14,7 @@ class BuyCard:
         """ Perform the command """
         context = PlayerContext(self.owner.game, self.card)
         self.owner.spendPower(self.card.calculateCost())
-        coroutine = self.owner.gainCard(self.card, self.source, toSource=SourceFactory.getSourceForEffect(DISCARD_PILE, context))
+        coroutine = self.owner.gainCard(self.card, self.source, toSource=context.loadSource(DISCARD_PILE))
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)

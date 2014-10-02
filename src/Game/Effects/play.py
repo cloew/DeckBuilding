@@ -1,6 +1,5 @@
 from Game.Effects.add_to_source import AddToSource
 from Game.Effects.remove_played_card import RemovePlayedCard
-from Game.Sources.source_factory import SourceFactory
 
 class Play:
     """ Represents an effect to Play Cards """
@@ -14,7 +13,7 @@ class Play:
         
     def perform(self, context):
         """ Perform the Game Effect """
-        source = SourceFactory.getSourceForEffect(self.sourceType, context)
+        source = context.loadSource(self.sourceType)
         for card in source:
             if self.remove:
                 source.remove(card)

@@ -1,6 +1,6 @@
 from Game.Effects.effect_runner import PerformEffects
 from Game.Events.cards_event import CardsEvent
-from Game.Sources.source_factory import SourceFactory, DECK
+from Game.Sources.source_factory import DECK
 
 class CollectCards:
     """ Represents an effect to Collect Cards from the top of your opponents decks """
@@ -14,7 +14,7 @@ class CollectCards:
         
     def perform(self, context):
         """ Perform the Game Effect """
-        collectedCards = [SourceFactory.getSourceForEffect(self.sourceType, context.getPlayerContext(foe))[0] for foe in context.foes]
+        collectedCards = [context.getPlayerContext(foe).loadSource(self.sourceType)[0] for foe in context.foes]
                 
         event = CardsEvent(collectedCards, None, context)
         coroutine = PerformEffects(self.thenEffects, event.context)

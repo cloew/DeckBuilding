@@ -1,7 +1,7 @@
 from Game.Commands.Requests.defend_request import DefendRequest
 from Game.Effects.effect_runner import PerformEffects
 from Game.Events.cards_event import CardsEvent
-from Game.Sources.source_factory import SourceFactory, HAND
+from Game.Sources.source_factory import HAND
 
 class Attack:
     """ Represents an effect to Attack other Players """
@@ -18,9 +18,9 @@ class Attack:
             if not defended:
                 targets.append(foe)
             else:
-                playerArgs = context.getPlayerContext(foe)
-                source = SourceFactory.getSourceForEffect(HAND, playerArgs)
-                event = CardsEvent([defended], source, playerArgs)
+                playerContext = context.getPlayerContext(foe)
+                source = playerContext.loadSource(HAND)
+                event = CardsEvent([defended], source, playerContext)
                 
                 coroutine = PerformEffects(defended.defenseEffects, event.context)
                 try:

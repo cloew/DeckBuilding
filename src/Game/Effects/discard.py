@@ -1,4 +1,4 @@
-from Game.Sources.source_factory import SourceFactory, DISCARD_PILE, HAND
+from Game.Sources.source_factory import DISCARD_PILE
 
 class Discard:
     """ Represents an effect to Discard Cards """
@@ -9,8 +9,8 @@ class Discard:
         
     def perform(self, context):
         """ Perform the Game Effect """
-        source = SourceFactory.getSourceForEffect(self.sourceType, context)
-        discardPile = SourceFactory.getSourceForEffect(DISCARD_PILE, context)
+        source = context.loadSource(self.sourceType)
+        discardPile = context.loadSource(DISCARD_PILE)
         
         for card in list(source):
             source.remove(card)

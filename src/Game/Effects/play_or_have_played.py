@@ -3,7 +3,7 @@ from Game.Effects.conditional_effect import ConditionalEffect
 from Game.Effects.Conditions.and_condition import AndCondition
 from Game.Effects.Conditions.matching import Matching
 from Game.Effects.Triggers.trigger import Trigger
-from Game.Sources.source_factory import SourceFactory, PLAYED, EVENT
+from Game.Sources.source_factory import PLAYED, EVENT
 
 class PlayOrHavePlayed(ConditionalEffect):
     """ Represents an effect that conditionally applies """

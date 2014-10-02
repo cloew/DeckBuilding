@@ -1,4 +1,4 @@
-from Game.Sources.source_factory import SourceFactory, DISCARD_PILE
+from Game.Sources.source_factory import DISCARD_PILE
 
 class GainCard:
     """ Represents an effect to Gain a card """
@@ -12,8 +12,8 @@ class GainCard:
         
     def perform(self, context):
         """ Perform the Game Effect """
-        fromSource = SourceFactory.getSourceForEffect(self.fromSourceType, context)
-        toSource = SourceFactory.getSourceForEffect(self.toSourceType, context)
+        fromSource = context.loadSource(self.fromSourceType)
+        toSource = context.loadSource(self.toSourceType, context)
         
         for card in fromSource:
             coroutine = context.owner.gainCard(card, fromSource, toSource=toSource)

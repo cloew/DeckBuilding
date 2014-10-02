@@ -11,8 +11,8 @@ class PutOnBottom:
         
     def perform(self, context):
         """ Perform the Game Effect """
-        fromSource = SourceFactory.getSourceForEffect(self.fromSourceType, context)
-        toSource = SourceFactory.getSourceForEffect(self.toSourceType, context)
+        fromSource = context.loadSource(self.fromSourceType)
+        toSource = context.loadSource(self.toSourceType)
         
         cards = [self.card]
         if self.card is None:

@@ -1,5 +1,4 @@
 from Game.Effects.Conditions.Filters.Operations.operations import operations
-from Game.Sources.source_factory import SourceFactory
 
 class ComparisonFilter:
     """ Represents a filter that returns all the cards from a source that pass some comparison """
@@ -11,5 +10,5 @@ class ComparisonFilter:
         
     def evaluate(self, context):
         """ Evaluate the condition """
-        source = SourceFactory.getSourceForEffect(self.sourceType, context)
+        source = context.loadSource(self.sourceType)
         return [card for card in source if self.criteria.compare(card, context)]

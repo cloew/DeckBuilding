@@ -1,7 +1,6 @@
 from Game.Commands.Requests.pick_card_request import PickCardRequest
 from Game.Effects.effect_runner import PerformEffects
 from Game.Events.cards_event import CardsEvent
-from Game.Sources.source_factory import SourceFactory
 
 class PickCards:
     """ Represents an effect to pick cards from a source and an optional filter """
@@ -34,7 +33,7 @@ class PickCards:
                 
     def findPossibleCards(self, context):
         """ Return the possible cards """
-        source = SourceFactory.getSourceForEffect(self.sourceType, context)
+        source = context.loadSource(self.sourceType)
         possibleCards = source
         if self.filter is not None:
             possibleCards = self.filter.evaluate(context)
