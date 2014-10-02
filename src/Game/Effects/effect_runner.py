@@ -3,8 +3,7 @@ import inspect
 def PerformEffectsForEachPlayer(effects, players, args):
     """ Perform the given effects """
     for player in players:
-        args = args.copy()
-        args.player = player
+        args = args.copyForPlayer(player)
         
         coroutine = PerformEffects(effects, args)
         try:

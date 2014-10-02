@@ -9,8 +9,7 @@ class AsNextPlayer:
         
     def perform(self, args):
         """ Perform the Game Effect """
-        newArgs = args.copy()
-        newArgs.player = args.nextPlayer
+        newArgs = args.copyForPlayer(args.nextPlayer)
         
         coroutine = PerformEffects(self.thenEffects, newArgs)
         response = yield coroutine.next()

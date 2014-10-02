@@ -51,6 +51,10 @@ class EffectArguments:
     def copy(self):
         """ Copy the Arguments """
         return EffectArguments(self.game, self.parent, event=self.event, player=self.player)
+        
+    def copyForPlayer(self, player):
+        """ Copy the Arguments """
+        return EffectArguments(self.game, self.parent, event=self.event, player=player)
 
 class SystemEffectArguments:
     """ Wrapper for the arguments to an effect for the System to use """
@@ -74,4 +78,8 @@ class SystemEffectArguments:
         
     def copy(self):
         """ Copy the Arguments """
-        return EffectArguments(self.game, self.parent, event=self.event, player=self.player)
+        return SystemEffectArguments(self.game, self.parent, event=self.event)
+        
+    def copyForPlayer(self, player):
+        """ Copy the Arguments """
+        return EffectArguments(self.game, self.parent, event=self.event, player=player)

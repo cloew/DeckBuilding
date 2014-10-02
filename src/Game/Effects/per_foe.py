@@ -9,7 +9,6 @@ class PerFoe:
         
     def perform(self, args):
         """ Perform the Game Effect """
-        print "Performing Each Foe Effect"
         coroutine = PerformEffectsForEachPlayer(self.effects, args.foes, args)
         response = yield coroutine.next()
         while True:
