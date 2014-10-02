@@ -1,9 +1,9 @@
 <div class="deck">
-    <action-card actions="actions" card="deck.cards[0]" index="0" ng-hide="deck.hidden">
+    <action-card  size="size" actions="actions" card="deck.cards[0]" index="0" ng-hide="deck.hidden">
         <deck-counter count="deck.count"></deck-counter>
     </action-card>
-    <div style="width: 150px; float:left; position: relative;">
-        <card-image image="'static/images/background.jpg'" ng-show="deck.hidden">
+    <div style="width: 150px; float:left; position: relative;" ng-show="deck.hidden">
+        <card-image size="size" image="'static/images/background.jpg'">
             <deck-counter count="deck.count"></deck-counter>
         </card-image>
     </div>
