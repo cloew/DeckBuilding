@@ -1,14 +1,14 @@
 from Game.Commands.Requests.defend_request import DefendRequest
-from Game.Effects.effect_runner import PerformEffectsForEachPlayer, PerformEffects
+from Game.Effects.effect_runner import PerformEffects
 from Game.Events.cards_event import CardsEvent
 from Game.Sources.source_factory import SourceFactory, HAND
 
 class Attack:
     """ Represents an effect to Attack other Players """
     
-    def __init__(self, effect):
-        """ Initialize with the effect to attack with """
-        self.effects = [effect]
+    def __init__(self, thenEffects):
+        """ Initialize with the effects to attack with """
+        self.thenEffects = thenEffects
         
     def perform(self, args):
         """ Perform the Game Effect """
@@ -30,7 +30,9 @@ class Attack:
                 except StopIteration:
                     pass
                 
-        coroutine = PerformEffectsForEachPlayer(self.effects, targets, args)
+        args = args.copy()
+        args.foes = targets
+        coroutine = PerformEffects(self.thenEffects, args)
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)
