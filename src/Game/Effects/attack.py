@@ -18,8 +18,7 @@ class Attack:
             if not defended:
                 targets.append(foe)
             else:
-                playerArgs = args.copy()
-                playerArgs.player = foe
+                playerArgs = args.copyForPlayer(foe)
                 source = SourceFactory.getSourceForEffect(HAND, playerArgs)
                 event = CardsEvent([defended], source, playerArgs)
                 
