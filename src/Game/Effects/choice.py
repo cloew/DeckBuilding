@@ -1,5 +1,6 @@
 from Game.Commands.Requests.choose_option_request import ChooseOptionRequest
 from Game.Effects.effect_runner import PerformEffects
+from Game.Sources.source_factory import SourceFactory
 
 class Option:
     """ Represents an option for a Choice Effect """

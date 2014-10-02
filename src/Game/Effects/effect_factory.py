@@ -7,6 +7,7 @@ from Game.Effects.as_owner import AsOwner
 from Game.Effects.attack import Attack
 from Game.Effects.change_power_modifier import ChangePowerModifier
 from Game.Effects.choice import Choice, Option
+from Game.Effects.collect_cards import CollectCards
 from Game.Effects.conditional_effect import ConditionalEffect
 from Game.Effects.deactivate_character import DeactivateCharacter
 from Game.Effects.destroy import Destroy
@@ -62,7 +63,7 @@ EffectFactory = TypedFactory('type', {"ACTIVATE_CHARACTER":Factory(ActivateChara
                                       "ADD_ACTIVATABLE":Factory(AddActivatable, [ComplexParameter("activatable", LoadActivatable)]),
                                       "ADD_TO_LINE_UP":Factory(AddToLineUp, [PrimitiveParameter("count", optional=True)]),
                                       "ADD_TRIGGER":Factory(AddTrigger, [ComplexParameter("trigger", LoadTrigger)]),
-                                      "CHOICE":Factory(Choice, [ComplexParameter("choices", LoadOptions), PrimitiveParameter("source")]),
+                                      "CHOICE":Factory(Choice, [ComplexParameter("choices", LoadOptions), PrimitiveParameter("source", optional=True), ComparisonFilterParameter(optional=True)]),
                                       "DEACTIVATE_CHARACTER":Factory(DeactivateCharacter, []),
                                       "DESTROY":Factory(Destroy, [PrimitiveParameter("source")]),
                                       "DISCARD":Factory(Discard, [PrimitiveParameter("source")]),
@@ -85,6 +86,7 @@ EffectFactory.addFactory("ATTACK", Factory(Attack, [ComplexParameter("effect", E
 EffectFactory.addFactory("CONDITIONAL", Factory(ConditionalEffect, [ComplexParameter("condition", ConditionFactory.load), 
                                                                     ComplexParameter("effect", EffectFactory.load), 
                                                                     ComplexParameter("otherwise", EffectFactory.load, optional=True)]))
+EffectFactory.addFactory("COLLECT_CARDS", Factory(CollectCards, [ComplexParameter("then", EffectFactory.loadAll)]))
 EffectFactory.addFactory("FILTER", Factory(Filter, [PrimitiveParameter("source"), FilterParameter(), ComplexParameter("then", EffectFactory.loadAll)]))
 EffectFactory.addFactory("LOOK_AT_TOP", Factory(LookAtTop, [PrimitiveParameter("source"), ComplexParameter("then", EffectFactory.load)]))
 EffectFactory.addFactory("PER_FOE", Factory(PerFoe, [ComplexParameter("effects", EffectFactory.loadAll)]))
