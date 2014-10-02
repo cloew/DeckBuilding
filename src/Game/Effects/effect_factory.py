@@ -5,6 +5,7 @@ from Game.Effects.add_trigger import AddTrigger
 from Game.Effects.as_next_player import AsNextPlayer
 from Game.Effects.as_owner import AsOwner
 from Game.Effects.attack import Attack
+from Game.Effects.attack_each_foe import AttackEachFoe
 from Game.Effects.change_power_modifier import ChangePowerModifier
 from Game.Effects.choice import Choice, Option
 from Game.Effects.collect_cards import CollectCards
@@ -83,6 +84,7 @@ EffectFactory = TypedFactory('type', {"ACTIVATE_CHARACTER":Factory(ActivateChara
 EffectFactory.addFactory("AS_NEXT_PLAYER", Factory(AsNextPlayer, [ComplexParameter("then", EffectFactory.loadAll)]))
 EffectFactory.addFactory("AS_OWNER", Factory(AsOwner, [ComplexParameter("then", EffectFactory.loadAll)]))
 EffectFactory.addFactory("ATTACK", Factory(Attack, [ComplexParameter("then", EffectFactory.loadAll)]))
+EffectFactory.addFactory("ATTACK_EACH_FOE", Factory(AttackEachFoe, [ComplexParameter("effects", EffectFactory.loadAll)]))
 EffectFactory.addFactory("CONDITIONAL", Factory(ConditionalEffect, [ComplexParameter("condition", ConditionFactory.load), 
                                                                     ComplexParameter("effect", EffectFactory.load), 
                                                                     ComplexParameter("otherwise", EffectFactory.load, optional=True)]))
