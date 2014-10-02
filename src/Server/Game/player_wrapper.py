@@ -20,6 +20,7 @@ class PlayerWrapper:
         characterJSON = GameCharacterWrapper(self.player.character, self.game).toJSON()
         
         return {'ongoing':ongoingJSON,
+                'name':self.player.name,
                 'character':characterJSON,
                 'deck':{'count':len(self.player.deck),
                         'hidden':True},
