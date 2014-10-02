@@ -1,8 +1,5 @@
-from card_wrapper import CardWrapper
-from character_wrapper import CharacterWrapper
 from json_helper import GetCardListJSON
-
-from Game.Sources.source_factory import ONGOING, PLAYED
+from Game.Sources.source_factory import PLAYED
 
 class TurnWrapper:
     """ A Wrapper for a Game Turn """
