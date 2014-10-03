@@ -127,4 +127,10 @@ angular.module('DeckBuildingDirectives', [])
           restrict: 'E',
           replace: true,
           templateUrl: 'static/partials/directives/opponent.html'
+      }})
+    .directive('lineUp', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          templateUrl: 'static/partials/directives/line_up.html'
       }});
