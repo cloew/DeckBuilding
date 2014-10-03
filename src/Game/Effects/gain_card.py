@@ -13,7 +13,7 @@ class GainCard:
     def perform(self, context):
         """ Perform the Game Effect """
         fromSource = context.loadSource(self.fromSourceType)
-        toSource = context.loadSource(self.toSourceType, context)
+        toSource = context.loadSource(self.toSourceType)
         
         for card in fromSource:
             coroutine = context.owner.gainCard(card, fromSource, toSource=toSource)
