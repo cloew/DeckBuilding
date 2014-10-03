@@ -32,14 +32,14 @@ class SuperVillainStack:
     @property
     def cards(self):
         """ Return if the Super Villain can be bought """
-        if self.topCard is not None:
+        if self.available:
             return [self.topCard]
         else:
             return []
         
     @property
-    def canPurchase(self):
-        """ Return if the Super Villain can be bought """
+    def available(self):
+        """ Return if the Super Villain is available """
         return self.topCard is not None
             
     def remove(self, card):
