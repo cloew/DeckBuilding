@@ -4,5 +4,7 @@
             <action-card-icon ng-repeat="action in character.actions"></action-card_icon>
         </card-icons>
     </div>
-    <card-image image="'static/images/background.jpg'" ng-hide="character.active"></card-image>
+    <div  ng-hide="character.active">
+        <card-image image="'static/images/background.jpg'"></card-image>
+    </div>
 </div>

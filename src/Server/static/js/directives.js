@@ -8,6 +8,7 @@ angular.module('DeckBuildingDirectives', [])
           transclude: true,
           scope: {
               image: '=image',
+              size: '=size'
           },
           templateUrl: 'static/partials/directives/card_image.html'
       }})
@@ -49,7 +50,8 @@ angular.module('DeckBuildingDirectives', [])
           scope: {
               actions: '=actions',
               index: '=index',
-              card: '=card'
+              card: '=card',
+              size: '=size'
           },
           template: '<div style="width: 150px; float:left; position: relative;"><card><div ng-transclude></div></card></div>'
       }})
@@ -61,7 +63,7 @@ angular.module('DeckBuildingDirectives', [])
               cards: '=cards',
               actions: '=actions',
           },
-          template: '<div style="display: inline-block; width: 100%;"><action-card actions="actions" card="card" index="$index" ng-repeat="card in cards" ng-hide="$scope.indices.indexOf($index) > -1"></action-card></div>'
+          template: '<div style="display: inline-block; width: 100%;"><action-card actions="actions" size="\'medium\'" card="card" index="$index" ng-repeat="card in cards" ng-hide="$scope.indices.indexOf($index) > -1"></action-card></div>'
       }})
       .directive('deck', function() {
       return {
@@ -70,6 +72,7 @@ angular.module('DeckBuildingDirectives', [])
           scope: {
               deck: '=deck',
               actions: '=actions',
+              size: '=size'
           },
           templateUrl: 'static/partials/directives/deck.html'
       }})
@@ -118,4 +121,10 @@ angular.module('DeckBuildingDirectives', [])
               count: '=count',
           },
           templateUrl: 'static/partials/directives/deck_counter.html'
+      }})
+    .directive('opponent', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          templateUrl: 'static/partials/directives/opponent.html'
       }});
