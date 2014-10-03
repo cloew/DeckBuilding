@@ -20,11 +20,13 @@ class PlayerWrapper:
         characterJSON = GameCharacterWrapper(self.player.character, self.game).toJSON()
         
         return {'ongoing':ongoingJSON,
-                'name':self.player.name,
-                'character':characterJSON,
-                'deck':{'count':len(self.player.deck),
-                        'hidden':True},
-                'discardPile':{'cards':discardPileJSON, 'count':len(discardPileJSON)}}
+                    'name':self.player.name,
+                    'character':characterJSON,
+                    'deck':{'count':len(self.player.deck),
+                               'hidden':True},
+                    'discardPile':{'cards':discardPileJSON, 'count':len(discardPileJSON)},
+                    'hand':{'count':len(self.player.hand),
+                               'hidden':True}}
                 
     def toJSONForYourself(self, includeActions=False):
         """ Return the Player as a JSON Dictionary as if you are this player """
