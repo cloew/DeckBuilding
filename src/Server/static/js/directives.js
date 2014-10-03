@@ -151,4 +151,10 @@ angular.module('DeckBuildingDirectives', [])
           restrict: 'E',
           replace: true,
           templateUrl: 'static/partials/directives/played.html'
+      }})
+    .directive('player', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          templateUrl: 'static/partials/directives/player.html'
       }});

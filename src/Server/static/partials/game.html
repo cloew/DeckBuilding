@@ -40,18 +40,7 @@
     <hand></hand>
 </div>
 <div class="col-md-3">
-    <div class="col-md-12">
-        <div class="col-md-6">
-            <h2>Power: {{game.turn.power}}</h2>
-            <button ng-click="endTurn();" ng-show="game.you.isTurn">Done</button>
-        </div>
-        <div class="col-md-6">
-            <h2 ng-hide="game.turn.modifier === 1">x{{game.turn.modifier}}</h2>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <character character="game.you.character" actions="actions"></character>
-    </div>
+    <player></player>
 </div>
 <div class="clearfix visible-md-block"></div>
 </div>
