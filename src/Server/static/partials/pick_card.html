@@ -5,10 +5,10 @@
 <div class="center card-list">
     <h2 ng-hide="request.number === 1">Chosen Cards</h2>
     <div style="display: inline-block; width: 100%;" ng-hide="request.number === 1">
-        <action-card card="card" index="$index" ng-repeat="card in request.cards" ng-show="hasCard($index)"></action-card>
+        <action-card size="'medium'" card="card" index="$index" ng-repeat="card in request.cards" ng-show="hasCard($index)"></action-card>
     </div>
     <h2 ng-hide="request.number === 1">Available Cards</h2>
     <div style="display: inline-block; width: 100%;">
-        <action-card actions="actions" card="card" index="$index" ng-repeat="card in request.cards" ng-hide="hasCard($index)"></action-card>
+        <action-card size="'medium'" actions="actions" card="card" index="$index" ng-repeat="card in request.cards" ng-hide="hasCard($index)"></action-card>
     </div>
 </div>
