@@ -8,10 +8,10 @@
             <deck deck="game.mainDeck" actions="actions" size="'medium'"></deck>
         </div>
         <div class="col-md-4">
-            <deck deck="game.kicks" actions="actions" size="'medium'"></deck>
+            <deck deck="game.weaknesses" actions="actions" size="'medium'"></deck>
         </div>
         <div class="col-md-4">
-            <deck deck="game.weaknesses" actions="actions" size="'medium'"></deck>
+            <deck deck="game.destroyed" actions="actions" size="'medium'"></deck>
         </div>
     </div>
     <line-up></line-up>
@@ -20,7 +20,7 @@
             <deck deck="game.superVillains" actions="actions" size="'medium'"></deck>
         </div>
         <div class="col-md-6">
-            <deck deck="game.destroyed" actions="actions" size="'medium'"></deck>
+            <deck deck="game.kicks" actions="actions" size="'medium'"></deck>
         </div>
     </div>
 </div>
@@ -35,14 +35,9 @@
     </div>
 </div>
 <div class="col-md-6">
-    <div class="center card-list">
-        <h2>Played</h2>
-        <card-list cards="game.turn.played" actions="actions"></card-list>
-        <h2>Ongoing</h2>
-        <card-list cards="game.you.ongoing" actions="actions"></card-list>
-        <h2>Hand</h2>
-        <card-list cards="game.you.hand" actions="actions"></card-list>
-    </div>
+    <played></played>
+    <ongoing></ongoing>
+    <hand></hand>
 </div>
 <div class="col-md-3">
     <div class="col-md-12">

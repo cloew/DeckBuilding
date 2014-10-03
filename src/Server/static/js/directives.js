@@ -128,9 +128,27 @@ angular.module('DeckBuildingDirectives', [])
           replace: true,
           templateUrl: 'static/partials/directives/opponent.html'
       }})
+    .directive('hand', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          templateUrl: 'static/partials/directives/hand.html'
+      }})
     .directive('lineUp', function() {
       return {
           restrict: 'E',
           replace: true,
           templateUrl: 'static/partials/directives/line_up.html'
+      }})
+    .directive('ongoing', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          templateUrl: 'static/partials/directives/ongoing.html'
+      }})
+    .directive('played', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          templateUrl: 'static/partials/directives/played.html'
       }});
