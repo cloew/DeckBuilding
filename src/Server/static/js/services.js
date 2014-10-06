@@ -16,11 +16,11 @@ services.service('notificationService', function() {
   };
 });
 
-services.factory('NotificationFactory', function() {
+services.factory('StandardNotificationFactory', function() {
+    var type = "STANDARD"
     var typeToData = {"HIT_BY_ATTACK":{"forYou":"You were hit by the attack.",
                                        "forOthers":"was hit by the attack.",
-                                       "alertType":"danger",
-                                       "type":"STANDARD"}};
+                                       "alertType":"danger"}};
     var getMessage = function(notification) {
         if (notification.isYou) {
             return typeToData[notification.type].forYou;
@@ -31,11 +31,18 @@ services.factory('NotificationFactory', function() {
     var getAlertType = function(notification) {
         return typeToData[notification.type].alertType;
     };
-    var getType = function(notification) {
-        return typeToData[notification.type].type;
-    };
+    return {"type":"STANDARD", "load": function(notification) {
+        return {"message":getMessage(notification), "alertType":getAlertType(notification)};
+    }};
+});
+
+services.factory('NotificationFactory', function(StandardNotificationFactory) {
+    var typeToData = {"HIT_BY_ATTACK":StandardNotificationFactory};
     return function(notification) {
-        return {"message":getMessage(notification), "alertType":getAlertType(notification), "type":getType(notification)};
+        var factory = typeToData[notification.type]
+        var newNotification = factory.load(notification);
+        newNotification.type = factory.type;
+        return newNotification;
     };
 });
 
