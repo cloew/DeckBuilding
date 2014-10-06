@@ -6,7 +6,7 @@ from turn import Turn
 
 from Game.Commands.start_turn import StartTurn
 from Game.Decks.decks import MainDeckInitializer, KickDeckInitializer, WeaknessDeckInitializer, SuperVillainDeckInitializer
-from Game.Notifications.notifcation_tracker import NotificationTracker
+from Game.Notifications.notification_tracker import NotificationTracker
 
 from kao_deck.deck import Deck
 
@@ -27,7 +27,7 @@ class Game:
         self.superVillainStack = SuperVillainStack(Deck(deck_initializer=SuperVillainDeckInitializer))
         
         self.gameOver = GameOver(self)
-        self.notificationTracker = notificationTracker
+        self.notificationTracker = NotificationTracker()
         
         self.turnCoroutine = self.pickTurn()
         self.nextTurn()
