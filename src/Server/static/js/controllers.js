@@ -132,10 +132,6 @@ controllers.controller('LobbyController', function($scope, $cookies, $http, $loc
             alert(error);
         });
     };
-    $scope.$on('$destroy', function() {
-        $scope.donePolling = true;
-        $timeout.cancel($scope.pollPromise);
-    });
 });
 controllers.controller('GameController', function($scope, $cookies, $http, $location, $routeParams, $modal, notificationService, UrlPoller) {
     var rootUrl = '/api/game/'+$routeParams.gameId+'/player/'+$cookies.playerId;
@@ -226,10 +222,6 @@ controllers.controller('GameController', function($scope, $cookies, $http, $loca
           size: 'lg'
         });
     };
-    $scope.$on('$destroy', function() {
-        $scope.donePolling = true;
-        $timeout.cancel($scope.pollPromise);
-    });
 });
 controllers.controller('GameResultsController', function($scope, $cookies, $http, $routeParams) {
     var rootUrl = '/api/game/'+$routeParams.gameId+'/player/'+$cookies.playerId+'/results';
