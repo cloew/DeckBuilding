@@ -1,6 +1,7 @@
 from Game.Commands.Requests.defend_request import DefendRequest
 from Game.Effects.effect_runner import PerformEffects
 from Game.Events.cards_event import CardsEvent
+from Game.Notifications.cards_notification import CardsNotification, DEFENDED
 from Game.Notifications.notification import Notification, HIT_BY_ATTACK
 from Game.Sources.source_factory import HAND
 
@@ -23,6 +24,7 @@ class Attack:
                 playerContext = context.getPlayerContext(foe)
                 source = playerContext.loadSource(HAND)
                 event = CardsEvent([defended], source, playerContext)
+                context.addNotification(Notification(DEFENDED, foe, [defended]))
                 
                 coroutine = PerformEffects(defended.defenseEffects, event.context)
                 try:

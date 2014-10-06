@@ -1,10 +1,11 @@
 
 class NotificationWrapper:
-    """ Wrapper for a GameNotification to handle its conversion to JSON """
+    """ Wrapper for a Game Notification to handle its conversion to JSON """
     
-    def __init__(self, notification, requestingPlayer):
+    def __init__(self, notification, game, requestingPlayer):
         """ Initialize the Notification Wrapper """
         self.notification = notification
+        self.game = game
         self.requestingPlayer = requestingPlayer
         
     def toJSON(self):

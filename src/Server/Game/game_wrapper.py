@@ -45,7 +45,7 @@ class GameWrapper:
         gameJSON = json['game']
         gameJSON['you'] = PlayerWrapper(yourPlayer, self.game).toJSONForYourself(includeActions=isYourTurn)
         gameJSON['you']['isTurn'] = isYourTurn
-        gameJSON['notifications'] = [NotificationWrapperFactory.buildWrapper(notification, yourPlayer).toJSON() for notification in self.game.notificationTracker.latestNotifications]
+        gameJSON['notifications'] = [NotificationWrapperFactory.buildWrapper(notification, self.game, yourPlayer).toJSON() for notification in self.game.notificationTracker.latestNotifications]
         gameJSON['players'] = [PlayerWrapper(player, self.game).toJSON(includeActions=isYourTurn) for id, player in self.players.items() if id != playerId]
                     
         request = self.game.currentTurn.request
