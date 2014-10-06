@@ -1,5 +1,6 @@
 from card_wrapper import CardWrapper
 from json_helper import GetCardListJSON
+from notification_wrapper import NotificationWrapper
 from player_wrapper import PlayerWrapper
 from supervillain_stack_wrapper import SuperVillainStackWrapper
 from turn_wrapper import TurnWrapper
@@ -44,6 +45,7 @@ class GameWrapper:
         gameJSON = json['game']
         gameJSON['you'] = PlayerWrapper(yourPlayer, self.game).toJSONForYourself(includeActions=isYourTurn)
         gameJSON['you']['isTurn'] = isYourTurn
+        gameJSON['notifications'] = [NotificationWrapper(notification, yourPlayer).toJSON() for notification in self.game.notificationTracker.notifications]
         gameJSON['players'] = [PlayerWrapper(player, self.game).toJSON(includeActions=isYourTurn) for id, player in self.players.items() if id != playerId]
                     
         request = self.game.currentTurn.request
