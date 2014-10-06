@@ -1,6 +1,7 @@
 from Game.Commands.Requests.defend_request import DefendRequest
 from Game.Effects.effect_runner import PerformEffects
 from Game.Events.cards_event import CardsEvent
+from Game.Notifications.notification import Notification
 from Game.Sources.source_factory import HAND
 
 class Attack:
@@ -17,6 +18,7 @@ class Attack:
             defended = yield DefendRequest(context.parent, context.getPlayerContext(foe))
             if not defended:
                 targets.append(foe)
+                context.addNotification(Notification(foe, 'was hit by the attack.'))
             else:
                 playerContext = context.getPlayerContext(foe)
                 source = playerContext.loadSource(HAND)
