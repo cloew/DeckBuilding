@@ -35,6 +35,21 @@ controllers.factory('NotificationFactory', function() {
     };
 });
 
+controllers.factory('Poller', function($timeout) {
+    return function(parentScope, pollMethod) {
+        (function tick() {
+            pollMethod();
+            if (!parentScope.donePolling) {
+                parentScope.pollPromise = $timeout(tick, 1000);
+            }
+        })();
+        parentScope.$on('$destroy', function() {
+            parentScope.donePolling = true;
+            $timeout.cancel(parentScope.pollPromise);
+        });
+    };
+});
+
 controllers.controller('StartGameController', function ($scope, $http, $location) {
     $scope.startGame = function() {
         $http.post('/api/startgame').success(function(data) {
@@ -46,20 +61,14 @@ controllers.controller('StartGameController', function ($scope, $http, $location
     };
 });
 
-controllers.controller('LobbiesController', function($scope, $cookies, $http, $location, $timeout) {
-    (function tick() {
+controllers.controller('LobbiesController', function($scope, $cookies, $http, $location, Poller) {
+    Poller($scope, function() {
         $http.get('/api/lobbies').success(function(data) {
             $scope.lobbies = data['lobbies'];
-            if (!$scope.donePolling) {
-                $scope.pollPromise = $timeout(tick, 1000);
-            }
         }).error(function(error) {
             console.log(error);
-            if (!$scope.donePolling) {
-                $scope.pollPromise = $timeout(tick, 1000);
-            }
         });
-    })();
+    });
     $scope.startNewLobby = function() {
         $http.post('/api/lobbies', {headers: {'Content-Type': 'application/json'}}).success(function(data) {
             $scope.trackLobby(data);
@@ -81,12 +90,15 @@ controllers.controller('LobbiesController', function($scope, $cookies, $http, $l
     $scope.goToLobby = function(lobbyId) {
         $location.path('/lobbies/'+lobbyId);
     };
-    $scope.$on('$destroy', function() {
-        $scope.donePolling = true;
-        $timeout.cancel($scope.pollPromise);
-    });
 });
-controllers.controller('LobbyController', function($scope, $cookies, $http, $location, $timeout, $routeParams) {
+controllers.controller('LobbyController', function($scope, $cookies, $http, $location, $routeParams, Poller) {
+    Poller($scope, function() {
+        $http.get('/api/lobbies/'+$routeParams.lobbyId+'/player/'+$cookies.playerId).success(function(data) {
+            $scope.setLobby(data);
+        }).error(function(error) {
+            console.log(error);
+        });
+    });
     $scope.setLobby = function(data) {
         $scope.lobby = data;
         $scope.lobby.allPlayers = [$scope.lobby.you];
@@ -95,19 +107,6 @@ controllers.controller('LobbyController', function($scope, $cookies, $http, $loc
             $location.path('/game/'+data.gameId);
         }
     };
-    (function tick() {
-        $http.get('/api/lobbies/'+$routeParams.lobbyId+'/player/'+$cookies.playerId).success(function(data) {
-            $scope.setLobby(data);
-            if (!$scope.donePolling) {
-                $scope.pollPromise = $timeout(tick, 1000);
-            }
-        }).error(function(error) {
-            console.log(error);
-            if (!$scope.donePolling) {
-                $scope.pollPromise = $timeout(tick, 1000);
-            }
-        });
-    })();
     $scope.changeCharacter = function() {
         $http.post('/api/lobbies/'+$routeParams.lobbyId+'/player/'+$cookies.playerId+'/changecharacter', {'character':$scope.newCharacter}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
             $scope.setLobby(data);
@@ -134,8 +133,15 @@ controllers.controller('LobbyController', function($scope, $cookies, $http, $loc
         $timeout.cancel($scope.pollPromise);
     });
 });
-controllers.controller('GameController', function($scope, $cookies, $http, $location, $routeParams, $timeout, $modal, notificationService) {
+controllers.controller('GameController', function($scope, $cookies, $http, $location, $routeParams, $modal, notificationService, Poller) {
     var rootUrl = '/api/game/'+$routeParams.gameId+'/player/'+$cookies.playerId;
+    Poller($scope, function() {
+        $http.get(rootUrl).success(function(data) {
+            $scope.setGame(data);
+        }).error(function(error) {
+            console.log(error);
+        });
+    });
     $scope.setGame = function(data) {
         $scope.game = data['game'];
         notificationService.setNotifications($scope.game.notifications);
@@ -146,19 +152,6 @@ controllers.controller('GameController', function($scope, $cookies, $http, $loca
             $scope.openRequestModal()
         }
     };
-    (function tick() {
-        $http.get(rootUrl).success(function(data) {
-            $scope.setGame(data);
-            if (!$scope.donePolling) {
-                $scope.pollPromise = $timeout(tick, 1000);
-            }
-        }).error(function(error) {
-            console.log(error);
-            if (!$scope.donePolling) {
-                $scope.pollPromise = $timeout(tick, 1000);
-            }
-        });
-    })();
     $scope.actions = {};
     $scope.actions.activateCard = function(index, source) {  
         $http.post(rootUrl+'/activate', {'index':index, 'source':source}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
@@ -238,7 +231,7 @@ controllers.controller('GameController', function($scope, $cookies, $http, $loca
         $timeout.cancel($scope.pollPromise);
     });
 });
-controllers.controller('GameResultsController', function($scope, $cookies, $http, $routeParams, $timeout, $modal) {
+controllers.controller('GameResultsController', function($scope, $cookies, $http, $routeParams) {
     var rootUrl = '/api/game/'+$routeParams.gameId+'/player/'+$cookies.playerId+'/results';
     $http.get(rootUrl).success(function(data) {
         $scope.results = data;
@@ -297,19 +290,12 @@ controllers.controller('DefendController', function($scope, $modalInstance, pare
     };
 });
 
-controllers.controller('NotificationController', function($scope, $timeout, notificationService, NotificationFactory) {
-    (function tick() {
+controllers.controller('NotificationController', function($scope, notificationService, NotificationFactory, Poller) {
+    Poller($scope, function() {
         var notifications = notificationService.getNotifications();
         $scope.notifications = [];
         angular.forEach(notifications, function(notification) {
             $scope.notifications.push(NotificationFactory(notification));
         });
-        if (!$scope.donePolling) {
-            $scope.pollPromise = $timeout(tick, 1000);
-        }
-    })();
-    $scope.$on('$destroy', function() {
-        $scope.donePolling = true;
-        $timeout.cancel($scope.pollPromise);
     });
 });
