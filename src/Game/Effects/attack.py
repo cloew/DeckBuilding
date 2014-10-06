@@ -24,7 +24,7 @@ class Attack:
                 playerContext = context.getPlayerContext(foe)
                 source = playerContext.loadSource(HAND)
                 event = CardsEvent([defended], source, playerContext)
-                context.addNotification(Notification(DEFENDED, foe, [defended]))
+                context.addNotification(CardsNotification(DEFENDED, foe, [defended]))
                 
                 coroutine = PerformEffects(defended.defenseEffects, event.context)
                 try:

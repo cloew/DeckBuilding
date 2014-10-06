@@ -17,8 +17,10 @@ services.service('notificationService', function() {
 });
 
 services.factory('StandardNotificationFactory', function() {
-    var type = "STANDARD"
-    var typeToData = {"HIT_BY_ATTACK":{"forYou":"You were hit by the attack.",
+    var typeToData = {"DEFENDED":{"forYou":"You defended with ",
+                                  "forOthers":"defended with",
+                                  "alertType":"success"},
+                      "HIT_BY_ATTACK":{"forYou":"You were hit by the attack.",
                                        "forOthers":"was hit by the attack.",
                                        "alertType":"danger"}};
     var getMessage = function(notification) {
@@ -36,8 +38,17 @@ services.factory('StandardNotificationFactory', function() {
     }};
 });
 
-services.factory('NotificationFactory', function(StandardNotificationFactory) {
-    var typeToData = {"HIT_BY_ATTACK":StandardNotificationFactory};
+services.factory('CardsNotificationFactory', function(StandardNotificationFactory) {
+    return {"type":"CARDS", "load": function(notification) {
+        var result = StandardNotificationFactory.load(notification);
+        result.cards = notification.cards;
+        return result;
+    }};
+});
+
+services.factory('NotificationFactory', function(StandardNotificationFactory, CardsNotificationFactory) {
+    var typeToData = {"HIT_BY_ATTACK":StandardNotificationFactory,
+                      "DEFENDED":CardsNotificationFactory};
     return function(notification) {
         var factory = typeToData[notification.type]
         var newNotification = factory.load(notification);
@@ -51,7 +62,7 @@ services.factory('Poller', function($timeout) {
         (function tick() {
             pollMethod();
             if (!parentScope.donePolling) {
-                parentScope.pollPromise = $timeout(tick, 1000);
+                parentScope.pollPromise = $timeout(tick, 30000);
             }
         })();
         parentScope.$on('$destroy', function() {

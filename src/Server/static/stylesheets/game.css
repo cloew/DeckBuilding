@@ -115,3 +115,14 @@
 .modal-dialog{
   width:800px;
 }
+.tooltip-inner{
+  max-width:100%;
+}
+.tooltip.in {
+    opacity: 1;
+}
+.fake-link {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}

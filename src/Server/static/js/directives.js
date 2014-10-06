@@ -95,6 +95,12 @@ angular.module('DeckBuildingDirectives', [])
           replace: true,
           templateUrl: 'static/partials/directives/Notifications/notification.html'
       }})
+    .directive('cardsNotification', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          templateUrl: 'static/partials/directives/Notifications/cards_notification.html'
+      }})
     .directive('standardNotification', function() {
       return {
           restrict: 'E',
