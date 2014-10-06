@@ -16,6 +16,21 @@ controllers.service('notificationService', function() {
   };
 });
 
+controllers.factory('NotificationFactory', function() {
+    var playerMessages = {"HIT_BY_ATTACK":"You were hit by the attack."};
+    var otherPlayerMessages = {"HIT_BY_ATTACK":"was hit by the attack."};
+    var getMessage = function(notification) {
+        if (notification.isYou) {
+            return playerMessages[notification.type];
+        } else {
+            return notification.name + " " + otherPlayerMessages[notification.type];
+        }
+    };
+    return function(notification) {
+        return {"message":getMessage(notification)}
+    };
+});
+
 controllers.controller('StartGameController', function ($scope, $http, $location) {
     $scope.startGame = function() {
         $http.post('/api/startgame').success(function(data) {
@@ -278,22 +293,17 @@ controllers.controller('DefendController', function($scope, $modalInstance, pare
     };
 });
 
-controllers.controller('NotificationController', function($scope, $timeout, notificationService) {
+controllers.controller('NotificationController', function($scope, $timeout, notificationService, NotificationFactory) {
     (function tick() {
-        $scope.notifications = notificationService.getNotifications();
+        var notifications = notificationService.getNotifications();
+        $scope.notifications = [];
+        angular.forEach(notifications, function(notification) {
+            $scope.notifications.push(NotificationFactory(notification));
+        });
         if (!$scope.donePolling) {
             $scope.pollPromise = $timeout(tick, 1000);
         }
     })();
-    $scope.playerMessages = {"HIT_BY_ATTACK":"You were hit by the attack."};
-    $scope.otherPlayerMessages = {"HIT_BY_ATTACK":"was hit by the attack."};
-    $scope.getMessage = function(notification) {
-        if (notification.isYou) {
-            return $scope.playerMessages[notification.type];
-        } else {
-            return notification.name + " " + $scope.otherPlayerMessages[notification.type];
-        }
-    };
     $scope.$on('$destroy', function() {
         $scope.donePolling = true;
         $timeout.cancel($scope.pollPromise);
