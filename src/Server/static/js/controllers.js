@@ -19,7 +19,8 @@ controllers.service('notificationService', function() {
 controllers.factory('NotificationFactory', function() {
     var typeToData = {"HIT_BY_ATTACK":{"forYou":"You were hit by the attack.",
                                        "forOthers":"was hit by the attack.",
-                                       "type":"danger"}};
+                                       "alertType":"danger",
+                                       "type":"STANDARD"}};
     var getMessage = function(notification) {
         if (notification.isYou) {
             return typeToData[notification.type].forYou;
@@ -27,11 +28,14 @@ controllers.factory('NotificationFactory', function() {
             return notification.name + " " + typeToData[notification.type].forOthers;
         }
     };
+    var getAlertType = function(notification) {
+        return typeToData[notification.type].alertType;
+    };
     var getType = function(notification) {
         return typeToData[notification.type].type;
     };
     return function(notification) {
-        return {"message":getMessage(notification), "type":getType(notification)};
+        return {"message":getMessage(notification), "alertType":getAlertType(notification), "type":getType(notification)};
     };
 });
 

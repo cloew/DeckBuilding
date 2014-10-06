@@ -89,6 +89,18 @@ angular.module('DeckBuildingDirectives', [])
           replace: true,
           templateUrl: 'static/partials/directives/action_card_icon.html'
       }})
+    .directive('notification', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          templateUrl: 'static/partials/directives/Notifications/notification.html'
+      }})
+    .directive('standardNotification', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          templateUrl: 'static/partials/directives/Notifications/standard_notification.html'
+      }})
       .directive('activateIcon', function() {
       return {
           restrict: 'E',
