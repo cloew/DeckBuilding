@@ -2,6 +2,20 @@
 
 var controllers = angular.module('DeckBuildingControllers', ['ui.bootstrap', 'ngCookies']);
 
+controllers.service('notificationService', function() {
+  var notifications = [];
+  var setNotifications = function(newNotifications) {
+      notifications = newNotifications;
+  };
+  var getNotifications = function(){
+      return notifications;
+  };
+  return {
+    setNotifications: setNotifications,
+    getNotifications: getNotifications
+  };
+});
+
 controllers.controller('StartGameController', function ($scope, $http, $location) {
     $scope.startGame = function() {
         $http.post('/api/startgame').success(function(data) {
@@ -101,10 +115,11 @@ controllers.controller('LobbyController', function($scope, $cookies, $http, $loc
         $timeout.cancel($scope.pollPromise);
     });
 });
-controllers.controller('GameController', function($scope, $cookies, $http, $location, $routeParams, $timeout, $modal) {
+controllers.controller('GameController', function($scope, $cookies, $http, $location, $routeParams, $timeout, $modal, notificationService) {
     var rootUrl = '/api/game/'+$routeParams.gameId+'/player/'+$cookies.playerId;
     $scope.setGame = function(data) {
         $scope.game = data['game'];
+        notificationService.setNotifications($scope.game.notifications);
         if ($scope.game.isOver) {
             $location.path('/game/'+$scope.game.id+'/results');
         }
@@ -261,4 +276,26 @@ controllers.controller('DefendController', function($scope, $modalInstance, pare
         $modalInstance.dismiss('cancel');
         $scope.parent.hasModal = false;
     };
+});
+
+controllers.controller('NotificationController', function($scope, $timeout, notificationService) {
+    (function tick() {
+        $scope.notifications = notificationService.getNotifications();
+        if (!$scope.donePolling) {
+            $scope.pollPromise = $timeout(tick, 1000);
+        }
+    })();
+    $scope.playerMessages = {"HIT_BY_ATTACK":"You were hit by the attack."};
+    $scope.otherPlayerMessages = {"HIT_BY_ATTACK":"was hit by the attack."};
+    $scope.getMessage = function(notification) {
+        if (notification.isYou) {
+            return $scope.playerMessages[notification.type];
+        } else {
+            return notification.name + " " + $scope.otherPlayerMessages[notification.type];
+        }
+    };
+    $scope.$on('$destroy', function() {
+        $scope.donePolling = true;
+        $timeout.cancel($scope.pollPromise);
+    });
 });

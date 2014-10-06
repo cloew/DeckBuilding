@@ -9,11 +9,6 @@ class NotificationWrapper:
         
     def toJSON(self):
         """ Return the Notification as JSON """
-        return {"message":self.getMessage()}
-        
-    def getMessage(self):
-        """ Return the proper Notification message """
-        name = self.notification.player.name
-        if self.notification.player is self.requestingPlayer:
-            name = "You"
-        return "{0} {1}".format(name, self.notification.message)
+        return {"type":self.notification.notificationType,
+                "name":self.notification.player.name,
+                "isYou":self.notification.player is self.requestingPlayer}
