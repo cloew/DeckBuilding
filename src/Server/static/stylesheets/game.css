@@ -112,3 +112,6 @@
     border-radius: 4px;
     margin:15px;
 }
+.modal-dialog{
+  width:800px;
+}
