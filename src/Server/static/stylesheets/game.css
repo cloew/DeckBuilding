@@ -100,3 +100,15 @@
     align-items: center;
     margin: 5px;
 }
+.alert.notification {
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+.notification-container {
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 4px;
+    margin:15px;
+}

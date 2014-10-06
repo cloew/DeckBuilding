@@ -140,6 +140,12 @@ angular.module('DeckBuildingDirectives', [])
           replace: true,
           templateUrl: 'static/partials/directives/line_up.html'
       }})
+    .directive('notifications', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          templateUrl: 'static/partials/directives/notifications.html'
+      }})
     .directive('ongoing', function() {
       return {
           restrict: 'E',
