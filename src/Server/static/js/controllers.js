@@ -17,17 +17,21 @@ controllers.service('notificationService', function() {
 });
 
 controllers.factory('NotificationFactory', function() {
-    var playerMessages = {"HIT_BY_ATTACK":"You were hit by the attack."};
-    var otherPlayerMessages = {"HIT_BY_ATTACK":"was hit by the attack."};
+    var typeToData = {"HIT_BY_ATTACK":{"forYou":"You were hit by the attack.",
+                                       "forOthers":"was hit by the attack.",
+                                       "type":"danger"}};
     var getMessage = function(notification) {
         if (notification.isYou) {
-            return playerMessages[notification.type];
+            return typeToData[notification.type].forYou;
         } else {
-            return notification.name + " " + otherPlayerMessages[notification.type];
+            return notification.name + " " + typeToData[notification.type].forOthers;
         }
     };
+    var getType = function(notification) {
+        return typeToData[notification.type].type;
+    };
     return function(notification) {
-        return {"message":getMessage(notification)}
+        return {"message":getMessage(notification), "type":getType(notification)};
     };
 });
 
