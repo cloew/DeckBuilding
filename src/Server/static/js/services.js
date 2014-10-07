@@ -2,18 +2,39 @@
 
 var services = angular.module('DeckBuildingServices', []);
 
-services.service('notificationService', function() {
-  var notifications = [];
-  var setNotifications = function(newNotifications) {
-      notifications = newNotifications;
-  };
-  var getNotifications = function(){
-      return notifications;
-  };
-  return {
-    setNotifications: setNotifications,
-    getNotifications: getNotifications
-  };
+services.service('notificationService', function(NotificationFactory) {
+    var notifications = [];
+    var setNotifications = function(newNotifications) {
+        var newWrappedNotifications = [];
+        angular.forEach(newNotifications, function(notification) {
+            newWrappedNotifications.push(NotificationFactory(notification));
+        });
+        mergeNotifications(newWrappedNotifications);
+    };
+    var getNotifications = function(){
+        return notifications;
+    };
+    var mergeNotifications = function(newNotifications){
+        var allIDs =[];
+        angular.forEach(notifications, function(notification) {    
+            allIDs.push(notification.id);
+        });
+        angular.forEach(newNotifications, function(notification, key) {    
+            if (allIDs.indexOf(notification.id) === -1) {
+                notifications.push(notification);
+            }
+        });
+        notifications.sort(function(a, b) {
+            return ((a.id < b.id) ? -1 : (a.id > b.id) ? 1 : 0)*-1;
+        });
+        while (notifications.length > newNotifications.length) {
+            notifications.pop();
+        };
+    };
+    return {
+        getNotifications: getNotifications,
+        setNotifications: setNotifications
+    };
 });
 
 services.factory('StandardNotificationFactory', function() {
@@ -34,7 +55,7 @@ services.factory('StandardNotificationFactory', function() {
         return typeToData[notification.type].alertType;
     };
     return {"type":"STANDARD", "load": function(notification) {
-        return {"message":getMessage(notification), "alertType":getAlertType(notification)};
+        return {"message":getMessage(notification), "alertType":getAlertType(notification), "id":notification.id};
     }};
 });
 
@@ -62,7 +83,7 @@ services.factory('Poller', function($timeout) {
         (function tick() {
             pollMethod();
             if (!parentScope.donePolling) {
-                parentScope.pollPromise = $timeout(tick, 30000);
+                parentScope.pollPromise = $timeout(tick, 1000);
             }
         })();
         parentScope.$on('$destroy', function() {

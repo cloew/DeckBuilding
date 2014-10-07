@@ -7,6 +7,7 @@ class NotificationTracker:
         """ Initialize the Notification Tracker """
         self.notifications = []
         self.append = self.notifications.append
+        self.indexOf = self.notifications.index
         
     @property
     def latestNotifications(self):

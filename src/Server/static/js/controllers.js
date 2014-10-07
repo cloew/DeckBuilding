@@ -223,11 +223,8 @@ controllers.controller('DefendController', function($scope, $modalInstance, pare
 });
 
 controllers.controller('NotificationController', function($scope, notificationService, NotificationFactory, Poller) {
+    $scope.notifications = [];
     Poller($scope, function() {
-        var notifications = notificationService.getNotifications();
-        $scope.notifications = [];
-        angular.forEach(notifications, function(notification) {
-            $scope.notifications.push(NotificationFactory(notification));
-        });
+        $scope.notifications = notificationService.getNotifications();
     });
 });

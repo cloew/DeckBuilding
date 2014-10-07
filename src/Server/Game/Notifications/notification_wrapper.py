@@ -11,5 +11,6 @@ class NotificationWrapper:
     def toJSON(self):
         """ Return the Notification as JSON """
         return {"type":self.notification.notificationType,
+                "id":self.game.notificationTracker.indexOf(self.notification)+1,
                 "name":self.notification.player.name,
                 "isYou":self.notification.player is self.requestingPlayer}
