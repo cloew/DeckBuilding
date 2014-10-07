@@ -43,7 +43,9 @@ services.factory('StandardNotificationFactory', function() {
                                   "alertType":"success"},
                       "HIT_BY_ATTACK":{"forYou":"You were hit by the attack.",
                                        "forOthers":"was hit by the attack.",
-                                       "alertType":"danger"}};
+                                       "alertType":"danger"},
+                      "REVEAL":{"forYou":"You revealed ",
+                                "forOthers":"revealed "}};
     var getMessage = function(notification) {
         if (notification.isYou) {
             return typeToData[notification.type].forYou;
@@ -63,6 +65,15 @@ services.factory('CardsNotificationFactory', function(StandardNotificationFactor
     return {"type":"CARDS", "load": function(notification) {
         var result = StandardNotificationFactory.load(notification);
         result.cards = notification.cards;
+        return result;
+    }};
+});
+
+services.factory('RevealNotificationFactory', function(StandardNotificationFactory) {
+    var typeToData = {"DECK":"the top of their deck."}
+    return {"type":"REVEAL", "load": function(notification) {
+        var result = CardsNotificationFactory.load(notification);
+        result.sourceText = " from " + typeToData[notification.sourceType];
         return result;
     }};
 });
