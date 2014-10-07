@@ -10,7 +10,7 @@ class LookAtTop(ConditionalEffect):
         self.sourceType = sourceType
         ConditionalEffect.__init__(self, HasCards(self.sourceType), thenEffects)
         
-    def performEffect(self, context):
+    def performEffects(self, context):
         """ Perform the Game Effect """
         source = context.loadSource(self.sourceType)
         card = source[0]
