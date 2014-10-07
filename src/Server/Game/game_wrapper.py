@@ -39,16 +39,18 @@ class GameWrapper:
                 
     def toJSONForPlayer(self, playerId):
         """ Return the more detailed JSON for the given player """
+        request = self.game.currentTurn.request
         yourPlayer = self.players[playerId]
         isYourTurn = yourPlayer is self.game.currentTurn.player
-        json = self.toJSON(includeActions=isYourTurn)
+        includeActions = isYourTurn and (request is None or yourPlayer in request.players)
+        
+        json = self.toJSON(includeActions=includeActions)
         gameJSON = json['game']
-        gameJSON['you'] = PlayerWrapper(yourPlayer, self.game).toJSONForYourself(includeActions=isYourTurn)
+        gameJSON['you'] = PlayerWrapper(yourPlayer, self.game).toJSONForYourself(includeActions=includeActions)
         gameJSON['you']['isTurn'] = isYourTurn
         gameJSON['notifications'] = [NotificationWrapperFactory.buildWrapper(notification, self.game, yourPlayer).toJSON() for notification in self.game.notificationTracker.latestNotifications]
-        gameJSON['players'] = [PlayerWrapper(player, self.game).toJSON(includeActions=isYourTurn) for id, player in self.players.items() if id != playerId]
+        gameJSON['players'] = [PlayerWrapper(player, self.game).toJSON(includeActions=includeActions) for id, player in self.players.items() if id != playerId]
                     
-        request = self.game.currentTurn.request
         if request is not None and yourPlayer in request.players:
             gameJSON['request'] = RequestWrapperFactory.buildRequestWrapper(self.game.currentTurn.request, self.game).toJSON(includeActions=True)
         return json
