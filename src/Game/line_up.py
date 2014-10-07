@@ -1,4 +1,4 @@
-from source_types import LINE_UP
+from Game.Sources.source_types import LINE_UP
 
 class LineUp:
     """ Represents the Line Up of available cards in the game """

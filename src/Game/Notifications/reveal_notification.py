@@ -5,7 +5,7 @@ REVEAL = "REVEAL"
 class RevealNotification(CardsNotification):
     """ Represents a Game Notification that has some relevant Cards """
     
-    def __init__(self, player, sourceType, source):
+    def __init__(self, player, source):
         """ Initialize the Notification with the cards, the player that caused it and the notification type """
-        self.sourceType = sourceType
-        Notification.__init__(self, REVEAL, player, source)
+        self.sourceType = source.sourceType
+        CardsNotification.__init__(self, REVEAL, player, source)

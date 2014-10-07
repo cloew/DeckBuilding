@@ -69,8 +69,9 @@ services.factory('CardsNotificationFactory', function(StandardNotificationFactor
     }};
 });
 
-services.factory('RevealNotificationFactory', function(StandardNotificationFactory) {
-    var typeToData = {"DECK":"the top of their deck."}
+services.factory('RevealNotificationFactory', function(CardsNotificationFactory) {
+    var typeToData = {"DECK":"the top of their deck.",
+                      "HAND":"their hand."}
     return {"type":"REVEAL", "load": function(notification) {
         var result = CardsNotificationFactory.load(notification);
         result.sourceText = " from " + typeToData[notification.sourceType];
@@ -78,9 +79,10 @@ services.factory('RevealNotificationFactory', function(StandardNotificationFacto
     }};
 });
 
-services.factory('NotificationFactory', function(StandardNotificationFactory, CardsNotificationFactory) {
+services.factory('NotificationFactory', function(StandardNotificationFactory, CardsNotificationFactory, RevealNotificationFactory) {
     var typeToData = {"HIT_BY_ATTACK":StandardNotificationFactory,
-                      "DEFENDED":CardsNotificationFactory};
+                      "DEFENDED":CardsNotificationFactory,
+                      "REVEAL":RevealNotificationFactory};
     return function(notification) {
         var factory = typeToData[notification.type]
         var newNotification = factory.load(notification);

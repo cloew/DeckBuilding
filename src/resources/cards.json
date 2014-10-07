@@ -50,6 +50,19 @@
                     "power":3}]
 },
 {
+    "name":"Blue Beetle",
+    "type":"Hero",
+    "image":"blue_beetle.jpg",
+    "cost":{"type":"FIXED",
+            "cost":6},
+    "points":{"type":"FIXED",
+              "points":2},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":3}],
+    "onDefense":[{"type":"REVEAL",
+                  "source":"EVENT"}]
+},
+{
     "name":"Bo Staff",
     "type":"Equipment",
     "cost":{"type":"FIXED",

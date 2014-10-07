@@ -8,4 +8,4 @@ class EventSource(Source):
         sourceType = None
         if hasattr(event, "fromSource"):
             sourceType = event.fromSource.sourceType
-        Source.__init__(self, cards, sourceType=sourceType)
+        Source.__init__(self, event, sourceType=sourceType)

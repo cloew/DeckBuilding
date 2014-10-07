@@ -4,6 +4,7 @@ from deck_with_discard_pile_source import DeckWithDiscardPileSource
 from event_source import EventSource
 from gained_source import GainedSource
 from list_source import ListSource
+from source import Source
 import source_types
 
 CHARACTER = "CHARACTER"
