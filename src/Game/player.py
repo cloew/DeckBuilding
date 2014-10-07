@@ -20,6 +20,7 @@ class Player:
         self.deck.shuffle()
         self.drawHand()
         self.ongoing = []
+        self.underCharacter = []
         
     def addOngoing(self, card):
         """ Add the given card as an ongoing effect """

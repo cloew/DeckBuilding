@@ -42,6 +42,8 @@ class SourceFactory:
             return ListSource(game.currentTurn.playedCards, sourceType=source_types.PLAYED)
         elif sourceType == source_types.SUPERVILLAIN:
             return Source(game.superVillainStack, sourceType=source_types.SUPERVILLAIN)
+        elif sourceType == source_types.UNDER_CHARACTER:
+            return ListSource(player.underCharacter, sourceType=source_types.UNDER_CHARACTER)
         elif sourceType == source_types.WEAKNESS:
             return DeckSource(game.weaknessDeck, sourceType=source_types.WEAKNESS)
         return None

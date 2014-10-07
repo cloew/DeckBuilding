@@ -13,7 +13,7 @@ class ConditionalEffect:
         """ Perform the Game Effect """
         coroutine = None
         if self.condition.evaluate(context):
-            coroutine = self.performEffect(context)
+            coroutine = self.performEffects(context)
         elif self.otherwiseEffect is not None:
             coroutine = self.performOtherwiseEffect(context)
             
