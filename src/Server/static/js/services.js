@@ -75,7 +75,6 @@ services.factory('RevealNotificationFactory', function(CardsNotificationFactory)
                       "HAND":{"forYou":"your hand.",
                               "forOthers":"their hand."}};
     var getMessage = function(notification) {
-        console.log(notification.isYou);
         if (notification.isYou) {
             return typeToData[notification.sourceType].forYou;
         } else {
@@ -85,7 +84,6 @@ services.factory('RevealNotificationFactory', function(CardsNotificationFactory)
     return {"type":"REVEAL", "load": function(notification) {
         var result = CardsNotificationFactory.load(notification);
         result.sourceText = " from " + getMessage(notification);
-        console.log(result.sourceText);
         return result;
     }};
 });
