@@ -7,21 +7,6 @@ from list_source import ListSource
 from source import Source
 import source_types
 
-CHARACTER = "CHARACTER"
-DECK = "DECK"
-DESTROYED = "DESTROYED"
-DISCARD_PILE = "DISCARD_PILE"
-EVENT = "EVENT"
-GAINED = "GAINED"
-HAND = "HAND"
-KICK = "KICK"
-LINE_UP = "LINE_UP"
-MAIN_DECK = "MAIN_DECK"
-ONGOING = "ONGOING"
-PLAYED = "PLAYED"
-SUPERVILLAIN = "SUPERVILLAIN"
-WEAKNESS = "WEAKNESS"
-
 class SourceFactory:
     """ Factory to construct card sources """
     
