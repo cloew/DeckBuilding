@@ -1,5 +1,5 @@
 from Game.Effects.move_card import MoveCard
-from Game.Sources.source_factory import DESTROYED
+from Game.Sources.source_types import DESTROYED
 
 class Destroy(MoveCard):
     """ Represents an effect to Destroy Cards """

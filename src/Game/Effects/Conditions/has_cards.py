@@ -1,4 +1,3 @@
-from Game.Sources.source_factory import SourceFactory
 
 class HasCards:
     """ Represents a condition where a source must have cards """

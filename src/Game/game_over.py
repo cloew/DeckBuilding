@@ -4,7 +4,7 @@ from Game.Effects.Conditions.has_cards import HasCards
 from Game.Effects.Conditions.not_condition import NotCondition
 from Game.Effects.Conditions.or_condition import OrCondition
 
-from Game.Sources.source_factory import SUPERVILLAIN
+from Game.Sources.source_types import SUPERVILLAIN
 
 class GameOver:
     """ Represents how to check if a game is over """

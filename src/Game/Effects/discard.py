@@ -1,5 +1,5 @@
 from Game.Effects.move_card import MoveCard
-from Game.Sources.source_factory import DISCARD_PILE
+from Game.Sources.source_types import DISCARD_PILE
 
 class Discard(MoveCard):
     """ Represents an effect to Discard Cards """

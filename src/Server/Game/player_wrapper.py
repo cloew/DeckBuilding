@@ -2,7 +2,7 @@ from card_wrapper import CardWrapper
 from game_character_wrapper import GameCharacterWrapper
 from json_helper import GetCardListJSON
 
-from Game.Sources.source_factory import ONGOING, PLAYED
+from Game.Sources.source_types import ONGOING, PLAYED
 
 class PlayerWrapper:
     """ A Wrapper for a Game Player """

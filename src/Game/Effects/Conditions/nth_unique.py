@@ -6,7 +6,7 @@ from Game.Effects.Conditions.Filters.comparison_filter import ComparisonFilter
 from Game.Effects.Conditions.Filters.intersection_filter import IntersectionFilter
 from Game.Effects.Conditions.Filters.unique_filter import UniqueFilter
 
-from Game.Sources.source_factory import PLAYED
+from Game.Sources.source_types import PLAYED
 
 class NthUnique:
     """ Condition to check if a condition is the nth uniqe card played """

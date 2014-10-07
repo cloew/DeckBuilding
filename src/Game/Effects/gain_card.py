@@ -1,4 +1,4 @@
-from Game.Sources.source_factory import DISCARD_PILE
+from Game.Sources.source_types import DISCARD_PILE
 
 class GainCard:
     """ Represents an effect to Gain a card """

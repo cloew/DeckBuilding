@@ -1,5 +1,5 @@
 from Game.Effects.game_contexts import PlayerContext
-from Game.Sources.source_factory import DISCARD_PILE
+from Game.Sources.source_types import DISCARD_PILE
 
 class BuyCard:
     """ Represents a command to buy a card """

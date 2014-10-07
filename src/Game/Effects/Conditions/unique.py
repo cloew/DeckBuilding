@@ -2,7 +2,7 @@ from Game.Effects.Conditions.matching import Matching
 from Game.Effects.Conditions.not_condition import NotCondition
 from Game.Effects.Conditions.Filters.Criteria.source_criteria import SourceCriteria
 
-from Game.Sources.source_factory import EVENT
+from Game.Sources.source_types import EVENT
 
 class Unique:
     """ Represents a condition where a field must match a value """

@@ -3,7 +3,7 @@ from Game.Effects.effect_runner import PerformEffects
 from Game.Events.cards_event import CardsEvent
 from Game.Notifications.cards_notification import CardsNotification, DEFENDED
 from Game.Notifications.notification import Notification, HIT_BY_ATTACK
-from Game.Sources.source_factory import HAND
+from Game.Sources.source_types import HAND
 
 class Attack:
     """ Represents an effect to Attack other Players """

@@ -2,7 +2,7 @@ from request import Request
 
 from Game.Effects.Conditions.Filters.comparison_filter import ComparisonFilter
 from Game.Effects.Conditions.Filters.Criteria.fixed_criteria import FixedCriteria
-from Game.Sources.source_factory import HAND
+from Game.Sources.source_types import HAND
 
 class DefendRequest(Request):
     """ Represents a Request to Defend """

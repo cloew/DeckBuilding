@@ -1,4 +1,3 @@
-from Game.Sources.source_factory import SourceFactory
 
 class PutOnBottom:
     """ Represents an effect to Put a Card on the Bottom """

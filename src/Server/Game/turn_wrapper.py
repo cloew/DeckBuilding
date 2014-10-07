@@ -1,5 +1,5 @@
 from json_helper import GetCardListJSON
-from Game.Sources.source_factory import PLAYED
+from Game.Sources.source_types import PLAYED
 
 class TurnWrapper:
     """ A Wrapper for a Game Turn """

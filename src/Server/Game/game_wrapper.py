@@ -4,7 +4,7 @@ from player_wrapper import PlayerWrapper
 from supervillain_stack_wrapper import SuperVillainStackWrapper
 from turn_wrapper import TurnWrapper
 
-from Game.Sources.source_factory import KICK, LINE_UP
+from Game.Sources.source_types import KICK, LINE_UP
 from Server.Game.Notifications.notification_wrapper_factory import NotificationWrapperFactory
 from Server.Game.Requests.request_wrapper_factory import RequestWrapperFactory
 

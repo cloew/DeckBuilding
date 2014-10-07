@@ -2,9 +2,10 @@
 class Source:
     """ Represents a potential source """
     
-    def __init__(self, sourceObject):
+    def __init__(self, sourceObject, sourceType=None):
         """ Initialize the source """
         self.source = sourceObject
+        self.sourceType = sourceType
         
     def add(self, card):
         """ Add the given card to the source """

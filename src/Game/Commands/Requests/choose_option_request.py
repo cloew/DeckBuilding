@@ -1,5 +1,4 @@
 from request import Request
-from Game.Sources.source_factory import SourceFactory
 
 class ChooseOptionRequest(Request):
     """ Represents a Request to Choose an Option """

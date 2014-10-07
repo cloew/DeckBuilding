@@ -1,6 +1,6 @@
 from Game.Effects.effect_runner import PerformEffects
 from Game.Events.cards_event import CardsEvent
-from Game.Sources.source_factory import DECK
+from Game.Sources.source_types import DECK
 
 class CollectCards:
     """ Represents an effect to Collect Cards from the top of your opponents decks """

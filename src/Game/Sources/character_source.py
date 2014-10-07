@@ -1,4 +1,5 @@
 from source import Source
+from source_types import CHARACTER
 
 class CharacterSource(Source):
     """ Represents a Character Source """
@@ -6,7 +7,7 @@ class CharacterSource(Source):
     def __init__(self, character):
         """ Initialize the source """
         self.character = character
-        Source.__init__(self, character)
+        Source.__init__(self, character, sourceType=CHARACTER)
         
     def add(self, card):
         """ Add the given card to the source """

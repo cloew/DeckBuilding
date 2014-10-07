@@ -1,6 +1,6 @@
 from Game.Effects.look_at_top import LookAtTop
 from Game.Effects.gain_card import GainCard
-from Game.Sources.source_factory import SourceFactory, EVENT
+from Game.Sources.source_types import EVENT
 
 class GainTopCard(LookAtTop):
     """ Represents an effect to Look at the top Card of a source """

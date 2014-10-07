@@ -1,3 +1,4 @@
+from source_types import LINE_UP
 
 class LineUp:
     """ Represents the Line Up of available cards in the game """
@@ -6,6 +7,7 @@ class LineUp:
     def __init__(self, mainDeck):
         """ Initialize the Line Up with the main deck to pull from """
         self.mainDeck = mainDeck
+        self.sourceType = LINE_UP
         self.cards = []
         self.refill()
         

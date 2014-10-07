@@ -1,5 +1,5 @@
 from json_helper import GetActivatableActionJSON
-from Game.Sources.source_factory import CHARACTER
+from Game.Sources.source_types import CHARACTER
 from Server.Json.character_wrapper import CharacterWrapper
 
 class GameCharacterWrapper(CharacterWrapper):

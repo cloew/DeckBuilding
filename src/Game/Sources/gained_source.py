@@ -1,4 +1,5 @@
 from list_source import ListSource
+from source_types import GAINED
 
 class GainedSource(ListSource):
     """ Represents the List of Gained Cards as a source """
@@ -8,7 +9,7 @@ class GainedSource(ListSource):
             with Gained Cards that are in your discard pile """
         self.discardPileSource = discardPileSource
         discardPileSet = set(discardPileSource)
-        ListSource.__init__(self, [card for card in cards if card in discardPileSet])
+        ListSource.__init__(self, [card for card in cards if card in discardPileSet], sourceType=GAINED)
         
     def remove(self, card):
         """ Remove the given card """

@@ -1,7 +1,6 @@
 from Game.Effects.conditional_effect import ConditionalEffect
 from Game.Effects.Conditions.has_cards import HasCards
 from Game.Events.cards_event import CardsEvent
-from Game.Sources.source_factory import SourceFactory
 
 class LookAtTop(ConditionalEffect):
     """ Represents an effect to Look at the top Card of a source """

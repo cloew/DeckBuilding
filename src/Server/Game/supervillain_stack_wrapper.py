@@ -1,5 +1,5 @@
 from card_wrapper import CardWrapper
-from Game.Sources.source_factory import SUPERVILLAIN
+from Game.Sources.source_types import SUPERVILLAIN
 
 class SuperVillainStackWrapper:
     """ A Wrapper for the Super Villain Stack that handles its conversion to JSON """
