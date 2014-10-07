@@ -88,11 +88,11 @@ EffectFactory.addFactory("AS_OWNER", Factory(AsOwner, [ComplexParameter("then", 
 EffectFactory.addFactory("ATTACK", Factory(Attack, [ComplexParameter("then", EffectFactory.loadAll)]))
 EffectFactory.addFactory("ATTACK_EACH_FOE", Factory(AttackEachFoe, [ComplexParameter("effects", EffectFactory.loadAll)]))
 EffectFactory.addFactory("CONDITIONAL", Factory(ConditionalEffect, [ComplexParameter("condition", ConditionFactory.load), 
-                                                                    ComplexParameter("effect", EffectFactory.load), 
+                                                                    ComplexParameter("effects", EffectFactory.loadAll), 
                                                                     ComplexParameter("otherwise", EffectFactory.load, optional=True)]))
 EffectFactory.addFactory("COLLECT_CARDS", Factory(CollectCards, [ComplexParameter("then", EffectFactory.loadAll), PrimitiveParameter("from", optional=True)]))
 EffectFactory.addFactory("FILTER", Factory(Filter, [PrimitiveParameter("source"), FilterParameter(), ComplexParameter("then", EffectFactory.loadAll)]))
-EffectFactory.addFactory("LOOK_AT_TOP", Factory(LookAtTop, [PrimitiveParameter("source"), ComplexParameter("then", EffectFactory.load)]))
+EffectFactory.addFactory("LOOK_AT_TOP", Factory(LookAtTop, [PrimitiveParameter("source"), ComplexParameter("then", EffectFactory.loadAll)]))
 EffectFactory.addFactory("PER_FOE", Factory(PerFoe, [ComplexParameter("effects", EffectFactory.loadAll)]))
 EffectFactory.addFactory("PER_MATCH", Factory(PerMatch, [PrimitiveParameter("source"), ComplexParameter("effect", EffectFactory.load), FilterParameter(optional=True)]))
 EffectFactory.addFactory("PICK_CARDS", Factory(PickCards, [PrimitiveParameter("source"), PrimitiveParameter("number"), 

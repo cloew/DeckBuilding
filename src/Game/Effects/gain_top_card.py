@@ -7,4 +7,4 @@ class GainTopCard(LookAtTop):
     
     def __init__(self, fromSourceType, toSourceType=None):
         """ Initialize the Effect with the source to look at """
-        LookAtTop.__init__(self, fromSourceType, GainCard(EVENT, toSourceType=toSourceType))
+        LookAtTop.__init__(self, fromSourceType, [GainCard(EVENT, toSourceType=toSourceType)])

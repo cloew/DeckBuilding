@@ -15,4 +15,4 @@ class PlayOrHavePlayed(ConditionalEffect):
         triggerCondition = AndCondition([playedCondition, eventCondition])
         
         trigger = Trigger("CARD_PLAYED", triggerCondition, effect, singleUse=True)
-        ConditionalEffect.__init__(self, playedCondition, effect, otherwiseEffect=AddTrigger(trigger))
+        ConditionalEffect.__init__(self, playedCondition, [effect], otherwiseEffect=AddTrigger(trigger))

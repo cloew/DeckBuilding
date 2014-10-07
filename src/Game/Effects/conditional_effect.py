@@ -1,12 +1,12 @@
-from Game.Effects.effect_runner import PerformEffect
+from Game.Effects.effect_runner import PerformEffects
 
 class ConditionalEffect:
     """ Represents an effect that conditionally applies """
     
-    def __init__(self, condition, effect, otherwiseEffect=None):
+    def __init__(self, condition, effects, otherwiseEffect=None):
         """ Initialize the Effect with the condition to evaluate and effect to perform """
         self.condition = condition
-        self.effect = effect
+        self.effects = effects
         self.otherwiseEffect = otherwiseEffect
         
     def perform(self, context):
@@ -22,9 +22,9 @@ class ConditionalEffect:
             while True:
                 response = yield coroutine.send(response)
                 
-    def performEffect(self, context):
+    def performEffects(self, context):
         """ Perform the conditional effect """
-        coroutine = PerformEffect(self.effect, context)
+        coroutine = PerformEffects(self.effects, context)
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)

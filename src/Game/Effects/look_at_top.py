@@ -6,10 +6,10 @@ from Game.Sources.source_factory import SourceFactory
 class LookAtTop(ConditionalEffect):
     """ Represents an effect to Look at the top Card of a source """
     
-    def __init__(self, sourceType, thenEffect):
+    def __init__(self, sourceType, thenEffects):
         """ Initialize the Effect with the source to look at """
         self.sourceType = sourceType
-        ConditionalEffect.__init__(self, HasCards(self.sourceType), thenEffect)
+        ConditionalEffect.__init__(self, HasCards(self.sourceType), thenEffects)
         
     def performEffect(self, context):
         """ Perform the Game Effect """
@@ -17,7 +17,7 @@ class LookAtTop(ConditionalEffect):
         card = source[0]
         event = CardsEvent([card], source, context)
         
-        coroutine = ConditionalEffect.performEffect(self, event.context)
+        coroutine = ConditionalEffect.performEffects(self, event.context)
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)
