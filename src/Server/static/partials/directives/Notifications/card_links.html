@@ -1,1 +1,1 @@
-<span ng-repeat="card in notification.cards"><span class="fake-link" tooltip-trigger="click" tooltip-html-unsafe='<img class="medium-card" src="{{card.imageUrl}}"></img>'>{{card.name}}</span><span ng-show="!$last">, </span></span>
+<span ng-repeat="card in notification.cards"><span ng-show="$last && !$first">and </span><span class="fake-link" tooltip-trigger="click" tooltip-html-unsafe='<img class="medium-card" src="{{card.imageUrl}}"></img>'>{{card.name}}</span><span ng-show="!$last">, </span></span>
