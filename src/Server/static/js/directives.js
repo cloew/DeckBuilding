@@ -101,11 +101,23 @@ angular.module('DeckBuildingDirectives', [])
           replace: true,
           templateUrl: 'static/partials/directives/Notifications/cards_notification.html'
       }})
+    .directive('revealNotification', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          templateUrl: 'static/partials/directives/Notifications/reveal_notification.html'
+      }})
     .directive('standardNotification', function() {
       return {
           restrict: 'E',
           replace: true,
           templateUrl: 'static/partials/directives/Notifications/standard_notification.html'
+      }})
+    .directive('cardLinks', function() {
+      return {
+          restrict: 'E',
+          replace: false,
+          templateUrl: 'static/partials/directives/Notifications/card_links.html'
       }})
       .directive('activateIcon', function() {
       return {

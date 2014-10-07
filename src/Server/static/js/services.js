@@ -70,11 +70,21 @@ services.factory('CardsNotificationFactory', function(StandardNotificationFactor
 });
 
 services.factory('RevealNotificationFactory', function(CardsNotificationFactory) {
-    var typeToData = {"DECK":"the top of their deck.",
-                      "HAND":"their hand."}
+    var typeToData = {"DECK":{"forYou":"the top of your deck.",
+                              "forOthers":"the top of their deck."},
+                      "HAND":{"forYou":"their hand.",
+                              "forOthers":"your hand."}};
+    var getMessage = function(notification) {
+        if (notification.isYou) {
+            return typeToData[notification.sourceType].forYou;
+        } else {
+            return notification.name + " " + typeToData[notification.sourceType].forOthers;
+        }
+    }
     return {"type":"REVEAL", "load": function(notification) {
         var result = CardsNotificationFactory.load(notification);
-        result.sourceText = " from " + typeToData[notification.sourceType];
+        result.sourceText = " from " + getMessage(notification);
+        console.log(result.sourceText);
         return result;
     }};
 });
