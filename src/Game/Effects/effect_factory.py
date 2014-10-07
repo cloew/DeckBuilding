@@ -32,6 +32,7 @@ from Game.Effects.play import Play
 from Game.Effects.play_or_have_played import PlayOrHavePlayed
 from Game.Effects.put_on_bottom import PutOnBottom
 from Game.Effects.put_on_bottom_cleanup import PutOnBottomCleanup
+from Game.Effects.reveal import Reveal
 from Game.Effects.spend_power import SpendPower
 
 from Game.Effects.Conditions.condition_factory import ConditionFactory
@@ -79,6 +80,7 @@ EffectFactory = TypedFactory('type', {"ACTIVATE_CHARACTER":Factory(ActivateChara
                                       "POWER_MOD":Factory(ChangePowerModifier, [PrimitiveParameter("modifier")]),
                                       "PUT_ON_BOTTOM":Factory(PutOnBottom, [PrimitiveParameter("from"), PrimitiveParameter("to")]),
                                       "PUT_ON_BOTTOM_CLEANUP":Factory(PutOnBottomCleanup, []),
+                                      "REVEAL":Factory(Reveal, [PrimitiveParameter("source")]),
                                       "SPEND_POWER":Factory(SpendPower, [PrimitiveParameter("power")])})
                                       
 EffectFactory.addFactory("AS_NEXT_PLAYER", Factory(AsNextPlayer, [ComplexParameter("then", EffectFactory.loadAll)]))
