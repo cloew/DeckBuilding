@@ -13,31 +13,14 @@ controllers.controller('StartGameController', function ($scope, $http, $location
     };
 });
 
-controllers.controller('LobbiesController', function($scope, $cookies, $http, $location, UrlPoller) {
-    UrlPoller($scope, '/api/lobbies', function(data) {
-            $scope.lobbies = data['lobbies'];
-        });
-    $scope.startNewLobby = function() {
-        $http.post('/api/lobbies', {headers: {'Content-Type': 'application/json'}}).success(function(data) {
-            $scope.trackLobby(data);
-        }).error(function(error) {
-            alert(error);
-        });
-    };
-    $scope.joinLobby = function(lobbyId) {
-        $http.post('/api/lobbies/'+lobbyId+'/join', {headers: {'Content-Type': 'application/json'}}).success(function(data) {
-            $scope.trackLobby(data);
-        }).error(function(error) {
-            alert(error);
-        });
-    };
-    $scope.trackLobby = function(data) {
-        $cookies.playerId = data.playerId;
-        $scope.goToLobby(data.lobbyId);
-    };
-    $scope.goToLobby = function(lobbyId) {
-        $location.path('/lobbies/'+lobbyId);
-    };
+controllers.controller('LobbiesController', function($scope, $cookies, $http, $location, lobbiesService) {
+    lobbiesService.startPolling($scope, function(lobbies) {
+        $scope.lobbies = lobbies;
+    });
+    $scope.startNewLobby = lobbiesService.startNewLobby;
+    $scope.joinLobby = lobbiesService.joinLobby;
+    $scope.trackLobby = lobbiesService.trackLobby;
+    $scope.goToLobby = lobbiesService.goToLobby;
 });
 controllers.controller('LobbyController', function($scope, $cookies, $http, $location, $routeParams, UrlPoller) {
     UrlPoller($scope, '/api/lobbies/'+$routeParams.lobbyId+'/player/'+$cookies.playerId, function(data) {

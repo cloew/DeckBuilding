@@ -88,6 +88,49 @@ services.service('gameService', function($cookies, $http, $location, $routeParam
     };
 });
 
+services.service('lobbiesService', function($cookies, $http, $location, UrlPoller) {
+    var rootUrl = '/api/lobbies';
+    var lobbies = undefined;
+    var startPolling = function(parentScope, callback) {
+        UrlPoller(parentScope, rootUrl, function(data) {
+                lobbies = data['lobbies'];
+                callback(lobbies);
+            });
+    };
+    var getLobbies = function() {
+        return lobbies;
+    };
+    var startNewLobby = function() {
+        $http.post(rootUrl, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+            trackLobby(data);
+        }).error(function(error) {
+            alert(error);
+        });
+    };
+    var joinLobby = function(lobbyId) {
+        $http.post(rootUrl+'/'+lobbyId+'/join', {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+            $scope.trackLobby(data);
+        }).error(function(error) {
+            alert(error);
+        });
+    };
+    var trackLobby = function(data) {
+        $cookies.playerId = data.playerId;
+        goToLobby(data.lobbyId);
+    };
+    var goToLobby = function(lobbyId) {
+        $location.path('/lobbies/'+lobbyId);
+    };
+    return {
+        getLobbies: getLobbies,
+        startPolling: startPolling,
+        startNewLobby: startNewLobby,
+        joinLobby: joinLobby,
+        trackLobby: trackLobby,
+        goToLobby: goToLobby
+    };
+});
+
 services.service('requestModalService', function($modal) {
     var modal = undefined;
     var modalIsOpen = false;
