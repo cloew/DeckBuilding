@@ -181,6 +181,40 @@ services.service('lobbyService', function($cookies, $http, $location, $routePara
     };
 });
 
+services.service('examineModalService', function($modal) {
+    var modal = undefined;
+    var modalIsOpen = false;
+    var open = function(card) {
+        modalIsOpen = true;
+        modal = $modal.open({
+          templateUrl: 'static/partials/examine_card.html',
+          backdrop: 'static',
+          keyboard : false,
+          controller: 'ExamineCardController',
+          size: 'lg',
+          resolve: {
+            card: function () {
+              return card;
+            }
+          }});
+    };
+    var close = function(data) {
+        modalIsOpen = false;
+        modal.dismiss('cancel');
+        modal = undefined;
+    };
+    var getModal = function() {
+        return modal;
+    };
+    var hasModal = function() {
+        return modalIsOpen;
+    };
+    return {
+        open: open,
+        close: close
+    };
+});
+
 services.service('requestModalService', function($modal) {
     var modal = undefined;
     var modalIsOpen = false;

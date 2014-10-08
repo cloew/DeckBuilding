@@ -94,9 +94,22 @@ controllers.controller('DefendController', function($scope, requestModalService,
     };
 });
 
-controllers.controller('NotificationController', function($scope, notificationService, NotificationFactory, Poller) {
+controllers.controller('NotificationController', function($scope, notificationService, Poller) {
     $scope.notifications = [];
     Poller($scope, function() {
         $scope.notifications = notificationService.getNotifications();
     });
+});
+
+controllers.controller('ExamineCardIconController', function($scope, examineModalService) {
+    $scope.examineCard = function(card) {
+        examineModalService.open(card);
+    };
+});
+
+controllers.controller('ExamineCardController', function($scope, examineModalService, card) {
+    $scope.card = card;
+    $scope.close = function() {
+        examineModalService.close();
+    };
 });

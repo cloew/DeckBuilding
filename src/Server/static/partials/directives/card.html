@@ -5,6 +5,6 @@
         <div>
             <action-card-icon ng-repeat="action in card.actions"></action-card_icon>
         </div>
-        <examine-icon ng-show="!!card"></examine-icon>
+        <examine-icon ng-show="!!card" ng-controller="ExamineCardIconController"></examine-icon>
     </card-image>
 </div>
