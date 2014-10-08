@@ -2,10 +2,96 @@
 
 var services = angular.module('DeckBuildingServices', ['ui.bootstrap']);
 
+services.service('gameService', function($cookies, $http, $location, $routeParams, notificationService, requestModalService, UrlPoller) {
+    var rootUrl = '/api/game/'+$routeParams.gameId+'/player/'+$cookies.playerId;
+    var game = undefined;
+    var startPolling = function(parentScope, callback) {
+        UrlPoller(parentScope, rootUrl, function(data) {
+                setGame(data);
+                callback(game);
+            });
+    };
+    var getGame = function() {
+        return game;
+    };
+    var setGame = function(data, parentScope) {
+        game = data['game'];
+        notificationService.setNotifications(game.notifications);
+        if (game.isOver) {
+            $location.path('/game/'+game.id+'/results');
+        }
+        if (game.request && !requestModalService.hasModal()) {
+            requestModalService.openRequestModal(game.request);
+        }
+        if (!game.request && requestModalService.getModal()) {
+            requestModalService.closeModal();
+        }
+    };
+    var actions = {};
+    actions.activateCard = function(index, source) {  
+        $http.post(rootUrl+'/activate', {'index':index, 'source':source}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+            setGame(data);
+        }).error(function(error) {
+            alert(error);
+        });
+    };
+    actions.buyCard = function(index, source) {  
+        $http.post(rootUrl+'/buy', {'index':index, 'source':source}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+            setGame(data);
+        }).error(function(error) {
+            alert(error);
+        });
+    };
+    actions.playCard = function(index) {
+        $http.post(rootUrl+'/play', {'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+            setGame(data);
+        }).error(function(error) {
+            alert(error);
+        });
+    };
+    var endTurn = function(index) {
+        $http.post(rootUrl+'/endturn').success(function(data) {
+            setGame(data);
+        }).error(function(error) {
+            alert(error);
+        });
+    };
+    var chooseOption = function(index) {
+        $http.post(rootUrl+'/choose', {'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+            setGame(data);
+        }).error(function(error) {
+            alert(error);
+        });
+    };
+    var pickCard = function(indices) {
+        $http.post(rootUrl+'/pickcard', {'indices':indices}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+            setGame(data);
+        }).error(function(error) {
+            alert(error);
+        });
+    };
+    var defend = function(defending, index) {
+        $http.post(rootUrl+'/defend', {'defending':defending, 'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+            setGame(data);
+        }).error(function(error) {
+            alert(error);
+        });
+    };
+    return {
+        getGame: getGame,
+        startPolling: startPolling,
+        actions: actions,
+        endTurn: endTurn,
+        chooseOption: chooseOption,
+        pickCard: pickCard,
+        defend: defend
+    };
+});
+
 services.service('requestModalService', function($modal) {
     var modal = undefined;
     var modalIsOpen = false;
-    var openRequestModal = function(parentScope, request) {
+    var openRequestModal = function(request) {
         var controllers = {'CHOICE':{'templateUrl':'static/partials/choose_option.html',
                                      'controller':'ChooseOptionController'},
                            'DEFEND':{'templateUrl':'static/partials/defend.html',
@@ -22,10 +108,6 @@ services.service('requestModalService', function($modal) {
           backdrop: 'static',
           keyboard : false,
           controller: controller.controller,
-          resolve: {
-            parent: function () {
-              return parentScope;
-            }},
           size: 'lg'
         });
     };
