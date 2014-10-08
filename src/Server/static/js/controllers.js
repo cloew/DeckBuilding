@@ -13,7 +13,7 @@ controllers.controller('StartGameController', function ($scope, $http, $location
     };
 });
 
-controllers.controller('LobbiesController', function($scope, $cookies, $http, $location, lobbiesService) {
+controllers.controller('LobbiesController', function($scope, lobbiesService) {
     lobbiesService.startPolling($scope, function(lobbies) {
         $scope.lobbies = lobbies;
     });
@@ -22,39 +22,17 @@ controllers.controller('LobbiesController', function($scope, $cookies, $http, $l
     $scope.trackLobby = lobbiesService.trackLobby;
     $scope.goToLobby = lobbiesService.goToLobby;
 });
-controllers.controller('LobbyController', function($scope, $cookies, $http, $location, $routeParams, UrlPoller) {
-    UrlPoller($scope, '/api/lobbies/'+$routeParams.lobbyId+'/player/'+$cookies.playerId, function(data) {
-        $scope.setLobby(data);
-        });
-    $scope.setLobby = function(data) {
-        $scope.lobby = data;
-        $scope.lobby.allPlayers = [$scope.lobby.you];
-        $scope.lobby.allPlayers.push.apply($scope.lobby.allPlayers, $scope.lobby.players);
-        if (data.gameId) {
-            $location.path('/game/'+data.gameId);
-        }
-    };
+controllers.controller('LobbyController', function($scope, lobbyService) {
+    lobbyService.startPolling($scope, function(lobby) {
+        $scope.lobby = lobby;
+    });
     $scope.changeCharacter = function() {
-        $http.post('/api/lobbies/'+$routeParams.lobbyId+'/player/'+$cookies.playerId+'/changecharacter', {'character':$scope.newCharacter}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
-            $scope.setLobby(data);
-        }).error(function(error) {
-            alert(error);
-        });
+        lobbyService.changeCharacter($scope.newCharacter);
     };
     $scope.changeName = function() {
-        $http.post('/api/lobbies/'+$routeParams.lobbyId+'/player/'+$cookies.playerId+'/changename', {'name':$scope.newName}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
-            $scope.setLobby(data);
-        }).error(function(error) {
-            alert(error);
-        });
+        lobbyService.changeName($scope.newName);
     };
-    $scope.startGame = function() {
-        $http.post('/api/lobbies/'+$routeParams.lobbyId+'/start', {headers: {'Content-Type': 'application/json'}}).success(function(data) {
-            $location.path('/game/'+data.gameId);
-        }).error(function(error) {
-            alert(error);
-        });
-    };
+    $scope.startGame = lobbyService.startGame;
 });
 controllers.controller('GameController', function($scope, gameService) {
     gameService.startPolling($scope, function(game) {

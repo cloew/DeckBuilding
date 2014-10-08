@@ -109,7 +109,7 @@ services.service('lobbiesService', function($cookies, $http, $location, UrlPolle
     };
     var joinLobby = function(lobbyId) {
         $http.post(rootUrl+'/'+lobbyId+'/join', {headers: {'Content-Type': 'application/json'}}).success(function(data) {
-            $scope.trackLobby(data);
+            trackLobby(data);
         }).error(function(error) {
             alert(error);
         });
@@ -128,6 +128,56 @@ services.service('lobbiesService', function($cookies, $http, $location, UrlPolle
         joinLobby: joinLobby,
         trackLobby: trackLobby,
         goToLobby: goToLobby
+    };
+});
+
+services.service('lobbyService', function($cookies, $http, $location, $routeParams, UrlPoller) {
+    var rootUrl = '/api/lobbies/';
+    var lobby = undefined;
+    var startPolling = function(parentScope, callback) {
+        UrlPoller(parentScope, '/api/lobbies/'+$routeParams.lobbyId+'/player/'+$cookies.playerId, function(data) {
+            setLobby(data);
+            callback(lobby);
+        });
+    };
+    var getLobby = function() {
+        return lobby;
+    };
+    var setLobby = function(data) {
+        lobby = data;
+        lobby.allPlayers = [lobby.you];
+        lobby.allPlayers.push.apply(lobby.allPlayers, lobby.players);
+        if (data.gameId) {
+            $location.path('/game/'+data.gameId);
+        }
+    };
+    var changeCharacter = function(newCharacter) {
+        $http.post(rootUrl+$routeParams.lobbyId+'/player/'+$cookies.playerId+'/changecharacter', {'character':newCharacter}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+            setLobby(data);
+        }).error(function(error) {
+            alert(error);
+        });
+    };
+    var changeName = function(newName) {
+        $http.post(rootUrl+$routeParams.lobbyId+'/player/'+$cookies.playerId+'/changename', {'name':newName}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+            setLobby(data);
+        }).error(function(error) {
+            alert(error);
+        });
+    };
+    var startGame = function() {
+        $http.post(rootUrl+$routeParams.lobbyId+'/start', {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+            $location.path('/game/'+data.gameId);
+        }).error(function(error) {
+            alert(error);
+        });
+    };
+    return {
+        getLobby: getLobby,
+        startPolling: startPolling,
+        changeCharacter: changeCharacter,
+        changeName: changeName,
+        startGame: startGame
     };
 });
 
