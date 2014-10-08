@@ -87,6 +87,14 @@ controllers.controller('GameController', function($scope, $cookies, $http, $loca
         if ($scope.game.request && !$scope.hasModal) {
             $scope.openRequestModal()
         }
+        if (!$scope.game.request && $scope.modal) {
+            $scope.closeModal()
+        }
+    };
+    $scope.closeModal = function(data) {
+        $scope.hasModal = false;
+        $scope.modal.dismiss('cancel');
+        $scope.modal = undefined;
     };
     $scope.actions = {};
     $scope.actions.activateCard = function(index, source) {  
@@ -150,7 +158,7 @@ controllers.controller('GameController', function($scope, $cookies, $http, $loca
     
         var controller = controllers[$scope.game.request.type];
         $scope.hasModal = true;
-        var modalInstance = $modal.open({
+        $scope.modal = $modal.open({
           templateUrl: controller.templateUrl,
           backdrop: 'static',
           keyboard : false,
@@ -178,8 +186,7 @@ controllers.controller('ChooseOptionController', function($scope, $modalInstance
     
     $scope.chooseOption = function(index) {
         $scope.parent.chooseOption(index);
-        $modalInstance.dismiss('cancel');
-        $scope.parent.hasModal = false;
+        $scope.parent.closeModal();
     };
 });
 
@@ -199,8 +206,7 @@ controllers.controller('PickCardController', function($scope, $modalInstance, pa
     };
     $scope.sendChoices = function() {
         $scope.parent.pickCard($scope.indices);
-        $modalInstance.dismiss('cancel');
-        $scope.parent.hasModal = false;
+        $scope.parent.closeModal();
     };
 });
 
@@ -217,8 +223,7 @@ controllers.controller('DefendController', function($scope, $modalInstance, pare
         $scope.dismissModal();
     };
     $scope.dismissModal = function() {
-        $modalInstance.dismiss('cancel');
-        $scope.parent.hasModal = false;
+        $scope.parent.closeModal();
     };
 });
 
