@@ -76,19 +76,6 @@ angular.module('DeckBuildingDirectives', [])
           },
           templateUrl: 'static/partials/directives/deck.html'
       }})
-      .directive('cardIcons', function() {
-      return {
-          restrict: 'E',
-          replace: true,
-          transclude: true,
-          templateUrl: 'static/partials/directives/card_icons.html'
-      }})
-      .directive('actionCardIcon', function() {
-      return {
-          restrict: 'E',
-          replace: true,
-          templateUrl: 'static/partials/directives/action_card_icon.html'
-      }})
     .directive('notification', function() {
       return {
           restrict: 'E',
@@ -119,29 +106,48 @@ angular.module('DeckBuildingDirectives', [])
           replace: false,
           templateUrl: 'static/partials/directives/Notifications/card_links.html'
       }})
+      .directive('cardIcons', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          transclude: true,
+          templateUrl: 'static/partials/directives/CardIcons/card_icons.html'
+      }})
+      .directive('actionCardIcon', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          templateUrl: 'static/partials/directives/CardIcons/action_card_icon.html'
+      }})
       .directive('activateIcon', function() {
       return {
           restrict: 'E',
           replace: true,
-          templateUrl: 'static/partials/directives/activate_icon.html'
+          templateUrl: 'static/partials/directives/CardIcons/activate_icon.html'
       }})
       .directive('buyIcon', function() {
       return {
           restrict: 'E',
           replace: true,
-          templateUrl: 'static/partials/directives/buy_icon.html'
+          templateUrl: 'static/partials/directives/CardIcons/buy_icon.html'
+      }})
+      .directive('examineIcon', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          templateUrl: 'static/partials/directives/CardIcons/examine_icon.html'
       }})
       .directive('pickIcon', function() {
       return {
           restrict: 'E',
           replace: true,
-          templateUrl: 'static/partials/directives/pick_icon.html'
+          templateUrl: 'static/partials/directives/CardIcons/pick_icon.html'
       }})
       .directive('playIcon', function() {
       return {
           restrict: 'E',
           replace: true,
-          templateUrl: 'static/partials/directives/play_icon.html'
+          templateUrl: 'static/partials/directives/CardIcons/play_icon.html'
       }})
       .directive('deckCounter', function() {
       return {
@@ -150,7 +156,7 @@ angular.module('DeckBuildingDirectives', [])
           scope: {
               count: '=count',
           },
-          templateUrl: 'static/partials/directives/deck_counter.html'
+          templateUrl: 'static/partials/directives/CardIcons/deck_counter.html'
       }})
     .directive('opponent', function() {
       return {

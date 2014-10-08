@@ -58,6 +58,12 @@
     width: 25px;
     height: 25px;
 }
+.examine-icon {
+    background-image: url(/static/images/examine.png);
+    background-size: 25px 25px;
+    width: 25px;
+    height: 25px;
+}
 .pick-icon {
     background-image: url(/static/images/pick.png);
     background-size: 25px 25px;
