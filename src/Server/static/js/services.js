@@ -1,6 +1,52 @@
 'use strict';
 
-var services = angular.module('DeckBuildingServices', []);
+var services = angular.module('DeckBuildingServices', ['ui.bootstrap']);
+
+services.service('requestModalService', function($modal) {
+    var modal = undefined;
+    var modalIsOpen = false;
+    var openRequestModal = function(parentScope, request) {
+        var controllers = {'CHOICE':{'templateUrl':'static/partials/choose_option.html',
+                                     'controller':'ChooseOptionController'},
+                           'DEFEND':{'templateUrl':'static/partials/defend.html',
+                                     'controller':'DefendController'},
+                           'PICK_CARD':{'templateUrl':'static/partials/pick_card.html',
+                                        'controller':'PickCardController'},
+                           'PICK_UP_TO_N_CARD':{'templateUrl':'static/partials/pick_up_to_n_cards.html',
+                                                'controller':'PickCardController'}};
+    
+        var controller = controllers[request.type];
+        modalIsOpen = true;
+        modal = $modal.open({
+          templateUrl: controller.templateUrl,
+          backdrop: 'static',
+          keyboard : false,
+          controller: controller.controller,
+          resolve: {
+            parent: function () {
+              return parentScope;
+            }},
+          size: 'lg'
+        });
+    };
+    var closeModal = function(data) {
+        modalIsOpen = false;
+        modal.dismiss('cancel');
+        modal = undefined;
+    };
+    var getModal = function() {
+        return modal;
+    };
+    var hasModal = function() {
+        return modalIsOpen;
+    };
+    return {
+        getModal: getModal,
+        hasModal: hasModal,
+        openRequestModal: openRequestModal,
+        closeModal: closeModal
+    };
+});
 
 services.service('notificationService', function(NotificationFactory) {
     var notifications = [];

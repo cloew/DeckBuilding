@@ -73,7 +73,7 @@ controllers.controller('LobbyController', function($scope, $cookies, $http, $loc
         });
     };
 });
-controllers.controller('GameController', function($scope, $cookies, $http, $location, $routeParams, $modal, notificationService, UrlPoller) {
+controllers.controller('GameController', function($scope, $cookies, $http, $location, $routeParams, requestModalService, notificationService, UrlPoller) {
     var rootUrl = '/api/game/'+$routeParams.gameId+'/player/'+$cookies.playerId;
     UrlPoller($scope, rootUrl, function(data) {
             $scope.setGame(data);
@@ -84,17 +84,12 @@ controllers.controller('GameController', function($scope, $cookies, $http, $loca
         if ($scope.game.isOver) {
             $location.path('/game/'+$scope.game.id+'/results');
         }
-        if ($scope.game.request && !$scope.hasModal) {
-            $scope.openRequestModal()
+        if ($scope.game.request && !requestModalService.hasModal()) {
+            requestModalService.openRequestModal($scope, $scope.game.request);
         }
-        if (!$scope.game.request && $scope.modal) {
-            $scope.closeModal()
+        if (!$scope.game.request && requestModalService.getModal()) {
+            requestModalService.closeModal();
         }
-    };
-    $scope.closeModal = function(data) {
-        $scope.hasModal = false;
-        $scope.modal.dismiss('cancel');
-        $scope.modal = undefined;
     };
     $scope.actions = {};
     $scope.actions.activateCard = function(index, source) {  
@@ -146,30 +141,6 @@ controllers.controller('GameController', function($scope, $cookies, $http, $loca
             alert(error);
         });
     };
-    $scope.openRequestModal = function() {
-        var controllers = {'CHOICE':{'templateUrl':'static/partials/choose_option.html',
-                                     'controller':'ChooseOptionController'},
-                           'DEFEND':{'templateUrl':'static/partials/defend.html',
-                                     'controller':'DefendController'},
-                           'PICK_CARD':{'templateUrl':'static/partials/pick_card.html',
-                                        'controller':'PickCardController'},
-                           'PICK_UP_TO_N_CARD':{'templateUrl':'static/partials/pick_up_to_n_cards.html',
-                                                'controller':'PickCardController'}};
-    
-        var controller = controllers[$scope.game.request.type];
-        $scope.hasModal = true;
-        $scope.modal = $modal.open({
-          templateUrl: controller.templateUrl,
-          backdrop: 'static',
-          keyboard : false,
-          controller: controller.controller,
-          resolve: {
-            parent: function () {
-              return $scope;
-            }},
-          size: 'lg'
-        });
-    };
 });
 controllers.controller('GameResultsController', function($scope, $cookies, $http, $routeParams) {
     var rootUrl = '/api/game/'+$routeParams.gameId+'/player/'+$cookies.playerId+'/results';
@@ -180,17 +151,17 @@ controllers.controller('GameResultsController', function($scope, $cookies, $http
     });
 });
 
-controllers.controller('ChooseOptionController', function($scope, $modalInstance, parent) {
+controllers.controller('ChooseOptionController', function($scope, requestModalService, parent) {
     $scope.parent = parent;
     $scope.request = parent.game.request;
     
     $scope.chooseOption = function(index) {
         $scope.parent.chooseOption(index);
-        $scope.parent.closeModal();
+        requestModalService.closeModal();
     };
 });
 
-controllers.controller('PickCardController', function($scope, $modalInstance, parent) {
+controllers.controller('PickCardController', function($scope, requestModalService, parent) {
     $scope.parent = parent;
     $scope.request = parent.game.request;
     $scope.actions = {};
@@ -206,24 +177,21 @@ controllers.controller('PickCardController', function($scope, $modalInstance, pa
     };
     $scope.sendChoices = function() {
         $scope.parent.pickCard($scope.indices);
-        $scope.parent.closeModal();
+        requestModalService.closeModal();
     };
 });
 
-controllers.controller('DefendController', function($scope, $modalInstance, parent) {
+controllers.controller('DefendController', function($scope, requestModalService, parent) {
     $scope.parent = parent;
     $scope.request = parent.game.request;
     $scope.actions = {};
     $scope.actions.pickCard = function(index) {
         $scope.parent.defend(true, index);
-        $scope.dismissModal();
+        requestModalService.closeModal();
     };
     $scope.abortDefense = function() {
         $scope.parent.defend(false);
-        $scope.dismissModal();
-    };
-    $scope.dismissModal = function() {
-        $scope.parent.closeModal();
+        requestModalService.closeModal();
     };
 });
 
