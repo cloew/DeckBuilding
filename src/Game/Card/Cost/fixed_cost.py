@@ -17,4 +17,5 @@ class FixedCost:
         
     def removeCostModifier(self, costMod):
         """ Remove the Cost Modifier from the Cost Calcualtor """
-        self.costModifiers.remove(costMod)
+        if costMod in self.costModifiers:
+            self.costModifiers.remove(costMod)

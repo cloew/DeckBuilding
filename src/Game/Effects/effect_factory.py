@@ -1,5 +1,8 @@
+from Game.Card.Cost.fixed_cost import FixedCost
+
 from Game.Effects.activate_character import ActivateCharacter
 from Game.Effects.add_activatable import AddActivatable
+from Game.Effects.add_cost_modifier import AddCostModifier
 from Game.Effects.add_to_line_up import AddToLineUp
 from Game.Effects.add_trigger import AddTrigger
 from Game.Effects.as_next_player import AsNextPlayer
@@ -53,6 +56,10 @@ def LoadActivatable(data):
     from Game.Effects.Activatables.activatable_factory import ActivatableFactory
     return ActivatableFactory.load(data)
     
+def LoadCost(data):
+    """ Load the Cost """
+    return FixedCost(data["cost"])
+    
 def LoadTrigger(data):
     """ Load a trigger from the data given """
     from Game.Effects.Triggers.trigger_factory import TriggerFactory
@@ -64,6 +71,7 @@ def LoadOptions(data):
 
 EffectFactory = TypedFactory('type', {"ACTIVATE_CHARACTER":Factory(ActivateCharacter, []),
                                       "ADD_ACTIVATABLE":Factory(AddActivatable, [ComplexParameter("activatable", LoadActivatable)]),
+                                      "ADD_COST_MOD":Factory(AddCostModifier, [PrimitiveParameter("source"), ComplexParameter("cost", LoadCost)]),
                                       "ADD_TO_LINE_UP":Factory(AddToLineUp, [PrimitiveParameter("count", optional=True)]),
                                       "ADD_TRIGGER":Factory(AddTrigger, [ComplexParameter("trigger", LoadTrigger)]),
                                       "CHOICE":Factory(Choice, [ComplexParameter("choices", LoadOptions), PrimitiveParameter("source", optional=True), ComparisonFilterParameter(optional=True)]),
