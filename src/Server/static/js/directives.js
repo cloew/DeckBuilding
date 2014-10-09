@@ -72,6 +72,7 @@ angular.module('DeckBuildingDirectives', [])
           replace: true,
           scope: {
               deck: '=deck',
+              displayTopCard: '=displayTopCard',
               actions: '=actions',
               size: '=size'
           },

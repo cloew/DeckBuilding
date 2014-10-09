@@ -188,8 +188,6 @@ services.service('examineCardModalService', function($modal) {
         modalIsOpen = true;
         modal = $modal.open({
           templateUrl: 'static/partials/examine_card.html',
-          backdrop: 'static',
-          keyboard : false,
           controller: 'ExamineCardController',
           size: 'lg',
           resolve: {
@@ -216,8 +214,6 @@ services.service('examineDeckModalService', function($modal) {
         modalIsOpen = true;
         modal = $modal.open({
           templateUrl: 'static/partials/examine_deck.html',
-          backdrop: 'static',
-          keyboard : false,
           controller: 'ExamineDeckController',
           size: 'lg',
           resolve: {

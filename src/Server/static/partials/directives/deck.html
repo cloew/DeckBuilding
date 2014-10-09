@@ -1,5 +1,8 @@
 <div class="deck">
-    <action-card  size="size" actions="actions" card="deck.cards[0]" deck="deck" index="0" ng-hide="deck.hidden">
+    <action-card  size="size" actions="actions" card="deck.cards[0]" index="0" ng-if="displayTopCard" ng-hide="deck.hidden">
+        <deck-counter count="deck.count"></deck-counter>
+    </action-card>
+    <action-card  size="size" actions="actions" card="deck.cards[0]" deck="deck" index="0" ng-if="!displayTopCard"  ng-hide="deck.hidden">
         <deck-counter count="deck.count"></deck-counter>
     </action-card>
     <div style="width: 150px; float:left; position: relative;" ng-show="deck.hidden">
