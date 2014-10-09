@@ -2,6 +2,8 @@ from Game.coroutine_helper import RunCoroutineOrFunction
 from Game.Commands.Requests.pick_card_request import PickCardRequest
 from Game.Effects.effect_runner import PerformEffects
 from Game.Events.cards_event import CardsEvent
+from Game.Events.multi_source_event import MultiSourceEvent
+from Game.Sources.event_source import EventSource
 from Game.Sources.source_types import DECK
 
 PICK = "PICK"
@@ -30,18 +32,21 @@ class CollectCards:
         function = typeToFunction[self.pickType]
         
         self.cardsForFoes = []
-        collectedCards = []
+        sources = []
         for foe in context.foes:
-            coroutine = RunCoroutineOrFunction(function, [context, context.getPlayerContext(foe).loadSource(self.sourceType), self.number])
+            playerContext = context.getPlayerContext(foe)
+            source = playerContext.loadSource(self.sourceType)
+            coroutine = RunCoroutineOrFunction(function, [playerContext, source, self.number])
             try:
                 response = yield coroutine.next()
                 while True:
                     response = yield coroutine.send(response)
             except StopIteration:
                 pass
-            collectedCards += self.cardsForFoes
+            event = CardsEvent(self.cardsForFoes, source, context)
+            sources.append(EventSource(event))
                 
-        event = CardsEvent(collectedCards, None, context)
+        event = MultiSourceEvent(sources, context)
         coroutine = PerformEffects(self.thenEffects, event.context)
         response = yield coroutine.next()
         while True:
