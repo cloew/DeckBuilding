@@ -12,6 +12,9 @@ class Card:
         
         self.costCalculator = costCalculator
         self.calculateCost = self.costCalculator.calculateCost
+        self.addCostModifier = self.costCalculator.addCostModifier
+        self.removeCostModifier = self.costCalculator.removeCostModifier
+        
         self.victoryPointsCalculator = vpCalculator
         self.calculatePoints = self.victoryPointsCalculator.calculatePoints
         
