@@ -101,15 +101,28 @@ controllers.controller('NotificationController', function($scope, notificationSe
     });
 });
 
-controllers.controller('ExamineCardIconController', function($scope, examineModalService) {
+controllers.controller('ExamineCardIconController', function($scope, examineCardModalService) {
     $scope.examineCard = function(card) {
-        examineModalService.open(card);
+        examineCardModalService.open(card);
     };
 });
 
-controllers.controller('ExamineCardController', function($scope, examineModalService, card) {
+controllers.controller('ExamineCardController', function($scope, examineCardModalService, card) {
     $scope.card = card;
     $scope.close = function() {
-        examineModalService.close();
+        examineCardModalService.close();
+    };
+});
+
+controllers.controller('ExamineDeckIconController', function($scope, examineDeckModalService) {
+    $scope.examineDeck = function(deck) {
+        examineDeckModalService.open(deck);
+    };
+});
+
+controllers.controller('ExamineDeckController', function($scope, examineDeckModalService, deck) {
+    $scope.deck = deck;
+    $scope.close = function() {
+        examineDeckModalService.close();
     };
 });

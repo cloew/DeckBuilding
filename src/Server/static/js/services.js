@@ -181,7 +181,7 @@ services.service('lobbyService', function($cookies, $http, $location, $routePara
     };
 });
 
-services.service('examineModalService', function($modal) {
+services.service('examineCardModalService', function($modal) {
     var modal = undefined;
     var modalIsOpen = false;
     var open = function(card) {
@@ -203,11 +203,33 @@ services.service('examineModalService', function($modal) {
         modal.dismiss('cancel');
         modal = undefined;
     };
-    var getModal = function() {
-        return modal;
+    return {
+        open: open,
+        close: close
     };
-    var hasModal = function() {
-        return modalIsOpen;
+});
+
+services.service('examineDeckModalService', function($modal) {
+    var modal = undefined;
+    var modalIsOpen = false;
+    var open = function(deck) {
+        modalIsOpen = true;
+        modal = $modal.open({
+          templateUrl: 'static/partials/examine_deck.html',
+          backdrop: 'static',
+          keyboard : false,
+          controller: 'ExamineDeckController',
+          size: 'lg',
+          resolve: {
+            deck: function () {
+              return deck;
+            }
+          }});
+    };
+    var close = function(data) {
+        modalIsOpen = false;
+        modal.dismiss('cancel');
+        modal = undefined;
     };
     return {
         open: open,

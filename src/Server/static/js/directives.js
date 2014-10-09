@@ -131,11 +131,17 @@ angular.module('DeckBuildingDirectives', [])
           replace: true,
           templateUrl: 'static/partials/directives/CardIcons/buy_icon.html'
       }})
-      .directive('examineIcon', function() {
+      .directive('examineCardIcon', function() {
       return {
           restrict: 'E',
           replace: true,
-          templateUrl: 'static/partials/directives/CardIcons/examine_icon.html'
+          templateUrl: 'static/partials/directives/CardIcons/examine_card_icon.html'
+      }})
+      .directive('examineDeckIcon', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          templateUrl: 'static/partials/directives/CardIcons/examine_deck_icon.html'
       }})
       .directive('pickIcon', function() {
       return {
