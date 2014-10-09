@@ -382,7 +382,7 @@ services.factory('Poller', function($timeout) {
         (function tick() {
             pollMethod();
             if (!parentScope.donePolling) {
-                //parentScope.pollPromise = $timeout(tick, 1000);
+                parentScope.pollPromise = $timeout(tick, 1000);
             }
         })();
         parentScope.$on('$destroy', function() {
