@@ -51,6 +51,7 @@ angular.module('DeckBuildingDirectives', [])
               actions: '=actions',
               index: '=index',
               card: '=card',
+              deck: '=deck',
               size: '=size'
           },
           template: '<div style="width: 150px; float:left; position: relative;"><card><div ng-transclude></div></card></div>'
