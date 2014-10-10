@@ -848,6 +848,26 @@
                              "source":"EVENT"}]}]
 },
 {
+    "name":"Man of Steel",
+    "type":"Villain",
+    "image":"man_of_steel.jpg",
+    "cost":{"type":"FIXED",
+            "cost":8},
+    "points":{"type":"FIXED",
+              "points":3},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":3},
+                   {"type":"PER_MATCH",
+                    "criteria":{"type":"FIXED",
+                                "field":"cardType",
+                                "operation":"==",
+                                "value":"Super Power"},
+                    "source":"DISCARD_PILE",
+                    "effect":{"type":"MOVE_CARD",
+                              "from":"EVENT",
+                              "to":"HAND"}}]
+},
+{
     "name":"Manhunter",
     "type":"Villain",
     "image":"manhunter.jpg",
