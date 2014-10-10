@@ -1095,7 +1095,7 @@
                     "power":1},
                    {"type":"PICK_CARDS",
                     "number":1,
-                    "sources":"DISCARD_PILE",
+                    "sources":["DISCARD_PILE"],
                     "criteria":{"type":"FIXED",
                                 "field":"cardType",
                                 "operation":"==",
