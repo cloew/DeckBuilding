@@ -15,7 +15,7 @@
                                                  "operation":"<=",
                                                  "value":5},
                                      "number":1,
-                                     "source":"GAINED",
+                                     "sources":["GAINED"],
                                      "then":[{"type":"MOVE_CARD",
                                               "from":"EVENT",
                                               "to":"DECK"}]}]}

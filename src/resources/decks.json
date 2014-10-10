@@ -19,16 +19,16 @@
 },
 {
     "name":"Starting",
-    "cards":[{"name":"Soultaker Sword",
+    "cards":[{"name":"Lobo",
               "count":5},
              {"name":"Weakness",
               "count":0},
              {"name":"Vulnerability",
-              "count":0},
+              "count":5},
              {"name":"Starro",
               "count":0},
              {"name":"Catwoman",
-              "count":5}]
+              "count":0}]
 },
 {
     "name":"Super Villains",
