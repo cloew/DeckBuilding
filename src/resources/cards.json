@@ -33,6 +33,28 @@
                                                                        "effects":[]}]}}]}]}
 },
 {
+    "name":"Aquaman's Trident",
+    "type":"Equipment",
+    "image":"aquamans_trident.jpg",
+    "cost":{"type":"FIXED",
+            "cost":3},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":2},
+                   {"type":"ADD_ACTIVATABLE",
+                    "activatable":{"singleUse":true,
+                                   "condition":{"type":"AND",
+                                                "conditions":[{"type":"HAS_CARDS",
+                                                               "source":"GAINED"}]},
+                                   "effects":[{"type":"PICK_CARDS",
+                                               "number":1,
+                                               "source":"GAINED",
+                                               "then":[{"type":"MOVE_CARD",
+                                                        "from":"EVENT",
+                                                        "to":"DECK"}]}]}}]
+},
+{
     "name":"Atrocitus",
     "type":"Villain",
     "image":"atrocitus.jpg",
