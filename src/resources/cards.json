@@ -1772,7 +1772,7 @@
                     "count":1}]
 },
 {
-    "name":"X-ray Vision",
+    "name":"X-Ray Vision",
     "type":"Super Power",
     "image":"xray_vision.jpg",
     "cost":{"type":"FIXED",
