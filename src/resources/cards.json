@@ -573,6 +573,27 @@
                     "power":3}]
 },
 {
+    "name":"Green Arrow",
+    "type":"Hero",
+    "image":"green_arrow.jpg",
+    "cost":{"type":"FIXED",
+            "cost":5},
+    "points":{"type":"CONDITIONAL",
+              "condition":{"type":"MATCHING",
+                           "number":5,
+                           "criteria":{"type":"FIXED",
+                                       "field":"cardType",
+                                       "operation":"==",
+                                       "value":"Hero"},
+                           "source":"DECK"},
+              "points":{"type":"FIXED",
+                        "points":5},
+              "otherwise":{"type":"FIXED",
+                           "points":0}},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":2}]
+},
+{
     "name":"Green Arrow's Bow",
     "type":"Equipment",
     "image":"green_arrows_bow.jpg",
