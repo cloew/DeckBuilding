@@ -8,4 +8,5 @@ class RemovePlayedCard:
         
     def perform(self, context):
         """ Perform the Game Effect """
-        context.owner.playedCards.remove(self.card)
+        if self.card in context.owner.playedCards:
+            context.owner.playedCards.remove(self.card)
