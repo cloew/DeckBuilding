@@ -19,16 +19,10 @@
 },
 {
     "name":"Starting",
-    "cards":[{"name":"Lobo",
-              "count":5},
-             {"name":"Weakness",
-              "count":0},
+    "cards":[{"name":"Punch",
+              "count":7},
              {"name":"Vulnerability",
-              "count":5},
-             {"name":"Starro",
-              "count":0},
-             {"name":"Catwoman",
-              "count":0}]
+              "count":3}]
 },
 {
     "name":"Super Villains",
