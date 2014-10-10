@@ -796,6 +796,21 @@
                                             "power":1}]}]}]
 },
 {
+    "name":"Lasso of Truth",
+    "type":"Equipment",
+    "image":"lasso_of_truth.jpg",
+    "cost":{"type":"FIXED",
+            "cost":2},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":1}],
+    "onDefense":[{"type":"DISCARD",
+                  "source":"EVENT"},
+                 {"type":"DRAW",
+                  "count":1}]
+},
+{
     "name":"Lex Luthor",
     "type":"Villain",
     "image":"lex_luthor.jpg",
