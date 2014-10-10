@@ -1502,6 +1502,17 @@
                   "count":2}]
 },
 {
+    "name":"The Fastest Man Alive",
+    "type":"Hero",
+    "image":"the_fastest_man_alive.jpg",
+    "cost":{"type":"FIXED",
+            "cost":5},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"DRAW",
+                    "count":2}]
+},
+{
     "name":"The Joker",
     "type":"Villain",
     "image":"the_joker.jpg",
@@ -1600,6 +1611,26 @@
                                           "field":"name",
                                           "operation":"IN",
                                           "value":["Vulnerability", "Weakness"]}},
+                 "effect":{"type":"DRAW",
+                           "count":1}}]
+},
+{
+    "name":"The Watchtower",
+    "type":"Location",
+    "image":"the_watchtower.jpg",
+    "cost":{"type":"FIXED",
+            "cost":5},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"ONGOING"}],
+    "triggers":[{"type":"CARD_PLAYED",
+                 "singleUse":true,
+                 "condition":{"type":"NTH",
+                              "n":1,
+                              "criteria":{"type":"FIXED",
+                                          "field":"cardType",
+                                          "operation":"==",
+                                          "value":"Hero"}},
                  "effect":{"type":"DRAW",
                            "count":1}}]
 },
