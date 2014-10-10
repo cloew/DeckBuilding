@@ -23,6 +23,8 @@ class DeckFactory:
                 cardName = cardJson["name"]
                 count = cardJson["count"]
                 card = CardFactory.load(cardName)
+                if card is None:
+                    print "Failed to load:", cardName
                 deckInitializer.addItem(card, count)
             return deckInitializer
         return None
