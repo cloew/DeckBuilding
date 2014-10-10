@@ -19,16 +19,16 @@
 },
 {
     "name":"Starting",
-    "cards":[{"name":"Punch",
-              "count":2},
+    "cards":[{"name":"Green Arrow's Bow",
+              "count":5},
              {"name":"Weakness",
-              "count":2},
+              "count":0},
              {"name":"Vulnerability",
-              "count":2},
+              "count":0},
              {"name":"Starro",
-              "count":2},
+              "count":0},
              {"name":"Raven",
-              "count":2}]
+              "count":5}]
 },
 {
     "name":"Super Villains",
