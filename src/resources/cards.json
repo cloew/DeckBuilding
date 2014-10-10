@@ -629,6 +629,28 @@
                               "power":1}}]
 },
 {
+    "name":"Harley Quinn",
+    "type":"Villain",
+    "image":"harley_quinn.jpg",
+    "cost":{"type":"FIXED",
+            "cost":2},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":1},
+                   {"type":"ATTACK_EACH_FOE",
+                    "effects":[{"type":"PICK_CARDS",
+                                "source":"DISCARD_PILE",
+                                "number":1,
+                                "criteria":{"type":"FIXED",
+                                            "field":"name",
+                                            "operation":"IN",
+                                            "value":["Punch", "Vulnerability"]},
+                                "then":[{"type":"MOVE_CARD",
+                                         "from":"EVENT",
+                                         "to":"DECK"}]}]}]
+},
+{
     "name":"House of Mystery",
     "type":"Location",
     "cost":{"type":"FIXED",
