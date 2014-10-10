@@ -100,6 +100,23 @@
                "to":"DECK"}]
 },
 {
+    "name":"Bane",
+    "type":"Villain",
+    "image":"bane.jpg",
+    "cost":{"type":"FIXED",
+            "cost":4},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":2},
+                   {"type":"ATTACK_EACH_FOE",
+                    "effects":[{"type":"PICK_CARDS",
+                                "number":1,
+                                "source":"HAND",
+                                "then":[{"type":"DISCARD",
+                                         "source":"EVENT"}]}]}]
+},
+{
     "name":"Bizarro",
     "type":"Villain",
     "image":"bizarro.jpg",
