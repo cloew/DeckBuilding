@@ -1,4 +1,3 @@
-from Game.Effects.game_contexts import PlayerContext
 
 class MultiSourceEvent:
     """ Represents an Event to wrap cards from multiple sources """

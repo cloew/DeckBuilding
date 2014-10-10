@@ -1,4 +1,3 @@
-from Game.Effects.game_contexts import PlayerContext
 
 class CardsEvent:
     """ Represents an Event to wrap an arbitrary number of cards """
@@ -8,7 +7,8 @@ class CardsEvent:
         self.cards = cards
         self.fromSource = fromSource
         
-        self.context = PlayerContext(context.game, cards, event=self, player=context.player)
+        self.context = context.copy()
+        self.context.event = self
     
     def add(self, card):
         """ Add the card from the deck """
