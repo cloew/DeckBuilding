@@ -325,6 +325,20 @@
                              "from":"EVENT"}]}]
 },
 {
+    "name":"Clayface",
+    "type":"Villain",
+    "image":"clayface.jpg",
+    "cost":{"type":"FIXED",
+            "cost":4},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"PICK_CARDS",
+                    "number":1,
+                    "source":"PLAYED",
+                    "then":[{"type":"PLAY",
+                             "source":"EVENT"}]}]
+},
+{
     "name":"Deadshot",
     "type":"Villain",
     "image":"deadshot.jpg",
