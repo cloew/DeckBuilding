@@ -117,6 +117,25 @@
                                          "source":"EVENT"}]}]}]
 },
 {
+    "name":"Batmobile",
+    "type":"Equipment",
+    "image":"batmobile.jpg",
+    "cost":{"type":"FIXED",
+            "cost":2},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"CONDITIONAL",
+                    "condition":{"type":"NOT",
+                                 "condition":{"type":"HAS_CARDS",
+                                              "source":"PLAYED"}},
+                    "effects":[{"type":"DISCARD",
+                                "source":"HAND"},
+                               {"type":"DRAW",
+                                "count":5}],
+                    "otherwise":{"type":"GAIN_POWER",
+                                 "power":1}}]
+},
+{
     "name":"Bizarro",
     "type":"Villain",
     "image":"bizarro.jpg",
