@@ -1083,6 +1083,27 @@
                     "count":1}]
 },
 {
+    "name":"Robin",
+    "type":"Hero",
+    "image":"robin.jpg",
+    "cost":{"type":"FIXED",
+            "cost":3},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":1},
+                   {"type":"PICK_CARDS",
+                    "number":1,
+                    "sources":"DISCARD_PILE",
+                    "criteria":{"type":"FIXED",
+                                "field":"cardType",
+                                "operation":"==",
+                                "value":"Equipment"},
+                    "then":[{"type":"MOVE_CARD",
+                             "from":"EVENT",
+                             "to":"HAND"}]}]
+},
+{
     "name":"Scarecrow",
     "type":"Villain",
     "image":"scarecrow.jpg",
