@@ -1,8 +1,9 @@
 from Game.Commands.Requests.pick_card_request import PickCardRequest
-from Game.Effects.effect_runner import PerformEffects
+from Game.Effects.conditional_effect import ConditionalEffect
+from Game.Effects.Conditions.has_cards import HasCards
 from Game.Events.cards_event import CardsEvent
 
-class PickCards:
+class PickCards(ConditionalEffect):
     """ Represents an effect to pick cards from a source and an optional filter """
     REQUEST_CLASS = PickCardRequest
     AUTO_PICK = True
@@ -11,10 +12,10 @@ class PickCards:
         """ Initialize the options """
         self.sourceType = sourceType
         self.numberOfCards = numberOfCards
-        self.thenEffects = thenEffects
         self.filter = filter
+        ConditionalEffect.__init__(self, HasCards(self.sourceType, filter=filter), thenEffects)
         
-    def perform(self, context):
+    def performEffects(self, context):
         """ Perform the Game Effect """
         source, possibleCards = self.findPossibleCards(context)
         
@@ -26,10 +27,11 @@ class PickCards:
                 cards = yield self.REQUEST_CLASS(possibleCards, context.player, self.numberOfCards)
                 
             event = CardsEvent(cards, source, context)
-            coroutine = PerformEffects(self.thenEffects, event.context)
-            response = yield coroutine.next()
-            while True:
-                response = yield coroutine.send(response)
+        
+        coroutine = ConditionalEffect.performEffects(self, event.context)
+        response = yield coroutine.next()
+        while True:
+            response = yield coroutine.send(response)
                 
     def findPossibleCards(self, context):
         """ Return the possible cards """

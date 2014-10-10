@@ -1,8 +1,8 @@
 [
 {
     "name":"Test",
-    "cards":[{"name":"Kid Flash",
-              "count":0},
+    "cards":[{"name":"Starro",
+              "count":10},
              {"name":"Manhunter",
               "count":10}]
     
@@ -19,7 +19,7 @@
 },
 {
     "name":"Starting",
-    "cards":[{"name":"Green Arrow's Bow",
+    "cards":[{"name":"Cheetah",
               "count":5},
              {"name":"Weakness",
               "count":0},

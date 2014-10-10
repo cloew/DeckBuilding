@@ -307,6 +307,24 @@
                     "power":2}]
 },
 {
+    "name":"Cheetah",
+    "type":"Villain",
+    "image":"cheetah.jpg",
+    "cost":{"type":"FIXED",
+            "cost":2},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"PICK_CARDS",
+                    "number":1,
+                    "source":"LINE_UP",
+                    "criteria":{"type":"FIXED",
+                                "field":"cost",
+                                "operation":"<=",
+                                "value":4},
+                    "then":[{"type":"GAIN_CARD",
+                             "from":"EVENT"}]}]
+},
+{
     "name":"Deadshot",
     "type":"Villain",
     "image":"deadshot.jpg",
