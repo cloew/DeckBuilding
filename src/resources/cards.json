@@ -470,7 +470,7 @@
                                                         "operation":"IN",
                                                         "value":["Hero", "Villain"]},
                                             "then":[{"type":"GAIN_CARD",
-                                                     "source":"EVENT"}]}]},
+                                                     "from":"EVENT"}]}]},
                                {"description":"+3 Power",
                                 "effects":[{"type":"GAIN_POWER",
                                             "power":3}]}]}],
