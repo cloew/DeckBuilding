@@ -1019,7 +1019,7 @@
                                                       "value":1},
                                           "source":"EVENT"},
                              "effects":[{"type":"GAIN_POWER",
-                                         "power":3}]}]}]
+                                         "power":1}]}]}]
 },
 {
     "name":"Princess Diana of Themyscira",
