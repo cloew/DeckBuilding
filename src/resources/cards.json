@@ -562,6 +562,17 @@
                            "count":1}}]
 },
 {
+    "name":"Gorilla Grodd",
+    "type":"Villain",
+    "image":"gorilla_grodd.jpg",
+    "cost":{"type":"FIXED",
+            "cost":5},
+    "points":{"type":"FIXED",
+              "points":2},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":3}]
+},
+{
     "name":"Green Arrow's Bow",
     "type":"Equipment",
     "image":"green_arrows_bow.jpg",
