@@ -682,6 +682,24 @@
                                  "effects":[]}]}]
 },
 {
+    "name":"High-Tech Hero",
+    "type":"Hero",
+    "image":"high_texh_hero.jpg",
+    "cost":{"type":"FIXED",
+            "cost":3},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":1},
+                   {"type":"PLAY_OR_HAVE_PLAYED",
+                    "criteria":{"type":"FIXED",
+                                "field":"cardType",
+                                "operation":"IN",
+                                "value":["Equipment", "Super Power"]},
+                    "effect":{"type":"GAIN_POWER",
+                              "power":2}}]
+},
+{
     "name":"House of Mystery",
     "type":"Location",
     "cost":{"type":"FIXED",
