@@ -1487,6 +1487,21 @@
                              "to":"HAND"}]}]
 },
 {
+    "name":"The Cape and Cowl",
+    "type":"Equipment",
+    "image":"the_cape_and_cowl.jpg",
+    "cost":{"type":"FIXED",
+            "cost":4},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":2}],
+    "onDefense":[{"type":"DISCARD",
+                  "source":"EVENT"},
+                 {"type":"DRAW",
+                  "count":2}]
+},
+{
     "name":"The Joker",
     "type":"Villain",
     "image":"the_joker.jpg",
