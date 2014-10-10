@@ -512,6 +512,17 @@
                                                                   "source":"EVENT"}]}]}]}]}]
 },
 {
+    "name":"Doomsday",
+    "type":"Villain",
+    "image":"doomsday.jpg",
+    "cost":{"type":"FIXED",
+            "cost":6},
+    "points":{"type":"FIXED",
+              "points":2},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":4}]
+},
+{
     "name":"Emerald Knight",
     "type":"Hero",
     "image":"emerald_knight.jpg",
