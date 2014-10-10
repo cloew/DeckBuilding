@@ -1345,6 +1345,26 @@
                                 "effects":[]}]}]
 },
 {
+    "name":"Swamp Thing",
+    "type":"Hero",
+    "image":"swamp_thing.jpg",
+    "cost":{"type":"FIXED",
+            "cost":4},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":2},
+                   {"type":"CONDITIONAL",
+                    "condition":{"type":"MATCHING",
+                                 "source":"ONGOING",
+                                 "criteria":{"type":"FIXED",
+                                             "field":"cardType",
+                                             "operation":"==",
+                                             "value":"Location"}},
+                    "effects":[{"type":"GAIN_POWER",
+                                "power":3}]}]
+},
+{
     "name":"Talon",
     "type":"Villain",
     "image":"talon.jpg",
