@@ -57,7 +57,7 @@ class PickCards(ConditionalEffect):
         for source in sources:
             possibleCards[source] = source
             if self.filters is not None:
-                possibleCards[source] = self.filters[sources.index(soource)].evaluate(context)
+                possibleCards[source] = self.filters[sources.index(source)].evaluate(context)
         
         return possibleCards
         

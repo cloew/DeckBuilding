@@ -17,7 +17,7 @@ class SourceFactory:
     def getSource(self, sourceType, game, event=None, player=None):
         """ Return the source for the given source type and game """
         if sourceType == source_types.CHARACTER:
-            return CharacterSource(game.currentTurn.player.character, sourceType=source_types.CHARACTER)
+            return CharacterSource(game.currentTurn.player.character)
         elif sourceType == source_types.DECK:
             return DeckWithDiscardPileSource(player.deck, sourceType=source_types.DECK)
         if sourceType == source_types.DESTROYED:
