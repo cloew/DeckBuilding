@@ -106,12 +106,12 @@ EffectFactory.addFactory("FILTER", Factory(Filter, [PrimitiveParameter("source")
 EffectFactory.addFactory("LOOK_AT_TOP", Factory(LookAtTop, [PrimitiveParameter("source"), ComplexParameter("then", EffectFactory.loadAll)]))
 EffectFactory.addFactory("PER_FOE", Factory(PerFoe, [ComplexParameter("effects", EffectFactory.loadAll)]))
 EffectFactory.addFactory("PER_MATCH", Factory(PerMatch, [PrimitiveParameter("source"), ComplexParameter("effect", EffectFactory.load), FilterParameter(optional=True)]))
-EffectFactory.addFactory("PICK_CARDS", Factory(PickCards, [PrimitiveParameter("source"), PrimitiveParameter("number"), 
-                                                           ComplexParameter("then", EffectFactory.loadAll), ComparisonFilterParameter(optional=True)]))
+EffectFactory.addFactory("PICK_CARDS", Factory(PickCards, [PrimitiveParameter("sources"), PrimitiveParameter("number"), 
+                                                           ComplexParameter("then", EffectFactory.loadAll), ComplexParameter("criteria", CriteriaFactory.load, optional=True)]))
 EffectFactory.addFactory("PICK_RANDOM", Factory(PickRandomCard, [PrimitiveParameter("source"), ComplexParameter("then", EffectFactory.load)]))
-EffectFactory.addFactory("PICK_UP_TO_ALL_CARDS", Factory(PickUpToAllCards, [PrimitiveParameter("source"), ComplexParameter("then", EffectFactory.loadAll), 
-                                                                            ComparisonFilterParameter(optional=True)]))
-EffectFactory.addFactory("PICK_UP_TO_N_CARDS", Factory(PickUpToNCards, [PrimitiveParameter("source"), PrimitiveParameter("number"), 
-                                                                        ComplexParameter("then", EffectFactory.loadAll), ComparisonFilterParameter(optional=True)]))
+EffectFactory.addFactory("PICK_UP_TO_ALL_CARDS", Factory(PickUpToAllCards, [PrimitiveParameter("sources"), ComplexParameter("then", EffectFactory.loadAll), 
+                                                                            ComplexParameter("criteria", CriteriaFactory.load, optional=True)]))
+EffectFactory.addFactory("PICK_UP_TO_N_CARDS", Factory(PickUpToNCards, [PrimitiveParameter("sources"), PrimitiveParameter("number"), 
+                                                                        ComplexParameter("then", EffectFactory.loadAll), ComplexParameter("criteria", CriteriaFactory.load, optional=True)]))
 EffectFactory.addFactory("PLAY_OR_HAVE_PLAYED", Factory(PlayOrHavePlayed, [ComplexParameter("effect", EffectFactory.load), ComplexParameter("criteria", CriteriaFactory.load)]))
 EffectFactory.addFactory("PLAY_OR_HAVE_PLAYED_ANOTHER", Factory(PlayOrHavePlayedAnother, [ComplexParameter("effect", EffectFactory.load), ComplexParameter("criteria", CriteriaFactory.load)]))
