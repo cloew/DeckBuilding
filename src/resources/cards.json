@@ -1316,6 +1316,17 @@
                   "count":2}]
 },
 {
+    "name":"Super Strength",
+    "type":"Super Power",
+    "image":"super_strength.jpg",
+    "cost":{"type":"FIXED",
+            "cost":7},
+    "points":{"type":"FIXED",
+              "points":2},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":5}]
+},
+{
     "name":"Talon",
     "type":"Villain",
     "image":"talon.jpg",
