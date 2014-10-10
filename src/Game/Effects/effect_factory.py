@@ -58,7 +58,7 @@ def LoadActivatable(data):
     
 def LoadCost(data):
     """ Load the Cost """
-    return FixedCost(data["cost"])
+    return FixedCost(data["cost"], canBeNegative=True)
     
 def LoadTrigger(data):
     """ Load a trigger from the data given """

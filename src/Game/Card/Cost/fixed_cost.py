@@ -2,14 +2,18 @@
 class FixedCost:
     """ Represents a Fixed Cost method for determining the Cost of a Card """
     
-    def __init__(self, cost):
+    def __init__(self, cost, canBeNegative=False):
         """ Initialize the Fixed Cost """
         self.cost = cost
         self.costModifiers = []
+        self.canBeNegative = canBeNegative
         
     def calculateCost(self):
         """ Return the cost """
-        return sum([self.cost] +[costMod.calculateCost() for costMod in self.costModifiers])
+        currentCost = sum([self.cost] + [costMod.calculateCost() for costMod in self.costModifiers])
+        if not self.canBeNegative:
+            currentCost = max(currentCost, 0)
+        return currentCost
         
     def addCostModifier(self, costMod):
         """ Add the Cost Modifier to the Cost Calcualtor """
