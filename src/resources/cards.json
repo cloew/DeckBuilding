@@ -719,6 +719,19 @@
                            "count":1}}]
 },
 {
+    "name":"J'onn J'onzz",
+    "type":"Hero",
+    "image":"jonn_jonzz.jpg",
+    "cost":{"type":"FIXED",
+            "cost":6},
+    "points":{"type":"FIXED",
+              "points":2},
+    "playEffects":[{"type":"LOOK_AT_TOP",
+                    "source":"SUPERVILLAIN",
+                    "then":[{"type":"PLAY",
+                             "source":"EVENT"}]}]
+},
+{
     "name":"Kick",
     "type":"Super Power",
     "image":"kick.jpg",
