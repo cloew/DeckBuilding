@@ -55,6 +55,26 @@
                                                         "to":"DECK"}]}]}}]
 },
 {
+    "name":"Arkham Asylum",
+    "type":"Location",
+    "image":"arkham_asylum.jpg",
+    "cost":{"type":"FIXED",
+            "cost":5},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"ONGOING"}],
+    "triggers":[{"type":"CARD_PLAYED",
+                 "singleUse":true,
+                 "condition":{"type":"NTH",
+                              "n":1,
+                              "criteria":{"type":"FIXED",
+                                          "field":"cardType",
+                                          "operation":"==",
+                                          "value":"Villain"}},
+                 "effect":{"type":"DRAW",
+                           "count":1}}]
+},
+{
     "name":"Atrocitus",
     "type":"Villain",
     "image":"atrocitus.jpg",
