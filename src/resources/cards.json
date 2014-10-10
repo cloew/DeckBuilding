@@ -681,7 +681,7 @@
 {
     "name":"High-Tech Hero",
     "type":"Hero",
-    "image":"high_texh_hero.jpg",
+    "image":"high_tech_hero.jpg",
     "cost":{"type":"FIXED",
             "cost":3},
     "points":{"type":"FIXED",
