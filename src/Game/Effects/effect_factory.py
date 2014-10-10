@@ -33,6 +33,7 @@ from Game.Effects.pick_up_to_all_cards import PickUpToAllCards
 from Game.Effects.pick_up_to_n_cards import PickUpToNCards
 from Game.Effects.play import Play
 from Game.Effects.play_or_have_played import PlayOrHavePlayed
+from Game.Effects.play_or_have_played_another import PlayOrHavePlayedAnother
 from Game.Effects.put_on_bottom import PutOnBottom
 from Game.Effects.put_on_bottom_cleanup import PutOnBottomCleanup
 from Game.Effects.reveal import Reveal
@@ -114,3 +115,4 @@ EffectFactory.addFactory("PICK_UP_TO_ALL_CARDS", Factory(PickUpToAllCards, [Prim
 EffectFactory.addFactory("PICK_UP_TO_N_CARDS", Factory(PickUpToNCards, [PrimitiveParameter("source"), PrimitiveParameter("number"), 
                                                                         ComplexParameter("then", EffectFactory.loadAll), ComparisonFilterParameter(optional=True)]))
 EffectFactory.addFactory("PLAY_OR_HAVE_PLAYED", Factory(PlayOrHavePlayed, [ComplexParameter("effect", EffectFactory.load), ComplexParameter("criteria", CriteriaFactory.load)]))
+EffectFactory.addFactory("PLAY_OR_HAVE_PLAYED_ANOTHER", Factory(PlayOrHavePlayedAnother, [ComplexParameter("effect", EffectFactory.load), ComplexParameter("criteria", CriteriaFactory.load)]))

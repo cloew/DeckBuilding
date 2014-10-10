@@ -1,4 +1,4 @@
-from Game.Effects.effect_runner import PerformEffects
+from Game.Effects.effect_runner import PerformEffects, PerformEffect
 
 class ConditionalEffect:
     """ Represents an effect that conditionally applies """
