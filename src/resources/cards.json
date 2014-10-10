@@ -296,6 +296,17 @@
                "effects":[{"type":"ACTIVATE_CHARACTER"}]}]
 },
 {
+    "name":"Catwoman",
+    "type":"Hero",
+    "image":"catwoman.jpg",
+    "cost":{"type":"FIXED",
+            "cost":2},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":2}]
+},
+{
     "name":"Deadshot",
     "type":"Villain",
     "image":"deadshot.jpg",
