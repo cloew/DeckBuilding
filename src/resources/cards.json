@@ -542,6 +542,26 @@
                              "source":"EVENT"}]}]
 },
 {
+    "name":"Fortress of Solitude",
+    "type":"Location",
+    "image":"fortress_of_solitude.jpg",
+    "cost":{"type":"FIXED",
+            "cost":5},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"ONGOING"}],
+    "triggers":[{"type":"CARD_PLAYED",
+                 "singleUse":true,
+                 "condition":{"type":"NTH",
+                              "n":1,
+                              "criteria":{"type":"FIXED",
+                                          "field":"cardType",
+                                          "operation":"==",
+                                          "value":"Super Power"}},
+                 "effect":{"type":"DRAW",
+                           "count":1}}]
+},
+{
     "name":"Green Arrow's Bow",
     "type":"Equipment",
     "image":"green_arrows_bow.jpg",
