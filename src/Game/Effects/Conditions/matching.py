@@ -5,6 +5,7 @@ class Matching:
     
     def __init__(self, sourceType, criteria=None, number=None):
         """ Initialize the Matching Condition with the field to use and the values it can match """
+        self.sourceType = sourceType
         self.filter = None
         if criteria is not None:
             self.filter = ComparisonFilter(sourceType, criteria)
