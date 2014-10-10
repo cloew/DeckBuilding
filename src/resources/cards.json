@@ -1327,6 +1327,24 @@
                     "power":5}]
 },
 {
+    "name":"Supergirl",
+    "type":"Hero",
+    "image":"supergirl.jpg",
+    "cost":{"type":"FIXED",
+            "cost":4},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"CHOICE",
+                    "choices":[{"description":"Put a Kick into your hand.",
+                                "condition":{"type":"HAS_CARDS",
+                                             "source":"KICK"},
+                                "effects":[{"type":"GAIN_TOP_CARD",
+                                            "from":"KICK",
+                                            "to":"HAND"}]},
+                               {"description":"Do nothing.",
+                                "effects":[]}]}]
+},
+{
     "name":"Talon",
     "type":"Villain",
     "image":"talon.jpg",
