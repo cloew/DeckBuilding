@@ -849,7 +849,7 @@
 },
 {
     "name":"Man of Steel",
-    "type":"Villain",
+    "type":"Hero",
     "image":"man_of_steel.jpg",
     "cost":{"type":"FIXED",
             "cost":8},
@@ -885,6 +885,23 @@
                     "source":"DISCARD_PILE",
                     "effect":{"type":"GAIN_POWER",
                               "power":2}}]
+},
+{
+    "name":"Mera",
+    "type":"Hero",
+    "image":"mera.jpg",
+    "cost":{"type":"FIXED",
+            "cost":3},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":2},
+                   {"type":"CONDITIONAL",
+                    "condition":{"type":"NOT",
+                                 "condition":{"type":"HAS_CARDS",
+                                              "source":"DISCARD_PILE"}},
+                    "effects":[{"type":"GAIN_POWER",
+                                "power":2}]}]
 },
 {
     "name":"Nth Metal",
