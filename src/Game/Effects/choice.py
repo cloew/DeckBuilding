@@ -4,10 +4,11 @@ from Game.Effects.effect_runner import PerformEffects
 class Option:
     """ Represents an option for a Choice Effect """
     
-    def __init__(self, description, effects):
+    def __init__(self, description, effects, condition=None):
         """ Initialize the Option """
         self.description = description
         self.effects = effects
+        self.condition = condition
         
     def performEffects(self, context):
         """ Perform the Option's Effects """
@@ -15,6 +16,13 @@ class Option:
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)
+            
+    def isAvailable(self, context):
+        """ Check if the Option is available to be chosen """
+        canChoose = True
+        if self.condition is not None:
+            return self.condition.evaluate(context)
+        return True
 
 class Choice:
     """ Represents an effect absed on a choice """
@@ -27,7 +35,12 @@ class Choice:
         
     def perform(self, context):
         """ Perform the Game Effect """
-        option = yield ChooseOptionRequest(self.options, context.player, self.findPossibleCards(context))
+        availableOptions = [option for option in self.options if option.isAvailable(context)]
+        if len(availableOptions) == 1:
+            option = availableOptions[0]
+        else:
+            option = yield ChooseOptionRequest(availableOptions, context.player, self.findPossibleCards(context))
+            
         coroutine = option.performEffects(context)
         response = yield coroutine.next()
         while True:

@@ -51,6 +51,7 @@ from kao_factory.factory import Factory
 from kao_factory.typed_factory import TypedFactory
 from kao_factory.Parameter.complex_parameter import ComplexParameter
 from kao_factory.Parameter.primitive_parameter import PrimitiveParameter
+
         
 def LoadActivatable(data):
     """ Load an activatable from the data given """
@@ -65,17 +66,12 @@ def LoadTrigger(data):
     """ Load a trigger from the data given """
     from Game.Effects.Triggers.trigger_factory import TriggerFactory
     return TriggerFactory.load(data)
-    
-def LoadOptions(data):
-    """ Load options from the data given """
-    return [Option(optionJSON['description'], EffectFactory.loadAll(optionJSON['effects'])) for optionJSON in data]
 
 EffectFactory = TypedFactory('type', {"ACTIVATE_CHARACTER":Factory(ActivateCharacter, []),
                                       "ADD_ACTIVATABLE":Factory(AddActivatable, [ComplexParameter("activatable", LoadActivatable)]),
                                       "ADD_COST_MOD":Factory(AddCostModifier, [PrimitiveParameter("source"), ComplexParameter("cost", LoadCost)]),
                                       "ADD_TO_LINE_UP":Factory(AddToLineUp, [PrimitiveParameter("count", optional=True)]),
                                       "ADD_TRIGGER":Factory(AddTrigger, [ComplexParameter("trigger", LoadTrigger)]),
-                                      "CHOICE":Factory(Choice, [ComplexParameter("choices", LoadOptions), PrimitiveParameter("source", optional=True), ComparisonFilterParameter(optional=True)]),
                                       "DEACTIVATE_CHARACTER":Factory(DeactivateCharacter, []),
                                       "DESTROY":Factory(Destroy, [PrimitiveParameter("source")]),
                                       "DISCARD":Factory(Discard, [PrimitiveParameter("source")]),
@@ -94,10 +90,13 @@ EffectFactory = TypedFactory('type', {"ACTIVATE_CHARACTER":Factory(ActivateChara
                                       "SHUFFLE_AND_DEAL":Factory(ShuffleAndDeal, []),
                                       "SPEND_POWER":Factory(SpendPower, [PrimitiveParameter("power")])})
                                       
+OptionFactory = Factory(Option, [PrimitiveParameter("description"), ComplexParameter("effects", EffectFactory.loadAll), ComplexParameter("condition", ConditionFactory.load, optional=True)])
+
 EffectFactory.addFactory("AS_NEXT_PLAYER", Factory(AsNextPlayer, [ComplexParameter("then", EffectFactory.loadAll)]))
 EffectFactory.addFactory("AS_OWNER", Factory(AsOwner, [ComplexParameter("then", EffectFactory.loadAll)]))
 EffectFactory.addFactory("ATTACK", Factory(Attack, [ComplexParameter("then", EffectFactory.loadAll)]))
 EffectFactory.addFactory("ATTACK_EACH_FOE", Factory(AttackEachFoe, [ComplexParameter("effects", EffectFactory.loadAll)]))
+EffectFactory.addFactory("CHOICE", Factory(Choice, [ComplexParameter("choices", OptionFactory.loadAll), PrimitiveParameter("source", optional=True), ComparisonFilterParameter(optional=True)]))
 EffectFactory.addFactory("CONDITIONAL", Factory(ConditionalEffect, [ComplexParameter("condition", ConditionFactory.load), 
                                                                     ComplexParameter("effects", EffectFactory.loadAll), 
                                                                     ComplexParameter("otherwise", EffectFactory.load, optional=True)]))

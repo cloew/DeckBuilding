@@ -19,7 +19,7 @@ from kao_factory.Parameter.primitive_parameter import PrimitiveParameter
 
 ConditionFactory = TypedFactory('type', {"ENOUGH_POWER":Factory(EnoughPower, [PrimitiveParameter("power")]),
                                          "HAS_CARDS":Factory(HasCards, [PrimitiveParameter("source"), ComparisonFilterParameter(optional=True)]),
-                                         "MATCHING":Factory(Matching, [PrimitiveParameter("source"), ComplexParameter("criteria", CriteriaFactory.load), PrimitiveParameter("number", optional=True)]),
+                                         "MATCHING":Factory(Matching, [PrimitiveParameter("source"), ComplexParameter("criteria", CriteriaFactory.load, optional=True), PrimitiveParameter("number", optional=True)]),
                                          "NTH":Factory(NthPlayed, [PrimitiveParameter("n"), ComplexParameter("criteria", CriteriaFactory.load)]),
                                          "NTH_UNIQUE":Factory(NthUnique, [PrimitiveParameter("n"), ComplexParameter("criterion", CriteriaFactory.loadAll, optional=True, default=[])]),
                                          "UNIQUE":Factory(Unique, [PrimitiveParameter("field"), PrimitiveParameter("source")]),
