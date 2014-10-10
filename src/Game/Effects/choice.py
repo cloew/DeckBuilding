@@ -36,7 +36,9 @@ class Choice:
     def perform(self, context):
         """ Perform the Game Effect """
         availableOptions = [option for option in self.options if option.isAvailable(context)]
-        if len(availableOptions) == 1:
+        if len(availableOptions) == 0:
+            return
+        elif len(availableOptions) == 1:
             option = availableOptions[0]
         else:
             option = yield ChooseOptionRequest(availableOptions, context.player, self.findPossibleCards(context))
