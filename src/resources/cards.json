@@ -1466,6 +1466,27 @@
                            "count":1}}]
 },
 {
+    "name":"The Bat-Signal",
+    "type":"Equipment",
+    "image":"the_bat_signal.jpg",
+    "cost":{"type":"FIXED",
+            "cost":5},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":1},
+                   {"type":"PICK_CARDS",
+                    "number":1,
+                    "sources":"DISCARD_PILE",
+                    "criteria":{"type":"FIXED",
+                                "field":"cardType",
+                                "operation":"==",
+                                "value":"Hero"},
+                    "then":[{"type":"MOVE_CARD",
+                             "from":"EVENT",
+                             "to":"HAND"}]}]
+},
+{
     "name":"The Joker",
     "type":"Villain",
     "image":"the_joker.jpg",
