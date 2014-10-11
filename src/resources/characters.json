@@ -112,6 +112,24 @@
                                                                       "to":"DISCARD_PILE"}]}]}]}]}
 },
 {
+    "name":"Superman",
+    "image":"superman.jpg",
+    "triggers":[{"type":"CARD_PLAYED",
+                 "singleUse":false,
+                 "condition":{"type":"AND",
+                              "conditions":[{"type":"MATCHING",
+                                            "criteria":{"type":"FIXED",
+                                                        "field":"cardType",
+                                                        "operation":"==",
+                                                        "value":"Super Power"},
+                                            "source":"EVENT"},
+                                           {"type":"UNIQUE",
+                                            "field":"name",
+                                            "source":"PLAYED"}]},
+                 "effect":{"type":"GAIN_POWER",
+                           "power":1}}]
+},
+{
     "name":"Wonder Woman",
     "image":"wonder_woman.jpg",
     "triggers":[{"type":"CARD_GAINED",
