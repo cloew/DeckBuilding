@@ -33,7 +33,7 @@ class SourceFactory:
         elif sourceType == source_types.KICK:
             return DeckSource(game.kickDeck, sourceType=source_types.KICK)
         elif sourceType == source_types.LINE_UP:
-            return game.lineUp
+            return Source(game.lineUp)
         elif sourceType == source_types.MAIN_DECK:
             return DeckSource(game.mainDeck, sourceType=source_types.MAIN_DECK)
         elif sourceType == source_types.ONGOING:
