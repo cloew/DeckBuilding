@@ -88,7 +88,7 @@
                     "number":2,
                     "sources":["DISCARD_PILE"],
                     "then":[{"type":"DESTROY",
-                             "from":"EVENT"}]}],
+                             "source":"EVENT"}]}],
     "onAppearance":[{"type":"ATTACK_EACH_FOE",
                      "effects":[{"type":"PICK_RANDOM",
                                  "source":"HAND",
