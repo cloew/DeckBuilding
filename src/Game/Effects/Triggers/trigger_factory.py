@@ -8,6 +8,6 @@ from kao_factory.Parameter.complex_parameter import ComplexParameter
 from kao_factory.Parameter.primitive_parameter import PrimitiveParameter
 
 TriggerFactory = Factory(Trigger, [PrimitiveParameter("type"),
-                                   ComplexParameter("condition", ConditionFactory.load),
                                    ComplexParameter("effect", EffectFactory.load),
+                                   ComplexParameter("condition", ConditionFactory.load, optional=True),
                                    PrimitiveParameter("singleUse")])
