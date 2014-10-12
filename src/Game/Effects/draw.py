@@ -1,3 +1,4 @@
+from Game.Events.draw_card_event import DrawCardEvent
 
 class Draw:
     """ Represents an effect to Draw Cards """
@@ -9,3 +10,11 @@ class Draw:
     def perform(self, context):
         """ Perform the Game Effect """
         context.player.draw(count=self.count)
+        
+        coroutine = self.ongoingEffects.send(DrawCardEvent(card, self.game))
+        try:
+            response = yield coroutine.next()
+            while True:
+                response = yield coroutine.send(response)
+        except StopIteration:
+            pass
