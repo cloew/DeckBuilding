@@ -77,3 +77,8 @@ class Player:
     def discardPile(self):
         """ Return the Deck's Discard Pile """
         return self.deck.discardPile
+        
+    @property
+    def goesFirst(self):
+        """ Return whether the Player should go first """
+        return self.character.goesFirst
