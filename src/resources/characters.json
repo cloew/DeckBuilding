@@ -156,6 +156,7 @@
 {
     "name":"The Flash",
     "image":"the_flash.jpg",
+    "goesFirst":true,
     "triggers":[{"type":"DRAW",
                  "singleUse":true,
                  "condition":{"type":"IS_PLAYER_TURN"},
