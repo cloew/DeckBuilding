@@ -154,6 +154,14 @@
                            "power":1}}]
 },
 {
+    "name":"The Flash",
+    "image":"the_flash.jpg",
+    "triggers":[{"type":"DRAW",
+                 "singleUse":true,
+                 "effect":{"type":"DRAW",
+                           "count":1}}]
+},
+{
     "name":"Wonder Woman",
     "image":"wonder_woman.jpg",
     "triggers":[{"type":"CARD_GAINED",
