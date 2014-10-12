@@ -12,9 +12,6 @@ class Draw:
         context.player.draw(count=self.count)
         
         coroutine = self.ongoingEffects.send(DrawCardEvent(card, self.game))
-        try:
-            response = yield coroutine.next()
-            while True:
-                response = yield coroutine.send(response)
-        except StopIteration:
-            pass
+        response = yield coroutine.next()
+        while True:
+            response = yield coroutine.send(response)
