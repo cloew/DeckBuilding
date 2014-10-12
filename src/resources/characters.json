@@ -158,6 +158,7 @@
     "image":"the_flash.jpg",
     "triggers":[{"type":"DRAW",
                  "singleUse":true,
+                 "condition":{"type":"IS_PLAYER_TURN"},
                  "effect":{"type":"DRAW",
                            "count":1}}]
 },
