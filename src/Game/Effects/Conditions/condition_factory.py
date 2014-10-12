@@ -1,6 +1,7 @@
 from and_condition import AndCondition
 from enough_power import EnoughPower
 from has_cards import HasCards
+from is_player_turn import IsPlayerTurn
 from matching import Matching
 from not_condition import NotCondition
 from nth_played import NthPlayed
@@ -18,6 +19,7 @@ from kao_factory.Parameter.complex_parameter import ComplexParameter
 from kao_factory.Parameter.primitive_parameter import PrimitiveParameter
 
 ConditionFactory = TypedFactory('type', {"ENOUGH_POWER":Factory(EnoughPower, [PrimitiveParameter("power")]),
+                                         "IS_PLAYER_TURN":Factory(IsPlayerTurn, []),
                                          "HAS_CARDS":Factory(HasCards, [PrimitiveParameter("source"), ComparisonFilterParameter(optional=True)]),
                                          "MATCHING":Factory(Matching, [PrimitiveParameter("source"), ComplexParameter("criteria", CriteriaFactory.load, optional=True), PrimitiveParameter("number", optional=True)]),
                                          "NTH":Factory(NthPlayed, [PrimitiveParameter("n"), ComplexParameter("criteria", CriteriaFactory.load)]),

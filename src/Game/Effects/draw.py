@@ -11,7 +11,7 @@ class Draw:
         """ Perform the Game Effect """
         context.player.draw(count=self.count)
         
-        coroutine = context.owner.ongoingEffects.send(DrawCardEvent(context.parent, context.game))
+        coroutine = context.owner.ongoingEffects.send(DrawCardEvent(context.parent, context))
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)
