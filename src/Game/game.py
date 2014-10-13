@@ -19,7 +19,6 @@ class Game:
         self.players = players
             
         self.mainDeck = DeckFactory.load("Deck 1").loadDeck()
-        self.mainDeck.shuffle()
         self.lineUp = LineUp(self.mainDeck)
         self.kickDeck = DeckFactory.load("Kick").loadDeck()
         self.weaknessDeck = DeckFactory.load("Weakness").loadDeck()

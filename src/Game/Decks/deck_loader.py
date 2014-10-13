@@ -9,4 +9,8 @@ class DeckLoader:
         
     def loadDeck(self):
         """ Load the Deck """
+        return self.buildDeck()
+        
+    def buildDeck(self):
+        """ Build the Deck """
         return Deck(deck_initializer=self.deckInitializer)

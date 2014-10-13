@@ -1,6 +1,7 @@
 from Game.Card.card_factory import CardFactory
 
 from deck_loader import DeckLoader
+from shuffling_deck_loader import ShufflingDeckLoader
 from starting_deck_loader import StartingDeckLoader
 
 from kao_deck.deck import Deck
@@ -31,7 +32,7 @@ def LoadCards(data):
 
 DECK_FILENAME = resource_manager.GetResourcePath("decks.json")
 
-factories = {"REGULAR":Factory(DeckLoader, [ComplexParameter("cards", LoadCards)]),
+factories = {"REGULAR":Factory(ShufflingDeckLoader, [ComplexParameter("cards", LoadCards)]),
              "UNIFORM":Factory(DeckLoader, [ComplexParameter("cards", LoadCards)]),
              "STARTING":Factory(StartingDeckLoader, [ComplexParameter("cards", LoadCards)]),
              "FIXED_TOP":Factory(DeckLoader, [ComplexParameter("cards", LoadCards)])}
