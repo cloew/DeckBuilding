@@ -26,10 +26,6 @@ services.service('gameService', function($cookies, $http, $location, $routeParam
             $location.path('/game/'+game.id+'/results');
         }
         if ((!game.request || (oldRequest && oldRequest.id != game.request.id)) && requestModalService.getModal()) {
-            console.log(!game.request);
-            console.log((oldRequest && oldRequest.id != game.request.id));
-            console.log(oldRequest.id);
-            console.log(game.request.id);
             requestModalService.closeModal();
         }
         if (game.request && !requestModalService.hasModal()) {
