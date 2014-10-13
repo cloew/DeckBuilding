@@ -15,7 +15,10 @@ services.service('gameService', function($cookies, $http, $location, $routeParam
         return game;
     };
     var setGame = function(data, parentScope) {
-        oldRequest = game.request
+        if (game && game.request) {
+            oldRequest = game.request
+        }
+        
         game = data['game'];
         notificationService.setNotifications(game.notifications);
         if (game.isOver) {
