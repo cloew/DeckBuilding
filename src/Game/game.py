@@ -14,16 +14,16 @@ class Game:
     """ Represents a game of the Deck Building Game """
     LINE_UP_SIZE = 5
     
-    def __init__(self, players):
+    def __init__(self, players, mainDeck=None, kickDeck=None, weaknessDeck=None, superVillainDeck=None):
         """ Initialize the Game """
         self.players = players
             
-        self.mainDeck = DeckFactory.load("Deck 1").loadDeck()
+        self.mainDeck = mainDeck
         self.lineUp = LineUp(self.mainDeck)
-        self.kickDeck = DeckFactory.load("Kick").loadDeck()
-        self.weaknessDeck = DeckFactory.load("Weakness").loadDeck()
+        self.kickDeck = kickDeck
+        self.weaknessDeck = weaknessDeck
         self.destroyedDeck = Deck()
-        self.superVillainStack = SuperVillainStack(DeckFactory.load("Super Villains").loadDeck())
+        self.superVillainStack = SuperVillainStack(superVillainDeck)
         
         self.gameOver = GameOver(self)
         self.notificationTracker = NotificationTracker()
