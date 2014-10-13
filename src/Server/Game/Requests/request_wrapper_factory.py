@@ -14,10 +14,22 @@ class RequestWrapperFactory:
                           DefendRequest:DefendRequestWrapper,
                           PickCardRequest:PickCardRequestWrapper,
                           PickUpToNCardRequest:PickUpToNCardRequestWrapper}
+                          
+    def __init__(self):
+        """ Initialize the request wrapper """
+        self.id = 0
+        self.request = None
     
     def buildRequestWrapper(self, request, game):
         """ Return the current Request Wrapper """
+        if request is not self.request:
+            self.getNextId()
+        
         if request.__class__ in self.REQUEST_TO_WRAPPER:
-            return self.REQUEST_TO_WRAPPER[request.__class__](request, game)
+            return self.REQUEST_TO_WRAPPER[request.__class__](self.id, request, game)
+            
+    def getNextId(self):
+        """ Return the next id """
+        self.id += 1
             
 RequestWrapperFactory = RequestWrapperFactory()
