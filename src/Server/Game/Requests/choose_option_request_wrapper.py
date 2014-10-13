@@ -3,8 +3,9 @@ from Server.Game.json_helper import GetCardListJSON
 class ChooseOptionRequestWrapper:
     """ A Wrapper for a Choose Option Request that handles its conversion to JSON """
     
-    def __init__(self, request, game):
+    def __init__(self, id, request, game):
         """ Initialize the Request Wrapper """
+        self.id = id
         self.request = request
         self.game = game
         
@@ -15,5 +16,6 @@ class ChooseOptionRequestWrapper:
         if relevantCards is not None:
             cards = GetCardListJSON(relevantCards, self.game, includeActions=includeActions)
         return {'type':'CHOICE',
+                'id':self.id,
                 'options':[option.description for option in self.request.options],
                 'cards':cards}
