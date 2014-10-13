@@ -10,13 +10,13 @@
 },
 {
     "name":"Kick",
-    "type":"REGULAR",
+    "type":"UNIFORM",
     "cards":[{"name":"Kick",
               "count":16}]
 },
 {
     "name":"Weakness",
-    "type":"REGULAR",
+    "type":"UNIFORM",
     "cards":[{"name":"Weakness",
               "count":20}]
 },
@@ -30,7 +30,7 @@
 },
 {
     "name":"Super Villains",
-    "type":"REGULAR",
+    "type":"FIXED_TOP",
     "cards":[{"name":"Parallax",
               "count":1},
              {"name":"The Anti-Monitor",
