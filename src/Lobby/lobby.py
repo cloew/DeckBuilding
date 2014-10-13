@@ -1,6 +1,4 @@
-from Game.game import Game
-
-import random
+from Game.Modes.free_for_all import FreeForAll
 
 class Lobby:
     """ Represents the lobby for players wanting to play """
@@ -8,6 +6,7 @@ class Lobby:
     def __init__(self):
         """ Initialize the Lobby """
         self.players = []
+        self.gameMode = FreeForAll()
         
     def addPlayer(self, player):
         """ Add the player to the game lobby """
@@ -15,16 +14,4 @@ class Lobby:
         
     def buildGame(self):
         """ Build the Game """
-        players = self.getGamePlayers()
-        return Game(players)
-        
-    def getGamePlayers(self):
-        """ Return the Game Players in their proper order """
-        players = [player.buildGamePlayer() for player in self.players]
-        firstPlayers = [player for player in players if player.goesFirst]
-        otherPlayers = [player for player in players if not player.goesFirst]
-        
-        random.shuffle(firstPlayers)
-        random.shuffle(otherPlayers)
-        
-        return firstPlayers + otherPlayers
+        return self.gameMode.buildGame(self)
