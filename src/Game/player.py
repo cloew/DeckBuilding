@@ -1,5 +1,4 @@
 from Game.Characters.character_factory import CharacterFactory
-from Game.Decks.decks import StartingDeck
 from Game.Decks.deck_factory import DeckFactory
 from Game.Effects.game_contexts import PlayerContext
 from Game.Effects.effect_runner import PerformEffects
@@ -15,7 +14,7 @@ class Player:
         self.character = character
         
         self.nextHandSize = self.STANDARD_HAND_SIZE
-        self.deck = DeckFactory.load("Starting")
+        self.deck = DeckFactory.load("Starting").loadDeck()
         self.deck.shuffle()
         self.drawHand()
         self.ongoing = []
