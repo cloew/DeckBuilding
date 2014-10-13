@@ -15,16 +15,17 @@ services.service('gameService', function($cookies, $http, $location, $routeParam
         return game;
     };
     var setGame = function(data, parentScope) {
+        oldRequest = game.request
         game = data['game'];
         notificationService.setNotifications(game.notifications);
         if (game.isOver) {
             $location.path('/game/'+game.id+'/results');
         }
+        if ((!game.request || oldRequest || oldRequest.id != game.request.id) && requestModalService.getModal()) {
+            requestModalService.closeModal();
+        }
         if (game.request && !requestModalService.hasModal()) {
             requestModalService.openRequestModal(game.request);
-        }
-        if (!game.request && requestModalService.getModal()) {
-            requestModalService.closeModal();
         }
     };
     var actions = {};
