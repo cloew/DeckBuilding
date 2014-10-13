@@ -15,7 +15,16 @@ class Lobby:
         
     def buildGame(self):
         """ Build the Game """
-        players = [player.buildGamePlayer() for player in self.players]
-        random.shuffle(players)
+        players = self.getGamePlayers()
         return Game(players)
         
+    def getGamePlayers(self):
+        """ Return the Game Players in their proper order """
+        players = [player.buildGamePlayer() for player in self.players]
+        firstPlayers = [player for player in players if player.goesFirst]
+        otherPlayers = [player for player in players if not player.goesFirst]
+        
+        random.shuffle(firstPlayers)
+        random.shuffle(otherPlayers)
+        
+        return firstPlayers + otherPlayers

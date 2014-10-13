@@ -4,12 +4,12 @@ class CardEvent:
     """ Represents an event wrapping a single card """
     subject = None # Should be sub-classed to specify what the actual subject is
     
-    def __init__(self, card, game):
+    def __init__(self, card, context):
         """ Initialize the Played Card Event with the card that got played """
         self.card = card
-        self.game = game
         
-        self.context = PlayerContext(game, card, event=self)
+        self.context = context.copy()
+        self.context.event = self
         
     def __len__(self):
         """ Return the iterator for the event when it is used as a source """

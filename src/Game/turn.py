@@ -92,7 +92,7 @@ class Turn:
         except StopIteration:
             pass
         
-        coroutine = self.ongoingEffects.send(PlayedCardEvent(card, self.game))
+        coroutine = self.ongoingEffects.send(PlayedCardEvent(card, PlayerContext(self.game, card)))
         try:
             response = yield coroutine.next()
             while True:
@@ -116,7 +116,7 @@ class Turn:
         except StopIteration:
             pass
             
-        coroutine = self.ongoingEffects.send(GainedCardEvent(card, self.game))
+        coroutine = self.ongoingEffects.send(GainedCardEvent(card, PlayerContext(self.game, card)))
         try:
             response = yield coroutine.next()
             while True:
