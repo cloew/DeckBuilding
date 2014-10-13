@@ -1,10 +1,9 @@
 from Game.Characters.character_factory import CharacterFactory
-from Game.Decks.decks import StartingDeckInitializer
+from Game.Decks.decks import StartingDeck
+from Game.Decks.deck_factory import DeckFactory
 from Game.Effects.game_contexts import PlayerContext
 from Game.Effects.effect_runner import PerformEffects
 from Game.Events.cards_event import CardsEvent
-
-from kao_deck.deck_with_discard_pile import DeckWithDiscardPile
 
 class Player:
     """ Represents a Player in the Game """
@@ -16,7 +15,7 @@ class Player:
         self.character = character
         
         self.nextHandSize = self.STANDARD_HAND_SIZE
-        self.deck = DeckWithDiscardPile(deck_initializer=StartingDeckInitializer, reshuffle=True)
+        self.deck = DeckFactory.load("Starting")
         self.deck.shuffle()
         self.drawHand()
         self.ongoing = []

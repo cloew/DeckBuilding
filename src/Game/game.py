@@ -5,7 +5,8 @@ from supervillain_stack import SuperVillainStack
 from turn import Turn
 
 from Game.Commands.start_turn import StartTurn
-from Game.Decks.decks import MainDeckInitializer, KickDeckInitializer, WeaknessDeckInitializer, SuperVillainDeckInitializer
+from Game.Decks.decks import MainDeck, KickDeck, WeaknessDeck, SuperVillainDeck
+from Game.Decks.deck_factory import DeckFactory
 from Game.Notifications.notification_tracker import NotificationTracker
 
 from kao_deck.deck import Deck
@@ -18,13 +19,13 @@ class Game:
         """ Initialize the Game """
         self.players = players
             
-        self.mainDeck = Deck(deck_initializer=MainDeckInitializer)
+        self.mainDeck = DeckFactory.load("Deck 1")
         self.mainDeck.shuffle()
         self.lineUp = LineUp(self.mainDeck)
-        self.kickDeck = Deck(deck_initializer=KickDeckInitializer)
-        self.weaknessDeck = Deck(deck_initializer=WeaknessDeckInitializer)
+        self.kickDeck = DeckFactory.load("Kick")
+        self.weaknessDeck = DeckFactory.load("Weakness")
         self.destroyedDeck = Deck()
-        self.superVillainStack = SuperVillainStack(Deck(deck_initializer=SuperVillainDeckInitializer))
+        self.superVillainStack = SuperVillainStack(DeckFactory.load("Super Villains"))
         
         self.gameOver = GameOver(self)
         self.notificationTracker = NotificationTracker()

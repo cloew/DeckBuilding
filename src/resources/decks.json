@@ -1,6 +1,7 @@
 [
 {
     "name":"Test",
+    "type":"REGULAR",
     "cards":[{"name":"Starro",
               "count":10},
              {"name":"Manhunter",
@@ -9,16 +10,19 @@
 },
 {
     "name":"Kick",
+    "type":"REGULAR",
     "cards":[{"name":"Kick",
               "count":16}]
 },
 {
     "name":"Weakness",
+    "type":"REGULAR",
     "cards":[{"name":"Weakness",
               "count":20}]
 },
 {
     "name":"Starting",
+    "type":"STARTING",
     "cards":[{"name":"Punch",
               "count":7},
              {"name":"Vulnerability",
@@ -26,6 +30,7 @@
 },
 {
     "name":"Super Villains",
+    "type":"REGULAR",
     "cards":[{"name":"Parallax",
               "count":1},
              {"name":"The Anti-Monitor",
@@ -53,6 +58,7 @@
 },
 {
     "name":"Deck 1",
+    "type":"REGULAR",
     "cards":[{"name":"Lasso of Truth",
               "count":3},
              {"name":"The Cape and Cowl",
