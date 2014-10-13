@@ -24,6 +24,7 @@ class RequestWrapperFactory:
         """ Return the current Request Wrapper """
         if request is not self.request:
             self.getNextId()
+            self.request = request
         
         if request.__class__ in self.REQUEST_TO_WRAPPER:
             return self.REQUEST_TO_WRAPPER[request.__class__](self.id, request, game)
