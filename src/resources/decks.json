@@ -52,9 +52,8 @@
              {"name":"Deathstroke",
               "count":1},
              {"name":"Sinestro",
-              "count":1},
-             {"name":"Ra's al Ghul",
-              "count":1}]
+              "count":1}],
+    "topCard":"Ra's al Ghul"
 },
 {
     "name":"Deck 1",
