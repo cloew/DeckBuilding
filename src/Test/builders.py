@@ -1,5 +1,6 @@
 from Game.game import Game
 from Game.player import Player
+from Game.turn import Turn
 from Game.Card.card import Card
 from Game.Card.Cost.fixed_cost import FixedCost
 from Game.Card.VictoryPoints.fixed_points import FixedPoints
@@ -13,9 +14,17 @@ def BuildGame(**kwargs):
     """ Build a Card for testing purposes """
     return Game([BuildPlayer()], mainDeck=Deck(), superVillainDeck=BuildSuperVillainDeck())
     
-def BuildPlayer(**kwargs):
+def BuildTurn(player=None):
+    """ Build a Turn for testing purposes """
+    if player is None:
+        player = BuildPlayer()
+    return Turn(player, BuildGame())
+    
+def BuildPlayer(character=None):
     """ Build a Player for testing purposes """
-    return Player("Test", BuildCharacter())
+    if character is None:
+        character = BuildCharacter()
+    return Player("Test", character)
 
 def BuildCard(**kwargs):
     """ Build a Card for testing purposes """
