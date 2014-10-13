@@ -3,6 +3,7 @@ from Game.Card.card_factory import CardFactory
 from deck_loader import DeckLoader
 from shuffling_deck_loader import ShufflingDeckLoader
 from starting_deck_loader import StartingDeckLoader
+from fixed_top_card_deck_loader import FixedTopCardDeckLoader
 
 from kao_deck.deck import Deck
 from kao_deck.deck_initializer import DeckInitializer
@@ -35,6 +36,6 @@ DECK_FILENAME = resource_manager.GetResourcePath("decks.json")
 factories = {"REGULAR":Factory(ShufflingDeckLoader, [ComplexParameter("cards", LoadCards)]),
              "UNIFORM":Factory(DeckLoader, [ComplexParameter("cards", LoadCards)]),
              "STARTING":Factory(StartingDeckLoader, [ComplexParameter("cards", LoadCards)]),
-             "FIXED_TOP":Factory(DeckLoader, [ComplexParameter("cards", LoadCards)])}
+             "FIXED_TOP":Factory(FixedTopCardDeckLoader, [ComplexParameter("cards", LoadCards), ComplexParameter("topCard", CardFactory.load)])}
 
 DeckFactory = TypedDataSourceFactory('type', factories, JsonSource(DECK_FILENAME), "name")
