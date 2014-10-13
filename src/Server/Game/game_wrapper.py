@@ -17,18 +17,22 @@ class GameWrapper:
         self.game = game
         self.players = players
         
+    def canBuy(self, card):
+        """ Return if the player can buy the given card """
+        return self.game.currentTurn.power >= card.cost
+        
     def toJSON(self, includeActions=False):
         """ Return the game as a JSON Dictionary """
-        kicksJSON = GetCardListJSON(self.game.kickDeck, self.game, actions=[{'type':'BUY', 'source':KICK}], includeActions=includeActions)
+        kicksJSON = GetCardListJSON(self.game.kickDeck, self.game, actions=[{'type':'BUY', 'source':KICK}], includeActions=includeActions, canBuyCallback=self.canBuy)
         weaknessesJSON = GetCardListJSON(self.game.weaknessDeck, self.game, includeActions=includeActions)
         destroyedJSON = GetCardListJSON(self.game.destroyedDeck, self.game, includeActions=includeActions)
-        lineUpJSON = GetCardListJSON(self.game.lineUp.cards, self.game, actions=[{'type':'BUY', 'source':LINE_UP}], includeActions=includeActions)
+        lineUpJSON = GetCardListJSON(self.game.lineUp.cards, self.game, actions=[{'type':'BUY', 'source':LINE_UP}], includeActions=includeActions, canBuyCallback=self.canBuy)
         
         gameJSON = {'id':self.id,
                     'isOver':self.game.isOver,
                     'mainDeck':{'count':len(self.game.mainDeck),
                                 'hidden':True},
-                    'superVillains':SuperVillainStackWrapper(self.game.superVillainStack).toJSON(includeActions=includeActions),
+                    'superVillains':SuperVillainStackWrapper(self.game.superVillainStack).toJSON(includeActions=includeActions, canBuyCallback=self.canBuy),
                     'kicks':{'cards':kicksJSON, 'count':len(kicksJSON)},
                     'weaknesses':{'cards':weaknessesJSON, 'count':len(weaknessesJSON)},
                     'destroyed':{'cards':destroyedJSON, 'count':len(destroyedJSON)},

@@ -1,10 +1,13 @@
 from card_wrapper import CardWrapper
 
-def GetCardListJSON(cards, game, includeActions=False, actions=[], source=None):
+def GetCardListJSON(cards, game, includeActions=False, actions=[], source=None, canBuyCallback=None):
     """ Return the Card JSON for the given list of cards """
     wrappers = []
     for card in cards:
-        actionsForCard = list(actions)
+        actionsForCard = []
+        if canBuyCallback is None or canBuyCallback(card):
+            actionsForCard = list(actions)
+        
         activatableJSON = GetActivatableActionJSON(card, game, source=source)
         if activatableJSON is not None:
             actionsForCard.append(activatableJSON)
