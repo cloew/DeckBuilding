@@ -1,6 +1,7 @@
 [
 {
     "name":"Test",
+    "type":"REGULAR",
     "cards":[{"name":"Starro",
               "count":10},
              {"name":"Manhunter",
@@ -9,16 +10,19 @@
 },
 {
     "name":"Kick",
+    "type":"UNIFORM",
     "cards":[{"name":"Kick",
               "count":16}]
 },
 {
     "name":"Weakness",
+    "type":"UNIFORM",
     "cards":[{"name":"Weakness",
               "count":20}]
 },
 {
     "name":"Starting",
+    "type":"STARTING",
     "cards":[{"name":"Punch",
               "count":7},
              {"name":"Vulnerability",
@@ -26,6 +30,7 @@
 },
 {
     "name":"Super Villains",
+    "type":"FIXED_TOP",
     "cards":[{"name":"Parallax",
               "count":1},
              {"name":"The Anti-Monitor",
@@ -47,12 +52,12 @@
              {"name":"Deathstroke",
               "count":1},
              {"name":"Sinestro",
-              "count":1},
-             {"name":"Ra's al Ghul",
-              "count":1}]
+              "count":1}],
+    "topCard":"Ra's al Ghul"
 },
 {
     "name":"Deck 1",
+    "type":"REGULAR",
     "cards":[{"name":"Lasso of Truth",
               "count":3},
              {"name":"The Cape and Cowl",

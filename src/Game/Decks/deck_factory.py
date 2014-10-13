@@ -1,51 +1,41 @@
 from Game.Card.card_factory import CardFactory
 
+from deck_loader import DeckLoader
+from shuffling_deck_loader import ShufflingDeckLoader
+from starting_deck_loader import StartingDeckLoader
+from fixed_top_card_deck_loader import FixedTopCardDeckLoader
+
+from kao_deck.deck import Deck
 from kao_deck.deck_initializer import DeckInitializer
+from kao_deck.deck_with_discard_pile import DeckWithDiscardPile
 
 import resources.resource_manager as resource_manager
 
+from kao_factory.factory import Factory
+from kao_factory.typed_data_source_factory import TypedDataSourceFactory
+from kao_factory.Parameter.complex_parameter import ComplexParameter
+from kao_factory.Parameter.primitive_parameter import PrimitiveParameter
+from kao_factory.Source.json_source import JsonSource
+
 import json
 
-class DeckFactory:
-    """ Factory to load Decks from JSON """
-    DECK_FILENAME = resource_manager.GetResourcePath("decks.json")
-    
-    def __init__(self):
-        """ Initialize the Card Factory """
-        self.__decksJson__ = None
-        
-    def loadDeck(self, deckName):
-        """ Load the Deck with the given name """
-        deckJson = self.findDeckJson(deckName)
-        if deckJson is not None:
-            deckInitializer = DeckInitializer()
-            for cardJson in deckJson["cards"]:
-                cardName = cardJson["name"]
-                count = cardJson["count"]
-                card = CardFactory.load(cardName)
-                if card is None:
-                    print "Failed to load:", cardName
-                deckInitializer.addItem(card, count)
-            return deckInitializer
-        return None
-        
-    def findDeckJson(self, deckName):
-        """ Find the proper deck JSON """
-        matchingDecksJson = [deckJson for deckJson in self.decksJson if deckJson["name"] == deckName]
-        if len(matchingDecksJson) > 0:
-            return matchingDecksJson[0]
-        return None
-        
-    @property
-    def decksJson(self):
-        """ Lazy-load the card Json """
-        if self.__decksJson__ is None:
-            self.loadJson()
-        return self.__decksJson__
-        
-    def loadJson(self):
-        """ Load the Deck JSON """
-        with open(self.DECK_FILENAME, 'r') as file:
-            self.__decksJson__ = json.load(file)
-            
-DeckFactory = DeckFactory()
+def LoadCards(data):
+    """ Load the Cards """
+    deckInitializer = DeckInitializer()
+    for cardJson in data:
+        cardName = cardJson["name"]
+        count = cardJson["count"]
+        card = CardFactory.load(cardName)
+        if card is None:
+            print "Failed to load:", cardName
+        deckInitializer.addItem(card, count)
+    return deckInitializer
+
+DECK_FILENAME = resource_manager.GetResourcePath("decks.json")
+
+factories = {"REGULAR":Factory(ShufflingDeckLoader, [ComplexParameter("cards", LoadCards)]),
+             "UNIFORM":Factory(DeckLoader, [ComplexParameter("cards", LoadCards)]),
+             "STARTING":Factory(StartingDeckLoader, [ComplexParameter("cards", LoadCards)]),
+             "FIXED_TOP":Factory(FixedTopCardDeckLoader, [ComplexParameter("cards", LoadCards), ComplexParameter("topCard", CardFactory.load)])}
+
+DeckFactory = TypedDataSourceFactory('type', factories, JsonSource(DECK_FILENAME), "name")
