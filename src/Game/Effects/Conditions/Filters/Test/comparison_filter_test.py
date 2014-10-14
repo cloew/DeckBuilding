@@ -1,7 +1,5 @@
 import unittest
 
-from Game.Effects.game_contexts import PlayerContext
-from Game.Effects.Conditions.Filters.Criteria.fixed_criteria import FixedCriteria
 from Game.Effects.Conditions.Filters.comparison_filter import ComparisonFilter
 from Game.Events.cards_event import CardsEvent
 from Game.Sources.source_types import EVENT
