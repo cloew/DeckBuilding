@@ -5,10 +5,15 @@ from Game.Card.card import Card
 from Game.Card.Cost.fixed_cost import FixedCost
 from Game.Card.VictoryPoints.fixed_points import FixedPoints
 from Game.Characters.character import Character
+from Game.Effects.game_contexts import PlayerContext
 
 from Game.Decks.deck_factory import DeckFactory
 
 from kao_deck.deck import Deck
+
+def BuildPlayerContext(**kwargs):
+    """ Build a Card for testing purposes """
+    return PlayerContext(BuildGame(), None, **kwargs)
 
 def BuildGame(**kwargs):
     """ Build a Card for testing purposes """
