@@ -18,7 +18,7 @@ class compare(unittest.TestCase):
         self.assertTrue(isValid, "The Comparison should be valid when the field value is set properly")
         
     def invalid(self):
-        """ Test that the comparison returns valid """
+        """ Test that the comparison returns invalid """
         criteria = FixedCriteria("name", self.cardName + "Gibberish", "==")
         isValid = criteria.compare(self.card, None)
         self.assertFalse(isValid, "The Comparison should not be valid when the field value is set differently")
