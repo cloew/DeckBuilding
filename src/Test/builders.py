@@ -26,9 +26,9 @@ def BuildPlayer(character=None):
         character = BuildCharacter()
     return Player("Test", character)
 
-def BuildCard(**kwargs):
+def BuildCard(name="Test", **kwargs):
     """ Build a Card for testing purposes """
-    return Card("Test", None, costCalculator=FixedCost(1), vpCalculator=FixedPoints(1), **kwargs)
+    return Card(name, None, costCalculator=FixedCost(1), vpCalculator=FixedPoints(1), **kwargs)
 
 def BuildCharacter():
     """ Build a Character for testing purposes """
