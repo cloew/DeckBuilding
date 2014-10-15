@@ -70,11 +70,11 @@ class PlayerContext(Context):
         
     def copy(self):
         """ Copy the Context """
-        return PlayerContext(self.game, self.parent, event=self.event, player=self.player)
+        return PlayerContext(self.game, self.parent, event=self.event, player=self.player, potentialPlayers=GetPlayersStartingWith(self.player, self.potentialPlayers))
         
     def getPlayerContext(self, player):
         """ Get the Context for the given player """
-        return PlayerContext(self.game, self.parent, event=self.event, player=player)
+        return PlayerContext(self.game, self.parent, event=self.event, player=player, potentialPlayers=GetPlayersStartingWith(player, self.potentialPlayers))
 
 class SystemContext(Context):
     """ Represents the game context for the System to use """
@@ -90,9 +90,9 @@ class SystemContext(Context):
         return GetPlayersStartingWith(self.owner.player, self.game.players)
         
     def copy(self):
-        """ Copy the Conotext """
+        """ Copy the Context """
         return SystemContext(self.game, self.parent, event=self.event)
         
     def getPlayerContext(self, player):
         """ Get the Context for the given player """
-        return PlayerContext(self.game, self.parent, event=self.event, player=player)
+        return PlayerContext(self.game, self.parent, event=self.event, player=player, potentialPlayers=GetPlayersStartingWith(player, self.foes))
