@@ -8,9 +8,6 @@ from Test.builders import BuildPlayerContext, BuildCard
 
 class evaluate(unittest.TestCase):
     """ Test cases of evaluate """
-    
-    def  setUp(self):
-        """ Build the *** for the test """
         
     def matching(self):
         """ Test that the condition is true, if there are enough matching cards """

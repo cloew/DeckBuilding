@@ -9,4 +9,3 @@ class NotCondition:
     def evaluate(self, context):
         """ Evaluate the condition """
         return not self.condition.evaluate(context)
-        
