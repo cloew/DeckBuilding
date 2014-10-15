@@ -31,13 +31,13 @@ class evaluate(unittest.TestCase):
         self.assertFalse(result, "The Condition should evaluate to false when the turn does not have enough power")
 
 # Collect all test cases in this class
-testcasesFunctionToTest = ["enoughPower", "moreThanEnoughPower", "notEnoughPower"]
-suiteFunctionToTest = unittest.TestSuite(map(evaluate, testcasesFunctionToTest))
+testcasesEvaluate = ["enoughPower", "moreThanEnoughPower", "notEnoughPower"]
+suiteEvaluate = unittest.TestSuite(map(evaluate, testcasesEvaluate))
 
 ##########################################################
 
 # Collect all test cases in this file
-suites = [suiteFunctionToTest]
+suites = [suiteEvaluate]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":

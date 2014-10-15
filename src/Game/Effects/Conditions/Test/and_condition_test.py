@@ -22,13 +22,13 @@ class evaluate(unittest.TestCase):
         self.assertFalse(result, "The And Condition should evaluate to true when at least one of its conditions are false")
 
 # Collect all test cases in this class
-testcasesFunctionToTest = ["allTrue", "oneFalse"]
-suiteFunctionToTest = unittest.TestSuite(map(evaluate, testcasesFunctionToTest))
+testcasesEvaluate = ["allTrue", "oneFalse"]
+suiteEvaluate = unittest.TestSuite(map(evaluate, testcasesEvaluate))
 
 ##########################################################
 
 # Collect all test cases in this file
-suites = [suiteFunctionToTest]
+suites = [suiteEvaluate]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":
