@@ -1,0 +1,6 @@
+<div>
+    <h2 ng-hide="request.number === 1">Available Cards</h2>
+    <div style="display: inline-block; width: 100%;">
+        <action-card size="'medium'" actions="actions" card="card" index="$index" ng-repeat="card in request.cards" ng-hide="hasCard($index)"></action-card>
+    </div>
+</div>

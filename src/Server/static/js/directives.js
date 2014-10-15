@@ -66,6 +66,18 @@ angular.module('DeckBuildingDirectives', [])
           },
           template: '<div style="display: inline-block; width: 100%;"><action-card actions="actions" size="\'medium\'" card="card" index="$index" ng-repeat="card in cards" ng-hide="$scope.indices.indexOf($index) > -1"></action-card></div>'
       }})
+      .directive('availableCards', function() {
+      return {
+          restrict: 'E',
+          replace: 'true',
+          templateUrl: 'static/partials/directives/available_cards.html'
+      }})
+      .directive('chosenCards', function() {
+      return {
+          restrict: 'E',
+          replace: 'true',
+          templateUrl: 'static/partials/directives/chosen_cards.html'
+      }})
       .directive('deck', function() {
       return {
           restrict: 'E',
