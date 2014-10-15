@@ -1,6 +1,6 @@
 <div>
     <div ng-class="{character:!thumbnail, 'character-thumbnail':thumbnail}" style="background-image: url({{character.image}});" ng-show="character.active">
-        <card-icons>
+        <card-icons ng-if="!thumbnail">
             <action-card-icon ng-repeat="action in character.actions"></action-card_icon>
         </card-icons>
     </div>
