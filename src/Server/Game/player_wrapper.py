@@ -17,7 +17,7 @@ class PlayerWrapper:
         handJSON = GetCardListJSON(self.player.hand, self.game, actions=[{'type':'PLAY'}], includeActions=includeActions)
         ongoingJSON = GetCardListJSON(self.player.ongoing, self.game, source=ONGOING, includeActions=includeActions)
         discardPileJSON = GetCardListJSON(self.player.deck.discardPile, self.game, includeActions=includeActions)
-        characterJSON = GameCharacterWrapper(self.player.character, self.game).toJSON()
+        characterJSON = GameCharacterWrapper(self.player.character, self.game).toJSON(includeActions=includeActions)
         
         return {'ongoing':ongoingJSON,
                     'name':self.player.name,
