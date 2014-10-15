@@ -8,9 +8,6 @@ from Test.dummy_filter import DummyFilter
 
 class evaluate(unittest.TestCase):
     """ Test cases of evaluate """
-    
-    def  setUp(self):
-        """ Build the *** for the test """
         
     def hasCards(self):
         """ Test that if the source has cards, the condition returns true """
