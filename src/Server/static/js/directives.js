@@ -139,6 +139,12 @@ angular.module('DeckBuildingDirectives', [])
           replace: true,
           templateUrl: 'static/partials/directives/CardIcons/examine_card_icon.html'
       }})
+      .directive('examineCharacterIcon', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          templateUrl: 'static/partials/directives/CardIcons/examine_character_icon.html'
+      }})
       .directive('examineDeckIcon', function() {
       return {
           restrict: 'E',

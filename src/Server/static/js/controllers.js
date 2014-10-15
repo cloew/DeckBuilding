@@ -107,6 +107,12 @@ controllers.controller('ExamineCardIconController', function($scope, examineCard
     };
 });
 
+controllers.controller('ExamineCharacterIconController', function($scope, examineCardModalService) {
+    $scope.examineCharacter = function(character) {
+        examineCardModalService.open(character);
+    };
+});
+
 controllers.controller('ExamineCardController', function($scope, examineCardModalService, card) {
     $scope.card = card;
     $scope.close = function() {
