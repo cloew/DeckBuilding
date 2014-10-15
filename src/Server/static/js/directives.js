@@ -52,7 +52,11 @@ angular.module('DeckBuildingDirectives', [])
               index: '=index',
               card: '=card',
               deck: '=deck',
-              size: '=size'
+              size: '=size',
+              includeCardActions: '@'
+          },
+          compile: function(element, attrs){
+            if (attrs.includeCardActions === undefined) { attrs.includeCardActions = true; }
           },
           template: '<div style="width: 150px; float:left; position: relative;"><card><div ng-transclude></div></card></div>'
       }})
