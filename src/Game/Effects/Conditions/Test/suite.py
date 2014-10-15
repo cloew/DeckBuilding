@@ -1,5 +1,6 @@
 import unittest
 
+from Game.Effects.Conditions.Test.unique_test import suite as unique_suite
 from Game.Effects.Conditions.Test.or_condition_test import suite as or_condition_suite
 from Game.Effects.Conditions.Test.nth_unique_test import suite as nth_unique_suite
 from Game.Effects.Conditions.Test.nth_played_test import suite as nth_played_suite
@@ -22,5 +23,6 @@ suites = [filters_suite,
           not_condition_suite,
           nth_played_suite,
           nth_unique_suite,
-          or_condition_suite]
+          or_condition_suite,
+          unique_suite]
 suite = unittest.TestSuite(suites)

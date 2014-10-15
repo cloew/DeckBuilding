@@ -10,7 +10,7 @@ class evaluate(unittest.TestCase):
     """ Test cases of evaluate """
     
     def  setUp(self):
-        """ Build the Context for the test """
+        """ Build the Event for the test """
         self.name = "Test Name"
         self.cardType = "A Type"
         self.event = CardsEvent([BuildCard(self.name, cardType=self.cardType)], None, BuildPlayerContext())
