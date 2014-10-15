@@ -1,5 +1,6 @@
 import unittest
 
+from Game.Effects.Conditions.Test.nth_unique_test import suite as nth_unique_suite
 from Game.Effects.Conditions.Test.nth_played_test import suite as nth_played_suite
 from Game.Effects.Conditions.Test.not_condition_test import suite as not_condition_suite
 from Game.Effects.Conditions.Test.matching_test import suite as matching_suite
@@ -18,5 +19,6 @@ suites = [filters_suite,
           is_player_turn_suite,
           matching_suite,
           not_condition_suite,
-          nth_played_suite]
+          nth_played_suite,
+          nth_unique_suite]
 suite = unittest.TestSuite(suites)

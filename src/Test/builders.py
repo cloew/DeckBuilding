@@ -11,13 +11,13 @@ from Game.Decks.deck_factory import DeckFactory
 
 from kao_deck.deck import Deck
 
-def BuildPlayerContext(**kwargs):
+def BuildPlayerContext(mainDeck=[], **kwargs):
     """ Build a Card for testing purposes """
-    return PlayerContext(BuildGame(), None, **kwargs)
+    return PlayerContext(BuildGame(mainDeck=mainDeck), None, **kwargs)
 
-def BuildGame(**kwargs):
+def BuildGame(mainDeck=[]):
     """ Build a Card for testing purposes """
-    return Game([BuildPlayer()], mainDeck=Deck(), superVillainDeck=BuildSuperVillainDeck())
+    return Game([BuildPlayer()], mainDeck=Deck(items=mainDeck), superVillainDeck=BuildSuperVillainDeck())
     
 def BuildTurn(player=None):
     """ Build a Turn for testing purposes """
@@ -31,9 +31,9 @@ def BuildPlayer(character=None):
         character = BuildCharacter()
     return Player("Test", character)
 
-def BuildCard(name="Test", **kwargs):
+def BuildCard(name="Test", cardType=None, **kwargs):
     """ Build a Card for testing purposes """
-    return Card(name, None, costCalculator=FixedCost(1), vpCalculator=FixedPoints(1), **kwargs)
+    return Card(name, cardType, costCalculator=FixedCost(1), vpCalculator=FixedPoints(1), **kwargs)
 
 def BuildCharacter():
     """ Build a Character for testing purposes """

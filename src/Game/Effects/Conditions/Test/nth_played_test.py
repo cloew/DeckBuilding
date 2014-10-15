@@ -5,7 +5,6 @@ from Game.Effects.Conditions.Filters.Criteria.fixed_criteria import FixedCriteri
 from Game.Events.cards_event import CardsEvent
 from Game.Sources.source_types import EVENT, PLAYED
 from Test.builders import BuildPlayerContext, BuildCard
-from Test.dummy_filter import DummyFilter
 
 class evaluate(unittest.TestCase):
     """ Test cases of evaluate """

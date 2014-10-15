@@ -14,14 +14,14 @@ class NthUnique:
     def __init__(self, n, criterion):
         """ Initialize the condition with the value of n """
         self.n = n
-        self.playedFilter = self.getFilter(criterion)
+        self.playedFilter = self.getFilters(criterion)
         self.eventCondition = self.getEventCondition(criterion)
         
     def evaluate(self, context):
         """ Evaluate the condition """
         return self.eventCondition.evaluate(context) and len(self.playedFilter.evaluate(context)) == self.n-1
         
-    def getFilter(self, criterion):
+    def getFilters(self, criterion):
         """ Return the filter """
         filters = [UniqueFilter("name", PLAYED)] + [ComparisonFilter(PLAYED, criteria) for criteria in criterion]
         return IntersectionFilter(filters)
