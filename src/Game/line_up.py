@@ -31,7 +31,7 @@ class LineUp:
         
     def isFull(self):
         """ Return if the Line Up is full """
-        return len(self) == self.LINE_UP_SIZE
+        return len(self) >= self.LINE_UP_SIZE
         
     def __getitem__(self, index):
         """ Return the item at the given index """
