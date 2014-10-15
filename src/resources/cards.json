@@ -1557,7 +1557,8 @@
                                                                             "value":1},
                                                                 "source":"EVENT"},
                                                    "effects":[{"type":"GAIN_TOP_CARD",
-                                                               "from":"WEAKNESS"}]}]}]}]}]
+                                                               "from":"WEAKNESS",
+                                                               "to":"DECK"}]}]}]}]}]
 },
 {
     "name":"The Penguin",
