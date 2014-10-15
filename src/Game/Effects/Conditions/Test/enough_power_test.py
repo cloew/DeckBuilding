@@ -18,6 +18,12 @@ class evaluate(unittest.TestCase):
         result = self.condition.evaluate(self.context)
         self.assertTrue(result, "The Condition should evaluate to true when the turn has enough power")
         
+    def moreThanEnoughPower(self):
+        """ Test that if the current player has more than enough power, the condition returns true """
+        self.context.owner.gainPower(None, self.neededPower+1)
+        result = self.condition.evaluate(self.context)
+        self.assertTrue(result, "The Condition should evaluate to true when the turn has more than enough power")
+        
     def notEnoughPower(self):
         """ Test that if the current player does not have enough power, the condition returns false """
         self.context.owner.gainPower(None, self.neededPower-1)
@@ -25,7 +31,7 @@ class evaluate(unittest.TestCase):
         self.assertFalse(result, "The Condition should evaluate to false when the turn does not have enough power")
 
 # Collect all test cases in this class
-testcasesFunctionToTest = ["enoughPower", "notEnoughPower"]
+testcasesFunctionToTest = ["enoughPower", "moreThanEnoughPower", "notEnoughPower"]
 suiteFunctionToTest = unittest.TestSuite(map(evaluate, testcasesFunctionToTest))
 
 ##########################################################
