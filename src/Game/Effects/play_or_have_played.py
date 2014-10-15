@@ -13,7 +13,7 @@ class PlayOrHavePlayed(ConditionalEffect):
         eventCondition = Matching(EVENT, criteria)
         triggerCondition = self.getTriggerCondition(playedCondition, eventCondition)
         
-        trigger = Trigger("CARD_PLAYED", triggerCondition, effect, singleUse=True)
+        trigger = Trigger("CARD_PLAYED", effect, condition=triggerCondition, singleUse=True)
         ConditionalEffect.__init__(self, playedCondition, [effect], otherwiseEffect=AddTrigger(trigger))
         
     def getTriggerCondition(self, playedCondition, eventCondition):
