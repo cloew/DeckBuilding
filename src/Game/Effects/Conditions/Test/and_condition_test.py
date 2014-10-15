@@ -19,7 +19,7 @@ class evaluate(unittest.TestCase):
     def oneFalse(self):
         """ Test that the And Condition returns false when at least one of its conditions are false """
         result = AndCondition(self.conditions + [AlwaysFalseCondition()]).evaluate(None)
-        self.assertFalse(result, "The And Condition should evaluate to true when at least one of its conditions are false")
+        self.assertFalse(result, "The And Condition should evaluate to false when at least one of its conditions are false")
 
 # Collect all test cases in this class
 testcasesEvaluate = ["allTrue", "oneFalse"]
