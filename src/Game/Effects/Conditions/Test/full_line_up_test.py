@@ -6,9 +6,6 @@ from Test.builders import BuildPlayerContext
 
 class evaluate(unittest.TestCase):
     """ Test cases of evaluate """
-    
-    def  setUp(self):
-        """ Build the  for the test """
         
     def full(self):
         """ Test that the condition returns true when the line up is full """

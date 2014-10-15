@@ -3,7 +3,7 @@ class HasCards:
     """ Represents a condition where a source must have cards """
     
     def __init__(self, sourceType, filter=None):
-        """ Initialize the COndition with the Source to check that has cards """
+        """ Initialize the Condition with the Source to check that has cards """
         self.sourceType = sourceType
         self.filter = filter
         
