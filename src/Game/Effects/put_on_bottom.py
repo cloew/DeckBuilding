@@ -18,5 +18,6 @@ class PutOnBottom:
             cards = list(fromSource)
             
         for card in cards:
-            fromSource.remove(card)
-            toSource.putOnBottom(card)
+            if card in fromSource:
+                fromSource.remove(card)
+                toSource.putOnBottom(card)

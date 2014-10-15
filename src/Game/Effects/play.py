@@ -17,6 +17,7 @@ class Play:
         for card in source:
             if self.remove:
                 source.remove(card)
+            context.owner.cleanupEffects.append(RemovePlayedCard(card))
                 
             coroutine = context.owner.playCard(card)
             try:
@@ -26,6 +27,5 @@ class Play:
             except StopIteration:
                 pass
                 
-            context.owner.cleanupEffects.append(RemovePlayedCard(card))
             if self.remove:
                 context.owner.cleanupEffects.append(AddToSource(card, source))
