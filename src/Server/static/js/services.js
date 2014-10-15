@@ -354,16 +354,16 @@ services.factory('RevealNotificationFactory', function(CardsNotificationFactory)
                               "forOthers":"their hand."},
                       "MAIN_DECK":{"forYou":"the top of the main deck.",
                                    "forOthers":"the top of the main deck."},};
-    var getMessage = function(notification) {
+    var getMessageWithoutPlayerName = function(notification) {
         if (notification.isYou) {
             return typeToData[notification.sourceType].forYou;
         } else {
-            return notification.name + " " + typeToData[notification.sourceType].forOthers;
+            return typeToData[notification.sourceType].forOthers;
         }
     }
     return {"type":"REVEAL", "load": function(notification) {
         var result = CardsNotificationFactory.load(notification);
-        result.sourceText = " from " + getMessage(notification);
+        result.sourceText = " from " + getMessageWithoutPlayerName(notification);
         return result;
     }};
 });
