@@ -17,6 +17,9 @@ class Activatable:
         
     def activate(self, context):
         """ Activate the effect """
+        if self.singleUse:
+            context.owner.unregisterActivatable(context.parent)
+        
         coroutine = PerformEffects(self.effects, context)
         try:
             response = yield coroutine.next()
@@ -24,6 +27,3 @@ class Activatable:
                 response = yield coroutine.send(response)
         except StopIteration:
             pass
-        
-        if self.singleUse:
-            context.owner.unregisterActivatable(context.parent)
