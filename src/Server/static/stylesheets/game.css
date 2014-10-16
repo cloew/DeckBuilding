@@ -89,6 +89,10 @@
     width: 25px;
     height: 25px;
 }
+.opponent {
+    border: 2px solid;
+    border-radius: 25px;
+}
 .option-button {
     width: 300px;
     margin-top: 10px;
