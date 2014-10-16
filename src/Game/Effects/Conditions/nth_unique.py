@@ -19,7 +19,6 @@ class NthUnique:
         
     def evaluate(self, context):
         """ Evaluate the condition """
-        print self.eventCondition.evaluate(context), self.playedFilter.evaluate(context)
         return self.eventCondition.evaluate(context) and len(self.playedFilter.evaluate(context)) == self.n-1
         
     def getFilters(self, criterion):

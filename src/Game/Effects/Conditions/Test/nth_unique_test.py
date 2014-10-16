@@ -35,9 +35,12 @@ class evaluate(unittest.TestCase):
         
     def notMatchingCriteria(self):
         """ Test that the condition is false when the card is not the nth unique card played """
-        n = 1
-        type ="Equipment"
-        result = NthUnique(n, [FixedCriteria("cardType", self.cardType + "Gibberish", "==")]).evaluate(self.event.context)
+        n = 3
+        type = self.cardType + "Gibberish"
+        playedSource = self.event.context.loadSource(PLAYED)
+        [playedSource.add(BuildCard(self.name+str(i), cardType=type)) for i in range(n-1)]
+        
+        result = NthUnique(n, [FixedCriteria("cardType", type, "==")]).evaluate(self.event.context)
         self.assertFalse(result, "When the Event card does not match the criteria and is the nth uniquely named card, the condition should be false")
 
 # Collect all test cases in this class
