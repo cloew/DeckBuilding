@@ -37,12 +37,21 @@ controllers.controller('LobbyController', function($scope, lobbyService) {
 controllers.controller('GameController', function($scope, gameService) {
     gameService.startPolling($scope, function(game) {
         $scope.game = game;
+        $scope.playersPendingActions = $scope.getPlayersPendingActions();
     });
     $scope.actions = gameService.actions;
     $scope.endTurn = gameService.endTurn;
     $scope.chooseOption = gameService.chooseOption;
     $scope.pickCard = gameService.pickCard;
     $scope.defend = gameService.defend;
+    $scope.getPlayersPendingActions = function() {
+        var pending = false;
+        for (var i = 0; i < $scope.game.players.length; i++) {
+            pending = ($scope.game.players[i].pending !== null);
+            if (pending) {break;}
+        }
+        return pending;
+    };
 });
 controllers.controller('GameResultsController', function($scope, $cookies, $http, $routeParams) {
     var rootUrl = '/api/game/'+$routeParams.gameId+'/player/'+$cookies.playerId+'/results';
