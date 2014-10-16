@@ -92,6 +92,8 @@
 .header-fieldset {
     border: 2px groove threedface;
     margin-bottom: 10px;
+    padding-right: 15px;
+    padding-left: 15px;
 }
 .legend-header {
     width:auto;
