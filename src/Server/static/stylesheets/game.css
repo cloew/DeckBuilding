@@ -93,6 +93,9 @@
     border: 2px solid;
     border-radius: 25px;
 }
+.isTurn {
+    background-color: #0039f4;
+}
 .option-button {
     width: 300px;
     margin-top: 10px;

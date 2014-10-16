@@ -24,6 +24,7 @@ class PlayerWrapper:
                 'name':self.player.name,
                 'character':characterJSON,
                 'pending':self.getPendingAction(),
+                'isTurn':self.player is self.game.currentTurn.player,
                 'deck':{'count':len(self.player.deck),
                         'hidden':True},
                 'discardPile':{'cards':discardPileJSON, 'count':len(discardPileJSON)},
