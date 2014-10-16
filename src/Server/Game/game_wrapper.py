@@ -4,6 +4,7 @@ from player_wrapper import PlayerWrapper
 from supervillain_stack_wrapper import SuperVillainStackWrapper
 from turn_wrapper import TurnWrapper
 
+from Game.player_order_helper import GetPlayersStartingWith
 from Game.Sources.source_types import KICK, LINE_UP
 from Server.Game.Notifications.notification_wrapper_factory import NotificationWrapperFactory
 from Server.Game.Requests.request_wrapper_factory import RequestWrapperFactory
@@ -57,7 +58,7 @@ class GameWrapper:
         gameJSON = json['game']
         gameJSON['you'] = PlayerWrapper(yourPlayer, self.game, requestWrapper).toJSONForYourself(includeActions=includeActions)
         gameJSON['notifications'] = [NotificationWrapperFactory.buildWrapper(notification, self.game, yourPlayer).toJSON() for notification in self.game.notificationTracker.latestNotifications]
-        gameJSON['players'] = [PlayerWrapper(player, self.game, requestWrapper).toJSON(includeActions=False) for id, player in self.players.items() if id != playerId]
+        gameJSON['players'] = [PlayerWrapper(player, self.game, requestWrapper).toJSON(includeActions=False) for player in GetPlayersStartingWith(yourPlayer, self.players.values()) if player is not yourPlayer]
                     
         if requestWrapper is not None and yourPlayer in request.players:
             gameJSON['request'] = requestWrapper.toJSON(includeActions=True)
