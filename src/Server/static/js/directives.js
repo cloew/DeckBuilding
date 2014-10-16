@@ -230,6 +230,15 @@ angular.module('DeckBuildingDirectives', [])
           replace: true,
           templateUrl: 'static/partials/directives/player.html'
       }})
+    .directive('cardGroup', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          scope: {header: '@',
+                  cards: '=',
+                  actions: '='},
+          templateUrl: 'static/partials/directives/card_group.html'
+      }})
     .directive('headerDiv', function() {
       return {
           restrict: 'E',
