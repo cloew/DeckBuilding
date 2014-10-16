@@ -6,7 +6,7 @@ from Game.Effects.Conditions.Filters.comparison_filter import ComparisonFilter
 from Game.Effects.Conditions.Filters.intersection_filter import IntersectionFilter
 from Game.Effects.Conditions.Filters.unique_filter import UniqueFilter
 
-from Game.Sources.source_types import PLAYED
+from Game.Sources.source_types import PLAYED, EVENT
 
 class NthUnique:
     """ Condition to check if a condition is the nth uniqe card played """
@@ -19,6 +19,7 @@ class NthUnique:
         
     def evaluate(self, context):
         """ Evaluate the condition """
+        print self.eventCondition.evaluate(context), self.playedFilter.evaluate(context)
         return self.eventCondition.evaluate(context) and len(self.playedFilter.evaluate(context)) == self.n-1
         
     def getFilters(self, criterion):
@@ -28,5 +29,5 @@ class NthUnique:
         
     def getEventCondition(self, criterion):
         """ Return the event condition """
-        conditions = [Unique("name", PLAYED)] + [Matching(PLAYED, criteria) for criteria in criterion]
+        conditions = [Unique("name", PLAYED)] + [Matching(EVENT, criteria) for criteria in criterion]
         return AndCondition(conditions)
