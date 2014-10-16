@@ -7,7 +7,7 @@ from Test.always_true_condition import AlwaysTrueCondition
 class evaluate(unittest.TestCase):
     """ Test cases of evaluate """
     
-    def  setUp(self):
+    def setUp(self):
         """ Build the Conditions for the test """
         self.conditions = [AlwaysTrueCondition() for i in range(10)]
         
