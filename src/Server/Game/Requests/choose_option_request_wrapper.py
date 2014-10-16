@@ -2,6 +2,7 @@ from Server.Game.json_helper import GetCardListJSON
 
 class ChooseOptionRequestWrapper:
     """ A Wrapper for a Choose Option Request that handles its conversion to JSON """
+    PENDING_MESSAGE = "Making a choice"
     
     def __init__(self, id, request, game):
         """ Initialize the Request Wrapper """

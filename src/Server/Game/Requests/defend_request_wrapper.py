@@ -3,6 +3,7 @@ from Server.Game.json_helper import GetCardListJSON
 
 class DefendRequestWrapper:
     """ A Wrapper for a Defend Request that handles its conversion to JSON """
+    PENDING_MESSAGE = "Picking a defense"
     
     def __init__(self, id, request, game):
         """ Initialize the Request Wrapper """

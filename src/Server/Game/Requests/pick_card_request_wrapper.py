@@ -2,6 +2,7 @@ from Server.Game.json_helper import GetCardListJSON
 
 class PickCardRequestWrapper:
     """ A Wrapper for a Pick Card Request that handles its conversion to JSON """
+    PENDING_MESSAGE = "Picking cards"
     
     def __init__(self, id, request, game):
         """ Initialize the Request Wrapper """

@@ -7,10 +7,11 @@ from Game.Sources.source_types import ONGOING, PLAYED
 class PlayerWrapper:
     """ A Wrapper for a Game Player """
     
-    def __init__(self, player, game):
+    def __init__(self, player, game, requestWrapper):
         """ Initialize the Player Wrapper """
         self.player = player
         self.game = game
+        self.requestWrapper = requestWrapper
         
     def toJSON(self, includeActions=False):
         """ Return the Player as a JSON Dictionary """
@@ -20,13 +21,14 @@ class PlayerWrapper:
         characterJSON = GameCharacterWrapper(self.player.character, self.game).toJSON(includeActions=includeActions)
         
         return {'ongoing':ongoingJSON,
-                    'name':self.player.name,
-                    'character':characterJSON,
-                    'deck':{'count':len(self.player.deck),
-                               'hidden':True},
-                    'discardPile':{'cards':discardPileJSON, 'count':len(discardPileJSON)},
-                    'hand':{'count':len(self.player.hand),
-                               'hidden':True}}
+                'name':self.player.name,
+                'character':characterJSON,
+                'pending':self.getPendingAction(),
+                'deck':{'count':len(self.player.deck),
+                        'hidden':True},
+                'discardPile':{'cards':discardPileJSON, 'count':len(discardPileJSON)},
+                'hand':{'count':len(self.player.hand),
+                           'hidden':True}}
                 
     def toJSONForYourself(self, includeActions=False):
         """ Return the Player as a JSON Dictionary as if you are this player """
@@ -35,3 +37,10 @@ class PlayerWrapper:
         json['hand'] = handJSON
         
         return json
+        
+    def getPendingAction(self):
+        """ Return the pending action """
+        pendingAction = None
+        if self.requestWrapper is not None:
+            pendingAction = self.requestWrapper.PENDING_MESSAGE
+        return pendingAction
