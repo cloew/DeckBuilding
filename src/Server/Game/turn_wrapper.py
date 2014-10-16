@@ -14,4 +14,5 @@ class TurnWrapper:
         
         return {'played':playedJSON,
                 'power':self.turn.power,
-                'modifier':self.turn.modifier}
+                'modifier':self.turn.modifier,
+                'playerName':self.turn.player.name}
