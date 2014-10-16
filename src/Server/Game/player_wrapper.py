@@ -27,15 +27,16 @@ class PlayerWrapper:
                 'isTurn':self.player is self.game.currentTurn.player,
                 'deck':{'count':len(self.player.deck),
                         'hidden':True},
-                'discardPile':{'cards':discardPileJSON, 'count':len(discardPileJSON)},
+                'discardPile':{'cards':discardPileJSON, 'count':len(discardPileJSON), 'name':self.player.name + "'s Discard Pile"},
                 'hand':{'count':len(self.player.hand),
-                           'hidden':True}}
+                        'hidden':True}}
                 
     def toJSONForYourself(self, includeActions=False):
         """ Return the Player as a JSON Dictionary as if you are this player """
         handJSON = GetCardListJSON(self.player.hand, self.game, actions=[{'type':'PLAY'}], includeActions=includeActions)
         json = self.toJSON(includeActions=includeActions)
         json['hand'] = handJSON
+        json['discardPile']['name'] = "Your Discard Pile"
         
         return json
         

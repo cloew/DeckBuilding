@@ -35,7 +35,7 @@ class GameWrapper:
                     'superVillains':SuperVillainStackWrapper(self.game.superVillainStack).toJSON(includeActions=includeActions, canBuyCallback=self.canBuy),
                     'kicks':{'cards':kicksJSON, 'count':len(kicksJSON)},
                     'weaknesses':{'cards':weaknessesJSON, 'count':len(weaknessesJSON)},
-                    'destroyed':{'cards':destroyedJSON, 'count':len(destroyedJSON)},
+                    'destroyed':{'cards':destroyedJSON, 'count':len(destroyedJSON), 'name':'Destroyed Deck'},
                     'lineUp':lineUpJSON,
                     'turn':TurnWrapper(self.game.currentTurn).toJSON(includeActions=includeActions)}
                     
