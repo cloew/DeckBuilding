@@ -42,6 +42,6 @@ class PlayerWrapper:
     def getPendingAction(self):
         """ Return the pending action """
         pendingAction = None
-        if self.requestWrapper is not None:
+        if self.requestWrapper is not None and self.player in self.requestWrapper.request.players:
             pendingAction = self.requestWrapper.PENDING_MESSAGE
         return pendingAction
