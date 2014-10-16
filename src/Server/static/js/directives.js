@@ -229,4 +229,12 @@ angular.module('DeckBuildingDirectives', [])
           restrict: 'E',
           replace: true,
           templateUrl: 'static/partials/directives/player.html'
+      }})
+    .directive('headerDiv', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          transclude: true,
+          scope: {header: '@'},
+          templateUrl: 'static/partials/directives/header_div.html'
       }});

@@ -89,12 +89,14 @@
     width: 25px;
     height: 25px;
 }
-.opponent {
-    border: 2px solid;
-    border-radius: 25px;
+.header-fieldset {
+    border: 2px groove threedface;
+    margin-bottom: 10px;
 }
-.isTurn {
-    background-color: #0039f4;
+.legend-header {
+    width:auto;
+    border-bottom: 0px;
+    margin-bottom: 0px;
 }
 .option-button {
     width: 300px;
