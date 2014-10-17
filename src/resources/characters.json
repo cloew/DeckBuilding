@@ -196,6 +196,20 @@
                                                                       "to":"DISCARD_PILE"}]}]}]}]}
 },
 {
+    "name":"Starfire",
+    "image":"batman.jpg",
+    "activatableEffect":{"singleUse":true,
+                         "condition":{"type":"NOT",
+                                      "condition":{"type":"HAS_CARDS",
+                                                   "source":"LINE_UP",
+                                                   "criteria":{"type":"FIXED",
+                                                               "field":"cardType",
+                                                               "operation":"==",
+                                                               "value":"Super Power"}}},
+                         "effects":[{"type":"DRAW",
+                                     "count":1}]}
+},
+{
     "name":"Superman",
     "image":"superman.jpg",
     "triggers":[{"type":"CARD_PLAYED",
