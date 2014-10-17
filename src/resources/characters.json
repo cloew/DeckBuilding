@@ -197,7 +197,7 @@
 },
 {
     "name":"Starfire",
-    "image":"batman.jpg",
+    "image":"starfire.png",
     "activatableEffect":{"singleUse":true,
                          "condition":{"type":"NOT",
                                       "condition":{"type":"HAS_CARDS",
