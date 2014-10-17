@@ -67,8 +67,12 @@ angular.module('DeckBuildingDirectives', [])
           scope: {
               cards: '=cards',
               actions: '=actions',
+              size: '@'
           },
-          template: '<div style="display: inline-block; width: 100%;"><action-card actions="actions" size="\'medium\'" card="card" index="$index" ng-repeat="card in cards" ng-hide="$scope.indices.indexOf($index) > -1"></action-card></div>'
+          compile: function(element, attrs){
+            if (attrs.size === undefined) { attrs.size = 'medium'; }
+          },
+          template: '<div style="display: inline-block; width: 100%;"><action-card actions="actions" size="size" card="card" index="$index" ng-repeat="card in cards" ng-hide="$scope.indices.indexOf($index) > -1"></action-card></div>'
       }})
       .directive('availableCards', function() {
       return {
