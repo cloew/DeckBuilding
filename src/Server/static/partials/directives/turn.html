@@ -1,0 +1,11 @@
+<div class="col-md-12 deck-col">
+    <header-div header="{{game.you.isTurn && 'Your Turn' || game.turn.playerName + '\'s Turn'}}">
+        <div class="col-md-6">
+            <h2>Power: {{game.turn.power}}</h2>
+            <button ng-click="endTurn();" ng-show="game.you.isTurn && !playersPendingActions">Done</button>
+        </div>
+        <div class="col-md-6">
+            <h2 ng-hide="game.turn.modifier === 1">x{{game.turn.modifier}}</h2>
+        </div>
+    </header-div>
+</div>

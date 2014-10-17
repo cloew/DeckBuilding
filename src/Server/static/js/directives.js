@@ -188,11 +188,16 @@ angular.module('DeckBuildingDirectives', [])
           },
           templateUrl: 'static/partials/directives/CardIcons/deck_counter.html'
       }})
-    .directive('opponent', function() {
+    .directive('player', function() {
       return {
           restrict: 'E',
           replace: true,
-          templateUrl: 'static/partials/directives/opponent.html'
+          scope: {player: '=',
+                  isYou: '@'},
+          compile: function(element, attrs){
+            if (attrs.isYou === undefined) { attrs.isYou = false; }
+          },
+          templateUrl: 'static/partials/directives/player.html'
       }})
     .directive('hand', function() {
       return {
@@ -224,11 +229,11 @@ angular.module('DeckBuildingDirectives', [])
           replace: true,
           templateUrl: 'static/partials/directives/played.html'
       }})
-    .directive('player', function() {
+    .directive('turn', function() {
       return {
           restrict: 'E',
           replace: true,
-          templateUrl: 'static/partials/directives/player.html'
+          templateUrl: 'static/partials/directives/turn.html'
       }})
     .directive('cardGroup', function() {
       return {
