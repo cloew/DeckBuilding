@@ -26,4 +26,4 @@ class Play:
                 pass
                 
             if self.returnTo:
-                context.owner.cleanupEffects.append(AddToSource(card, context.loadSource(returnTo)))
+                context.owner.cleanupEffects.append(AddToSource(card, context.loadSource(self.returnTo)))
