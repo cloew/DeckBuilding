@@ -21,6 +21,28 @@
                                               "to":"DECK"}]}]}
 },
 {
+    "name":"Batgirl",
+    "image":"batgirl.jpg",
+    "activatableEffect":{"singleUse":true,
+                         "condition":{"type":"HAS_CARDS",
+                                      "source":"HAND",
+                                      "criteria":{"type":"FIXED",
+                                                  "field":"name",
+                                                  "operation":"==",
+                                                  "value":"Punch"}},
+                         "effects":[{"type":"PICK_CARDS",
+                                     "number":1,
+                                     "sources":["HAND"],
+                                     "criteria":{"type":"FIXED",
+                                                 "field":"name",
+                                                 "operation":"==",
+                                                 "value":"Punch"},
+                                     "then":[{"type":"DISCARD",
+                                              "source":"EVENT"},
+                                             {"type":"DRAW",
+                                              "count":1}]}]}
+},
+{
     "name":"Batman",
     "image":"batman.jpg",
     "triggers":[{"type":"CARD_PLAYED",
