@@ -82,7 +82,7 @@ EffectFactory = TypedFactory('type', {"ACTIVATE_CHARACTER":Factory(ActivateChara
                                       "MOD_HAND_SIZE":Factory(ModifyHandSize, [PrimitiveParameter("change")]),
                                       "MOVE_CARD":Factory(MoveCard, [PrimitiveParameter("from"), PrimitiveParameter("to")]),
                                       "ONGOING":Factory(Ongoing, []),
-                                      "PLAY":Factory(Play, [PrimitiveParameter("source"), PrimitiveParameter("remove", optional=True)]),
+                                      "PLAY":Factory(Play, [PrimitiveParameter("source"), PrimitiveParameter("returnTo", optional=True)]),
                                       "POWER_MOD":Factory(ChangePowerModifier, [PrimitiveParameter("modifier")]),
                                       "PUT_ON_BOTTOM":Factory(PutOnBottom, [PrimitiveParameter("from"), PrimitiveParameter("to")]),
                                       "PUT_ON_BOTTOM_CLEANUP":Factory(PutOnBottomCleanup, []),

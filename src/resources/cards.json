@@ -539,7 +539,7 @@
                     "number":1,
                     "sources":["LINE_UP"],
                     "then":[{"type":"PLAY",
-                             "remove":true,
+                             "returnTo":"LINE_UP",
                              "source":"EVENT"}]}]
 },
 {
