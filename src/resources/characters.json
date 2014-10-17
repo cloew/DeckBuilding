@@ -113,6 +113,20 @@
                            "power":3}}]
 },
 {
+    "name":"Hawkman",
+    "image":"hawkman.jpg",
+    "triggers":[{"type":"CARD_PLAYED",
+                 "singleUse":false,
+                 "condition":{"type":"MATCHING",
+                              "criteria":{"type":"FIXED",
+                                          "field":"cardType",
+                                          "operation":"==",
+                                          "value":"Hero"},
+                              "source":"EVENT"},
+                 "effect":{"type":"GAIN_POWER",
+                           "power":1}}]
+},
+{
     "name":"Martian Manhunter",
     "image":"batman.jpg",
     "triggers":[{"type":"CARD_PLAYED",
