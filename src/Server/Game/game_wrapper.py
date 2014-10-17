@@ -58,7 +58,7 @@ class GameWrapper:
         gameJSON = json['game']
         gameJSON['you'] = PlayerWrapper(yourPlayer, self.game, requestWrapper).toJSONForYourself(includeActions=includeActions)
         gameJSON['notifications'] = [NotificationWrapperFactory.buildWrapper(notification, self.game, yourPlayer).toJSON() for notification in self.game.notificationTracker.latestNotifications]
-        gameJSON['players'] = [PlayerWrapper(player, self.game, requestWrapper).toJSON(includeActions=False) for player in GetPlayersStartingWith(yourPlayer, self.players.values()) if player is not yourPlayer]
+        gameJSON['players'] = [PlayerWrapper(player, self.game, requestWrapper).toJSON(includeActions=False) for player in GetPlayersStartingWith(yourPlayer, self.game.players) if player is not yourPlayer]
                     
         if requestWrapper is not None and yourPlayer in request.players:
             gameJSON['request'] = requestWrapper.toJSON(includeActions=True)
