@@ -226,6 +226,7 @@
 {
     "name":"Bo Staff",
     "type":"Equipment",
+    "image":"bo_staff.jpg",
     "cost":{"type":"FIXED",
             "cost":3},
     "points":{"type":"FIXED",
@@ -703,6 +704,7 @@
 {
     "name":"House of Mystery",
     "type":"Location",
+    "image":"house_of_mystery.jpg",
     "cost":{"type":"FIXED",
             "cost":4},
     "points":{"type":"FIXED",
@@ -1604,6 +1606,7 @@
 {
     "name":"The Rot",
     "type":"Location",
+    "image":"the_rot.jpg",
     "cost":{"type":"FIXED",
             "cost":4},
     "points":{"type":"FIXED",
