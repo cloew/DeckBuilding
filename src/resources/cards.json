@@ -2,7 +2,7 @@
 {
     "name":"Apokolips",
     "type":"Location",
-    "image":"apokolips.jpg",
+    "image":"Deck2/Main/apokolips.jpg",
     "cost":{"type":"FIXED",
             "cost":5},
     "points":{"type":"FIXED",
@@ -35,7 +35,7 @@
 {
     "name":"Aquaman's Trident",
     "type":"Equipment",
-    "image":"aquamans_trident.jpg",
+    "image":"Deck1/Main/aquamans_trident.jpg",
     "cost":{"type":"FIXED",
             "cost":3},
     "points":{"type":"FIXED",
@@ -57,7 +57,7 @@
 {
     "name":"Arkham Asylum",
     "type":"Location",
-    "image":"arkham_asylum.jpg",
+    "image":"Deck1/Main/arkham_asylum.jpg",
     "cost":{"type":"FIXED",
             "cost":5},
     "points":{"type":"FIXED",
@@ -77,7 +77,7 @@
 {
     "name":"Atrocitus",
     "type":"Villain",
-    "image":"atrocitus.jpg",
+    "image":"Deck1/SuperVillains/atrocitus.jpg",
     "cost":{"type":"FIXED",
             "cost":10},
     "points":{"type":"FIXED",
@@ -102,7 +102,7 @@
 {
     "name":"Bane",
     "type":"Villain",
-    "image":"bane.jpg",
+    "image":"Deck1/Main/bane.jpg",
     "cost":{"type":"FIXED",
             "cost":4},
     "points":{"type":"FIXED",
@@ -119,7 +119,7 @@
 {
     "name":"Batmobile",
     "type":"Equipment",
-    "image":"batmobile.jpg",
+    "image":"Deck1/Main/batmobile.jpg",
     "cost":{"type":"FIXED",
             "cost":2},
     "points":{"type":"FIXED",
@@ -138,7 +138,7 @@
 {
     "name":"Bizarro",
     "type":"Villain",
-    "image":"bizarro.jpg",
+    "image":"Deck1/Main/bizarro.jpg",
     "cost":{"type":"FIXED",
             "cost":7},
     "points":{"type":"PER_RESULT",
@@ -155,7 +155,7 @@
 {
     "name":"Black Manta",
     "type":"Villain",
-    "image":"black_manta.jpg",
+    "image":"Deck1/SuperVillains/black_manta.jpg",
     "cost":{"type":"FIXED",
             "cost":8},
     "points":{"type":"FIXED",
@@ -190,7 +190,7 @@
 {
     "name":"Blue Beetle",
     "type":"Hero",
-    "image":"blue_beetle.jpg",
+    "image":"Deck1/Main/blue_beetle.jpg",
     "cost":{"type":"FIXED",
             "cost":6},
     "points":{"type":"FIXED",
@@ -201,9 +201,9 @@
                   "source":"EVENT"}]
 },
 {
-    "name":"Braniac",
+    "name":"Brainiac",
     "type":"Villain",
-    "image":"brainiac.jpg",
+    "image":"Deck1/SuperVillains/brainiac.jpg",
     "cost":{"type":"FIXED",
             "cost":11},
     "points":{"type":"FIXED",
@@ -226,7 +226,7 @@
 {
     "name":"Bo Staff",
     "type":"Equipment",
-    "image":"bo_staff.jpg",
+    "image":"Crisis1/Main/bo_staff.jpg",
     "cost":{"type":"FIXED",
             "cost":3},
     "points":{"type":"FIXED",
@@ -246,7 +246,7 @@
 {
     "name":"Bulletproof",
     "type":"Super Power",
-    "image":"bulletproof.jpg",
+    "image":"Deck1/Main/bulletproof.jpg",
     "cost":{"type":"FIXED",
             "cost":4},
     "points":{"type":"FIXED",
@@ -273,7 +273,7 @@
 {
     "name":"Captain Cold",
     "type":"Villain",
-    "image":"captain_cold.jpg",
+    "image":"Deck1/SuperVillains/captain_cold.jpg",
     "cost":{"type":"FIXED",
             "cost":9},
     "points":{"type":"FIXED",
@@ -299,7 +299,7 @@
 {
     "name":"Catwoman",
     "type":"Hero",
-    "image":"catwoman.jpg",
+    "image":"Deck1/Main/catwoman.jpg",
     "cost":{"type":"FIXED",
             "cost":2},
     "points":{"type":"FIXED",
@@ -310,7 +310,7 @@
 {
     "name":"Cheetah",
     "type":"Villain",
-    "image":"cheetah.jpg",
+    "image":"Deck1/Main/cheetah.jpg",
     "cost":{"type":"FIXED",
             "cost":2},
     "points":{"type":"FIXED",
@@ -328,7 +328,7 @@
 {
     "name":"Clayface",
     "type":"Villain",
-    "image":"clayface.jpg",
+    "image":"Deck1/Main/clayface.jpg",
     "cost":{"type":"FIXED",
             "cost":4},
     "points":{"type":"FIXED",
@@ -342,7 +342,7 @@
 {
     "name":"Dark Knight",
     "type":"Hero",
-    "image":"dark_knight.jpg",
+    "image":"Deck1/Main/dark_knight.jpg",
     "cost":{"type":"FIXED",
             "cost":5},
     "points":{"type":"FIXED",
@@ -373,7 +373,7 @@
 {
     "name":"Darkseid",
     "type":"Villain",
-    "image":"darkseid.jpg",
+    "image":"Deck1/SuperVillains/darkseid.jpg",
     "cost":{"type":"FIXED",
             "cost":11},
     "points":{"type":"FIXED",
@@ -423,7 +423,7 @@
 {
     "name":"Deadshot",
     "type":"Villain",
-    "image":"deadshot.jpg",
+    "image":"Deck2/Main/deadshot.jpg",
     "cost":{"type":"FIXED",
             "cost":2},
     "points":{"type":"FIXED",
@@ -449,7 +449,7 @@
 {
     "name":"Deathstroke",
     "type":"Villain",
-    "image":"deathstroke.jpg",
+    "image":"Deck1/SuperVillains/deathstroke.jpg",
     "cost":{"type":"FIXED",
             "cost":9},
     "points":{"type":"FIXED",
@@ -516,7 +516,7 @@
 {
     "name":"Doomsday",
     "type":"Villain",
-    "image":"doomsday.jpg",
+    "image":"Deck1/Main/doomsday.jpg",
     "cost":{"type":"FIXED",
             "cost":6},
     "points":{"type":"FIXED",
@@ -527,7 +527,7 @@
 {
     "name":"Emerald Knight",
     "type":"Hero",
-    "image":"emerald_knight.jpg",
+    "image":"Deck1/Main/emerald_knight.jpg",
     "cost":{"type":"FIXED",
             "cost":5},
     "points":{"type":"FIXED",
@@ -546,7 +546,7 @@
 {
     "name":"Fortress of Solitude",
     "type":"Location",
-    "image":"fortress_of_solitude.jpg",
+    "image":"Deck1/Main/fortress_of_solitude.jpg",
     "cost":{"type":"FIXED",
             "cost":5},
     "points":{"type":"FIXED",
@@ -566,7 +566,7 @@
 {
     "name":"Gorilla Grodd",
     "type":"Villain",
-    "image":"gorilla_grodd.jpg",
+    "image":"Deck1/Main/gorilla_grodd.jpg",
     "cost":{"type":"FIXED",
             "cost":5},
     "points":{"type":"FIXED",
@@ -577,7 +577,7 @@
 {
     "name":"Green Arrow",
     "type":"Hero",
-    "image":"green_arrow.jpg",
+    "image":"Deck1/Main/green_arrow.jpg",
     "cost":{"type":"FIXED",
             "cost":5},
     "points":{"type":"CONDITIONAL",
@@ -598,7 +598,7 @@
 {
     "name":"Green Arrow's Bow",
     "type":"Equipment",
-    "image":"green_arrows_bow.jpg",
+    "image":"Deck1/Main/green_arrows_bow.jpg",
     "cost":{"type":"FIXED",
             "cost":4},
     "points":{"type":"FIXED",
@@ -613,7 +613,7 @@
 {
     "name":"Harley Quinn",
     "type":"Villain",
-    "image":"harley_quinn.jpg",
+    "image":"Deck1/Main/harley_quinn.jpg",
     "cost":{"type":"FIXED",
             "cost":2},
     "points":{"type":"FIXED",
@@ -635,7 +635,7 @@
 {
     "name":"Hawkgirl",
     "type":"Hero",
-    "image":"hawkgirl.jpg",
+    "image":"Deck2/Main/hawkgirl.jpg",
     "cost":{"type":"FIXED",
             "cost":2},
     "points":{"type":"FIXED",
@@ -655,7 +655,7 @@
 {
     "name":"Heat Vision",
     "type":"Super Power",
-    "image":"heat_vision.jpg",
+    "image":"Deck1/Main/heat_vision.jpg",
     "cost":{"type":"FIXED",
             "cost":6},
     "points":{"type":"FIXED",
@@ -686,7 +686,7 @@
 {
     "name":"High-Tech Hero",
     "type":"Hero",
-    "image":"high_tech_hero.jpg",
+    "image":"Deck1/Main/high_tech_hero.jpg",
     "cost":{"type":"FIXED",
             "cost":3},
     "points":{"type":"FIXED",
@@ -704,7 +704,7 @@
 {
     "name":"House of Mystery",
     "type":"Location",
-    "image":"house_of_mystery.jpg",
+    "image":"Crisis1/Main/house_of_mystery.jpg",
     "cost":{"type":"FIXED",
             "cost":4},
     "points":{"type":"FIXED",
@@ -724,7 +724,7 @@
 {
     "name":"J'onn J'onzz",
     "type":"Hero",
-    "image":"jonn_jonzz.jpg",
+    "image":"Deck1/Main/jonn_jonzz.jpg",
     "cost":{"type":"FIXED",
             "cost":6},
     "points":{"type":"FIXED",
@@ -737,7 +737,7 @@
 {
     "name":"Kick",
     "type":"Super Power",
-    "image":"kick.jpg",
+    "image":"Deck1/Core/kick.jpg",
     "cost":{"type":"FIXED",
             "cost":3},
     "points":{"type":"FIXED",
@@ -748,7 +748,7 @@
 {
     "name":"Kid Flash",
     "type":"Hero",
-    "image":"kid_flash.jpg",
+    "image":"Deck1/Main/kid_flash.jpg",
     "cost":{"type":"FIXED",
             "cost":2},
     "points":{"type":"FIXED",
@@ -759,7 +759,7 @@
 {
     "name":"Killer Croc",
     "type":"Villain",
-    "image":"killer_croc.jpg",
+    "image":"Deck2/Main/killer_croc.jpg",
     "cost":{"type":"FIXED",
             "cost":4},
     "points":{"type":"FIXED",
@@ -777,7 +777,7 @@
 {
     "name":"King of Atlantis",
     "type":"Hero",
-    "image":"king_of_atlantis.jpg",
+    "image":"Deck1/Main/king_of_atlantis.jpg",
     "cost":{"type":"FIXED",
             "cost":5},
     "points":{"type":"FIXED",
@@ -801,7 +801,7 @@
 {
     "name":"Lasso of Truth",
     "type":"Equipment",
-    "image":"lasso_of_truth.jpg",
+    "image":"Deck1/Main/lasso_of_truth.jpg",
     "cost":{"type":"FIXED",
             "cost":2},
     "points":{"type":"FIXED",
@@ -816,7 +816,7 @@
 {
     "name":"Lex Luthor",
     "type":"Villain",
-    "image":"lex_luthor.jpg",
+    "image":"Deck1/SuperVillains/lex_luthor.jpg",
     "cost":{"type":"FIXED",
             "cost":10},
     "points":{"type":"FIXED",
@@ -837,7 +837,7 @@
 {
     "name":"Lobo",
     "type":"Villain",
-    "image":"lobo.jpg",
+    "image":"Deck1/Main/lobo.jpg",
     "cost":{"type":"FIXED",
             "cost":7},
     "points":{"type":"FIXED",
@@ -853,7 +853,7 @@
 {
     "name":"Man of Steel",
     "type":"Hero",
-    "image":"man_of_steel.jpg",
+    "image":"Deck1/Main/man_of_steel.jpg",
     "cost":{"type":"FIXED",
             "cost":8},
     "points":{"type":"FIXED",
@@ -875,7 +875,7 @@
 {
     "name":"Manhunter",
     "type":"Villain",
-    "image":"manhunter.jpg",
+    "image":"Deck2/Main/manhunter.jpg",
     "cost":{"type":"FIXED",
             "cost":3},
     "points":{"type":"FIXED",
@@ -896,7 +896,7 @@
 {
     "name":"Mera",
     "type":"Hero",
-    "image":"mera.jpg",
+    "image":"Deck1/Main/mera.jpg",
     "cost":{"type":"FIXED",
             "cost":3},
     "points":{"type":"FIXED",
@@ -913,7 +913,7 @@
 {
     "name":"Nth Metal",
     "type":"Equipment",
-    "image":"nth_metal.jpg",
+    "image":"Deck1/Main/nth_metal.jpg",
     "cost":{"type":"FIXED",
             "cost":3},
     "points":{"type":"FIXED",
@@ -933,7 +933,7 @@
 {
     "name":"Oa",
     "type":"Location",
-    "image":"oa.jpg",
+    "image":"Deck2/Main/oa.jpg",
     "cost":{"type":"FIXED",
             "cost":5},
     "points":{"type":"FIXED",
@@ -958,7 +958,7 @@
 {
     "name":"Parallax",
     "type":"Villain",
-    "image":"parallax.jpg",
+    "image":"Deck1/SuperVillains/parallax.jpg",
     "cost":{"type":"FIXED",
             "cost":12},
     "points":{"type":"FIXED",
@@ -981,7 +981,7 @@
 {
     "name":"Poison Ivy",
     "type":"Villain",
-    "image":"poison_ivy.jpg",
+    "image":"Deck1/Main/poison_ivy.jpg",
     "cost":{"type":"FIXED",
             "cost":3},
     "points":{"type":"FIXED",
@@ -1006,7 +1006,7 @@
 {
     "name":"Power Ring",
     "type":"Equipment",
-    "image":"power_ring.jpg",
+    "image":"Deck1/Main/power_ring.jpg",
     "cost":{"type":"FIXED",
             "cost":3},
     "points":{"type":"FIXED",
@@ -1030,7 +1030,7 @@
 {
     "name":"Princess Diana of Themyscira",
     "type":"Hero",
-    "image":"princess_diana_of_themyscira.jpg",
+    "image":"Deck1/Main/princess_diana_of_themyscira.jpg",
     "cost":{"type":"FIXED",
             "cost":7},
     "points":{"type":"FIXED",
@@ -1056,7 +1056,7 @@
 {
     "name":"Punch",
     "type":"Starter",
-    "image":"punch.jpg",
+    "image":"Deck1/Core/punch.jpg",
     "cost":{"type":"FIXED",
             "cost":0},
     "points":{"type":"FIXED",
@@ -1067,7 +1067,7 @@
 {
     "name":"Ra's al Ghul",
     "type":"Villain",
-    "image":"ras_al_ghul.jpg",
+    "image":"Deck1/SuperVillains/ras_al_ghul.jpg",
     "cost":{"type":"FIXED",
             "cost":8},
     "points":{"type":"FIXED",
@@ -1079,7 +1079,7 @@
 {
     "name":"Raven",
     "type":"Hero",
-    "image":"raven.jpg",
+    "image":"Deck2/Main/raven.jpg",
     "cost":{"type":"FIXED",
             "cost":3},
     "points":{"type":"FIXED",
@@ -1092,7 +1092,7 @@
 {
     "name":"Robin",
     "type":"Hero",
-    "image":"robin.jpg",
+    "image":"Deck1/Main/robin.jpg",
     "cost":{"type":"FIXED",
             "cost":3},
     "points":{"type":"FIXED",
@@ -1113,7 +1113,7 @@
 {
     "name":"Scarecrow",
     "type":"Villain",
-    "image":"scarecrow.jpg",
+    "image":"Deck1/Main/scarecrow.jpg",
     "cost":{"type":"FIXED",
             "cost":5},
     "points":{"type":"FIXED",
@@ -1127,7 +1127,7 @@
 {
     "name":"Shazam!",
     "type":"Super Power",
-    "image":"shazam.jpg",
+    "image":"Deck2/Main/shazam.jpg",
     "cost":{"type":"FIXED",
             "cost":7},
     "points":{"type":"FIXED",
@@ -1144,7 +1144,7 @@
 {
     "name":"Sinestro",
     "type":"Villain",
-    "image":"sinestro.jpg",
+    "image":"Deck1/Main/sinestro.jpg",
     "cost":{"type":"FIXED",
             "cost":10},
     "points":{"type":"FIXED",
@@ -1186,7 +1186,7 @@
 {
     "name":"Solomon Grundy",
     "type":"Villain",
-    "image":"solomon_grundy.jpg",
+    "image":"Deck1/Main/solomon_grundy.jpg",
     "cost":{"type":"FIXED",
             "cost":6},
     "points":{"type":"FIXED",
@@ -1205,7 +1205,7 @@
 {
     "name":"Sonic Siren",
     "type":"Hero",
-    "image":"sonic_siren.jpg",
+    "image":"Deck2/Main/sonic_siren.jpg",
     "cost":{"type":"FIXED",
             "cost":4},
     "points":{"type":"FIXED",
@@ -1229,7 +1229,7 @@
 {
     "name":"Soultaker Sword",
     "type":"Equipment",
-    "image":"soultaker_sword.jpg",
+    "image":"Deck2/Main/soultaker_sword.jpg",
     "cost":{"type":"FIXED",
             "cost":4},
     "points":{"type":"FIXED",
@@ -1252,7 +1252,7 @@
 {
     "name":"Starro",
     "type":"Villain",
-    "image":"starro.jpg",
+    "image":"Deck1/Main/starro.jpg",
     "cost":{"type":"FIXED",
             "cost":7},
     "points":{"type":"FIXED",
@@ -1283,7 +1283,7 @@
 {
     "name":"Suicide Squad",
     "type":"Villain",
-    "image":"suicide_squad.jpg",
+    "image":"Deck1/Main/suicide_squad.jpg",
     "cost":{"type":"FIXED",
             "cost":4},
     "points":{"type":"PER_RESULT",
@@ -1310,7 +1310,7 @@
 {
     "name":"Super Speed",
     "type":"Super Power",
-    "image":"super_speed.jpg",
+    "image":"Deck1/Main/super_speed.jpg",
     "cost":{"type":"FIXED",
             "cost":3},
     "points":{"type":"FIXED",
@@ -1325,7 +1325,7 @@
 {
     "name":"Super Strength",
     "type":"Super Power",
-    "image":"super_strength.jpg",
+    "image":"Deck1/Main/super_strength.jpg",
     "cost":{"type":"FIXED",
             "cost":7},
     "points":{"type":"FIXED",
@@ -1336,7 +1336,7 @@
 {
     "name":"Supergirl",
     "type":"Hero",
-    "image":"supergirl.jpg",
+    "image":"Deck1/Main/supergirl.jpg",
     "cost":{"type":"FIXED",
             "cost":4},
     "points":{"type":"FIXED",
@@ -1354,7 +1354,7 @@
 {
     "name":"Swamp Thing",
     "type":"Hero",
-    "image":"swamp_thing.jpg",
+    "image":"Deck1/Main/swamp_thing.jpg",
     "cost":{"type":"FIXED",
             "cost":4},
     "points":{"type":"FIXED",
@@ -1374,7 +1374,7 @@
 {
     "name":"Talon",
     "type":"Villain",
-    "image":"talon.jpg",
+    "image":"Deck2/Main/talon.jpg",
     "cost":{"type":"FIXED",
             "cost":1},
     "points":{"type":"FIXED",
@@ -1392,7 +1392,7 @@
 {
     "name":"Teleportation",
     "type":"Super Power",
-    "image":"teleportation.jpg",
+    "image":"Deck2/Main/teleportation.jpg",
     "cost":{"type":"FIXED",
             "cost":7},
     "points":{"type":"FIXED",
@@ -1404,7 +1404,7 @@
 {
     "name":"Titans Tower",
     "type":"Location",
-    "image":"titans_tower.jpg",
+    "image":"Deck1/Main/titans_tower.jpg",
     "cost":{"type":"FIXED",
             "cost":5},
     "points":{"type":"FIXED",
@@ -1424,7 +1424,7 @@
 {
     "name":"The Anti-Monitor",
     "type":"Villain",
-    "image":"the_anti_monitor.jpg",
+    "image":"Deck1/SuperVillains/the_anti_monitor.jpg",
     "cost":{"type":"FIXED",
             "cost":12},
     "points":{"type":"FIXED",
@@ -1455,7 +1455,7 @@
 {
     "name":"The Batcave",
     "type":"Location",
-    "image":"the_batcave.jpg",
+    "image":"Deck1/Main/the_batcave.jpg",
     "cost":{"type":"FIXED",
             "cost":5},
     "points":{"type":"FIXED",
@@ -1475,7 +1475,7 @@
 {
     "name":"The Bat-Signal",
     "type":"Equipment",
-    "image":"the_bat_signal.jpg",
+    "image":"Deck1/Main/the_bat_signal.jpg",
     "cost":{"type":"FIXED",
             "cost":5},
     "points":{"type":"FIXED",
@@ -1496,7 +1496,7 @@
 {
     "name":"The Cape and Cowl",
     "type":"Equipment",
-    "image":"the_cape_and_cowl.jpg",
+    "image":"Deck1/Main/the_cape_and_cowl.jpg",
     "cost":{"type":"FIXED",
             "cost":4},
     "points":{"type":"FIXED",
@@ -1511,7 +1511,7 @@
 {
     "name":"The Fastest Man Alive",
     "type":"Hero",
-    "image":"the_fastest_man_alive.jpg",
+    "image":"Deck1/Main/the_fastest_man_alive.jpg",
     "cost":{"type":"FIXED",
             "cost":5},
     "points":{"type":"FIXED",
@@ -1522,7 +1522,7 @@
 {
     "name":"The Joker",
     "type":"Villain",
-    "image":"the_joker.jpg",
+    "image":"Deck1/SuperVillains/the_joker.jpg",
     "cost":{"type":"FIXED",
             "cost":10},
     "points":{"type":"FIXED",
@@ -1565,7 +1565,7 @@
 {
     "name":"The Penguin",
     "type":"Villain",
-    "image":"the_penguin.jpg",
+    "image":"Deck1/Main/the_penguin.jpg",
     "cost":{"type":"FIXED",
             "cost":3},
     "points":{"type":"FIXED",
@@ -1581,7 +1581,7 @@
 {
     "name":"The Riddler",
     "type":"Villain",
-    "image":"the_riddler.jpg",
+    "image":"Deck1/Main/the_riddler.jpg",
     "cost":{"type":"FIXED",
             "cost":3},
     "points":{"type":"FIXED",
@@ -1606,7 +1606,7 @@
 {
     "name":"The Rot",
     "type":"Location",
-    "image":"the_rot.jpg",
+    "image":"Crisis1/Main/the_rot.jpg",
     "cost":{"type":"FIXED",
             "cost":4},
     "points":{"type":"FIXED",
@@ -1626,7 +1626,7 @@
 {
     "name":"The Watchtower",
     "type":"Location",
-    "image":"the_watchtower.jpg",
+    "image":"Deck1/Main/the_watchtower.jpg",
     "cost":{"type":"FIXED",
             "cost":5},
     "points":{"type":"FIXED",
@@ -1646,7 +1646,7 @@
 {
     "name":"Two-Face",
     "type":"Villain",
-    "image":"two_face.jpg",
+    "image":"Deck1/Main/two_face.jpg",
     "cost":{"type":"FIXED",
             "cost":2},
     "points":{"type":"FIXED",
@@ -1693,7 +1693,7 @@
 {
     "name":"Utility Belt",
     "type":"Equipment",
-    "image":"utility_belt.jpg",
+    "image":"Deck1/Main/utility_belt.jpg",
     "cost":{"type":"FIXED",
             "cost":5},
     "points":{"type":"CONDITIONAL",
@@ -1714,7 +1714,7 @@
 {
     "name":"Vulnerability",
     "type":"Starter",
-    "image":"vulnerability.jpg",
+    "image":"Deck1/Core/vulnerability.jpg",
     "cost":{"type":"FIXED",
             "cost":0},
     "points":{"type":"FIXED",
@@ -1722,7 +1722,7 @@
 },
 {
     "name":"Weakness",
-    "image":"weakness.jpg",
+    "image":"Deck1/Core/weakness.jpg",
     "cost":{"type":"FIXED",
             "cost":0},
     "points":{"type":"FIXED",
@@ -1731,7 +1731,7 @@
 {
     "name":"Whirlwind",
     "type":"Super Power",
-    "image":"whirlwind.jpg",
+    "image":"Deck2/Main/whirlwind.jpg",
     "cost":{"type":"FIXED",
             "cost":2},
     "points":{"type":"FIXED",
@@ -1754,7 +1754,7 @@
 {
     "name":"Wonder of the Knight",
     "type":"Hero",
-    "image":"wonder_of_the_knight.jpg",
+    "image":"Deck2/Main/wonder_of_the_knight.jpg",
     "cost":{"type":"FIXED",
             "cost":5},
     "points":{"type":"FIXED",
@@ -1782,7 +1782,7 @@
 {
     "name":"X-Ray Vision",
     "type":"Super Power",
-    "image":"xray_vision.jpg",
+    "image":"Deck1/Main/xray_vision.jpg",
     "cost":{"type":"FIXED",
             "cost":3},
     "points":{"type":"FIXED",
@@ -1828,7 +1828,7 @@
 {
     "name":"Zatanna Zatara",
     "type":"Hero",
-    "image":"zatanna_zatara.jpg",
+    "image":"Deck1/Main/zatanna_zatara.jpg",
     "cost":{"type":"FIXED",
             "cost":4},
     "points":{"type":"FIXED",
