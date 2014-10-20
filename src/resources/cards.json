@@ -1211,7 +1211,7 @@
     "id":"Sinestro",
     "name":"Sinestro",
     "type":"Villain",
-    "image":"Deck1/Main/sinestro.jpg",
+    "image":"Deck1/SuperVillains/sinestro.jpg",
     "cost":{"type":"FIXED",
             "cost":10},
     "points":{"type":"FIXED",
