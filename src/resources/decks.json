@@ -1,16 +1,5 @@
 [
 {
-    "id":"Test",
-    "name":"Test",
-    "role":"MAIN",
-    "type":"REGULAR",
-    "cards":[{"id":"Starro",
-              "count":10},
-             {"id":"Manhunter",
-              "count":10}]
-    
-},
-{
     "id":"Deck 1 - Kick",
     "name":"Kick",
     "role":"KICK",
@@ -47,7 +36,7 @@
 {
     "id":"Deck 1 - Super Villains",
     "name":"Super Villains",
-    "role":"SUPERVILLAINS",
+    "role":"SUPERVILLAIN",
     "type":"FIXED_TOP",
     "cards":[{"id":"Parallax",
               "count":1},
@@ -182,5 +171,16 @@
               "count":2},
              {"id":"Two-Face",
               "count":2}]
+},
+{
+    "id":"Test",
+    "name":"Test",
+    "role":"MAIN",
+    "type":"REGULAR",
+    "cards":[{"id":"Starro",
+              "count":10},
+             {"id":"Manhunter",
+              "count":10}]
+    
 }
 ]
