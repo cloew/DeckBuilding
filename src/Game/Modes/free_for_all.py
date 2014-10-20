@@ -11,12 +11,7 @@ class FreeForAll:
         """ Initialize the Free For All Game Mode """
         requiredRoles = [MAIN, KICK, WEAKNESS, SUPERVILLAIN]
         self.potentialDecks = {role:DeckFactory.findDeckIdsToFillRole(role) for role in requiredRoles}
-        
-        
-        self.mainDeckId = self.potentialDecks[MAIN][0]
-        self.kickDeckId = self.potentialDecks[KICK][0]
-        self.weaknessDeckId = self.potentialDecks[WEAKNESS][0]
-        self.supervillainDeckId = self.potentialDecks[SUPERVILLAIN][0]
+        self.chosenDecks = {role:self.potentialDecks[role][0] for role in requiredRoles}
         
     def buildGame(self, lobby):
         """ Build the Game """
@@ -36,3 +31,27 @@ class FreeForAll:
         random.shuffle(otherPlayers)
         
         return firstPlayers + otherPlayers
+        
+    def setDeckForRole(self, role, index):
+        """ Set the deck for the given role """
+        self.chosenDecks[role] = self.potentialDecks[role][index]
+        
+    @property
+    def mainDeckId(self):
+        """ Return the chosen main deck id """
+        return self.chosenDecks[MAIN]
+        
+    @property
+    def kickDeckId(self):
+        """ Return the chosen kick deck id """
+        return self.chosenDecks[KICK]
+        
+    @property
+    def weaknessDeckId(self):
+        """ Return the chosen weakness deck id """
+        return self.chosenDecks[WEAKNESS]
+        
+    @property
+    def supervillainDeckId(self):
+        """ Return the chosen supervillain deck id """
+        return self.chosenDecks[SUPERVILLAIN]
