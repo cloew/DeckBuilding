@@ -1,5 +1,6 @@
 from Lobby.player_in_lobby import PlayerInLobby
 from Server.Game.games import StartNewGame
+from Server.Lobby.game_mode_wrapper import GameModeWrapper
 from Server.Lobby.player_in_lobby_wrapper import PlayerInLobbyWrapper
 
 class LobbyWrapper:
@@ -42,6 +43,7 @@ class LobbyWrapper:
     def toJSONForPlayer(self, playerId):
         """ Return the more detailed JSON for the given player """
         json = {'id':self.id,
+                'gamemode':GameModeWrapper(self.lobby.gameMode).toJSON(),
                 'you':PlayerInLobbyWrapper(playerId, self.players[playerId]).toJSON(),
                 'players':[PlayerInLobbyWrapper(id, self.players[id]).toJSON() for id in self.players if id != playerId]}
         if self.gameId is not None:
