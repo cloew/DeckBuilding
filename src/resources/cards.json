@@ -1,5 +1,6 @@
 [
 {
+    "id":"Apokolips",
     "name":"Apokolips",
     "type":"Location",
     "image":"Deck2/Main/apokolips.jpg",
@@ -33,6 +34,7 @@
                                                                        "effects":[]}]}}]}]}
 },
 {
+    "id":"Aquaman's Trident",
     "name":"Aquaman's Trident",
     "type":"Equipment",
     "image":"Deck1/Main/aquamans_trident.jpg",
@@ -55,6 +57,7 @@
                                                         "to":"DECK"}]}]}}]
 },
 {
+    "id":"Arkham Asylum",
     "name":"Arkham Asylum",
     "type":"Location",
     "image":"Deck1/Main/arkham_asylum.jpg",
@@ -75,6 +78,7 @@
                            "count":1}}]
 },
 {
+    "id":"Atrocitus",
     "name":"Atrocitus",
     "type":"Villain",
     "image":"Deck1/SuperVillains/atrocitus.jpg",
@@ -100,6 +104,7 @@
                "to":"DECK"}]
 },
 {
+    "id":"Bane",
     "name":"Bane",
     "type":"Villain",
     "image":"Deck1/Main/bane.jpg",
@@ -117,6 +122,7 @@
                                          "source":"EVENT"}]}]}]
 },
 {
+    "id":"Batmobile",
     "name":"Batmobile",
     "type":"Equipment",
     "image":"Deck1/Main/batmobile.jpg",
@@ -136,6 +142,7 @@
                                  "power":1}}]
 },
 {
+    "id":"Bizarro",
     "name":"Bizarro",
     "type":"Villain",
     "image":"Deck1/Main/bizarro.jpg",
@@ -153,6 +160,7 @@
                     "power":3}]
 },
 {
+    "id":"Black Manta",
     "name":"Black Manta",
     "type":"Villain",
     "image":"Deck1/SuperVillains/black_manta.jpg",
@@ -188,6 +196,7 @@
                                                        "source":"EVENT"}}]}]}]
 },
 {
+    "id":"Blue Beetle",
     "name":"Blue Beetle",
     "type":"Hero",
     "image":"Deck1/Main/blue_beetle.jpg",
@@ -201,6 +210,7 @@
                   "source":"EVENT"}]
 },
 {
+    "id":"Brainiac",
     "name":"Brainiac",
     "type":"Villain",
     "image":"Deck1/SuperVillains/brainiac.jpg",
@@ -224,6 +234,7 @@
                              "then":[{"type":"SHUFFLE_AND_DEAL"}]}]}]
 },
 {
+    "id":"Bo Staff",
     "name":"Bo Staff",
     "type":"Equipment",
     "image":"Crisis1/Main/bo_staff.jpg",
@@ -244,6 +255,7 @@
                                 "power":1}]}]
 },
 {
+    "id":"Bulletproof",
     "name":"Bulletproof",
     "type":"Super Power",
     "image":"Deck1/Main/bulletproof.jpg",
@@ -271,6 +283,7 @@
                                "effects":[]}]}]
 },
 {
+    "id":"Captain Cold",
     "name":"Captain Cold",
     "type":"Villain",
     "image":"Deck1/SuperVillains/captain_cold.jpg",
@@ -297,6 +310,7 @@
                "effects":[{"type":"ACTIVATE_CHARACTER"}]}]
 },
 {
+    "id":"Catwoman",
     "name":"Catwoman",
     "type":"Hero",
     "image":"Deck1/Main/catwoman.jpg",
@@ -308,6 +322,7 @@
                     "power":2}]
 },
 {
+    "id":"Cheetah",
     "name":"Cheetah",
     "type":"Villain",
     "image":"Deck1/Main/cheetah.jpg",
@@ -326,6 +341,7 @@
                              "from":"EVENT"}]}]
 },
 {
+    "id":"Clayface",
     "name":"Clayface",
     "type":"Villain",
     "image":"Deck1/Main/clayface.jpg",
@@ -340,6 +356,7 @@
                              "source":"EVENT"}]}]
 },
 {
+    "id":"Dark Knight",
     "name":"Dark Knight",
     "type":"Hero",
     "image":"Deck1/Main/dark_knight.jpg",
@@ -371,6 +388,7 @@
                                        "to":"HAND"}]}}]
 },
 {
+    "id":"Darkseid",
     "name":"Darkseid",
     "type":"Villain",
     "image":"Deck1/SuperVillains/darkseid.jpg",
@@ -421,6 +439,7 @@
                                                                   "source":"EVENT"}]}]}]}]}]
 },
 {
+    "id":"Deadshot",
     "name":"Deadshot",
     "type":"Villain",
     "image":"Deck2/Main/deadshot.jpg",
@@ -447,6 +466,7 @@
                                 "source":"DECK"}]}]
 },
 {
+    "id":"Deathstroke",
     "name":"Deathstroke",
     "type":"Villain",
     "image":"Deck1/SuperVillains/deathstroke.jpg",
@@ -514,6 +534,7 @@
                                                                   "source":"EVENT"}]}]}]}]}]
 },
 {
+    "id":"Doomsday",
     "name":"Doomsday",
     "type":"Villain",
     "image":"Deck1/Main/doomsday.jpg",
@@ -525,6 +546,7 @@
                     "power":4}]
 },
 {
+    "id":"Emerald Knight",
     "name":"Emerald Knight",
     "type":"Hero",
     "image":"Deck1/Main/emerald_knight.jpg",
@@ -544,6 +566,7 @@
                              "source":"EVENT"}]}]
 },
 {
+    "id":"Fortress of Solitude",
     "name":"Fortress of Solitude",
     "type":"Location",
     "image":"Deck1/Main/fortress_of_solitude.jpg",
@@ -564,6 +587,7 @@
                            "count":1}}]
 },
 {
+    "id":"Gorilla Grodd",
     "name":"Gorilla Grodd",
     "type":"Villain",
     "image":"Deck1/Main/gorilla_grodd.jpg",
@@ -575,6 +599,7 @@
                     "power":3}]
 },
 {
+    "id":"Green Arrow",
     "name":"Green Arrow",
     "type":"Hero",
     "image":"Deck1/Main/green_arrow.jpg",
@@ -596,6 +621,7 @@
                     "power":2}]
 },
 {
+    "id":"Green Arrow's Bow",
     "name":"Green Arrow's Bow",
     "type":"Equipment",
     "image":"Deck1/Main/green_arrows_bow.jpg",
@@ -611,6 +637,7 @@
                             "cost":-2}}]
 },
 {
+    "id":"Harley Quinn",
     "name":"Harley Quinn",
     "type":"Villain",
     "image":"Deck1/Main/harley_quinn.jpg",
@@ -633,6 +660,7 @@
                                          "to":"DECK"}]}]}]
 },
 {
+    "id":"Hawkgirl",
     "name":"Hawkgirl",
     "type":"Hero",
     "image":"Deck2/Main/hawkgirl.jpg",
@@ -653,6 +681,7 @@
                               "power":1}}]
 },
 {
+    "id":"Heat Vision",
     "name":"Heat Vision",
     "type":"Super Power",
     "image":"Deck1/Main/heat_vision.jpg",
@@ -684,6 +713,7 @@
                                  "effects":[]}]}]
 },
 {
+    "id":"High-Tech Hero",
     "name":"High-Tech Hero",
     "type":"Hero",
     "image":"Deck1/Main/high_tech_hero.jpg",
@@ -702,6 +732,7 @@
                               "power":2}}]
 },
 {
+    "id":"House of Mystery",
     "name":"House of Mystery",
     "type":"Location",
     "image":"Crisis1/Main/house_of_mystery.jpg",
@@ -722,6 +753,7 @@
                            "count":1}}]
 },
 {
+    "id":"J'onn J'onzz",
     "name":"J'onn J'onzz",
     "type":"Hero",
     "image":"Deck1/Main/jonn_jonzz.jpg",
@@ -735,6 +767,7 @@
                              "source":"EVENT"}]}]
 },
 {
+    "id":"Deck 1 - Kick",
     "name":"Kick",
     "type":"Super Power",
     "image":"Deck1/Core/kick.jpg",
@@ -746,6 +779,7 @@
                     "power":2}]
 },
 {
+    "id":"Kid Flash",
     "name":"Kid Flash",
     "type":"Hero",
     "image":"Deck1/Main/kid_flash.jpg",
@@ -757,6 +791,7 @@
                     "count":1}]
 },
 {
+    "id":"Killer Croc",
     "name":"Killer Croc",
     "type":"Villain",
     "image":"Deck2/Main/killer_croc.jpg",
@@ -775,6 +810,7 @@
                               "power":1}}]
 },
 {
+    "id":"King of Atlantis",
     "name":"King of Atlantis",
     "type":"Hero",
     "image":"Deck1/Main/king_of_atlantis.jpg",
@@ -799,6 +835,7 @@
                                             "power":1}]}]}]
 },
 {
+    "id":"Lasso of Truth",
     "name":"Lasso of Truth",
     "type":"Equipment",
     "image":"Deck1/Main/lasso_of_truth.jpg",
@@ -814,6 +851,7 @@
                   "count":1}]
 },
 {
+    "id":"Lex Luthor",
     "name":"Lex Luthor",
     "type":"Villain",
     "image":"Deck1/SuperVillains/lex_luthor.jpg",
@@ -835,6 +873,7 @@
                                           "from":"WEAKNESS"}}]}]
 },
 {
+    "id":"Lobo",
     "name":"Lobo",
     "type":"Villain",
     "image":"Deck1/Main/lobo.jpg",
@@ -851,6 +890,7 @@
                              "source":"EVENT"}]}]
 },
 {
+    "id":"Man of Steel",
     "name":"Man of Steel",
     "type":"Hero",
     "image":"Deck1/Main/man_of_steel.jpg",
@@ -873,6 +913,7 @@
                               "to":"HAND"}}]
 },
 {
+    "id":"Manhunter",
     "name":"Manhunter",
     "type":"Villain",
     "image":"Deck2/Main/manhunter.jpg",
@@ -894,6 +935,7 @@
                               "power":2}}]
 },
 {
+    "id":"Mera",
     "name":"Mera",
     "type":"Hero",
     "image":"Deck1/Main/mera.jpg",
@@ -911,6 +953,7 @@
                                 "power":2}]}]
 },
 {
+    "id":"Nth Metal",
     "name":"Nth Metal",
     "type":"Equipment",
     "image":"Deck1/Main/nth_metal.jpg",
@@ -931,6 +974,7 @@
                                         "effects":[]}]}]}]
 },
 {
+    "id":"Oa",
     "name":"Oa",
     "type":"Location",
     "image":"Deck2/Main/oa.jpg",
@@ -956,6 +1000,7 @@
                                                 "count":1}]}]}}]
 },
 {
+    "id":"Parallax",
     "name":"Parallax",
     "type":"Villain",
     "image":"Deck1/SuperVillains/parallax.jpg",
@@ -979,6 +1024,7 @@
                                           "source":"EVENT"}]}]}]
 },
 {
+    "id":"Poison Ivy",
     "name":"Poison Ivy",
     "type":"Villain",
     "image":"Deck1/Main/poison_ivy.jpg",
@@ -1004,6 +1050,7 @@
                                                      "from":"WEAKNESS"}]}]}]}]
 },
 {
+    "id":"Power Ring",
     "name":"Power Ring",
     "type":"Equipment",
     "image":"Deck1/Main/power_ring.jpg",
@@ -1028,6 +1075,7 @@
                                          "power":1}]}]}]
 },
 {
+    "id":"Princess Diana of Themyscira",
     "name":"Princess Diana of Themyscira",
     "type":"Hero",
     "image":"Deck1/Main/princess_diana_of_themyscira.jpg",
@@ -1054,6 +1102,7 @@
                               "from":"EVENT"}}]
 },
 {
+    "id":"Deck 1 - Punch",
     "name":"Punch",
     "type":"Starter",
     "image":"Deck1/Core/punch.jpg",
@@ -1065,6 +1114,7 @@
                     "power":1}]
 },
 {
+    "id":"Ra's al Ghul",
     "name":"Ra's al Ghul",
     "type":"Villain",
     "image":"Deck1/SuperVillains/ras_al_ghul.jpg",
@@ -1077,6 +1127,7 @@
                    {"type":"PUT_ON_BOTTOM_CLEANUP"}]
 },
 {
+    "id":"Raven",
     "name":"Raven",
     "type":"Hero",
     "image":"Deck2/Main/raven.jpg",
@@ -1090,6 +1141,7 @@
                     "count":1}]
 },
 {
+    "id":"Robin",
     "name":"Robin",
     "type":"Hero",
     "image":"Deck1/Main/robin.jpg",
@@ -1111,6 +1163,7 @@
                              "to":"HAND"}]}]
 },
 {
+    "id":"Scarecrow",
     "name":"Scarecrow",
     "type":"Villain",
     "image":"Deck1/Main/scarecrow.jpg",
@@ -1125,6 +1178,7 @@
                                 "from":"WEAKNESS"}]}]
 },
 {
+    "id":"Shazam!",
     "name":"Shazam!",
     "type":"Super Power",
     "image":"Deck2/Main/shazam.jpg",
@@ -1142,6 +1196,7 @@
                              "source":"EVENT"}]}]
 },
 {
+    "id":"Sinestro",
     "name":"Sinestro",
     "type":"Villain",
     "image":"Deck1/Main/sinestro.jpg",
@@ -1184,6 +1239,7 @@
                                                      "source":"EVENT"}]}}]}]
 },
 {
+    "id":"Solomon Grundy",
     "name":"Solomon Grundy",
     "type":"Villain",
     "image":"Deck1/Main/solomon_grundy.jpg",
@@ -1203,6 +1259,7 @@
                            "effects":[]}]}]
 },
 {
+    "id":"Sonic Siren",
     "name":"Sonic Siren",
     "type":"Hero",
     "image":"Deck2/Main/sonic_siren.jpg",
@@ -1227,6 +1284,7 @@
                                 "effects":[]}]}]
 },
 {
+    "id":"Soultaker Sword",
     "name":"Soultaker Sword",
     "type":"Equipment",
     "image":"Deck2/Main/soultaker_sword.jpg",
@@ -1250,6 +1308,7 @@
                                 "effects":[]}]}]
 },
 {
+    "id":"Starro",
     "name":"Starro",
     "type":"Villain",
     "image":"Deck1/Main/starro.jpg",
@@ -1281,6 +1340,7 @@
                                                             "effects":[]}]}}]}]}]
 },
 {
+    "id":"Suicide Squad",
     "name":"Suicide Squad",
     "type":"Villain",
     "image":"Deck1/Main/suicide_squad.jpg",
@@ -1308,6 +1368,7 @@
                                             "source":"HAND"}]}]}]
 },
 {
+    "id":"Super Speed",
     "name":"Super Speed",
     "type":"Super Power",
     "image":"Deck1/Main/super_speed.jpg",
@@ -1323,6 +1384,7 @@
                   "count":2}]
 },
 {
+    "id":"Super Strength",
     "name":"Super Strength",
     "type":"Super Power",
     "image":"Deck1/Main/super_strength.jpg",
@@ -1334,6 +1396,7 @@
                     "power":5}]
 },
 {
+    "id":"Supergirl",
     "name":"Supergirl",
     "type":"Hero",
     "image":"Deck1/Main/supergirl.jpg",
@@ -1352,6 +1415,7 @@
                                 "effects":[]}]}]
 },
 {
+    "id":"Swamp Thing",
     "name":"Swamp Thing",
     "type":"Hero",
     "image":"Deck1/Main/swamp_thing.jpg",
@@ -1372,6 +1436,7 @@
                                 "power":3}]}]
 },
 {
+    "id":"Talon",
     "name":"Talon",
     "type":"Villain",
     "image":"Deck2/Main/talon.jpg",
@@ -1390,6 +1455,7 @@
                                 "power":2}]}]
 },
 {
+    "id":"Teleportation",
     "name":"Teleportation",
     "type":"Super Power",
     "image":"Deck2/Main/teleportation.jpg",
@@ -1402,6 +1468,7 @@
                     "to":"HAND"}]
 },
 {
+    "id":"Titans Tower",
     "name":"Titans Tower",
     "type":"Location",
     "image":"Deck1/Main/titans_tower.jpg",
@@ -1422,6 +1489,7 @@
                            "count":1}}]
 },
 {
+    "id":"The Anti-Monitor",
     "name":"The Anti-Monitor",
     "type":"Villain",
     "image":"Deck1/SuperVillains/the_anti_monitor.jpg",
@@ -1453,6 +1521,7 @@
                                            "to":"LINE_UP"}]}]}]
 },
 {
+    "id":"The Batcave",
     "name":"The Batcave",
     "type":"Location",
     "image":"Deck1/Main/the_batcave.jpg",
@@ -1473,6 +1542,7 @@
                            "count":1}}]
 },
 {
+    "id":"The Bat-Signal",
     "name":"The Bat-Signal",
     "type":"Equipment",
     "image":"Deck1/Main/the_bat_signal.jpg",
@@ -1494,6 +1564,7 @@
                              "to":"HAND"}]}]
 },
 {
+    "id":"The Cape and Cowl",
     "name":"The Cape and Cowl",
     "type":"Equipment",
     "image":"Deck1/Main/the_cape_and_cowl.jpg",
@@ -1509,6 +1580,7 @@
                   "count":2}]
 },
 {
+    "id":"The Fastest Man Alive",
     "name":"The Fastest Man Alive",
     "type":"Hero",
     "image":"Deck1/Main/the_fastest_man_alive.jpg",
@@ -1520,6 +1592,7 @@
                     "count":2}]
 },
 {
+    "id":"The Joker",
     "name":"The Joker",
     "type":"Villain",
     "image":"Deck1/SuperVillains/the_joker.jpg",
@@ -1563,6 +1636,7 @@
                                                                "to":"DECK"}]}]}]}]}]
 },
 {
+    "id":"The Penguin",
     "name":"The Penguin",
     "type":"Villain",
     "image":"Deck1/Main/the_penguin.jpg",
@@ -1579,6 +1653,7 @@
                              "source":"EVENT"}]}]
 },
 {
+    "id":"The Riddler",
     "name":"The Riddler",
     "type":"Villain",
     "image":"Deck1/Main/the_riddler.jpg",
@@ -1604,6 +1679,7 @@
                                                                        "from":"MAIN_DECK"}]}}]}]}]
 },
 {
+    "id":"The Rot",
     "name":"The Rot",
     "type":"Location",
     "image":"Crisis1/Main/the_rot.jpg",
@@ -1624,6 +1700,7 @@
                            "count":1}}]
 },
 {
+    "id":"The Watchtower",
     "name":"The Watchtower",
     "type":"Location",
     "image":"Deck1/Main/the_watchtower.jpg",
@@ -1644,6 +1721,7 @@
                            "count":1}}]
 },
 {
+    "id":"Two-Face",
     "name":"Two-Face",
     "type":"Villain",
     "image":"Deck1/Main/two_face.jpg",
@@ -1691,6 +1769,7 @@
                                                                               "source":"EVENT"}}]}]}]}]}]
 },
 {
+    "id":"Utility Belt",
     "name":"Utility Belt",
     "type":"Equipment",
     "image":"Deck1/Main/utility_belt.jpg",
@@ -1712,6 +1791,7 @@
                     "power":2}]
 },
 {
+    "id":"Deck 1 - Vulnerability",
     "name":"Vulnerability",
     "type":"Starter",
     "image":"Deck1/Core/vulnerability.jpg",
@@ -1721,6 +1801,7 @@
               "points":0}
 },
 {
+    "id":"Deck 1 - Weakness",
     "name":"Weakness",
     "image":"Deck1/Core/weakness.jpg",
     "cost":{"type":"FIXED",
@@ -1729,6 +1810,7 @@
               "points":-1}
 },
 {
+    "id":"Whirlwind",
     "name":"Whirlwind",
     "type":"Super Power",
     "image":"Deck2/Main/whirlwind.jpg",
@@ -1752,6 +1834,7 @@
                                             "effects":[]}]}]}]
 },
 {
+    "id":"Wonder of the Knight",
     "name":"Wonder of the Knight",
     "type":"Hero",
     "image":"Deck2/Main/wonder_of_the_knight.jpg",
@@ -1780,6 +1863,7 @@
                     "count":1}]
 },
 {
+    "id":"X-Ray Vision",
     "name":"X-Ray Vision",
     "type":"Super Power",
     "image":"Deck1/Main/xray_vision.jpg",
@@ -1826,6 +1910,7 @@
                                                      "effects":[]}]}]}]}]
 },
 {
+    "id":"Zatanna Zatara",
     "name":"Zatanna Zatara",
     "type":"Hero",
     "image":"Deck1/Main/zatanna_zatara.jpg",

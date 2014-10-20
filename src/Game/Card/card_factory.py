@@ -31,4 +31,4 @@ parameters = [PrimitiveParameter("name"),
               ComplexParameter("activatableEffect", ActivatableFactory.load, optional=True),
               PrimitiveParameter("image", optional=True)]
     
-CardFactory = DataSourceFactory(Card, parameters, JsonSource(CARD_FILENAME), "name")
+CardFactory = DataSourceFactory(Card, parameters, JsonSource(CARD_FILENAME), "id")
