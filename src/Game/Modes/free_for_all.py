@@ -34,6 +34,7 @@ class FreeForAll:
         
     def setDeckForRole(self, role, index):
         """ Set the deck for the given role """
+        index = index % len(self.potentialDecks[role])
         self.chosenDecks[role] = self.potentialDecks[role][index]
         
     @property

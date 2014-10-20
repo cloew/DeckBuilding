@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('DeckBuildingDirectives', [])
+angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
     .directive('cardImage', function() {
       return {
           restrict: 'E',
@@ -236,7 +236,21 @@ angular.module('DeckBuildingDirectives', [])
           replace: true,
           scope: {
               name: '@',
+              role: '@',
               deck: '='
+          },
+          controller: function($scope, lobbyService) {
+            $scope.previous = function(role, current) {
+                lobbyService.changeDeck(role, current-1);
+                current -= 1;
+            };
+            $scope.next = function(role, current) {
+                lobbyService.changeDeck(role, current+1);
+                current += 1;
+            };
+            $scope.changeDeck = function(role, index) {
+                lobbyService.changeDeck(role, index);
+            };
           },
           templateUrl: 'static/partials/directives/deck_picker.html'
       }})

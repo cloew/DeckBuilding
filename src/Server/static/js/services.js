@@ -163,6 +163,13 @@ services.service('lobbyService', function($cookies, $http, $location, $routePara
             alert(error);
         });
     };
+    var changeDeck = function(role, index) {
+        $http.post(rootUrl+$routeParams.lobbyId+'/player/'+$cookies.playerId+'/changedeck', {'role':role, 'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+            setLobby(data);
+        }).error(function(error) {
+            alert(error);
+        });
+    };
     var changeName = function(newName) {
         $http.post(rootUrl+$routeParams.lobbyId+'/player/'+$cookies.playerId+'/changename', {'name':newName}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
             setLobby(data);
@@ -181,6 +188,7 @@ services.service('lobbyService', function($cookies, $http, $location, $routePara
         getLobby: getLobby,
         startPolling: startPolling,
         changeCharacter: changeCharacter,
+        changeDeck: changeDeck,
         changeName: changeName,
         startGame: startGame
     };
