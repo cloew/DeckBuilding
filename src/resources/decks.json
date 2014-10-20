@@ -2,6 +2,7 @@
 {
     "id":"Test",
     "name":"Test",
+    "role":"MAIN",
     "type":"REGULAR",
     "cards":[{"id":"Starro",
               "count":10},
@@ -12,13 +13,23 @@
 {
     "id":"Deck 1 - Kick",
     "name":"Kick",
+    "role":"KICK",
     "type":"UNIFORM",
     "cards":[{"id":"Deck 1 - Kick",
               "count":16}]
 },
 {
+    "id":"Deck 2 - Kick",
+    "name":"Kick",
+    "role":"KICK",
+    "type":"UNIFORM",
+    "cards":[{"id":"Deck 2 - Kick",
+              "count":16}]
+},
+{
     "id":"Deck 1 - Weakness",
     "name":"Weakness",
+    "role":"WEAKNESS",
     "type":"UNIFORM",
     "cards":[{"id":"Deck 1 - Weakness",
               "count":20}]
@@ -26,6 +37,7 @@
 {
     "id":"Deck 1 - Starting",
     "name":"Starting",
+    "role":"STARTING",
     "type":"STARTING",
     "cards":[{"id":"Deck 1 - Punch",
               "count":7},
@@ -35,6 +47,7 @@
 {
     "id":"Deck 1 - Super Villains",
     "name":"Super Villains",
+    "role":"SUPERVILLAINS",
     "type":"FIXED_TOP",
     "cards":[{"id":"Parallax",
               "count":1},
@@ -63,6 +76,7 @@
 {
     "id":"Deck 1 - Main",
     "name":"Deck 1",
+    "role":"MAIN",
     "type":"REGULAR",
     "cards":[{"id":"Lasso of Truth",
               "count":3},

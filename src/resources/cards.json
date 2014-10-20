@@ -779,6 +779,18 @@
                     "power":2}]
 },
 {
+    "id":"Deck 2 - Kick",
+    "name":"Kick",
+    "type":"Super Power",
+    "image":"Deck2/Core/kick.jpg",
+    "cost":{"type":"FIXED",
+            "cost":3},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":2}]
+},
+{
     "id":"Kid Flash",
     "name":"Kid Flash",
     "type":"Hero",
