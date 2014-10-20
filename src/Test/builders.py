@@ -41,4 +41,4 @@ def BuildCharacter():
 
 def BuildSuperVillainDeck():
     """ Build a Super Villain Deck for testing purposes """
-    return DeckFactory.load("Super Villains").loadDeck()
+    return DeckFactory.load("Deck 1 - Super Villains").loadDeck()
