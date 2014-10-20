@@ -14,7 +14,7 @@ class Player:
         self.character = character
         
         self.nextHandSize = self.STANDARD_HAND_SIZE
-        self.deck = DeckFactory.load("Starting").loadDeck()
+        self.deck = DeckFactory.load("Deck 1 - Starting").loadDeck()
         self.drawHand()
         self.ongoing = []
         self.underCharacter = []

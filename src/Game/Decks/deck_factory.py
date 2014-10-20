@@ -38,4 +38,4 @@ factories = {"REGULAR":Factory(ShufflingDeckLoader, [ComplexParameter("cards", L
              "STARTING":Factory(StartingDeckLoader, [ComplexParameter("cards", LoadCards)]),
              "FIXED_TOP":Factory(FixedTopCardDeckLoader, [ComplexParameter("cards", LoadCards), ComplexParameter("topCard", CardFactory.load)])}
 
-DeckFactory = TypedDataSourceFactory('type', factories, JsonSource(DECK_FILENAME), "name")
+DeckFactory = TypedDataSourceFactory('type', factories, JsonSource(DECK_FILENAME), "id")

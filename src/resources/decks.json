@@ -1,5 +1,6 @@
 [
 {
+    "id":"Test",
     "name":"Test",
     "type":"REGULAR",
     "cards":[{"name":"Starro",
@@ -9,18 +10,21 @@
     
 },
 {
+    "id":"Deck 1 - Kick",
     "name":"Kick",
     "type":"UNIFORM",
     "cards":[{"name":"Kick",
               "count":16}]
 },
 {
+    "id":"Deck 1 - Weakness",
     "name":"Weakness",
     "type":"UNIFORM",
     "cards":[{"name":"Weakness",
               "count":20}]
 },
 {
+    "id":"Deck 1 - Starting",
     "name":"Starting",
     "type":"STARTING",
     "cards":[{"name":"Punch",
@@ -29,6 +33,7 @@
               "count":3}]
 },
 {
+    "id":"Deck 1 - Super Villains",
     "name":"Super Villains",
     "type":"FIXED_TOP",
     "cards":[{"name":"Parallax",
@@ -56,6 +61,7 @@
     "topCard":"Ra's al Ghul"
 },
 {
+    "id":"Deck 1 - Main",
     "name":"Deck 1",
     "type":"REGULAR",
     "cards":[{"name":"Lasso of Truth",

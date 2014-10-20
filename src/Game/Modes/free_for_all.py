@@ -9,10 +9,10 @@ class FreeForAll:
     def buildGame(self, lobby):
         """ Build the Game """
         players = self.getGamePlayers(lobby)
-        return Game(players, mainDeck=DeckFactory.load("Deck 1").loadDeck(),
-                             kickDeck=DeckFactory.load("Kick").loadDeck(),
-                             weaknessDeck=DeckFactory.load("Weakness").loadDeck(),
-                             superVillainDeck=DeckFactory.load("Super Villains").loadDeck())
+        return Game(players, mainDeck=DeckFactory.load("Deck 1 - Main").loadDeck(),
+                             kickDeck=DeckFactory.load("Deck 1 - Kick").loadDeck(),
+                             weaknessDeck=DeckFactory.load("Deck 1 - Weakness").loadDeck(),
+                             superVillainDeck=DeckFactory.load("Deck 1 - Super Villains").loadDeck())
         
     def getGamePlayers(self, lobby):
         """ Return the Game Players in their proper order """
