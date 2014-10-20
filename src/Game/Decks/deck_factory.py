@@ -23,11 +23,11 @@ def LoadCards(data):
     """ Load the Cards """
     deckInitializer = DeckInitializer()
     for cardJson in data:
-        cardName = cardJson["name"]
+        cardId = cardJson["id"]
         count = cardJson["count"]
-        card = CardFactory.load(cardName)
+        card = CardFactory.load(cardId)
         if card is None:
-            print "Failed to load:", cardName
+            print "Failed to load:", cardId
         deckInitializer.addItem(card, count)
     return deckInitializer
 
