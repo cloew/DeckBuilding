@@ -1,6 +1,6 @@
 [
 {
-    "id":"Deck 1 - Kick",
+    "id":"Deck 1 - Kicks",
     "name":"Kick",
     "role":"KICK",
     "type":"UNIFORM",
@@ -8,7 +8,7 @@
               "count":16}]
 },
 {
-    "id":"Deck 2 - Kick",
+    "id":"Deck 2 - Kicks",
     "name":"Kick",
     "role":"KICK",
     "type":"UNIFORM",
@@ -16,7 +16,7 @@
               "count":16}]
 },
 {
-    "id":"Deck 1 - Weakness",
+    "id":"Deck 1 - Weaknesses",
     "name":"Weakness",
     "role":"WEAKNESS",
     "type":"UNIFORM",
@@ -63,7 +63,7 @@
     "topCard":"Ra's al Ghul"
 },
 {
-    "id":"Deck 1 - Main",
+    "id":"Deck 1 - Main Deck",
     "name":"Deck 1",
     "role":"MAIN",
     "type":"REGULAR",

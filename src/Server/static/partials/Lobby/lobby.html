@@ -1,17 +1,25 @@
-<h2>Lobby #{{lobby.id}}</h2>
-<button ng-click="startGame();">Start Game</button>
+<div class="col-md-9">
+    <h2>Lobby #{{lobby.id}}</h2>
+    <button ng-click="startGame();">Start Game</button>
 
-<div>
-    <h1>You are: {{lobby.you.name}} as {{lobby.you.character.name}}</h1>
-    <input ng-model="newName" />
-    <button ng-click="changeName()">Change Name</button>
-    <character character="lobby.you.character" thumbnail="true"></character>
-    <input ng-model="newCharacter" />
-    <button ng-click="changeCharacter()">Change Character</button>
-</div>
-<div style="margin-left:25px;margin-right:25px;">
-    <div class="row-container" ng-repeat="player in lobby.allPlayers">
-        <character character="player.character" thumbnail="true"></character>
-        <h2 style="vertical-align: middle;">{{player.name}}</h2>
+    <div>
+        <h1>You are: {{lobby.you.name}} as {{lobby.you.character.name}}</h1>
+        <input ng-model="newName" />
+        <button ng-click="changeName()">Change Name</button>
+        <character character="lobby.you.character" thumbnail="true"></character>
+        <input ng-model="newCharacter" />
+        <button ng-click="changeCharacter()">Change Character</button>
     </div>
+    <div style="margin-left:25px;margin-right:25px;">
+        <div class="row-container" ng-repeat="player in lobby.allPlayers">
+            <character character="player.character" thumbnail="true"></character>
+            <h2 style="vertical-align: middle;">{{player.name}}</h2>
+        </div>
+    </div>
+</div>
+<div class="col-md-3">
+    <deck-picker name="Main Deck" deck="lobby.gamemode.MAIN"></deck-picker>
+    <deck-picker name="Kick" deck="lobby.gamemode.KICK"></deck-picker>
+    <deck-picker name="Weakness" deck="lobby.gamemode.WEAKNESS"></deck-picker>
+    <deck-picker name="Super Villain" deck="lobby.gamemode.SUPERVILLAIN"></deck-picker>
 </div>

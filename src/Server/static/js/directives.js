@@ -230,6 +230,16 @@ angular.module('DeckBuildingDirectives', [])
           replace: true,
           templateUrl: 'static/partials/directives/player.html'
       }})
+    .directive('deckPicker', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          scope: {
+              name: '@',
+              deck: '='
+          },
+          templateUrl: 'static/partials/directives/deck_picker.html'
+      }})
     .directive('cardGroup', function() {
       return {
           restrict: 'E',
