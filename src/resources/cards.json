@@ -614,6 +614,28 @@
                                                                   "source":"EVENT"}]}]}]}]}]
 },
 {
+    "id":"Daughter of Gotham City",
+    "name":"Daughter of Gotham City",
+    "type":"Hero",
+    "image":"Deck2/Main/daughter_of_gotham_city.jpg",
+    "cost":{"type":"FIXED",
+            "cost":3},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":1},
+                   {"type":"PICK_UP_TO_N_CARDS",
+                    "number":2,
+                    "criteria":{"type":"FIXED",
+                                "field":"name",
+                                "operation":"==",
+                                "value":"Punch"},
+                    "sources":["DISCARD_PILE"],
+                    "then":[{"type":"MOVE_CARD",
+                             "from":"EVENT",
+                             "to":"HAND"}]}]
+},
+{
     "id":"Deadshot",
     "name":"Deadshot",
     "type":"Villain",
