@@ -1130,6 +1130,28 @@
                              "to":"DECK"}]}]
 },
 {
+    "id":"Jervis Tetch",
+    "name":"Jervis Tetch",
+    "type":"Villain",
+    "image":"Deck2/Main/jervis_tetch.jpg",
+    "cost":{"type":"FIXED",
+            "cost":3},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":1},
+                   {"type":"LOOK_AT_TOP",
+                    "source":"DECK",
+                    "then":[{"type":"CHOICE",
+                             "source":"EVENT",
+                             "choices":[{"description":"Destroy card",
+                                         "effects":[{"type":"DESTROY",
+                                                     "source":"EVENT"}]},
+                                       {"description":"Discard card",
+                                        "effects":[{"type":"DISCARD",
+                                                    "source":"EVENT"}]}]}]}]
+},
+{
     "id":"Deck 1 - Kick",
     "name":"Kick",
     "type":"Super Power",
