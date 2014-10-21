@@ -377,6 +377,18 @@
                              "then":[{"type":"SHUFFLE_AND_DEAL"}]}]}]
 },
 {
+    "id":"Brother Blood",
+    "name":"Brother Blood",
+    "type":"Villain",
+    "image":"Deck2/Main/brother_blood.jpg",
+    "cost":{"type":"FIXED",
+            "cost":6},
+    "points":{"type":"FIXED",
+              "points":2},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":4}]
+},
+{
     "id":"Bo Staff",
     "name":"Bo Staff",
     "type":"Equipment",
