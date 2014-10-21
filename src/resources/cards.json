@@ -1822,6 +1822,15 @@
               "points":-1}
 },
 {
+    "id":"Deck 2 - Weakness",
+    "name":"Weakness",
+    "image":"Deck2/Core/weakness.jpg",
+    "cost":{"type":"FIXED",
+            "cost":0},
+    "points":{"type":"FIXED",
+              "points":-1}
+},
+{
     "id":"Whirlwind",
     "name":"Whirlwind",
     "type":"Super Power",

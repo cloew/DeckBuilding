@@ -24,6 +24,14 @@
               "count":20}]
 },
 {
+    "id":"Deck 2 - Weaknesses",
+    "name":"Weakness",
+    "role":"WEAKNESS",
+    "type":"UNIFORM",
+    "cards":[{"id":"Deck 2 - Weakness",
+              "count":20}]
+},
+{
     "id":"Deck 1 - Starting",
     "name":"Starting",
     "role":"STARTING",
