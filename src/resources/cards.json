@@ -1264,6 +1264,18 @@
                   "count":1}]
 },
 {
+    "id":"Legion Flight Ring",
+    "name":"Legion Flight Ring",
+    "type":"Equipment",
+    "image":"Deck2/Main/legion_flight_ring.jpg",
+    "cost":{"type":"FIXED",
+            "cost":2},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"DRAW",
+                    "count":1}]
+},
+{
     "id":"Lex Luthor",
     "name":"Lex Luthor",
     "type":"Villain",
