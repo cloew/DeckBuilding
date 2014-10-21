@@ -636,6 +636,23 @@
                              "to":"HAND"}]}]
 },
 {
+    "id":"Deadman",
+    "name":"Deadman",
+    "type":"Hero",
+    "image":"Deck2/Main/deadman.jpg",
+    "cost":{"type":"FIXED",
+            "cost":4},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":2}],
+    "onGain":[{"type":"PICK_UP_TO_N_CARDS",
+               "number":2,
+               "sources":["HAND", "DISCARD_PILE"],
+               "then":[{"type":"DESTROY",
+                        "source":"EVENT"}]}]
+},
+{
     "id":"Deadshot",
     "name":"Deadshot",
     "type":"Villain",
