@@ -253,6 +253,18 @@
                                          "source":"EVENT"}]}]}]
 },
 {
+    "id":"Batarang",
+    "name":"Batarang",
+    "type":"Villain",
+    "image":"Deck2/Main/batarang.jpg",
+    "cost":{"type":"FIXED",
+            "cost":2},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":2}]
+},
+{
     "id":"Batmobile",
     "name":"Batmobile",
     "type":"Equipment",
