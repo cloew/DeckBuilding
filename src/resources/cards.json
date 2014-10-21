@@ -196,9 +196,9 @@
                                           "value":"Equipment"},
                               "source":"DISCARD_PILE"},
                     "source":"DISCARD_PILE",
-                    "effect":{"type":"MOVE_CARD",
-                              "from":"EVENT",
-                              "to":"HAND"}}],
+                    "effects":[{"type":"MOVE_CARD",
+                                "from":"EVENT",
+                                "to":"HAND"}]}],
     "onAppearance":[{"type":"ATTACK",
                      "then":[{"type":"AS_PLAYER_WITH_HIGHEST_COST",
                               "source":"HAND",
@@ -549,8 +549,8 @@
                                           "field":"cardType",
                                           "operation":"==",
                                           "value":"Equipment"}},
-                    "effect":{"type":"GAIN_CARD",
-                              "from":"EVENT"}},
+                    "effects":[{"type":"GAIN_CARD",
+                                "from":"EVENT"}]},
                    {"type":"PLAY_OR_HAVE_PLAYED",
                     "criteria":{"type":"FIXED",
                                 "field":"name",
@@ -990,8 +990,8 @@
                                           "operation":"==",
                                           "value":"Hero"}},
                     "source":"DISCARD_PILE",
-                    "effect":{"type":"GAIN_POWER",
-                              "power":1}}]
+                    "effects":[{"type":"GAIN_POWER",
+                                "power":1}]}]
 },
 {
     "id":"Heat Vision",
@@ -1024,6 +1024,33 @@
                                                      "source":"EVENT"}]}]},
                                {"description":"Do nothing",
                                  "effects":[]}]}]
+},
+{
+    "id":"Helmet of Fate",
+    "name":"Helmet of Fate",
+    "type":"Equipment",
+    "image":"Deck2/Main/helmet_of_fate.jpg",
+    "cost":{"type":"FIXED",
+            "cost":5},
+    "points":{"type":"PER_RESULT",
+              "filter":{"type":"COMPARISON",
+                        "criteria":{"type":"FIXED",
+                                    "field":"name",
+                                    "operation":"CONTAINS",
+                                    "value":"Power Ring"},
+                        "source":"DECK"}},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":2}],
+    "onDefense":[{"type":"DISCARD",
+                  "source":"EVENT"},
+                 {"type":"PICK_UP_TO_ALL_CARDS",
+                  "sources":["HAND"],
+                  "then":[{"type":"PER_MATCH",
+                           "source":"EVENT",
+                           "effects":[{"type":"DISCARD",
+                                       "source":"EVENT"},
+                                      {"type":"DRAW",
+                                       "count":1}]}]}]
 },
 {
     "id":"High-Tech Hero",
@@ -1194,8 +1221,8 @@
                                                       "field":"cardType",
                                                       "operation":"==",
                                                       "value":"Villain"}},
-                                "effect":{"type":"GAIN_TOP_CARD",
-                                          "from":"WEAKNESS"}}]}]
+                                "effects":[{"type":"GAIN_TOP_CARD",
+                                            "from":"WEAKNESS"}]}]}]
 },
 {
     "id":"Lobo",
@@ -1233,9 +1260,9 @@
                                           "value":"Super Power"},
                               "source":"DISCARD_PILE"},
                     "source":"DISCARD_PILE",
-                    "effect":{"type":"MOVE_CARD",
-                              "from":"EVENT",
-                              "to":"HAND"}}]
+                    "effects":[{"type":"MOVE_CARD",
+                                "from":"EVENT",
+                                "to":"HAND"}]}]
 },
 {
     "id":"Manhunter",
@@ -1256,8 +1283,8 @@
                                           "value":"Manhunter"},
                               "source":"DISCARD_PILE"},
                     "source":"DISCARD_PILE",
-                    "effect":{"type":"GAIN_POWER",
-                              "power":2}}]
+                    "effects":[{"type":"GAIN_POWER",
+                                "power":2}]}]
 },
 {
     "id":"Mera",
@@ -1423,8 +1450,8 @@
                                                       "value":7},
                                           "source":"LINE_UP"}]},
                     "source":"LINE_UP",
-                    "effect":{"type":"GAIN_CARD",
-                              "from":"EVENT"}}]
+                    "effects":[{"type":"GAIN_CARD",
+                                "from":"EVENT"}]}]
 },
 {
     "id":"Deck 1 - Punch",
@@ -1557,11 +1584,11 @@
                                                        "operation":"==",
                                                        "value":"Hero"},
                                            "source":"HAND"},
-                                 "effect":{"type":"PICK_CARDS",
-                                           "number":1,
-                                           "sources":["HAND"],
-                                            "then":[{"type":"DISCARD",
-                                                     "source":"EVENT"}]}}]}]
+                                 "effects":[{"type":"PICK_CARDS",
+                                             "number":1,
+                                             "sources":["HAND"],
+                                              "then":[{"type":"DISCARD",
+                                                       "source":"EVENT"}]}]}]}]
 },
 {
     "id":"Solomon Grundy",
@@ -1656,13 +1683,13 @@
                                                             "operation":"!=",
                                                             "value":"Location"}},
                                       "source":"EVENT",
-                                      "effect":{"type":"CHOICE",
-                                                "source":"EVENT",
-                                                "choices":[{"description":"Play the card",
-                                                            "effects":[{"type":"PLAY",
-                                                                        "source":"EVENT"}]},
-                                                           {"description":"Do nothing",
-                                                            "effects":[]}]}}]}]}]
+                                      "effects":[{"type":"CHOICE",
+                                                  "source":"EVENT",
+                                                  "choices":[{"description":"Play the card",
+                                                              "effects":[{"type":"PLAY",
+                                                                          "source":"EVENT"}]},
+                                                             {"description":"Do nothing",
+                                                              "effects":[]}]}]}]}]}]
 },
 {
     "id":"Suicide Squad",
@@ -1830,7 +1857,7 @@
                              "source":"EVENT"},
                             {"type":"PER_MATCH",
                              "source":"EVENT",
-                             "effect":{"type":"ADD_TO_LINE_UP"}}]}],
+                             "effects":[{"type":"ADD_TO_LINE_UP"}]}]}],
     "onAppearance":[{"type":"ATTACK_EACH_FOE",
                      "effects":[{"type":"REVEAL",
                                  "source":"HAND"},
