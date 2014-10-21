@@ -15,4 +15,5 @@ operations = {"==":operator.eq,
               ">=":operator.ge,
               "<=":operator.le,
               "IN":inOperator,
+              "CONTAINS":operator.contains,
               "EVEN_OR_ODD":compareEvenOrOdd}
