@@ -9,7 +9,7 @@ class AsPreviousPlayer:
         
     def perform(self, context):
         """ Perform the Game Effect """
-        newContext = context.getPlayerContext(context.previousPlayerPlayer)
+        newContext = context.getPlayerContext(context.previousPlayer)
         
         coroutine = PerformEffects(self.thenEffects, newContext)
         response = yield coroutine.next()

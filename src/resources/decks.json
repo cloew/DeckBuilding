@@ -36,12 +36,10 @@
     "name":"Starting",
     "role":"STARTING",
     "type":"STARTING",
-    "cards":[{"id":"Amazo",
-              "count":3},
-             {"id":"Raven",
-              "count":3},
-             {"id":"Doomsday",
-              "count":4}]
+    "cards":[{"id":"Deck 1 - Punch",
+              "count":7},
+             {"id":"Deck 1 - Vulnerability",
+              "count":3}]
 },
 {
     "id":"Deck 1 - Super Villains",

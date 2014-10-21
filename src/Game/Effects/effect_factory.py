@@ -6,6 +6,7 @@ from Game.Effects.add_cost_modifier import AddCostModifier
 from Game.Effects.add_to_line_up import AddToLineUp
 from Game.Effects.add_trigger import AddTrigger
 from Game.Effects.as_next_player import AsNextPlayer
+from Game.Effects.as_player_with_highest_cost import AsPlayerWithHighestCost
 from Game.Effects.as_previous_player import AsPreviousPlayer
 from Game.Effects.as_owner import AsOwner
 from Game.Effects.attack import Attack
@@ -94,6 +95,7 @@ EffectFactory = TypedFactory('type', {"ACTIVATE_CHARACTER":Factory(ActivateChara
 OptionFactory = Factory(Option, [PrimitiveParameter("description"), ComplexParameter("effects", EffectFactory.loadAll), ComplexParameter("condition", ConditionFactory.load, optional=True)])
 
 EffectFactory.addFactory("AS_NEXT_PLAYER", Factory(AsNextPlayer, [ComplexParameter("then", EffectFactory.loadAll)]))
+EffectFactory.addFactory("AS_PLAYER_WITH_HIGHEST_COST", Factory(AsPlayerWithHighestCost, [PrimitiveParameter("source"), ComplexParameter("then", EffectFactory.loadAll)]))
 EffectFactory.addFactory("AS_PREVIOUS_PLAYER", Factory(AsPreviousPlayer, [ComplexParameter("then", EffectFactory.loadAll)]))
 EffectFactory.addFactory("AS_OWNER", Factory(AsOwner, [ComplexParameter("then", EffectFactory.loadAll)]))
 EffectFactory.addFactory("ATTACK", Factory(Attack, [ComplexParameter("then", EffectFactory.loadAll)]))
