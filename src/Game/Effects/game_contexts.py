@@ -1,4 +1,4 @@
-from Game.player_order_helper import GetPlayersStartingWith, GetNextPlayer
+from Game.player_order_helper import GetPlayersStartingWith, GetNextPlayer, GetPreviousPlayer
 from Game.Sources.source_factory import SourceFactory
 
 class Context:
@@ -54,6 +54,11 @@ class PlayerContext(Context):
     def nextPlayer(self):
         """ Return the next player """
         return GetNextPlayer(self.player, self.potentialPlayers)
+        
+    @property
+    def previousPlayer(self):
+        """ Return the previous player """
+        return GetPreviousPlayer(self.player, self.potentialPlayers)
         
     def copy(self):
         """ Copy the Context """

@@ -11,3 +11,9 @@ def GetNextPlayer(player, players):
     index = players.index(player)
     index = (index + 1) % len(players)
     return players[index]
+
+def GetPreviousPlayer(player, players):
+    """ Get the player previous to the given player """
+    index = players.index(player)
+    index = (index - 1)
+    return players[index]
