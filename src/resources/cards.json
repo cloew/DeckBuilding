@@ -511,6 +511,26 @@
                              "source":"EVENT"}]}]
 },
 {
+    "id":"Crimson Whirlwind",
+    "name":"Crimson Whirlwind",
+    "type":"Hero",
+    "image":"Deck2/Main/crimson_whirlwind.jpg",
+    "cost":{"type":"FIXED",
+            "cost":5},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":2},
+                   {"type":"CHOICE",
+                    "choices":[{"description":"Put deck into Discard Pile",
+                                "condition":{"type":"HAS_CARDS",
+                                             "source":"DECK"},
+                                "effects":[{"type":"DISCARD",
+                                            "source":"DECK"}]},
+                               {"description":"Do nothing",
+                                "effects":[]}]}]
+},
+{
     "id":"Dark Knight",
     "name":"Dark Knight",
     "type":"Hero",
