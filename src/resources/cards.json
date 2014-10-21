@@ -871,6 +871,26 @@
                                                                        "effects":[]}]}}]}]}
 },
 {
+    "id":"Granny Goodness",
+    "name":"Granny Goodness",
+    "type":"Villain",
+    "image":"Deck2/Main/granny_goodness.jpg",
+    "cost":{"type":"FIXED",
+            "cost":5},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"PICK_CARDS",
+                    "criteria":{"type":"FIXED",
+                                "field":"cardType",
+                                "operation":"IN",
+                                "value":["Hero", "Villain"]},
+                    "number":1,
+                    "sources":["LINE_UP"],
+                    "then":[{"type":"PLAY",
+                             "returnTo":"LINE_UP",
+                             "source":"EVENT"}]}]
+},
+{
     "id":"Green Arrow",
     "name":"Green Arrow",
     "type":"Hero",
