@@ -1152,6 +1152,22 @@
                                                     "source":"EVENT"}]}]}]}]
 },
 {
+    "id":"Katana",
+    "name":"Katana",
+    "type":"Hero",
+    "image":"Deck2/Main/katana.jpg",
+    "cost":{"type":"FIXED",
+            "cost":2},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":1}],
+    "onDefense":[{"type":"DISCARD",
+                  "source":"EVENT"},
+                 {"type":"DRAW",
+                  "count":1}]
+},
+{
     "id":"Deck 1 - Kick",
     "name":"Kick",
     "type":"Super Power",
