@@ -2754,6 +2754,30 @@
               "points":0}
 },
 {
+    "id":"Warrior Princess",
+    "name":"Warrior Princess",
+    "type":"Hero",
+    "image":"Deck2/Main/warrior_princess.jpg",
+    "cost":{"type":"FIXED",
+            "cost":6},
+    "points":{"type":"FIXED",
+              "points":2},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":3},
+                   {"type":"PLAY_OR_HAVE_PLAYED",
+                    "criteria":{"type":"FIXED",
+                                "field":"name",
+                                "operation":"==",
+                                "value":"Starbolt"},
+                    "effect":{"type":"PICK_CARDS",
+                              "number":1,
+                              "to":"gain and put in hand"
+                              "sources":["LINE_UP"],
+                              "then":[{"type":"GAIN_CARD",
+                                       "from":"EVENT",
+                                       "to":"HAND"}]}}]
+},
+{
     "id":"Deck 1 - Weakness",
     "name":"Weakness",
     "image":"Deck1/Core/weakness.jpg",
