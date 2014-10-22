@@ -1774,6 +1774,25 @@
                                                       "to":"HAND"}]}]}]}]
 },
 {
+    "id":"Plastic Man",
+    "name":"Plastic Man",
+    "type":"Hero",
+    "image":"Deck2/Main/plastic_man.jpg",
+    "cost":{"type":"FIXED",
+            "cost":3},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"PICK_CARDS",
+                    "number":1,
+                    "sources":["PLAYED", "DISCARD_PILE"],
+                    "criteria":{"type":"FIXED",
+                                "field":"cardType",
+                                "operation":"==",
+                                "value":"Equipment"},
+                    "then":[{"type":"PLAY",
+                             "source":"EVENT"}]}]
+},
+{
     "id":"Poison Ivy",
     "name":"Poison Ivy",
     "type":"Villain",
