@@ -1992,7 +1992,7 @@
 {
     "id":"Saint Walker",
     "name":"Saint Walker",
-    "type":"Equipment",
+    "type":"Hero",
     "image":"Deck2/Main/saint_walker.jpg",
     "cost":{"type":"FIXED",
             "cost":5},
@@ -2024,6 +2024,27 @@
                    {"type":"ATTACK_EACH_FOE",
                     "effects":[{"type":"GAIN_TOP_CARD",
                                 "from":"WEAKNESS"}]}]
+},
+{
+    "id":"Sciencell",
+    "name":"Sciencell",
+    "type":"Hero",
+    "image":"Deck2/Main/sciencell.jpg",
+    "cost":{"type":"FIXED",
+            "cost":6},
+    "points":{"type":"PER_RESULT",
+              "filter":{"type":"INTERSECTION",
+                        "filters":[{"type":"COMPARISON",
+                                    "criteria":{"type":"FIXED",
+                                                "field":"cardType",
+                                                "operation":"==",
+                                                "value":"Villain"},
+                                    "source":"DECK"},
+                                   {"type":"UNIQUE",
+                                    "field":"name",
+                                    "source":"DECK"}]},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":2}]
 },
 {
     "id":"Shazam!",
