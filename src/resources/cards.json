@@ -2177,6 +2177,27 @@
                                 "effects":[]}]}]
 },
 {
+    "id":"Starbolt",
+    "name":"Starbolt",
+    "type":"Superpower",
+    "image":"Deck2/Main/starbolt.jpg",
+    "cost":{"type":"FIXED",
+            "cost":5},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":2},
+                   {"type":"PER_MATCH",
+                    "filter":{"type":"COMPARISON",
+                              "criteria":{"type":"FIXED",
+                                          "field":"cardType",
+                                          "operation":"==",
+                                          "value":"Super Power"}},
+                    "source":"DISCARD_PILE",
+                    "effects":[{"type":"GAIN_POWER",
+                                "power":1}]}]
+},
+{
     "id":"Starro",
     "name":"Starro",
     "type":"Villain",
