@@ -2727,6 +2727,23 @@
                     "power":2}]
 },
 {
+    "id":"Vandal Savage",
+    "name":"Vandal Savage",
+    "type":"Villain",
+    "image":"Deck2/SuperVillains/vandal_savage.jpg",
+    "cost":{"type":"FIXED",
+            "cost":8},
+    "points":{"type":"FIXED",
+              "points":4},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":1},
+                   {"type":"ONGOING"}],
+    "triggers":[{"type":"START_OF_TURN",
+                 "singleUse":true,
+                 "effect":{"type":"GAIN_POWER",
+                           "power":1}}]
+},
+{
     "id":"Deck 1 - Vulnerability",
     "name":"Vulnerability",
     "type":"Starter",
