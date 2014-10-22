@@ -1990,6 +1990,27 @@
                              "to":"HAND"}]}]
 },
 {
+    "id":"Saint Walker",
+    "name":"Saint Walker",
+    "type":"Equipment",
+    "image":"Deck2/Main/saint_walker.jpg",
+    "cost":{"type":"FIXED",
+            "cost":5},
+    "points":{"type":"PER_RESULT",
+              "filter":{"type":"INTERSECTION",
+                        "filters":[{"type":"COMPARISON",
+                                    "criteria":{"type":"FIXED",
+                                                "field":"cardType",
+                                                "operation":"==",
+                                                "value":"Hero"},
+                                    "source":"DECK"},
+                                   {"type":"UNIQUE",
+                                    "field":"name",
+                                    "source":"DECK"}]},
+    "playEffects":[{"type":"DRAW",
+                    "count":1}]
+},
+{
     "id":"Scarecrow",
     "name":"Scarecrow",
     "type":"Villain",
