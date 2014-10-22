@@ -2796,6 +2796,25 @@
                                             "effects":[]}]}]}]
 },
 {
+    "id":"Winged Warrior",
+    "name":"Winged Warrior",
+    "type":"Hero",
+    "image":"Deck2/Main/winged_warrior.jpg",
+    "cost":{"type":"FIXED",
+            "cost":6},
+    "points":{"type":"FIXED",
+              "points":2},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":2},
+                   {"type":"PLAY_OR_HAVE_PLAYED_ANOTHER",
+                    "criteria":{"type":"FIXED",
+                                "field":"cardType",
+                                "operation":"==",
+                                "value":"Hero"},
+                    "effect":{"type":"GAIN_POWER",
+                              "power":1}}]
+},
+{
     "id":"Wonder of the Knight",
     "name":"Wonder of the Knight",
     "type":"Hero",
