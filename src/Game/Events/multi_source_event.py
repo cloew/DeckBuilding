@@ -31,3 +31,7 @@ class MultiSourceEvent:
     def cards(self):
         """ Return the cards from the event """
         return [card for source in self.sources for card in source]
+        
+    def cardsForPlayer(self, player):
+        """ Return the cards in the source for the given player """
+        return [source for surce in self.sources if source.player is player]

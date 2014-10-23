@@ -29,3 +29,8 @@ class CardsEvent:
     def __iter__(self):
         """ Return the iterator for the event when it is used as a source """
         return self.cards.__iter__()
+        
+    @property
+    def player(self):
+        """ Return the current player """
+        return self.context.player

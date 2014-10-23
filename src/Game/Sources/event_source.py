@@ -11,3 +11,8 @@ class EventSource(Source):
         elif hasattr(event, "sources") and event.sources is not None and len(event.sources) > 0:
             sourceType = event.sources[0].sourceType
         Source.__init__(self, event, sourceType=sourceType)
+        
+    @property
+    def player(self):
+        """ Return the current player """
+        return self.event.player
