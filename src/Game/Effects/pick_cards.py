@@ -3,6 +3,7 @@ from Game.Effects.conditional_effect import ConditionalEffect
 from Game.Effects.Conditions.has_cards import HasCards
 from Game.Effects.Conditions.or_condition import OrCondition
 from Game.Effects.Conditions.Filters.comparison_filter import ComparisonFilter
+from Game.Effects.Conditions.Filters.intersection_filter import IntersectionFilter
 from Game.Events.cards_event import CardsEvent
 from Game.Events.multi_source_event import MultiSourceEvent
 from Game.Sources.event_source import EventSource
@@ -19,7 +20,9 @@ class PickCards(ConditionalEffect):
         
         self.filters = None
         if criteria is not None:
-            self.filters = [ComparisonFilter(sourceType, criteria) for sourceType in sourceTypes]
+            self.filters = []
+            for sourceType in sourceTypes
+                self.filters.append(IntersectionFilter([ComparisonFilter(sourceType, c) for c in criteria]))
             
         conditions = []
         for sourceType in sourceTypes:

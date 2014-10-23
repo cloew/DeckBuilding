@@ -1,4 +1,5 @@
 from Game.Effects.Conditions.Filters.filter_factory import FilterFactory
+from Game.Effects.Conditions.Filters.intersection_filter import IntersectionFilter
 from kao_factory.Parameter.parameter import Parameter
 
 class ComparisonFilterParameter(Parameter):
@@ -11,7 +12,17 @@ class ComparisonFilterParameter(Parameter):
     
     def __getvalue__(self, data):
         """ Build the Filter """
-        filterJson = {"criteria":data["criteria"]}
-        filterJson["source"] = data["source"]
-        filterJson["type"] = "COMPARISON"
-        return FilterFactory.load(filterJson)
+        if "criterion" not in data:
+            criterion = [data["criteria"]]
+            
+        filters = []
+        for criteria in criterion:
+            filterJson = {"criteria":data["criteria"]}
+            filterJson["source"] = data["source"]
+            filterJson["type"] = "COMPARISON"
+            filters.append(FilterFactory.load(filterJson))
+            
+        if len(filters) == 1:
+            return filters[0]
+        else:
+            return IntersectionFilter(filters)
