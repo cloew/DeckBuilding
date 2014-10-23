@@ -938,6 +938,22 @@
                              "source":"EVENT"}]}]
 },
 {
+    "id":"Force Field",
+    "name":"Force Field",
+    "type":"Super Power",
+    "image":"Deck2/Main/force_field.jpg",
+    "cost":{"type":"FIXED",
+            "cost":3},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"DRAW",
+                    "count":1},
+                   {"type":"ONGOING"}],
+    "defendFrom":"ONGOING",
+    "onDefense":[{"type":"DISCARD",
+                  "source":"EVENT"}]
+},
+{
     "id":"Fortress of Solitude",
     "name":"Fortress of Solitude",
     "type":"Location",
