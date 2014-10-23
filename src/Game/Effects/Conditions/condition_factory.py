@@ -1,5 +1,6 @@
 from and_condition import AndCondition
 from enough_power import EnoughPower
+from filter_results import FilterResults
 from has_cards import HasCards
 from is_player_turn import IsPlayerTurn
 from matching import Matching
@@ -12,6 +13,7 @@ from unique import Unique
 from Game.Effects.Conditions.Filters.Criteria.criteria_factory import CriteriaFactory
 
 from Game.Factory.comparison_filter_parameter import ComparisonFilterParameter
+from Game.Factory.filter_parameter import FilterParameter
 
 from kao_factory.factory import Factory
 from kao_factory.typed_factory import TypedFactory
@@ -19,6 +21,7 @@ from kao_factory.Parameter.complex_parameter import ComplexParameter
 from kao_factory.Parameter.primitive_parameter import PrimitiveParameter
 
 ConditionFactory = TypedFactory('type', {"ENOUGH_POWER":Factory(EnoughPower, [PrimitiveParameter("power")]),
+                                         "FILTER_RESULTS":Factory(FilterResults, [PrimitiveParameter("source"), FilterParameter(), PrimitiveParameter("number", optional=True)]),
                                          "IS_PLAYER_TURN":Factory(IsPlayerTurn, []),
                                          "HAS_CARDS":Factory(HasCards, [PrimitiveParameter("source"), ComparisonFilterParameter(optional=True)]),
                                          "MATCHING":Factory(Matching, [PrimitiveParameter("source"), ComplexParameter("criteria", CriteriaFactory.load, optional=True), PrimitiveParameter("number", optional=True)]),
