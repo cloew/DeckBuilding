@@ -16,13 +16,14 @@ class Attack:
         """ Perform the Game Effect """
         targets = []
         for foe in context.foes:
-            defended = yield DefendRequest(context.parent, context.getPlayerContext(foe))
+            request = DefendRequest(context.parent, context.getPlayerContext(foe))
+            defended = yield request
             if not defended:
                 targets.append(foe)
                 context.addNotification(Notification(HIT_BY_ATTACK, foe))
             else:
                 playerContext = context.getPlayerContext(foe)
-                source = playerContext.loadSource(HAND)
+                source = playerContext.loadSource(request.findSourceFor(defended))
                 event = CardsEvent([defended], source, playerContext)
                 context.addNotification(CardsNotification(DEFENDED, foe, [defended]))
                 
