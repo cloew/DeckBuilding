@@ -20,6 +20,7 @@ from Game.Effects.deactivate_character import DeactivateCharacter
 from Game.Effects.destroy import Destroy
 from Game.Effects.discard import Discard
 from Game.Effects.draw import Draw
+from Game.Effects.draw_until import DrawUntil
 from Game.Effects.filter import Filter
 from Game.Effects.gain_card import GainCard
 from Game.Effects.gain_power import GainPower
@@ -79,6 +80,7 @@ EffectFactory = TypedFactory('type', {"ACTIVATE_CHARACTER":Factory(ActivateChara
                                       "DESTROY":Factory(Destroy, [PrimitiveParameter("source")]),
                                       "DISCARD":Factory(Discard, [PrimitiveParameter("source")]),
                                       "DRAW":Factory(Draw, [PrimitiveParameter("count")]),
+                                      "DRAW_UNTIL":Factory(DrawUntil, [PrimitiveParameter("cost")]),
                                       "GAIN_CARD":Factory(GainCard, [PrimitiveParameter("from"), PrimitiveParameter("to", optional=True)]),
                                       "GAIN_POWER":Factory(GainPower, [PrimitiveParameter("power")]),
                                       "GAIN_TOP_CARD":Factory(GainTopCard, [PrimitiveParameter("from"), PrimitiveParameter("to", optional=True)]),
