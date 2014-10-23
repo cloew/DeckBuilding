@@ -1354,6 +1354,26 @@
                                                     "source":"EVENT"}]}}]}]
 },
 {
+    "id":"Hero of the Future",
+    "name":"Hero of the Future",
+    "type":"Equipment",
+    "image":"Deck2/Main/hero_of_the_future.jpg",
+    "cost":{"type":"FIXED",
+            "cost":5},
+    "points":{"type":"FIXED",
+              "points":1},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":2},
+                   {"type":"PLAY_OR_HAVE_PLAYED",
+                    "singleUse":false,
+                    "criteria":{"type":"FIXED",
+                                "field":"isDefense",
+                                "operation":"==",
+                                "value":true},
+                    "effect":{"type":"GAIN_POWER",
+                              "power":2}}]
+},
+{
     "id":"High-Tech Hero",
     "name":"High-Tech Hero",
     "type":"Hero",
