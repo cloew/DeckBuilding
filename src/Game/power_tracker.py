@@ -22,6 +22,10 @@ class PowerTracker:
     def changeModifier(self, modifier):
         """ Change the Modifier by the given modifier """
         self.modifier *= modifier
+        
+    def getPowerForCard(self, card):
+        """ Get power for a card """
+        return self.cardToPower[card]
        
     @property
     def power(self):

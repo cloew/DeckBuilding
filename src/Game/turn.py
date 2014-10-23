@@ -20,6 +20,7 @@ class Turn:
         self.gainPower = self.powerTracker.gainPower
         self.spendPower = self.powerTracker.spendPower
         self.changeModifier = self.powerTracker.changeModifier
+        self.getPowerForCard = self.powerTracker.getPowerForCard
         
         self.ongoingEffects = OngoingEffects()
         self.registerTrigger = self.ongoingEffects.registerTrigger
