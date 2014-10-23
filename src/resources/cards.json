@@ -1414,6 +1414,27 @@
                            "count":1}}]
 },
 {
+    "id":"Indigo Tribe Power Ring",
+    "name":"Indigo Tribe Power Ring",
+    "type":"Equipment",
+    "image":"Deck2/Main/indigo_tribe_power_ring.jpg",
+    "cost":{"type":"FIXED",
+            "cost":5},
+    "points":{"type":"PER_RESULT",
+              "filter":{"type":"COMPARISON",
+                        "criteria":{"type":"FIXED",
+                                    "field":"name",
+                                    "operation":"CONTAINS",
+                                    "value":"Power Ring"},
+                        "source":"DECK"}},
+    "playEffects":[{"type":"PICK_CARDS",
+                    "number":1,
+                    "to":"gain power from",
+                    "sources":["PLAYED"],
+                    "then":[{"type":"GAIN_POWER_FROM_ANOTHER_CARD",
+                             "source":"EVENT"}]}]
+},
+{
     "id":"J'onn J'onzz",
     "name":"J'onn J'onzz",
     "type":"Hero",
@@ -1633,6 +1654,7 @@
                     "power":3},
                    {"type":"PICK_UP_TO_N_CARDS",
                     "number":2,
+                    "to":"destroy",
                     "sources":["HAND", "DISCARD_PILE"],
                     "then":[{"type":"DESTROY",
                              "source":"EVENT"}]}]
