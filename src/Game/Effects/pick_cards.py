@@ -21,7 +21,7 @@ class PickCards(ConditionalEffect):
         self.filters = None
         if criteria is not None:
             self.filters = []
-            for sourceType in sourceTypes
+            for sourceType in sourceTypes:
                 self.filters.append(IntersectionFilter([ComparisonFilter(sourceType, c) for c in criteria]))
             
         conditions = []
