@@ -23,6 +23,7 @@ def LoadCards(data):
     """ Load the Cards """
     deckInitializer = DeckInitializer()
     for cardJson in data:
+        print "Loading Card:", cardJson["id"]
         cardId = cardJson["id"]
         count = cardJson["count"]
         card = CardFactory.load(cardId)

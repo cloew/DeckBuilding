@@ -5,7 +5,7 @@ from Game.Sources.source_types import EVENT
 class AsOnlyPlayerWithHighestCost(AsPlayerWithHighestCost):
     """ Represents an effect to run as the Player who has the greatest cost of cards """
     
-    def __init__(self, sourceType, thenEffects):
+    def __init__(self, thenEffects):
         """ Initialize the Effect with the children effects and the source to check from """
         self.sourceType = EVENT
         self.thenEffects = thenEffects
