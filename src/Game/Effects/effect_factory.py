@@ -24,6 +24,7 @@ from Game.Effects.draw_until import DrawUntil
 from Game.Effects.filter import Filter
 from Game.Effects.gain_card import GainCard
 from Game.Effects.gain_power import GainPower
+from Game.Effects.gain_power_for_cost import GainPowerForCost
 from Game.Effects.gain_power_from_another_card import GainPowerFromAnotherCard
 from Game.Effects.gain_top_card import GainTopCard
 from Game.Effects.look_at_top import LookAtTop
@@ -85,6 +86,7 @@ EffectFactory = TypedFactory('type', {"ACTIVATE_CHARACTER":Factory(ActivateChara
                                       "DRAW_UNTIL":Factory(DrawUntil, [PrimitiveParameter("cost")]),
                                       "GAIN_CARD":Factory(GainCard, [PrimitiveParameter("from"), PrimitiveParameter("to", optional=True)]),
                                       "GAIN_POWER":Factory(GainPower, [PrimitiveParameter("power")]),
+                                      "GAIN_POWER_FOR_COST":Factory(GainPowerForCost, [PrimitiveParameter("source")]),
                                       "GAIN_POWER_FROM_ANOTHER_CARD":Factory(GainPowerFromAnotherCard, [PrimitiveParameter("source")]),
                                       "GAIN_TOP_CARD":Factory(GainTopCard, [PrimitiveParameter("from"), PrimitiveParameter("to", optional=True)]),
                                       "MOD_HAND_SIZE":Factory(ModifyHandSize, [PrimitiveParameter("change")]),
