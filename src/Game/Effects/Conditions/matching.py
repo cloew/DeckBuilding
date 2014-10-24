@@ -6,4 +6,7 @@ class Matching(FilterResults):
     
     def __init__(self, sourceType, criteria=None, number=None):
         """ Initialize the Matching Condition with the criteria to use """
+        filter = None
+        if criteria is not None:
+            filter = ComparisonFilter(sourceType, criteria)
         FilterResults.__init__(self, sourceType, filter=filter, number=number)
