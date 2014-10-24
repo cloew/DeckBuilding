@@ -12,3 +12,4 @@ from kao_factory.Parameter.primitive_parameter import PrimitiveParameter
 FilterFactory = TypedFactory('type', {"COMPARISON":Factory(ComparisonFilter, [PrimitiveParameter("source"), ComplexParameter("criteria", CriteriaFactory.load)]),
                                       "UNIQUE":Factory(UniqueFilter, [PrimitiveParameter("field"), PrimitiveParameter("source")])})
 FilterFactory.addFactory("INTERSECTION", Factory(IntersectionFilter, [ComplexParameter("filters", FilterFactory.loadAll)]))
+FilterFactory.addFactory("UNION", Factory(IntersectionFilter, [ComplexParameter("filters", FilterFactory.loadAll)]))

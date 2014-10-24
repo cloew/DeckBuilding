@@ -109,7 +109,7 @@ EffectFactory.addFactory("AS_PREVIOUS_PLAYER", Factory(AsPreviousPlayer, [Comple
 EffectFactory.addFactory("AS_OWNER", Factory(AsOwner, [ComplexParameter("then", EffectFactory.loadAll)]))
 EffectFactory.addFactory("ATTACK", Factory(Attack, [ComplexParameter("then", EffectFactory.loadAll)]))
 EffectFactory.addFactory("ATTACK_EACH_FOE", Factory(AttackEachFoe, [ComplexParameter("effects", EffectFactory.loadAll)]))
-EffectFactory.addFactory("CHOICE", Factory(Choice, [ComplexParameter("choices", OptionFactory.loadAll), PrimitiveParameter("source", optional=True), ComparisonFilterParameter(optional=True)]))
+EffectFactory.addFactory("CHOICE", Factory(Choice, [ComplexParameter("choices", OptionFactory.loadAll), PrimitiveParameter("source", optional=True), FilterParameter(optional=True)]))
 EffectFactory.addFactory("CONDITIONAL", Factory(ConditionalEffect, [ComplexParameter("condition", ConditionFactory.load), 
                                                                     ComplexParameter("effects", EffectFactory.loadAll), 
                                                                     ComplexParameter("otherwise", EffectFactory.load, optional=True)]))

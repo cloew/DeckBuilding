@@ -51,10 +51,10 @@ class Choice:
     def findPossibleCards(self, context):
         """ Return the possible cards """
         possibleCards = None
-        if self.relevantSourceType is not None:
+        if self.filter is not None:
+            possibleCards = self.filter.evaluate(context)
+        elif self.relevantSourceType is not None:
             source = context.loadSource(self.relevantSourceType)
             possibleCards = source
-            if self.filter is not None:
-                possibleCards = self.filter.evaluate(context)
         
         return possibleCards
