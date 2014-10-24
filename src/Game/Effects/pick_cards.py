@@ -1,11 +1,16 @@
 from Game.Commands.Requests.pick_card_request import PickCardRequest
+
+from Game.Effects.effect_runner import PerformEffects
 from Game.Effects.conditional_effect import ConditionalEffect
+
 from Game.Effects.Conditions.has_cards import HasCards
 from Game.Effects.Conditions.or_condition import OrCondition
 from Game.Effects.Conditions.Filters.comparison_filter import ComparisonFilter
 from Game.Effects.Conditions.Filters.intersection_filter import IntersectionFilter
+
 from Game.Events.cards_event import CardsEvent
 from Game.Events.multi_source_event import MultiSourceEvent
+
 from Game.Sources.event_source import EventSource
 
 class PickCards(ConditionalEffect):
@@ -13,10 +18,11 @@ class PickCards(ConditionalEffect):
     REQUEST_CLASS = PickCardRequest
     AUTO_PICK = True
     
-    def __init__(self, sourceTypes, numberOfCards, thenEffects, criteria=None):
+    def __init__(self, sourceTypes, numberOfCards, thenEffects, criteria=None, leftoverCardEffects=[]):
         """ Initialize the options """
         self.sourceTypes = sourceTypes
         self.numberOfCards = numberOfCards
+        self.leftoverCardEffects = leftoverCardEffects
         
         self.filters = None
         if criteria is not None:
@@ -40,7 +46,7 @@ class PickCards(ConditionalEffect):
         possibleCards = [card for cards in possibleCardsPerSource.values() for card in cards]
         
         if len(possibleCards) != 0:
-            card = None
+            cards = None
             if len(possibleCards) == self.numberOfCards and self.AUTO_PICK:
                 cards = possibleCards
             else:
@@ -49,9 +55,20 @@ class PickCards(ConditionalEffect):
             event = self.buildEvent(cards, possibleCardsPerSource, context)
         
         coroutine = ConditionalEffect.performEffects(self, event.context)
-        response = yield coroutine.next()
-        while True:
-            response = yield coroutine.send(response)
+        try:
+            response = yield coroutine.next()
+            while True:
+                response = yield coroutine.send(response)
+        except StopIteration:
+            pass
+        
+        coroutine = PerformEffects(self.leftoverCardEffects, self.buildEvent([card for card in possibleCards if card not in cards], possibleCardsPerSource, context).context)
+        try:
+            response = yield coroutine.next()
+            while True:
+                response = yield coroutine.send(response)
+        except StopIteration:
+            pass
                 
     def findPossibleCards(self, context):
         """ Return the possible cards """
