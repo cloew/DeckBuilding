@@ -119,11 +119,11 @@ EffectFactory.addFactory("PER_FOE", Factory(PerFoe, [ComplexParameter("effects",
 EffectFactory.addFactory("PER_MATCH", Factory(PerMatch, [PrimitiveParameter("source"), ComplexParameter("effects", EffectFactory.loadAll), FilterParameter(optional=True)]))
 EffectFactory.addFactory("PICK_CARDS", Factory(PickCards, [PrimitiveParameter("sources"), PrimitiveParameter("number"), 
                                                            ComplexParameter("then", EffectFactory.loadAll), ComplexParameter("criteria", CriteriaFactory.loadAll, optional=True),
-                                                           ComplexParameter("leftoverCardEffects", EffectFactory.loadAll, optional=True)]))
+                                                           ComplexParameter("leftoverCardEffects", EffectFactory.loadAll, optional=True, default=[])]))
 EffectFactory.addFactory("PICK_RANDOM", Factory(PickRandomCard, [PrimitiveParameter("source"), ComplexParameter("then", EffectFactory.load), PrimitiveParameter("number", optional=True)]))
 EffectFactory.addFactory("PICK_UP_TO_ALL_CARDS", Factory(PickUpToAllCards, [PrimitiveParameter("sources"), ComplexParameter("then", EffectFactory.loadAll), 
                                                                             ComplexParameter("criteria", CriteriaFactory.loadAll, optional=True),
-                                                                            ComplexParameter("leftoverCardEffects", EffectFactory.loadAll, optional=True)]))
+                                                                            ComplexParameter("leftoverCardEffects", EffectFactory.loadAll, optional=True, default=[])]))
 EffectFactory.addFactory("PICK_UP_TO_N_CARDS", Factory(PickUpToNCards, [PrimitiveParameter("sources"), PrimitiveParameter("number"), 
                                                                         ComplexParameter("then", EffectFactory.loadAll), ComplexParameter("criteria", CriteriaFactory.loadAll, optional=True)]))
 EffectFactory.addFactory("PICK_TYPE", Factory(PickType, [PrimitiveParameter("source"), ComplexParameter("then", EffectFactory.loadAll), ComparisonFilterParameter(optional=True)]))
