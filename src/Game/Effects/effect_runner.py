@@ -13,9 +13,10 @@ def PerformEffectsForEachPlayer(effects, players, context):
         except StopIteration:
             pass
 
-def PerformEffects(effects, context):
+def PerformEffects(effects, context, effectTypesToIgnore=[]):
     """ Perform the given effects """
-    for effect in effects:
+    effectsToPerform = [effect for effect in effects if effect.__class__ not in effectTypesToIgnore]
+    for effect in effectsToPerform:
         coroutine = PerformEffect(effect, context)
         try:
             response = yield coroutine.next()

@@ -30,10 +30,10 @@ class Card:
             image = "vulnerability.jpg"
         self.image = image
         
-    def play(self, game):
+    def play(self, game, effectTypesToIgnore=[]):
         """ Play the card and perform any effects """
         context = PlayerContext(game, self)
-        coroutine = PerformEffects(self.playEffects, context)
+        coroutine = PerformEffects(self.playEffects, context, effectTypesToIgnore=effectTypesToIgnore)
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)

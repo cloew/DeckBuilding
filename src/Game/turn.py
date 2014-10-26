@@ -83,9 +83,9 @@ class Turn:
         while True:
             response = yield coroutine.send(response)
         
-    def playCard(self, card):
+    def playCard(self, card, effectTypesToIgnore=[]):
         """ Play card """
-        coroutine = card.play(self.game)
+        coroutine = card.play(self.game, effectTypesToIgnore=effectTypesToIgnore)
         try:
             response = yield coroutine.next()
             while True:
