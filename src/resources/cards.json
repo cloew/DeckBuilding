@@ -3429,7 +3429,7 @@
                                 "operation":"==",
                                 "value":"Hero"},
                     "effect":{"type":"GAIN_POWER",
-                              "power":1}}]
+                              "power":3}}]
 },
 {
     "id":"Wonder of the Knight",
