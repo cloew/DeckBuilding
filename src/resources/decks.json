@@ -210,6 +210,27 @@
               "count":2}]
 },
 {
+    "id":"Deck 2 - Main Deck",
+    "name":"Deck 2",
+    "role":"MAIN",
+    "type":"REGULAR",
+    "cards":[{"id":"Mind Control Hat",
+              "count":1},
+             {"id":"Yellow Lantern Corps Power Ring",
+              "count":1},
+             {"id":"Green Lantern Power Ring",
+              "count":1},
+             {"id":"Helmet of Fate",
+              "count":2},
+             {"id":"Skeets",
+              "count":3},
+             {"id":"Batarang",
+              "count":4},
+             {"id":"Blue Lantern Power Ring",
+              "count":1}]
+    
+},
+{
     "id":"Test",
     "name":"Test",
     "role":"MAIN",
