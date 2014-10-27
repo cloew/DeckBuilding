@@ -43,7 +43,7 @@ class CollectCards:
                     response = yield coroutine.send(response)
             except StopIteration:
                 pass
-            event = CardsEvent(self.cardsForFoes, source, context)
+            event = CardsEvent(self.cardsForFoes, source, playerContext)
             sources.append(EventSource(event))
                 
         event = MultiSourceEvent(sources, context)

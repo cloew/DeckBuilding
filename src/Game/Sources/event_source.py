@@ -6,6 +6,7 @@ class EventSource(Source):
     def __init__(self, event):
         """ Initialize the source """
         sourceType = None
+        self.event = event
         if hasattr(event, "fromSource") and event.fromSource is not None:
             sourceType = event.fromSource.sourceType
         elif hasattr(event, "sources") and event.sources is not None and len(event.sources) > 0:
