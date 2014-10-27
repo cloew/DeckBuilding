@@ -16,9 +16,12 @@ class AsPlayerWithHighestCost:
             newContext = context.getPlayerContext(player)
             
             coroutine = PerformEffects(self.thenEffects, newContext)
-            response = yield coroutine.next()
-            while True:
-                response = yield coroutine.send(response)
+            try:
+                response = yield coroutine.next()
+                while True:
+                    response = yield coroutine.send(response)
+            except StopIteration:
+                pass
                 
     def findHighestCostPlayers(self, context):
         """ Return the players with the highest cost """
