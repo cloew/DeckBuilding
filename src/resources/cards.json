@@ -1142,9 +1142,9 @@
                                           "number":1,
                                           "to":"destroy",
                                           "then":[{"type":"DESTROY",
-                                                   "source":"EVENT"}]},
-                                         {"type":"DISCARD",
-                                          "source":"EVENT"}]}]}]
+                                                   "source":"EVENT"}],
+                                          "leftoverCardEffects":[{"type":"DISCARD",
+                                                                  "source":"EVENT"}]}]}]}]
 },
 {
     "id":"Harley Quinn",
