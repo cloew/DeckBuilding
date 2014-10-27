@@ -256,7 +256,7 @@
 {
     "id":"Batarang",
     "name":"Batarang",
-    "type":"Villain",
+    "type":"Equipment",
     "image":"Deck2/Main/batarang.jpg",
     "cost":{"type":"FIXED",
             "cost":2},
