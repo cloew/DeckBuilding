@@ -67,8 +67,12 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
           scope: {
               cards: '=cards',
               actions: '=actions',
+              size: '@'
           },
-          template: '<div style="display: inline-block; width: 100%;"><action-card actions="actions" size="\'medium\'" card="card" index="$index" ng-repeat="card in cards" ng-hide="$scope.indices.indexOf($index) > -1"></action-card></div>'
+          compile: function(element, attrs){
+            if (attrs.size === undefined) { attrs.size = 'medium'; }
+          },
+          template: '<div style="display: inline-block; width: 100%;"><action-card actions="actions" size="size" card="card" index="$index" ng-repeat="card in cards" ng-hide="$scope.indices.indexOf($index) > -1"></action-card></div>'
       }})
       .directive('availableCards', function() {
       return {
@@ -188,11 +192,16 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
           },
           templateUrl: 'static/partials/directives/CardIcons/deck_counter.html'
       }})
-    .directive('opponent', function() {
+    .directive('player', function() {
       return {
           restrict: 'E',
           replace: true,
-          templateUrl: 'static/partials/directives/opponent.html'
+          scope: {player: '=',
+                  isYou: '@'},
+          compile: function(element, attrs){
+            if (attrs.isYou === undefined) { attrs.isYou = false; }
+          },
+          templateUrl: 'static/partials/directives/player.html'
       }})
     .directive('hand', function() {
       return {
@@ -224,11 +233,11 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
           replace: true,
           templateUrl: 'static/partials/directives/played.html'
       }})
-    .directive('player', function() {
+    .directive('turn', function() {
       return {
           restrict: 'E',
           replace: true,
-          templateUrl: 'static/partials/directives/player.html'
+          templateUrl: 'static/partials/directives/turn.html'
       }})
     .directive('deckPicker', function() {
       return {

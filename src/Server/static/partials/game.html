@@ -1,6 +1,3 @@
-<div class="col-md-12">
-    <opponent ng-repeat="player in game.players"></opponent>
-</div>
 <div class="clearfix visible-md-block"></div>
 <div class="col-md-12 deck-col">
     <div class="col-md-3 deck-col">
@@ -27,23 +24,16 @@
 <div class="clearfix visible-md-block"></div>
 
 <div class="col-md-3">
-    <div class="col-md-6">
-        <deck deck="game.you.deck" size="'medium'"></deck>
-    </div>
-    <div class="col-md-6">
-        <deck deck="game.you.discardPile" size="'medium'"></deck>
-    </div>
-    <div class="col-md-12 deck-col">
-        <notifications></notifications>
-    </div>
+    <player player="game.you" is-you="true"></player>
+    <player player="player" ng-repeat="player in game.players"></player>
 </div>
 <div class="col-md-6">
     <played></played>
-    <ongoing></ongoing>
     <hand></hand>
 </div>
 <div class="col-md-3">
-    <player></player>
+    <turn></turn>
+    <notifications></notifications>
 </div>
 <div class="clearfix visible-md-block"></div>
 </div>
