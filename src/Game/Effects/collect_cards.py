@@ -12,18 +12,25 @@ TOP = "TOP"
 class CollectCards:
     """ Represents an effect to Collect Cards from the top of your opponents decks """
     
-    def __init__(self, thenEffects, sourceType=None, pickType=None, number=None):
+    def __init__(self, thenEffects, sourceType=None, pickType=None, number=None, toDescription=None):
         """ Initialize the Effect with the effects to call with the collected cards """
         self.thenEffects = thenEffects
+        
         if sourceType is None:
             sourceType = DECK
         self.sourceType = sourceType
+        
         if pickType is None:
             pickType = TOP
         self.pickType = pickType
+        
         if number is None:
             number = 1
         self.number = number
+        
+        if toDescription is None:
+            toDescription = ""
+        self.toDescription = toDescription
         
     def perform(self, context):
         """ Perform the Game Effect """
@@ -58,5 +65,5 @@ class CollectCards:
             
     def pickCards(self, context, source, number):
         """ Get the Top Cards """
-        self.cardsForFoes = yield PickCardRequest(source, context.player, number)
+        self.cardsForFoes = yield PickCardRequest(source, context.player, number, self.toDescription)
         

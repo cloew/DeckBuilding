@@ -18,10 +18,11 @@ class PickCards(ConditionalEffect):
     REQUEST_CLASS = PickCardRequest
     AUTO_PICK = True
     
-    def __init__(self, sourceTypes, numberOfCards, thenEffects, criteria=None, leftoverCardEffects=[]):
+    def __init__(self, sourceTypes, numberOfCards, toDescription, thenEffects, criteria=None, leftoverCardEffects=[]):
         """ Initialize the options """
         self.sourceTypes = sourceTypes
         self.numberOfCards = numberOfCards
+        self.toDescription = toDescription
         self.leftoverCardEffects = leftoverCardEffects
         
         self.filters = None
@@ -50,7 +51,7 @@ class PickCards(ConditionalEffect):
             if len(possibleCards) == self.numberOfCards and self.AUTO_PICK:
                 cards = possibleCards
             else:
-                cards = yield self.REQUEST_CLASS(possibleCards, context.player, self.numberOfCards)
+                cards = yield self.REQUEST_CLASS(possibleCards, context.player, self.numberOfCards, self.toDescription)
                 
             event = self.buildEvent(cards, possibleCardsPerSource, context)
         
