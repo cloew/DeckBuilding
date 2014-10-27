@@ -15,4 +15,5 @@ class PickCardRequestWrapper:
         return {'type':'PICK_CARD',
                 'id':self.id,
                 'cards':GetCardListJSON(self.request.cards, self.game, actions=[{"type":"PICK"}], includeActions=includeActions),
-                'number':self.request.number}
+                'number':self.request.number,
+                'to':self.request.toDescription}
