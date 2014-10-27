@@ -10,7 +10,7 @@ class DrawUntil:
     def __init__(self, cost):
         """ Initialize the Effect with the cost of cards to draw """
         self.cost = cost
-        self.lookAtTop = LookAtTop(EVENT, [Reveal(EVENT)])
+        self.lookAtTop = LookAtTop(DECK, [Reveal(EVENT)])
         
     def perform(self, context):
         """ Perform the Game Effect """
@@ -22,6 +22,11 @@ class DrawUntil:
                 totalCost += card.cost
             
                 coroutine = PerformEffects([self.lookAtTop, Draw(1)], context)
-                response = yield coroutine.next()
-                while True:
-                    response = yield coroutine.send(response)
+                try:
+                    response = yield coroutine.next()
+                    while True:
+                        response = yield coroutine.send(response)
+                except StopIteration:
+                    pass
+            else:
+                break
