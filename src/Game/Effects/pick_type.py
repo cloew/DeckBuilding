@@ -32,7 +32,7 @@ class PickType:
         options = []
         for cardType in self.findPossibleTypes(context):
             cardFilter = IntersectionFilter([self.filter, ComparisonFilter(self.sourceType, FixedCriteria("cardType", cardType, "=="))])
-            options.append(Option("Pick " + cardType, PerMatch(self.sourceType, self.effects, filter=cardFilter)))
+            options.append(Option("Pick " + cardType, [PerMatch(self.sourceType, self.effects, filter=cardFilter)]))
         return options
                 
     def findPossibleTypes(self, context):
