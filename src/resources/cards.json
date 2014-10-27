@@ -1148,7 +1148,16 @@
                                           "then":[{"type":"DESTROY",
                                                    "source":"EVENT"}],
                                           "leftoverCardEffects":[{"type":"DISCARD",
-                                                                  "source":"EVENT"}]}]}]}]
+                                                                  "source":"EVENT"}]},
+                                         {"type":"PER_MATCH",
+                                          "filter":{"type":"COMPARISON",
+                                                    "criteria":{"type":"FIXED",
+                                                                "field":"cost",
+                                                                "operation":"==",
+                                                                "value":0}},
+                                          "source":"EVENT",
+                                          "effects":[{"type":"DISCARD",
+                                                      "source":"EVENT"}]}]}]}]
 },
 {
     "id":"Harley Quinn",
