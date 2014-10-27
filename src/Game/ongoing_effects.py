@@ -32,8 +32,12 @@ class OngoingEffects:
     def registerActivatable(self, card, activatable):
         """ Register the given activatable """
         if activatable is not None:
-            self.activatableEffects[card] = activatable
+            if card not in self.activatableEffects:
+                self.activatableEffects[card] = []
+            self.activatableEffects[card].append(activatable)
         
-    def unregisterActivatable(self, card):
+    def unregisterActivatable(self, card, activatable):
         """ Unregister the given card's activatable effect """
-        del self.activatableEffects[card]
+        self.activatableEffects[card].remove(activatable)
+        if len(self.activatableEffects[card]) == 0:
+            del self.activatableEffects[card]

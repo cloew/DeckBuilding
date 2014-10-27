@@ -11,7 +11,7 @@ class ActivateCard:
     def perform(self):
         """ Perform the command """
         context = PlayerContext(self.owner.game, self.card)
-        coroutine = self.owner.activatableEffects[self.card].activate(context)
+        coroutine = self.owner.activatableEffects[self.card][0].activate(context)
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)

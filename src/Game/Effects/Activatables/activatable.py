@@ -18,7 +18,7 @@ class Activatable:
     def activate(self, context):
         """ Activate the effect """
         if self.singleUse:
-            context.owner.unregisterActivatable(context.parent)
+            context.owner.unregisterActivatable(context.parent, self)
         
         coroutine = PerformEffects(self.effects, context)
         try:

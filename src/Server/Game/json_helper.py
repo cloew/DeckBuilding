@@ -18,7 +18,7 @@ def GetActivatableActionJSON(card, game, source=None):
     """ Get the Activatable Action JSON for a particular card """
     json = None
     if card in game.currentTurn.activatableEffects:
-        activatableEffect = game.currentTurn.activatableEffects[card]
+        activatableEffect = game.currentTurn.activatableEffects[card][0]
         if activatableEffect.canActivate(game):
             json = {'type':'ACTIVATE', 'source':source}
     return json
