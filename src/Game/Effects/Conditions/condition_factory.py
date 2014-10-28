@@ -12,7 +12,7 @@ from unique import Unique
 
 from Game.Effects.Conditions.Filters.Criteria.criteria_factory import CriteriaFactory
 
-from Game.Factory.comparison_filter_parameter import ComparisonFilterParameter
+from Game.Factory.intersection_filter_parameter import IntersectionFilterParameter
 from Game.Factory.filter_parameter import FilterParameter
 
 from kao_factory.factory import Factory
@@ -23,7 +23,7 @@ from kao_factory.Parameter.primitive_parameter import PrimitiveParameter
 ConditionFactory = TypedFactory('type', {"ENOUGH_POWER":Factory(EnoughPower, [PrimitiveParameter("power")]),
                                          "FILTER_RESULTS":Factory(FilterResults, [PrimitiveParameter("source"), FilterParameter(), PrimitiveParameter("number", optional=True)]),
                                          "IS_PLAYER_TURN":Factory(IsPlayerTurn, []),
-                                         "HAS_CARDS":Factory(HasCards, [PrimitiveParameter("source"), ComparisonFilterParameter(optional=True)]),
+                                         "HAS_CARDS":Factory(HasCards, [PrimitiveParameter("source"), IntersectionFilterParameter(optional=True)]),
                                          "MATCHING":Factory(Matching, [PrimitiveParameter("source"), ComplexParameter("criteria", CriteriaFactory.load, optional=True), PrimitiveParameter("number", optional=True)]),
                                          "NTH":Factory(NthPlayed, [PrimitiveParameter("n"), ComplexParameter("criteria", CriteriaFactory.load)]),
                                          "NTH_UNIQUE":Factory(NthUnique, [PrimitiveParameter("n"), ComplexParameter("criterion", CriteriaFactory.loadAll, optional=True, default=[])]),
