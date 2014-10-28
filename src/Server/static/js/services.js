@@ -170,6 +170,13 @@ services.service('lobbyService', function($cookies, $http, $location, $routePara
             alert(error);
         });
     };
+    var changeVillainCount = function(index) {
+        $http.post(rootUrl+$routeParams.lobbyId+'/player/'+$cookies.playerId+'/changenumberofvillains', {'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+            setLobby(data);
+        }).error(function(error) {
+            alert(error);
+        });
+    };
     var changeName = function(newName) {
         $http.post(rootUrl+$routeParams.lobbyId+'/player/'+$cookies.playerId+'/changename', {'name':newName}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
             setLobby(data);
@@ -189,6 +196,7 @@ services.service('lobbyService', function($cookies, $http, $location, $routePara
         startPolling: startPolling,
         changeCharacter: changeCharacter,
         changeDeck: changeDeck,
+        changeVillainCount: changeVillainCount,
         changeName: changeName,
         startGame: startGame
     };

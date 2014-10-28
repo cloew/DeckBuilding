@@ -278,6 +278,21 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
           },
           templateUrl: 'static/partials/directives/deck_picker.html'
       }})
+    .directive('villainCountPicker', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          scope: {
+              name: '@',
+              villainCountInfo: '='
+          },
+          controller: function($scope, lobbyService) {
+            $scope.changeCount = function(current) {
+                lobbyService.changeVillainCount(current);
+            };
+          },
+          templateUrl: 'static/partials/directives/villain_count_picker.html'
+      }})
     .directive('cardGroup', function() {
       return {
           restrict: 'E',
