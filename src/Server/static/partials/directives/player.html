@@ -18,7 +18,7 @@
         <div class="col-md-12 deck-col">
             <ongoing></ongoing>
         </div>
-        <div class="col-md-12 deck-col">
+        <div class="col-md-12 deck-col" ng-if="!isYou">
             <h3>{{player.pending}}</h3>
         </div>
     </header-div>
