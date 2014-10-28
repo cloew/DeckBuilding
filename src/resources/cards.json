@@ -2949,15 +2949,13 @@
             "cost":1},
     "points":{"type":"FIXED",
               "points":1},
-    "playEffects":[{"type":"CONDITIONAL",
-                    "condition":{"type":"MATCHING",
-                                 "criteria":{"type":"FIXED",
-                                             "field":"cardType",
-                                             "operation":"==",
-                                             "value":"Starter"},
-                                 "source":"PLAYED"},
-                    "effects":[{"type":"GAIN_POWER",
-                                "power":2}]}]
+    "playEffects":[{"type":"PLAY_OR_HAVE_PLAYED",
+                    "criteria":{"type":"FIXED",
+                                "field":"cardType",
+                                "operation":"==",
+                                "value":"Starter"},
+                    "effect":{"type":"GAIN_POWER",
+                              "power":2}}]
 },
 {
     "id":"Teleportation",
