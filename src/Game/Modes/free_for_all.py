@@ -42,7 +42,10 @@ class FreeForAll:
         
     def setNumberOfVillains(self, index):
         """ Set the number of villains to play against """
-        self.villainCountIndex = index
+        if index < 0:
+            self.villainCountIndex = len(self.possibleVillainCounts)+index
+        else:
+            self.villainCountIndex = index % len(self.possibleVillainCounts)
         
     def getVillainCountRange(self):
         """ Get the possible counts for the number of villains """
