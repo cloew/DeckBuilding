@@ -11,6 +11,9 @@ class Character:
         self.image = image
         self.active = True
         
+        for trigger in triggers:
+            trigger.parent = self
+        
     def addOngoingEffects(self, addOngoingEffects):
         """ Add Starting Effects for the current player """            
         if self.active:
