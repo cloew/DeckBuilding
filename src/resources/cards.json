@@ -3450,8 +3450,8 @@
                                 "to":"HAND"}]},
                    {"type":"PICK_CARDS",
                     "number":1,
-                    "to":"gain",
-                    "sources":"LINE_UP",
+                    "to":"gain and put on top of your deck",
+                    "sources":["LINE_UP"],
                     "then":[{"type":"GAIN_CARD",
                              "from":"EVENT",
                              "to":"DECK"}]}]
