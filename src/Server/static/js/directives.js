@@ -197,6 +197,7 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
           restrict: 'E',
           replace: true,
           scope: {player: '=',
+                  actions: '=',
                   isYou: '@'},
           compile: function(element, attrs){
             if (attrs.isYou === undefined) { attrs.isYou = false; }

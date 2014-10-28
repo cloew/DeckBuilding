@@ -9,11 +9,12 @@ class ActivateCardController(JSONController):
     
     def performWithJSON(self, gameId, playerId):
         game = games[gameId]
+        player = game.players[playerId]
         cardIndex = self.json['index']
         sourceType = self.json['source']
         
         card = None
-        source = SourceFactory.getSource(sourceType, game.game)
+        source = SourceFactory.getSource(sourceType, game.game, player=player)
         card = source[cardIndex]
         
         game.game.currentTurn.perform(ActivateCard(card, game.game.currentTurn))

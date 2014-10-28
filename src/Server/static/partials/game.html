@@ -24,8 +24,8 @@
 <div class="clearfix visible-md-block"></div>
 
 <div class="col-md-3">
-    <player player="game.you" is-you="true"></player>
-    <player player="player" ng-repeat="player in game.players"></player>
+    <player player="game.you" actions="actions" is-you="true"></player>
+    <player player="player" actions="actions" ng-repeat="player in game.players"></player>
 </div>
 <div class="col-md-6">
     <played></played>

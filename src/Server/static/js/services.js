@@ -33,7 +33,7 @@ services.service('gameService', function($cookies, $http, $location, $routeParam
         }
     };
     var actions = {};
-    actions.activateCard = function(index, source) {  
+    actions.activateCard = function(index, source) {
         $http.post(rootUrl+'/activate', {'index':index, 'source':source}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
             setGame(data);
         }).error(function(error) {
