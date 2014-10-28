@@ -2881,7 +2881,7 @@
     "id":"Superboy",
     "name":"Superboy",
     "type":"Hero",
-    "image":"Deck1/Main/superboy.jpg",
+    "image":"Deck2/Main/superboy.jpg",
     "cost":{"type":"FIXED",
             "cost":5},
     "points":{"type":"FIXED",
