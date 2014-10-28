@@ -1,8 +1,8 @@
 <div class="picker">
     <h3>{{name}}</h3>
     <div class="carousel ng-isolate-scope">
-        <a class="picker-control" ng-hide="deck.options.length === 1"><span class="icon-prev" ng-click="previous(role, deck.current);"></span></a>
+        <a class="picker-control" ng-hide="deck.options.length === 1"><span class="icon-prev" ng-click="previous(deck.current);"></span></a>
         <h4>{{deck.options[deck.current]}}</h4>
-        <a class="picker-control right" ng-hide="deck.options.length === 1"><span class="icon-next" ng-click="next(role, deck.current);"></span></a>
+        <a class="picker-control right" ng-hide="deck.options.length === 1"><span class="icon-next" ng-click="next(deck.current);"></span></a>
     </div>
 </div>

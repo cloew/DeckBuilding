@@ -250,16 +250,13 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
               deck: '='
           },
           controller: function($scope, lobbyService) {
-            $scope.previous = function(role, current) {
-                lobbyService.changeDeck(role, current-1);
+            $scope.previous = function(current) {
+                lobbyService.changeDeck($scope.role, current-1);
                 current -= 1;
             };
-            $scope.next = function(role, current) {
-                lobbyService.changeDeck(role, current+1);
+            $scope.next = function(current) {
+                lobbyService.changeDeck($scope.role, current+1);
                 current += 1;
-            };
-            $scope.changeDeck = function(role, index) {
-                lobbyService.changeDeck(role, index);
             };
           },
           templateUrl: 'static/partials/directives/deck_picker.html'
