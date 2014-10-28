@@ -30,6 +30,9 @@ class Card:
             image = "vulnerability.jpg"
         self.image = image
         
+        for trigger in triggers:
+            trigger.parent = self
+        
     def play(self, game, effectTypesToIgnore=[]):
         """ Play the card and perform any effects """
         context = PlayerContext(game, self)

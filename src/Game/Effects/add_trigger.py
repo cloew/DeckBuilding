@@ -8,4 +8,5 @@ class AddTrigger:
         
     def perform(self, context):
         """ Perform the Game Effect """
+        self.trigger.parent = context.parent
         context.owner.registerTrigger(self.trigger)
