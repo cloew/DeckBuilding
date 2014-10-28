@@ -240,6 +240,28 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
           replace: true,
           templateUrl: 'static/partials/directives/turn.html'
       }})
+    .directive('picker', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          scope: {
+              name: '@',
+              options: '=',
+              current: '=',
+              callback: '='
+          },
+          controller: function($scope) {
+            $scope.previous = function(current) {
+                current -= 1;
+                $scope.callback(current);
+            };
+            $scope.next = function(current) {
+                current += 1;
+                $scope.callback(current);
+            };
+          },
+          templateUrl: 'static/partials/directives/picker.html'
+      }})
     .directive('deckPicker', function() {
       return {
           restrict: 'E',
@@ -250,13 +272,8 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
               deck: '='
           },
           controller: function($scope, lobbyService) {
-            $scope.previous = function(current) {
-                lobbyService.changeDeck($scope.role, current-1);
-                current -= 1;
-            };
-            $scope.next = function(current) {
-                lobbyService.changeDeck($scope.role, current+1);
-                current += 1;
+            $scope.changeDeck = function(current) {
+                lobbyService.changeDeck($scope.role, current);
             };
           },
           templateUrl: 'static/partials/directives/deck_picker.html'
