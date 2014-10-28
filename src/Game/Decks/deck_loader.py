@@ -7,9 +7,13 @@ class DeckLoader:
         """ Initialize the Deck Loader """
         self.deckInitializer = deckInitializer
         
-    def loadDeck(self):
+    def loadDeck(self, number=None):
         """ Load the Deck """
-        return self.buildDeck()
+        deck = self.buildDeck()
+        if number is not None:
+            items = deck.draw(count=number)
+            deck = Deck(items=items)
+        return deck
         
     def buildDeck(self):
         """ Build the Deck """

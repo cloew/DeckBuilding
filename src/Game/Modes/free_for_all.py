@@ -12,6 +12,7 @@ class FreeForAll:
         requiredRoles = [MAIN, KICK, WEAKNESS, SUPERVILLAIN]
         self.potentialDecks = {role:DeckFactory.findDeckIdsToFillRole(role) for role in requiredRoles}
         self.chosenDecks = {role:self.potentialDecks[role][0] for role in requiredRoles}
+        self.numberOfVillains = 8
         
     def buildGame(self, lobby):
         """ Build the Game """
@@ -19,7 +20,7 @@ class FreeForAll:
         return Game(players, mainDeck=DeckFactory.load(self.mainDeckId).loadDeck(),
                              kickDeck=DeckFactory.load(self.kickDeckId).loadDeck(),
                              weaknessDeck=DeckFactory.load(self.weaknessDeckId).loadDeck(),
-                             superVillainDeck=DeckFactory.load(self.supervillainDeckId).loadDeck())
+                             superVillainDeck=DeckFactory.load(self.supervillainDeckId).loadDeck(self.numberOfVillains))
         
     def getGamePlayers(self, lobby):
         """ Return the Game Players in their proper order """

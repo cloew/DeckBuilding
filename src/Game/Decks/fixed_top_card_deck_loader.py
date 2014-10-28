@@ -8,8 +8,8 @@ class FixedTopCardDeckLoader(ShufflingDeckLoader):
         ShufflingDeckLoader.__init__(self, deckInitializer)
         self.topCard = topCard
         
-    def loadDeck(self):
+    def loadDeck(self, numberToLoad):
         """ Load the Deck """
-        deck = ShufflingDeckLoader.loadDeck(self)
+        deck = ShufflingDeckLoader.loadDeck(self, number=numberToLoad-1)
         deck.add([self.topCard])
         return deck
