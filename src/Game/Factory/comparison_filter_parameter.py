@@ -14,4 +14,4 @@ class ComparisonFilterParameter(Parameter):
         filterJson = {"criteria":data["criteria"]}
         filterJson["source"] = data["source"]
         filterJson["type"] = "COMPARISON"
-        return FilterFactory.load(filterJson))
+        return FilterFactory.load(filterJson)
