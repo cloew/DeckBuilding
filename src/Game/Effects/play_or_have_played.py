@@ -21,7 +21,7 @@ class PlayOrHavePlayed(ConditionalEffect):
     def buildTriggerEffect(self, playedCondition, eventCondition, effect):
         """ Build the Trigger Effect to be used """
         triggerCondition = self.getTriggerCondition(playedCondition, eventCondition)
-        trigger = Trigger(CARD_PLAYED, effect, condition=triggerCondition, singleUse=False)
+        trigger = Trigger(CARD_PLAYED, effect, condition=triggerCondition, singleUse=True)
         return AddTrigger(trigger)
     
     def getTriggerCondition(self, playedCondition, eventCondition):
