@@ -12,7 +12,9 @@ class FreeForAll:
         requiredRoles = [MAIN, KICK, WEAKNESS, SUPERVILLAIN]
         self.potentialDecks = {role:DeckFactory.findDeckIdsToFillRole(role) for role in requiredRoles}
         self.chosenDecks = {role:self.potentialDecks[role][0] for role in requiredRoles}
-        self.numberOfVillains = 8
+        
+        self.villainCountIndex = 0
+        self.possibleVillainCounts = self.getVillainCountRange()
         
     def buildGame(self, lobby):
         """ Build the Game """
@@ -20,7 +22,7 @@ class FreeForAll:
         return Game(players, mainDeck=DeckFactory.load(self.mainDeckId).loadDeck(),
                              kickDeck=DeckFactory.load(self.kickDeckId).loadDeck(),
                              weaknessDeck=DeckFactory.load(self.weaknessDeckId).loadDeck(),
-                             superVillainDeck=DeckFactory.load(self.supervillainDeckId).loadDeck(self.numberOfVillains))
+                             superVillainDeck=DeckFactory.load(self.supervillainDeckId).loadDeck(number=self.numberOfVillains))
         
     def getGamePlayers(self, lobby):
         """ Return the Game Players in their proper order """
@@ -37,6 +39,14 @@ class FreeForAll:
         """ Set the deck for the given role """
         index = index % len(self.potentialDecks[role])
         self.chosenDecks[role] = self.potentialDecks[role][index]
+        
+    def setNumberOfVillains(self, index):
+        """ Set the number of villains to play against """
+        self.villainCountIndex = index
+        
+    def getVillainCountRange(self):
+        """ Get the possible counts for the number of villains """
+        return range(8, len(DeckFactory.load(self.supervillainDeckId).loadDeck())+1)
         
     @property
     def mainDeckId(self):
@@ -57,3 +67,8 @@ class FreeForAll:
     def supervillainDeckId(self):
         """ Return the chosen supervillain deck id """
         return self.chosenDecks[SUPERVILLAIN]
+        
+    @property
+    def numberOfVillains(self):
+        """ Return the number of supervillains to play with """
+        return self.possibleVillainCounts[self.villainCountIndex]
