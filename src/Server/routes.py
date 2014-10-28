@@ -11,6 +11,7 @@ from Server.Game.Controller.get_results_for_player_controller import GetResultsF
 
 from Server.Lobby.Controller.change_character_controller import ChangeCharacterController
 from Server.Lobby.Controller.change_deck_for_role_controller import ChangeDeckForRoleController
+from Server.Lobby.Controller.change_number_of_villains_controller import ChangeNumberOfVillainsController
 from Server.Lobby.Controller.change_name_controller import ChangeNameController
 from Server.Lobby.Controller.get_lobbies_controller import GetLobbiesController
 from Server.Lobby.Controller.get_lobby_controller import GetLobbyController
@@ -42,4 +43,5 @@ routes = [Endpoint('/', get=HTMLController('Server/templates/index.html')),
           Endpoint('/api/lobbies/<int:lobbyId>/player/<int:playerId>', get=GetLobbyForPlayerController()),
           Endpoint('/api/lobbies/<int:lobbyId>/player/<int:playerId>/changecharacter', post=ChangeCharacterController()),
           Endpoint('/api/lobbies/<int:lobbyId>/player/<int:playerId>/changename', post=ChangeNameController()),
-          Endpoint('/api/lobbies/<int:lobbyId>/player/<int:playerId>/changedeck', post=ChangeDeckForRoleController())]
+          Endpoint('/api/lobbies/<int:lobbyId>/player/<int:playerId>/changedeck', post=ChangeDeckForRoleController()),
+          Endpoint('/api/lobbies/<int:lobbyId>/player/<int:playerId>/changenumberofvillains', post=ChangeNumberOfVillainsController())]

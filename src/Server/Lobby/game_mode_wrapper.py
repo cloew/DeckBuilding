@@ -16,4 +16,6 @@ class GameModeWrapper:
                 WEAKNESS:{"options":self.gameMode.potentialDecks[WEAKNESS],
                           "current":self.gameMode.potentialDecks[WEAKNESS].index(self.gameMode.weaknessDeckId)},
                 SUPERVILLAIN:{"options":self.gameMode.potentialDecks[SUPERVILLAIN],
-                              "current":self.gameMode.potentialDecks[SUPERVILLAIN].index(self.gameMode.supervillainDeckId)}}
+                              "current":self.gameMode.potentialDecks[SUPERVILLAIN].index(self.gameMode.supervillainDeckId)},
+                "numberOfVillains":{'range':self.gameMode.possibleVillainCounts,
+                                    'index':self.gameMode.villainCountIndex}}
