@@ -2506,7 +2506,7 @@
 {
     "id":"Sciencell",
     "name":"Sciencell",
-    "type":"Hero",
+    "type":"Equipment",
     "image":"Deck2/Main/sciencell.jpg",
     "cost":{"type":"FIXED",
             "cost":6},
