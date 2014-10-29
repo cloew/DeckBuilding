@@ -35,4 +35,4 @@ class MultiSourceEvent:
     def cardsForPlayer(self, player):
         """ Return the cards in the source for the given player """
         sources = [source for source in self.sources if source.player is player]
-        return [card for card in source for source in sources]
+        return [card for source in sources for card in source]
