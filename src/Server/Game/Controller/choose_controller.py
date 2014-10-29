@@ -1,14 +1,16 @@
 from Game.Commands.Responses.choose_option import ChooseOption
-from Server.Game.games import games
 
-from kao_flask.controllers.json_controller import JSONController
+from Server.Game.Controller.game_command_controller import GameCommandController
 
-class ChooseController(JSONController):
+class ChooseController(GameCommandController):
     """ Controller to choose an option """
-    
-    def performWithJSON(self, gameId, playerId):
-        game = games[gameId]
+        
+    def buildCommand(self, player, game, json):
+        """ Build the Command to try and perform """
         optionIndex = self.json['index']
-        option = game.game.currentTurn.request.options[optionIndex]
-        ChooseOption(option, game.game.currentTurn).perform()
-        return game.toJSONForPlayer(playerId)
+        
+        command = None
+        if game.currentTurn.request is not None and optionIndex < len(game.currentTurn.request.options):
+            option = game.currentTurn.request.options[optionIndex]
+            command = ChooseOption(option, game.game.currentTurn)
+        return command
