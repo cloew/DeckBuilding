@@ -43,7 +43,7 @@ services.factory('gameService', function($cookies, $http, $location, $routeParam
     };
     Game.prototype.activateCard = function(index, source) {
         var self = this;
-        $http.post(this.rootUrl+'/activate', {'index':index, 'source':source}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+        $http.post(this.rootUrl+'/activate', {'index':index, 'source':source}).success(function(data) {
             self.setGame(data);
         }).error(function(error) {
             alert(error);
@@ -51,7 +51,7 @@ services.factory('gameService', function($cookies, $http, $location, $routeParam
     };
     Game.prototype.buyCard = function(index, source) {
         var self = this;
-        $http.post(this.rootUrl+'/buy', {'index':index, 'source':source}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+        $http.post(this.rootUrl+'/buy', {'index':index, 'source':source}).success(function(data) {
             self.setGame(data);
         }).error(function(error) {
             alert(error);
@@ -59,7 +59,7 @@ services.factory('gameService', function($cookies, $http, $location, $routeParam
     };
     Game.prototype.playCard = function(index) {
         var self = this;
-        $http.post(this.rootUrl+'/play', {'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+        $http.post(this.rootUrl+'/play', {'index':index}).success(function(data) {
             self.setGame(data);
         }).error(function(error) {
             alert(error);
@@ -75,7 +75,7 @@ services.factory('gameService', function($cookies, $http, $location, $routeParam
     };
     Game.prototype.chooseOption = function(index) {
         var self = this;
-        $http.post(this.rootUrl+'/choose', {'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+        $http.post(this.rootUrl+'/choose', {'index':index}).success(function(data) {
             self.setGame(data);
         }).error(function(error) {
             alert(error);
@@ -83,7 +83,7 @@ services.factory('gameService', function($cookies, $http, $location, $routeParam
     };
     Game.prototype.pickCard = function(indices) {
         var self = this;
-        $http.post(this.rootUrl+'/pickcard', {'indices':indices}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+        $http.post(this.rootUrl+'/pickcard', {'indices':indices}).success(function(data) {
             self.setGame(data);
         }).error(function(error) {
             alert(error);
@@ -91,7 +91,7 @@ services.factory('gameService', function($cookies, $http, $location, $routeParam
     };
     Game.prototype.defend = function(defending, index) {
         var self = this;
-        $http.post(this.rootUrl+'/defend', {'defending':defending, 'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+        $http.post(this.rootUrl+'/defend', {'defending':defending, 'index':index}).success(function(data) {
             self.setGame(data);
         }).error(function(error) {
             alert(error);
@@ -122,14 +122,14 @@ services.service('lobbiesService', function($cookies, $http, $location, UrlPolle
         return lobbies;
     };
     var startNewLobby = function() {
-        $http.post(rootUrl, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+        $http.post(rootUrl).success(function(data) {
             trackLobby(data);
         }).error(function(error) {
             alert(error);
         });
     };
     var joinLobby = function(lobbyId) {
-        $http.post(rootUrl+'/'+lobbyId+'/join', {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+        $http.post(rootUrl+'/'+lobbyId+'/join').success(function(data) {
             trackLobby(data);
         }).error(function(error) {
             alert(error);
@@ -173,35 +173,35 @@ services.service('lobbyService', function($cookies, $http, $location, $routePara
         }
     };
     var changeCharacter = function(newCharacter) {
-        $http.post(rootUrl+$routeParams.lobbyId+'/player/'+$cookies.playerId+'/changecharacter', {'character':newCharacter}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+        $http.post(rootUrl+$routeParams.lobbyId+'/player/'+$cookies.playerId+'/changecharacter', {'character':newCharacter}).success(function(data) {
             setLobby(data);
         }).error(function(error) {
             alert(error);
         });
     };
     var changeDeck = function(role, index) {
-        $http.post(rootUrl+$routeParams.lobbyId+'/player/'+$cookies.playerId+'/changedeck', {'role':role, 'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+        $http.post(rootUrl+$routeParams.lobbyId+'/player/'+$cookies.playerId+'/changedeck', {'role':role, 'index':index}).success(function(data) {
             setLobby(data);
         }).error(function(error) {
             alert(error);
         });
     };
     var changeVillainCount = function(index) {
-        $http.post(rootUrl+$routeParams.lobbyId+'/player/'+$cookies.playerId+'/changenumberofvillains', {'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+        $http.post(rootUrl+$routeParams.lobbyId+'/player/'+$cookies.playerId+'/changenumberofvillains', {'index':index}).success(function(data) {
             setLobby(data);
         }).error(function(error) {
             alert(error);
         });
     };
     var changeName = function(newName) {
-        $http.post(rootUrl+$routeParams.lobbyId+'/player/'+$cookies.playerId+'/changename', {'name':newName}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+        $http.post(rootUrl+$routeParams.lobbyId+'/player/'+$cookies.playerId+'/changename', {'name':newName}).success(function(data) {
             setLobby(data);
         }).error(function(error) {
             alert(error);
         });
     };
     var startGame = function() {
-        $http.post(rootUrl+$routeParams.lobbyId+'/start', {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+        $http.post(rootUrl+$routeParams.lobbyId+'/start').success(function(data) {
             $location.path('/game/'+data.gameId);
         }).error(function(error) {
             alert(error);
