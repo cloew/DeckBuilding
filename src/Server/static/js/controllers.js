@@ -35,15 +35,16 @@ controllers.controller('LobbyController', function($scope, lobbyService) {
     $scope.startGame = lobbyService.startGame;
 });
 controllers.controller('GameController', function($scope, gameService) {
-    gameService.startPolling($scope, function(game) {
+    var gameWrapper = gameService.findGameWrapper();
+    gameWrapper.startPolling($scope, function(game) {
         $scope.game = game;
         $scope.playersPendingActions = $scope.getPlayersPendingActions();
     });
-    $scope.actions = gameService.actions;
-    $scope.endTurn = gameService.endTurn;
-    $scope.chooseOption = gameService.chooseOption;
-    $scope.pickCard = gameService.pickCard;
-    $scope.defend = gameService.defend;
+    $scope.actions = gameWrapper.actions;
+    $scope.endTurn = gameWrapper.endTurn;
+    $scope.chooseOption = gameWrapper.chooseOption;
+    $scope.pickCard = gameWrapper.pickCard;
+    $scope.defend = gameWrapper.defend;
     $scope.getPlayersPendingActions = function() {
         var pending = false;
         for (var i = 0; i < $scope.game.players.length; i++) {
@@ -63,7 +64,7 @@ controllers.controller('GameResultsController', function($scope, $cookies, $http
 });
 
 controllers.controller('ChooseOptionController', function($scope, requestModalService, gameService) {
-    $scope.request = gameService.getGame().request;
+    $scope.request = gameService.findGameWrapper().getGame().request;
     
     $scope.chooseOption = function(index) {
         gameService.chooseOption(index);
@@ -72,7 +73,7 @@ controllers.controller('ChooseOptionController', function($scope, requestModalSe
 });
 
 controllers.controller('PickCardController', function($scope, requestModalService, gameService) {
-    $scope.request = gameService.getGame().request;
+    $scope.request = gameService.findGameWrapper().getGame().request;
     $scope.actions = {};
     $scope.indices = [];
     $scope.actions.pickCard = function(index) {
@@ -91,7 +92,7 @@ controllers.controller('PickCardController', function($scope, requestModalServic
 });
 
 controllers.controller('DefendController', function($scope, requestModalService, gameService) {
-    $scope.request = gameService.getGame().request;
+    $scope.request = gameService.findGameWrapper().getGame().request;
     $scope.actions = {};
     $scope.actions.pickCard = function(index) {
         gameService.defend(true, index);

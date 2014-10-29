@@ -2,94 +2,107 @@
 
 var services = angular.module('DeckBuildingServices', ['ui.bootstrap']);
 
-services.service('gameService', function($cookies, $http, $location, $routeParams, notificationService, requestModalService, UrlPoller) {
-    var rootUrl = '/api/game/'+$routeParams.gameId+'/player/'+$cookies.playerId;
-    var game = undefined;
-    var startPolling = function(parentScope, callback) {
-        UrlPoller(parentScope, rootUrl, function(data) {
-                setGame(data);
-                callback(game);
+function Game($location, notificationService, requestModalService, UrlPoller) {
+
+}
+
+
+services.factory('gameService', function($cookies, $http, $location, $routeParams, notificationService, requestModalService, UrlPoller) {
+    function Game(rootUrl) {
+        this.rootUrl = rootUrl;
+        this.game = undefined
+        this.actions = {activateCard: this.activateCard,
+                        buyCard: this.buyCard,
+                        playCard: this.playCard}
+    };
+    
+    Game.prototype.startPolling = function(parentScope, callback) {
+        var self = this;
+        UrlPoller(parentScope, this.rootUrl, function(data) {
+                self.setGame(data);
+                callback(self.game);
             });
     };
-    var getGame = function() {
-        return game;
+    Game.prototype.getGame = function() {
+        return this.game;
     };
-    var setGame = function(data, parentScope) {
+    Game.prototype.setGame = function(data, parentScope) {
         var oldRequest = undefined;
-        if (game && game.request) {
-            oldRequest = game.request;
+        if (this.game && this.game.request) {
+            oldRequest = this.game.request;
         }
         
-        game = data['game'];
-        notificationService.setNotifications(game.notifications);
-        if (game.isOver) {
-            $location.path('/game/'+game.id+'/results');
+        this.game = data['game'];
+        notificationService.setNotifications(this.game.notifications);
+        if (this.game.isOver) {
+            $location.path('/game/'+this.game.id+'/results');
         }
-        if ((!game.request || (oldRequest && oldRequest.id != game.request.id)) && requestModalService.getModal()) {
+        if ((!this.game.request || (oldRequest && oldRequest.id != this.game.request.id)) && requestModalService.getModal()) {
             requestModalService.closeModal();
         }
-        if (game.request && !requestModalService.hasModal()) {
-            requestModalService.openRequestModal(game.request);
+        if (this.game.request && !requestModalService.hasModal()) {
+            requestModalService.openRequestModal(this.game.request);
         }
     };
-    var actions = {};
-    actions.activateCard = function(index, source) {
-        $http.post(rootUrl+'/activate', {'index':index, 'source':source}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
-            setGame(data);
+    Game.prototype.activateCard = function(index, source) {
+        $http.post(this.rootUrl+'/activate', {'index':index, 'source':source}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+            this.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     };
-    actions.buyCard = function(index, source) {  
-        $http.post(rootUrl+'/buy', {'index':index, 'source':source}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
-            setGame(data);
+    Game.prototype.buyCard = function(index, source) {  
+        $http.post(this.rootUrl+'/buy', {'index':index, 'source':source}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+            this.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     };
-    actions.playCard = function(index) {
-        $http.post(rootUrl+'/play', {'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
-            setGame(data);
+    Game.prototype.playCard = function(index) {
+        $http.post(this.rootUrl+'/play', {'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+            this.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     };
-    var endTurn = function(index) {
-        $http.post(rootUrl+'/endturn').success(function(data) {
-            setGame(data);
+    Game.prototype.endTurn = function(index) {
+        $http.post(this.rootUrl+'/endturn').success(function(data) {
+            this.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     };
-    var chooseOption = function(index) {
-        $http.post(rootUrl+'/choose', {'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
-            setGame(data);
+    Game.prototype.chooseOption = function(index) {
+        $http.post(this.rootUrl+'/choose', {'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+            this.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     };
-    var pickCard = function(indices) {
-        $http.post(rootUrl+'/pickcard', {'indices':indices}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
-            setGame(data);
+    Game.prototype.pickCard = function(indices) {
+        $http.post(this.rootUrl+'/pickcard', {'indices':indices}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+            this.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     };
-    var defend = function(defending, index) {
-        $http.post(rootUrl+'/defend', {'defending':defending, 'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
-            setGame(data);
+    Game.prototype.defend = function(defending, index) {
+        $http.post(this.rootUrl+'/defend', {'defending':defending, 'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
+            this.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     };
+    
+    var games = {};
+    
     return {
-        getGame: getGame,
-        startPolling: startPolling,
-        actions: actions,
-        endTurn: endTurn,
-        chooseOption: chooseOption,
-        pickCard: pickCard,
-        defend: defend
+        findGameWrapper: function () {
+            if (games[$routeParams.gameId] === undefined) {
+                games[$routeParams.gameId] = new Game('/api/game/'+$routeParams.gameId+'/player/'+$cookies.playerId);
+            }
+            return games[$routeParams.gameId];
+        }
     };
 });
 
