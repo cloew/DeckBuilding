@@ -12,5 +12,5 @@ class ChooseController(GameCommandController):
         command = None
         if game.currentTurn.request is not None and optionIndex < len(game.currentTurn.request.options):
             option = game.currentTurn.request.options[optionIndex]
-            command = ChooseOption(option, game.game.currentTurn)
+            command = ChooseOption(option, game.currentTurn)
         return command
