@@ -1,18 +1,17 @@
 from Game.Commands.Responses.defend import Defend
-from Server.Game.games import games
 
-from kao_flask.controllers.json_controller import JSONController
+from Server.Game.Controller.game_command_controller import GameCommandController
 
-class DefendController(JSONController):
+class DefendController(GameCommandController):
     """ Controller to defend """
-    
-    def performWithJSON(self, gameId, playerId):
-        game = games[gameId]
-        defending = self.json['defending']
-        card = None
-        if defending:
-            cardIndex = self.json['index']
-            card = game.game.currentTurn.request.defenses[cardIndex]
         
-        Defend(card, game.game.currentTurn).perform()
-        return game.toJSONForPlayer(playerId)
+    def buildCommand(self, player, game, json):
+        """ Build the Command to try and perform """
+        defending = self.json['defending']
+        cardIndex = self.json['index']
+        
+        card = None
+        if defending and game.currentTurn.request is not None and cardIndex < len(game.currentTurn.request.defenses):
+            card = game.currentTurn.request.defenses[cardIndex]
+            command = Defend(card, game.currentTurn)
+        return command
