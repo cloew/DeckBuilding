@@ -1,6 +1,5 @@
 from Game.Commands.activate_card import ActivateCard
 from Game.Sources.source_factory import SourceFactory
-from Server.Game.games import games
 
 from Server.Game.Controller.game_command_controller import GameCommandController
 

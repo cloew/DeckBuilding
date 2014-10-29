@@ -1,5 +1,4 @@
 from Game.Commands.end_turn import EndTurn
-from Server.Game.games import games
 
 from Server.Game.Controller.game_command_controller import GameCommandController
 

@@ -1,14 +1,20 @@
 from Game.Commands.play_card import PlayCard
-from Server.Game.games import games
+from Game.Sources.source_factory import SourceFactory
+from Game.Sources.source_types import HAND
 
-from kao_flask.controllers.json_controller import JSONController
+from Server.Game.Controller.game_command_controller import GameCommandController
 
-class PlayCardController(JSONController):
+class PlayCardController(GameCommandController):
     """ Controller to play a card """
-    
-    def performWithJSON(self, gameId, playerId):
-        game = games[gameId]
+        
+    def buildCommand(self, player, game, json):
+        """ Build the Command to try and perform """
         cardIndex = self.json['index']
-        card = game.game.currentTurn.player.hand[cardIndex]
-        game.game.currentTurn.perform(PlayCard(card, game.game.currentTurn))
-        return game.toJSONForPlayer(playerId)
+        
+        command = None
+        source = SourceFactory.getSource(HAND, game, player=player)
+        
+        if cardIndex < len(source):
+            card = source[cardIndex]
+            command = PlayCard(card, game.currentTurn)
+        return command
