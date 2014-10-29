@@ -1,7 +1,10 @@
+from command import Command
+from Game.Commands.Requirements.current_player import CurrentPlayer
+
 from Game.Effects.game_contexts import PlayerContext
 from Game.Sources.source_types import DISCARD_PILE
 
-class BuyCard:
+class BuyCard(Command):
     """ Represents a command to buy a card """
     
     def __init__(self, card, owner, source):
@@ -9,6 +12,7 @@ class BuyCard:
         self.card = card
         self.owner = owner
         self.source = source
+        Command.__init__(self, [CurrentPlayer()])
         
     def perform(self):
         """ Perform the command """
