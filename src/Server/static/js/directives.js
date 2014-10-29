@@ -273,7 +273,7 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
           },
           controller: function($scope, lobbyService) {
             $scope.changeDeck = function(current) {
-                lobbyService.changeDeck($scope.role, current);
+                lobbyService.findLobbyWrapper().changeDeck($scope.role, current);
             };
           },
           templateUrl: 'static/partials/directives/deck_picker.html'
@@ -288,7 +288,7 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
           },
           controller: function($scope, lobbyService) {
             $scope.changeCount = function(current) {
-                lobbyService.changeVillainCount(current);
+                lobbyService.findLobbyWrapper().changeVillainCount(current);
             };
           },
           templateUrl: 'static/partials/directives/villain_count_picker.html'

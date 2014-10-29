@@ -194,7 +194,7 @@ services.service('lobbyService', function($cookies, $http, $location, $routePara
     };
     Lobby.prototype.changeVillainCount = function(index) {
         var self = this;
-        $http.post(rootUrl+$routeParams.lobbyId+'/player/'+$cookies.playerId+'/changenumberofvillains', {'index':index}).success(function(data) {
+        $http.post(this.playerUrl+'/changenumberofvillains', {'index':index}).success(function(data) {
             self.setLobby(data);
         }).error(function(error) {
             alert(error);
