@@ -2079,7 +2079,7 @@
     "points":{"type":"FIXED",
               "points":1},
     "playEffects":[{"type":"GAIN_POWER",
-                    "power":2},
+                    "power":1},
                    {"type":"PLAY_OR_HAVE_PLAYED_ANOTHER",
                     "criteria":{"type":"FIXED",
                                 "field":"cardType",
