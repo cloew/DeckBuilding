@@ -1383,7 +1383,7 @@
 {
     "id":"Hero of the Future",
     "name":"Hero of the Future",
-    "type":"Equipment",
+    "type":"Hero",
     "image":"Deck2/Main/hero_of_the_future.jpg",
     "cost":{"type":"FIXED",
             "cost":4},
