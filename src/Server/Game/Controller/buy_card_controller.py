@@ -13,7 +13,7 @@ class BuyCardController(JSONController):
         
         command = self.buildCommand(player, game.game, self.json)
         
-        if command.canPerform(player, game.game):
+        if command is not None and command.canPerform(player, game.game):
             game.game.currentTurn.perform(command)
         
         return game.toJSONForPlayer(playerId)
@@ -23,8 +23,11 @@ class BuyCardController(JSONController):
         cardIndex = self.json['index']
         sourceType = self.json['source']
         
-        card = None
+        command = None
         source = SourceFactory.getSource(sourceType, game)
-        card = source[cardIndex]
         
-        return BuyCard(card, game.currentTurn, source)
+        if cardIndex < len(source):
+            card = source[cardIndex]
+            command = BuyCard(card, game.currentTurn, source)
+        
+        return command
