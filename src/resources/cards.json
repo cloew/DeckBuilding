@@ -1386,7 +1386,7 @@
     "type":"Equipment",
     "image":"Deck2/Main/hero_of_the_future.jpg",
     "cost":{"type":"FIXED",
-            "cost":5},
+            "cost":4},
     "points":{"type":"FIXED",
               "points":1},
     "playEffects":[{"type":"GAIN_POWER",
