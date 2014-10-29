@@ -9,12 +9,22 @@ class BuyCardController(JSONController):
     
     def performWithJSON(self, gameId, playerId):
         game = games[gameId]
+        player = game.players[playerId]
+        
+        command = self.buildCommand(player, game.game, self.json)
+        
+        if command.canPerform(player, game.game):
+            game.game.currentTurn.perform(command)
+        
+        return game.toJSONForPlayer(playerId)
+        
+    def buildCommand(self, player, game, json):
+        """ Build the Command to try and perform """
         cardIndex = self.json['index']
         sourceType = self.json['source']
         
         card = None
-        source = SourceFactory.getSource(sourceType, game.game)
+        source = SourceFactory.getSource(sourceType, game)
         card = source[cardIndex]
         
-        game.game.currentTurn.perform(BuyCard(card, game.game.currentTurn, source))
-        return game.toJSONForPlayer(playerId)
+        return BuyCard(card, game.currentTurn, source)
