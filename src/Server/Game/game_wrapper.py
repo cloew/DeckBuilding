@@ -68,6 +68,5 @@ class GameWrapper:
         """ Return the more detailed JSON for the given player """
         yourPlayer = self.players[playerId]
         json = {}
-        json['you'] = {'points':yourPlayer.calculatePoints(self.game)}
-        json['players'] = [{'points':player.calculatePoints(self.game)} for id, player in self.players.items() if id != playerId]
+        json['players'] = [{'points':player.calculatePoints(self.game), 'name':player.name, 'isYou':(id != playerId)} for id, player in self.players.items()]
         return json
