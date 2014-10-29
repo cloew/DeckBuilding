@@ -1,6 +1,7 @@
 from command import Command
 
 from Game.Commands.Requirements.current_player import CurrentPlayer
+from Game.Commands.Requirements.enough_power import EnoughPower
 from Game.Commands.Requirements.no_request import NoRequest
 
 from Game.Effects.game_contexts import PlayerContext
@@ -14,7 +15,7 @@ class BuyCard(Command):
         self.card = card
         self.owner = owner
         self.source = source
-        Command.__init__(self, [CurrentPlayer(), NoRequest()])
+        Command.__init__(self, [CurrentPlayer(), NoRequest(), EnoughPower(self.card)])
         
     def perform(self):
         """ Perform the command """
