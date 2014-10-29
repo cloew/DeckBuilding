@@ -8,10 +8,14 @@ class DefendController(GameCommandController):
     def buildCommand(self, player, game, json):
         """ Build the Command to try and perform """
         defending = self.json['defending']
-        cardIndex = self.json['index']
         
-        card = None
-        if defending and game.currentTurn.request is not None and cardIndex < len(game.currentTurn.request.defenses):
-            card = game.currentTurn.request.defenses[cardIndex]
-            command = Defend(card, game.currentTurn)
+        command = None
+        if game.currentTurn.request is not None:
+            if defending:
+                cardIndex = self.json['index']
+                if cardIndex < len(game.currentTurn.request.defenses):
+                    card = game.currentTurn.request.defenses[cardIndex]
+                    command = Defend(card, game.currentTurn)
+            else:
+                command = Defend(None, game.currentTurn)
         return command
