@@ -1,12 +1,11 @@
 from Game.Commands.end_turn import EndTurn
 from Server.Game.games import games
 
-from kao_flask.controllers.json_controller import JSONController
+from Server.Game.Controller.game_command_controller import GameCommandController
 
-class EndTurnController(JSONController):
+class EndTurnController(GameCommandController):
     """ Controller to end the current turn """
-    
-    def performWithJSON(self, gameId, playerId):
-        game = games[gameId]
-        game.game.currentTurn.perform(EndTurn(game.game))
-        return game.toJSONForPlayer(playerId)
+        
+    def buildCommand(self, player, game, json):
+        """ Build the Command to try and perform """
+        return EndTurn(game)
