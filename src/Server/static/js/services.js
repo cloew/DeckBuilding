@@ -10,10 +10,7 @@ function Game($location, notificationService, requestModalService, UrlPoller) {
 services.factory('gameService', function($cookies, $http, $location, $routeParams, notificationService, requestModalService, UrlPoller) {
     function Game(rootUrl) {
         this.rootUrl = rootUrl;
-        this.game = undefined
-        this.actions = {activateCard: this.activateCard,
-                        buyCard: this.buyCard,
-                        playCard: this.playCard}
+        this.game = undefined;
     };
     
     Game.prototype.startPolling = function(parentScope, callback) {
@@ -45,57 +42,63 @@ services.factory('gameService', function($cookies, $http, $location, $routeParam
         }
     };
     Game.prototype.activateCard = function(index, source) {
+        var self = this;
         $http.post(this.rootUrl+'/activate', {'index':index, 'source':source}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
-            this.setGame(data);
+            self.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     };
-    Game.prototype.buyCard = function(index, source) {  
+    Game.prototype.buyCard = function(index, source) {
+        var self = this;
         $http.post(this.rootUrl+'/buy', {'index':index, 'source':source}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
-            this.setGame(data);
+            self.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     };
     Game.prototype.playCard = function(index) {
+        var self = this;
         $http.post(this.rootUrl+'/play', {'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
-            this.setGame(data);
+            self.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     };
     Game.prototype.endTurn = function(index) {
+        var self = this;
         $http.post(this.rootUrl+'/endturn').success(function(data) {
-            this.setGame(data);
+            self.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     };
     Game.prototype.chooseOption = function(index) {
+        var self = this;
         $http.post(this.rootUrl+'/choose', {'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
-            this.setGame(data);
+            self.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     };
     Game.prototype.pickCard = function(indices) {
+        var self = this;
         $http.post(this.rootUrl+'/pickcard', {'indices':indices}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
-            this.setGame(data);
+            self.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     };
     Game.prototype.defend = function(defending, index) {
+        var self = this;
         $http.post(this.rootUrl+'/defend', {'defending':defending, 'index':index}, {headers: {'Content-Type': 'application/json'}}).success(function(data) {
-            this.setGame(data);
+            self.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     };
     
     var games = {};
-    
     return {
         findGameWrapper: function () {
             if (games[$routeParams.gameId] === undefined) {

@@ -40,11 +40,7 @@ controllers.controller('GameController', function($scope, gameService) {
         $scope.game = game;
         $scope.playersPendingActions = $scope.getPlayersPendingActions();
     });
-    $scope.actions = gameWrapper.actions;
-    $scope.endTurn = gameWrapper.endTurn;
-    $scope.chooseOption = gameWrapper.chooseOption;
-    $scope.pickCard = gameWrapper.pickCard;
-    $scope.defend = gameWrapper.defend;
+    $scope.actions = gameWrapper;
     $scope.getPlayersPendingActions = function() {
         var pending = false;
         for (var i = 0; i < $scope.game.players.length; i++) {
@@ -64,16 +60,18 @@ controllers.controller('GameResultsController', function($scope, $cookies, $http
 });
 
 controllers.controller('ChooseOptionController', function($scope, requestModalService, gameService) {
-    $scope.request = gameService.findGameWrapper().getGame().request;
+    var gameWrapper = gameService.findGameWrapper();
+    $scope.request = gameWrapper.getGame().request;
     
     $scope.chooseOption = function(index) {
-        gameService.chooseOption(index);
+        gameWrapper.chooseOption(index);
         requestModalService.closeModal();
     };
 });
 
 controllers.controller('PickCardController', function($scope, requestModalService, gameService) {
-    $scope.request = gameService.findGameWrapper().getGame().request;
+    var gameWrapper = gameService.findGameWrapper();
+    $scope.request = gameWrapper.getGame().request;
     $scope.actions = {};
     $scope.indices = [];
     $scope.actions.pickCard = function(index) {
@@ -86,20 +84,21 @@ controllers.controller('PickCardController', function($scope, requestModalServic
         return $scope.indices.indexOf(index) > -1;
     };
     $scope.sendChoices = function() {
-        gameService.pickCard($scope.indices);
+        gameWrapper.pickCard($scope.indices);
         requestModalService.closeModal();
     };
 });
 
 controllers.controller('DefendController', function($scope, requestModalService, gameService) {
-    $scope.request = gameService.findGameWrapper().getGame().request;
+    var gameWrapper = gameService.findGameWrapper();
+    $scope.request = gameWrapper.getGame().request;
     $scope.actions = {};
     $scope.actions.pickCard = function(index) {
-        gameService.defend(true, index);
+        gameWrapper.defend(true, index);
         requestModalService.closeModal();
     };
     $scope.abortDefense = function() {
-        gameService.defend(false);
+        gameWrapper.defend(false);
         requestModalService.closeModal();
     };
 });
