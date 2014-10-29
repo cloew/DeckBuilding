@@ -1,6 +1,7 @@
 from card_wrapper import CardWrapper
 from json_helper import GetCardListJSON
 from player_wrapper import PlayerWrapper
+from player_results_wrapper import PlayerResultsWrapper
 from supervillain_stack_wrapper import SuperVillainStackWrapper
 from turn_wrapper import TurnWrapper
 
@@ -66,7 +67,6 @@ class GameWrapper:
                 
     def toResultJSONForPlayer(self, playerId):
         """ Return the more detailed JSON for the given player """
-        yourPlayer = self.players[playerId]
         json = {}
-        json['players'] = [{'points':player.calculatePoints(self.game), 'name':player.name, 'isYou':(id != playerId)} for id, player in self.players.items()]
+        json['players'] = [PlayerResultsWrapper(player, id == playerId).toJSON(self.game) for id, player in self.players.items()]
         return json
