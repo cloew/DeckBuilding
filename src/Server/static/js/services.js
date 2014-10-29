@@ -153,68 +153,77 @@ services.service('lobbiesService', function($cookies, $http, $location, UrlPolle
 });
 
 services.service('lobbyService', function($cookies, $http, $location, $routeParams, UrlPoller) {
-    var rootUrl = '/api/lobbies/';
-    var lobby = undefined;
-    var startPolling = function(parentScope, callback) {
-        UrlPoller(parentScope, '/api/lobbies/'+$routeParams.lobbyId+'/player/'+$cookies.playerId, function(data) {
-            setLobby(data);
-            callback(lobby);
+    function Lobby(rootUrl) {
+        this.rootUrl = rootUrl;
+        this.playerUrl = rootUrl+'/player/'+$cookies.playerId;
+        this.lobby = undefined;
+    };
+    Lobby.prototype.startPolling = function(parentScope, callback) {
+        var self = this;
+        UrlPoller(parentScope, this.playerUrl, function(data) {
+            self.setLobby(data);
+            callback(self.lobby);
         });
     };
-    var getLobby = function() {
-        return lobby;
+    Lobby.prototype.getLobby = function() {
+        return self.lobby;
     };
-    var setLobby = function(data) {
-        lobby = data;
-        lobby.allPlayers = [lobby.you];
-        lobby.allPlayers.push.apply(lobby.allPlayers, lobby.players);
+    Lobby.prototype.setLobby = function(data) {
+        this.lobby = data;
+        this.lobby.allPlayers = [this.lobby.you];
+        this.lobby.allPlayers.push.apply(this.lobby.allPlayers, this.lobby.players);
         if (data.gameId) {
             $location.path('/game/'+data.gameId);
         }
     };
-    var changeCharacter = function(newCharacter) {
-        $http.post(rootUrl+$routeParams.lobbyId+'/player/'+$cookies.playerId+'/changecharacter', {'character':newCharacter}).success(function(data) {
-            setLobby(data);
+    Lobby.prototype.changeCharacter = function(newCharacter) {
+        var self = this;
+        $http.post(this.playerUrl+'/changecharacter', {'character':newCharacter}).success(function(data) {
+            self.setLobby(data);
         }).error(function(error) {
             alert(error);
         });
     };
-    var changeDeck = function(role, index) {
-        $http.post(rootUrl+$routeParams.lobbyId+'/player/'+$cookies.playerId+'/changedeck', {'role':role, 'index':index}).success(function(data) {
-            setLobby(data);
+    Lobby.prototype.changeDeck = function(role, index) {
+        var self = this;
+        $http.post(this.playerUrl+'/changedeck', {'role':role, 'index':index}).success(function(data) {
+            self.setLobby(data);
         }).error(function(error) {
             alert(error);
         });
     };
-    var changeVillainCount = function(index) {
+    Lobby.prototype.changeVillainCount = function(index) {
+        var self = this;
         $http.post(rootUrl+$routeParams.lobbyId+'/player/'+$cookies.playerId+'/changenumberofvillains', {'index':index}).success(function(data) {
-            setLobby(data);
+            self.setLobby(data);
         }).error(function(error) {
             alert(error);
         });
     };
-    var changeName = function(newName) {
-        $http.post(rootUrl+$routeParams.lobbyId+'/player/'+$cookies.playerId+'/changename', {'name':newName}).success(function(data) {
-            setLobby(data);
+    Lobby.prototype.changeName = function(newName) {
+        var self = this;
+        $http.post(this.playerUrl+'/changename', {'name':newName}).success(function(data) {
+            self.setLobby(data);
         }).error(function(error) {
             alert(error);
         });
     };
-    var startGame = function() {
-        $http.post(rootUrl+$routeParams.lobbyId+'/start').success(function(data) {
+    Lobby.prototype.startGame = function() {
+        $http.post(this.rootUrl+'/start').success(function(data) {
             $location.path('/game/'+data.gameId);
         }).error(function(error) {
             alert(error);
         });
     };
+    
+    var lobbies = {};
     return {
-        getLobby: getLobby,
-        startPolling: startPolling,
-        changeCharacter: changeCharacter,
-        changeDeck: changeDeck,
-        changeVillainCount: changeVillainCount,
-        changeName: changeName,
-        startGame: startGame
+        findLobbyWrapper: function () {
+            if (lobbies[$routeParams.lobbyId] === undefined) {
+                lobbies[$routeParams.lobbyId] = new Lobby('/api/lobbies/'+$routeParams.lobbyId);
+            }
+            return lobbies[$routeParams.lobbyId];
+        }
     };
 });
 

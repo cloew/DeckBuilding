@@ -23,16 +23,16 @@ controllers.controller('LobbiesController', function($scope, lobbiesService) {
     $scope.goToLobby = lobbiesService.goToLobby;
 });
 controllers.controller('LobbyController', function($scope, lobbyService) {
-    lobbyService.startPolling($scope, function(lobby) {
+    $scope.lobbyWrapper = lobbyService.findLobbyWrapper();
+    $scope.lobbyWrapper.startPolling($scope, function(lobby) {
         $scope.lobby = lobby;
     });
     $scope.changeCharacter = function() {
-        lobbyService.changeCharacter($scope.newCharacter);
+        $scope.lobbyWrapper.changeCharacter($scope.newCharacter);
     };
     $scope.changeName = function() {
-        lobbyService.changeName($scope.newName);
+        $scope.lobbyWrapper.changeName($scope.newName);
     };
-    $scope.startGame = lobbyService.startGame;
 });
 controllers.controller('GameController', function($scope, gameService) {
     var gameWrapper = gameService.findGameWrapper();
