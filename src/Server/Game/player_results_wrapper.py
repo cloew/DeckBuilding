@@ -16,13 +16,14 @@ class PlayerResultsWrapper:
         cardsByType = {str(cardType):list(cardsForType) for cardType, cardsForType in groupby(sorted(self.player.deck, key=lambda card: card.cardType), key=lambda card: card.cardType)}
         
         cardTypes = []
-        for cardType in cardsByType:
+        for cardType in sorted(cardsByType.keys()):
             cardTypes.append(cardType)
             cardsForType = cardsByType[cardType]
             
             cardsSortedByCost = sorted(cardsForType, key=lambda card: card.calculatePoints(game))
             cards[cardType] = {str(points):GetCardListJSON(cardsForPoints, game) for points, cardsForPoints in groupby(cardsSortedByCost, key=lambda card: card.calculatePoints(game))}
-            cards[cardType]['pointValues'] = list(cards[cardType].keys())
+            cards[cardType]['total'] = sum([int(points)*len(cardsForPoints) for points, cardsForPoints in cards[cardType].items()])
+            cards[cardType]['pointValues'] = sorted([points for points in cards[cardType].keys() if points != 'total'])
             
         cards['cardTypes'] = cardTypes
         return {'points':self.player.calculatePoints(game), 'name':self.player.name, 'isYou':self.isYou, 'cards':cards}

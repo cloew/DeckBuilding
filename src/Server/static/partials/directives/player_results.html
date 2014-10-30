@@ -2,9 +2,9 @@
     <accordion>
         <accordion-group heading="{{player.isYou && 'You' || player.name}}: {{player.points}}">
             <accordion>
-                <accordion-group heading="{{cardType}}" ng-repeat="cardType in player.cards.cardTypes">
+                <accordion-group heading="{{player.cards[cardType].total}} - {{cardType}}" ng-repeat="cardType in player.cards.cardTypes">
                     <accordion>
-                        <accordion-group heading="{{points}}" ng-repeat="points in player.cards[cardType].pointValues">
+                        <accordion-group heading="{{points * player.cards[cardType][points].length}} - {{points}} {{(points === '1') && 'point' || 'points'}} per card" ng-repeat="points in player.cards[cardType].pointValues">
                             <card-list cards="player.cards[cardType][points]"></card-list>
                         </accordion-group>
                     </accordion>
