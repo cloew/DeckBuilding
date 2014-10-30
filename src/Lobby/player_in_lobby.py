@@ -1,6 +1,8 @@
 from Game.player import Player
 from Game.Characters.character_factory import CharacterFactory
-from Game.Decks.deck_factory import DeckFactory
+from Game.Decks.deck_roles import STARTING
+
+from Lobby.Settings.deck_setting import DeckSetting
 
 class PlayerInLobby:
     """ Represents a Player In the Lobby """
@@ -9,10 +11,11 @@ class PlayerInLobby:
         """ Initialize the Player """
         self.setName("")
         self.setCharacter("Green Lantern")
+        self.startingDeckSetting = DeckSetting(STARTING)
         
     def buildGamePlayer(self):
         """ Build the Game Player for this player in the Lobby """
-        self.player = Player(self.name, self.character, DeckFactory.load("Deck 1 - Starting").loadDeck())
+        self.player = Player(self.name, self.character, self.startingDeckSetting.loadDeck())
         return self.player
         
     def setName(self, name):

@@ -1,6 +1,5 @@
 from Game.game import Game
-from Game.Decks.deck_factory import DeckFactory
-from Game.Decks.deck_roles import MAIN, KICK, WEAKNESS, SUPERVILLAIN, STARTER
+from Game.Decks.deck_roles import MAIN, KICK, WEAKNESS, SUPERVILLAIN
 from Lobby.Settings.deck_setting import DeckSetting
 
 import random

@@ -1,4 +1,3 @@
-from Game.Decks.deck_roles import MAIN, KICK, WEAKNESS, SUPERVILLAIN, STARTER
 
 class DeckSettingWrapper:
     """ Represents a Game Mode and wraps its transformation into JSON """
