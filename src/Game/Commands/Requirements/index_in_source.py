@@ -1,3 +1,4 @@
+from index_in_list import IndexInList
 from Game.Sources.source_factory import SourceFactory
 
 class IndexInSource:
@@ -14,10 +15,11 @@ class IndexInSource:
     def passed(self, player, game):
         """ Return if the requirement passes """
         self.source = self.getSource(player, game)
-        passed = self.index < len(self.source)
+        indexInListRequirement = IndexInList(self.index, self.source)
         
-        if passed:
-            self.card = self.source[self.index]
+        passed = indexInListRequirement.passed(player, game)
+        self.card = indexInListRequirement.chosen
+        
         return passed
         
     def getSource(self, player, game):
