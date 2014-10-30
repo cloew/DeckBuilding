@@ -14,7 +14,7 @@ class PlayerResultsWrapper:
         
     def toJSON(self, game):
         """ Return the Player as a JSON Dictionary """
-        context = PlayerContext(self.game, None, player=self.player)
+        context = PlayerContext(game, None, player=self.player)
         
         cards = {}
         cardsByType = {str(cardType):list(cardsForType) for cardType, cardsForType in groupby(sorted(self.player.deck, key=lambda card: card.cardType), key=lambda card: card.cardType)}
