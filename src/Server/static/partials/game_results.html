@@ -1,5 +1,3 @@
 <h1>Results</h1>
 
-<div ng-repeat="player in results.players">
-    <h3>{{player.isYou && 'You' || player.name}}: {{player.points}}</h3>
-</div>
+<player-results ng-repeat="player in results.players"></player-results>

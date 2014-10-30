@@ -309,4 +309,10 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
           transclude: true,
           scope: {header: '@'},
           templateUrl: 'static/partials/directives/header_div.html'
+      }})
+    .directive('playerResults', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          templateUrl: 'static/partials/directives/player_results.html'
       }});
