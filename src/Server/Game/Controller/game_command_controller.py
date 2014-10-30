@@ -12,9 +12,12 @@ class GameCommandController(JSONController):
         command = self.buildCommand(player, game.game, self.json)
         
         if command is not None and command.canPerform(player, game.game):
-            game.game.currentTurn.perform(command)
-        
+            self.performCommand(game.game, command)
         return game.toJSONForPlayer(playerId)
         
+    def performCommand(self, game, command):
+        """ Perform the given command """
+        game.currentTurn.perform(command)
+        
     def buildCommand(self, player, game, json):
-        """ MEthod to return the command to be performed, if it cannot be constructed return None """
+        """ Method to return the command to be performed, if it cannot be constructed return None """

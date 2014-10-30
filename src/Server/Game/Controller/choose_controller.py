@@ -1,8 +1,8 @@
 from Game.Commands.Responses.choose_option import ChooseOption
 
-from Server.Game.Controller.game_command_controller import GameCommandController
+from Server.Game.Controller.game_response_controller import GameResponseController
 
-class ChooseController(GameCommandController):
+class ChooseController(GameResponseController):
     """ Controller to choose an option """
         
     def buildCommand(self, player, game, json):

@@ -1,8 +1,8 @@
 from Game.Commands.Responses.pick_card import PickCard
 
-from Server.Game.Controller.game_command_controller import GameCommandController
+from Server.Game.Controller.game_response_controller import GameResponseController
 
-class PickCardController(GameCommandController):
+class PickCardController(GameResponseController):
     """ Controller to pick a card """
         
     def buildCommand(self, player, game, json):

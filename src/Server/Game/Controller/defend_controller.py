@@ -1,8 +1,8 @@
 from Game.Commands.Responses.defend import Defend
 
-from Server.Game.Controller.game_command_controller import GameCommandController
+from Server.Game.Controller.game_response_controller import GameResponseController
 
-class DefendController(GameCommandController):
+class DefendController(GameResponseController):
     """ Controller to defend """
         
     def buildCommand(self, player, game, json):
