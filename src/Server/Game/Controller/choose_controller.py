@@ -8,9 +8,4 @@ class ChooseController(GameCommandController):
     def buildCommand(self, player, game, json):
         """ Build the Command to try and perform """
         optionIndex = self.json['index']
-        
-        command = None
-        if game.currentTurn.request is not None and optionIndex < len(game.currentTurn.request.options):
-            option = game.currentTurn.request.options[optionIndex]
-            command = ChooseOption(option, game.currentTurn)
-        return command
+        return ChooseOption(optionIndex, game.currentTurn)
