@@ -1,4 +1,4 @@
-from Game.Decks.deck_roles import MAIN, KICK, WEAKNESS, SUPERVILLAIN, STARTER
+from Server.Lobby.Settings.deck_setting_wrapper import DeckSettingWrapper
 
 class GameModeWrapper:
     """ Represents a Game Mode and wraps its transformation into JSON """
@@ -9,13 +9,7 @@ class GameModeWrapper:
         
     def toJSON(self):
         """ Return the JSON for the game mode """
-        return {MAIN:{"options":self.gameMode.potentialDecks[MAIN],
-                      "current":self.gameMode.potentialDecks[MAIN].index(self.gameMode.mainDeckId)},
-                KICK:{"options":self.gameMode.potentialDecks[KICK],
-                      "current":self.gameMode.potentialDecks[KICK].index(self.gameMode.kickDeckId)},
-                WEAKNESS:{"options":self.gameMode.potentialDecks[WEAKNESS],
-                          "current":self.gameMode.potentialDecks[WEAKNESS].index(self.gameMode.weaknessDeckId)},
-                SUPERVILLAIN:{"options":self.gameMode.potentialDecks[SUPERVILLAIN],
-                              "current":self.gameMode.potentialDecks[SUPERVILLAIN].index(self.gameMode.supervillainDeckId)},
-                "numberOfVillains":{'range':self.gameMode.possibleVillainCounts,
-                                    'index':self.gameMode.villainCountIndex}}
+        json = {role:DeckSettingWrapper(self.gameMode.deckSettings[role]).toJSON() for role in self.gameMode.deckSettings}
+        json["numberOfVillains"] = {'range':self.gameMode.possibleVillainCounts,
+                                    'index':self.gameMode.villainCountIndex}
+        return json

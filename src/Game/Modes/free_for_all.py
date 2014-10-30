@@ -1,6 +1,7 @@
 from Game.game import Game
 from Game.Decks.deck_factory import DeckFactory
 from Game.Decks.deck_roles import MAIN, KICK, WEAKNESS, SUPERVILLAIN, STARTER
+from Lobby.Settings.deck_setting import DeckSetting
 
 import random
 
@@ -10,8 +11,7 @@ class FreeForAll:
     def __init__(self):
         """ Initialize the Free For All Game Mode """
         requiredRoles = [MAIN, KICK, WEAKNESS, SUPERVILLAIN]
-        self.potentialDecks = {role:DeckFactory.findDeckIdsToFillRole(role) for role in requiredRoles}
-        self.chosenDecks = {role:self.potentialDecks[role][0] for role in requiredRoles}
+        self.deckSettings = {role:DeckSetting(role) for role in requiredRoles}
         
         self.villainCountIndex = 0
         self.possibleVillainCounts = self.getVillainCountRange()
@@ -19,10 +19,10 @@ class FreeForAll:
     def buildGame(self, lobby):
         """ Build the Game """
         players = self.getGamePlayers(lobby)
-        return Game(players, mainDeck=DeckFactory.load(self.mainDeckId).loadDeck(),
-                             kickDeck=DeckFactory.load(self.kickDeckId).loadDeck(),
-                             weaknessDeck=DeckFactory.load(self.weaknessDeckId).loadDeck(),
-                             superVillainDeck=DeckFactory.load(self.supervillainDeckId).loadDeck(number=self.numberOfVillains))
+        return Game(players, mainDeck=self.mainDeck,
+                             kickDeck=self.kickDeck,
+                             weaknessDeck=self.weaknessDeck,
+                             superVillainDeck=self.loadSupervillainDeck(number=self.numberOfVillains))
         
     def getGamePlayers(self, lobby):
         """ Return the Game Players in their proper order """
@@ -37,8 +37,7 @@ class FreeForAll:
         
     def setDeckForRole(self, role, index):
         """ Set the deck for the given role """
-        index = index % len(self.potentialDecks[role])
-        self.chosenDecks[role] = self.potentialDecks[role][index]
+        self.deckSettings[role].setDeck(index)
         
     def setNumberOfVillains(self, index):
         """ Set the number of villains to play against """
@@ -49,27 +48,26 @@ class FreeForAll:
         
     def getVillainCountRange(self):
         """ Get the possible counts for the number of villains """
-        return range(8, len(DeckFactory.load(self.supervillainDeckId).loadDeck())+1)
+        return range(8, len(self.loadSupervillainDeck())+1)
         
     @property
-    def mainDeckId(self):
-        """ Return the chosen main deck id """
-        return self.chosenDecks[MAIN]
+    def mainDeck(self):
+        """ Return the chosen main deck """
+        return self.deckSettings[MAIN].loadDeck()
         
     @property
-    def kickDeckId(self):
-        """ Return the chosen kick deck id """
-        return self.chosenDecks[KICK]
+    def kickDeck(self):
+        """ Return the chosen kick deck """
+        return self.deckSettings[KICK].loadDeck()
         
     @property
-    def weaknessDeckId(self):
-        """ Return the chosen weakness deck id """
-        return self.chosenDecks[WEAKNESS]
+    def weaknessDeck(self):
+        """ Return the chosen weakness deck """
+        return self.deckSettings[WEAKNESS].loadDeck()
         
-    @property
-    def supervillainDeckId(self):
+    def loadSupervillainDeck(self, **kwargs):
         """ Return the chosen supervillain deck id """
-        return self.chosenDecks[SUPERVILLAIN]
+        return self.deckSettings[SUPERVILLAIN].loadDeck(**kwargs)
         
     @property
     def numberOfVillains(self):
