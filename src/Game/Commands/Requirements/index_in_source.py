@@ -7,15 +7,17 @@ class IndexInSource:
         """ Initialize the requirement with the index and source type to check """
         self.index = index
         self.sourceType = sourceType
+        
         self.card = None
+        self.source = None
     
     def passed(self, player, game):
         """ Return if the requirement passes """
-        source = self.getSource(player, game)
-        passed = self.index < len(source)
+        self.source = self.getSource(player, game)
+        passed = self.index < len(self.source)
         
         if passed:
-            self.card = source[self.index]
+            self.card = self.source[self.index]
         return passed
         
     def getSource(self, player, game):
