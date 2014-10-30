@@ -1,20 +1,22 @@
 from command import Command
 
 from Game.Commands.Requirements.current_player import CurrentPlayer
+from Game.Commands.Requirements.index_in_source import IndexInSource
 from Game.Commands.Requirements.no_request import NoRequest
+from Game.Sources.source_types import HAND
 
 class PlayCard(Command):
     """ Represents a Command to play a card """
     
-    def __init__(self, card, owner):
+    def __init__(self, index, owner):
         """ Initialize the Play Card Command """
-        self.card = card
         self.owner = owner
-        Command.__init__(self, [CurrentPlayer(), NoRequest()])
+        self.cardFinder = IndexInSource(index, HAND)
+        Command.__init__(self, [CurrentPlayer(), NoRequest(), self.cardFinder])
         
     def perform(self):
         """ Perform the command """
-        coroutine = self.owner.playCardFromHand(self.card)
+        coroutine = self.owner.playCardFromHand(self.cardFinder.card)
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)
