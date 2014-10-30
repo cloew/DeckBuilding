@@ -1,5 +1,4 @@
 from Game.Characters.character_factory import CharacterFactory
-from Game.Decks.deck_factory import DeckFactory
 from Game.Effects.game_contexts import PlayerContext
 from Game.Effects.effect_runner import PerformEffects
 from Game.Events.cards_event import CardsEvent
@@ -8,13 +7,13 @@ class Player:
     """ Represents a Player in the Game """
     STANDARD_HAND_SIZE = 5
     
-    def __init__(self, name, character):
+    def __init__(self, name, character, startingDeck):
         """ Initialize a Player """
         self.name = name
         self.character = character
         
         self.nextHandSize = self.STANDARD_HAND_SIZE
-        self.deck = DeckFactory.load("Deck 1 - Starting").loadDeck()
+        self.deck = startingDeck
         self.drawHand()
         self.ongoing = []
         self.underCharacter = []

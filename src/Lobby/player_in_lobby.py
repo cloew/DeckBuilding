@@ -1,5 +1,6 @@
 from Game.player import Player
 from Game.Characters.character_factory import CharacterFactory
+from Game.Decks.deck_factory import DeckFactory
 
 class PlayerInLobby:
     """ Represents a Player In the Lobby """
@@ -11,7 +12,7 @@ class PlayerInLobby:
         
     def buildGamePlayer(self):
         """ Build the Game Player for this player in the Lobby """
-        self.player = Player(self.name, self.character)
+        self.player = Player(self.name, self.character, DeckFactory.load("Deck 1 - Starting").loadDeck())
         return self.player
         
     def setName(self, name):
