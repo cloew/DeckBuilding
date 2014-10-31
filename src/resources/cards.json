@@ -2216,7 +2216,7 @@
                                              "criteria":[{"type":"FIXED",
                                                          "field":"name",
                                                          "operation":"==",
-                                                         "value":"PUNCH"}],
+                                                         "value":"Punch"}],
                                              "sources":["DISCARD_PILE"],
                                              "then":[{"type":"MOVE_CARD",
                                                       "from":"EVENT",
