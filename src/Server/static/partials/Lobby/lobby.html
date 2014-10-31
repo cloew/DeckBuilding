@@ -9,6 +9,9 @@
         <character character="lobby.you.character" thumbnail="true"></character>
         <input ng-model="newCharacter" />
         <button ng-click="changeCharacter()">Change Character</button>
+        <div class="col-md-3">
+            <deck-picker name="Starting Deck" deck="lobby.you.starting" role="STARTING"></deck-picker>
+        </div>
     </div>
     <div style="margin-left:25px;margin-right:25px;">
         <div class="row-container" ng-repeat="player in lobby.allPlayers">

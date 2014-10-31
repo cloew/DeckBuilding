@@ -2365,6 +2365,18 @@
                     "power":1}]
 },
 {
+    "id":"Deck 2 - Punch",
+    "name":"Punch",
+    "type":"Starter",
+    "image":"Deck2/Core/punch.jpg",
+    "cost":{"type":"FIXED",
+            "cost":0},
+    "points":{"type":"FIXED",
+              "points":0},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":1}]
+},
+{
     "id":"Ra's al Ghul",
     "name":"Ra's al Ghul",
     "type":"Villain",
@@ -3373,6 +3385,16 @@
     "name":"Vulnerability",
     "type":"Starter",
     "image":"Deck1/Core/vulnerability.jpg",
+    "cost":{"type":"FIXED",
+            "cost":0},
+    "points":{"type":"FIXED",
+              "points":0}
+},
+{
+    "id":"Deck 2 - Vulnerability",
+    "name":"Vulnerability",
+    "type":"Starter",
+    "image":"Deck2/Core/vulnerability.jpg",
     "cost":{"type":"FIXED",
             "cost":0},
     "points":{"type":"FIXED",
