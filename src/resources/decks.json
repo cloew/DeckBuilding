@@ -348,5 +348,15 @@
              {"id":"Blue Lantern Power Ring",
               "count":10}]
     
+},
+{
+    "id":"Test - Starting",
+    "name":"Starting",
+    "role":"STARTING",
+    "type":"STARTING",
+    "cards":[{"id":"Parasite",
+              "count":7},
+             {"id":"Deck 2 - Punch",
+              "count":3}]
 }
 ]
