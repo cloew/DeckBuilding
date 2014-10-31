@@ -1,29 +1,36 @@
-<div class="col-md-9">
-    <h2>Lobby #{{lobby.id}}</h2>
-    <button ng-click="lobbyWrapper.startGame();">Start Game</button>
+<div>
+    <div class="col-md-9">
+        <h2>Lobby #{{lobby.id}}</h2>
+        <button ng-click="lobbyWrapper.startGame();">Start Game</button>
 
-    <div>
-        <h1>You are: {{lobby.you.name}} as {{lobby.you.character.name}}</h1>
-        <input ng-model="newName" />
-        <button ng-click="changeName()">Change Name</button>
-        <character character="lobby.you.character" thumbnail="true"></character>
-        <input ng-model="newCharacter" />
-        <button ng-click="changeCharacter()">Change Character</button>
-        <div class="col-md-3">
-            <deck-picker name="Starting Deck" deck="lobby.you.starting" role="STARTING"></deck-picker>
+        <div class="col-md-12">
+            <h1>You are: {{lobby.you.name}} as {{lobby.you.character.name}}</h1>
+            <div class="col-md-12">
+                <input ng-model="newName" />
+                <button ng-click="changeName()">Change Name</button>
+            </div>
+            <div class="col-md-12">
+                <character character="lobby.you.character" thumbnail="true"></character>
+                <input ng-model="newCharacter" />
+                <button ng-click="changeCharacter()">Change Character</button>
+            </div>
+            <div class="col-md-4">
+                <deck-picker name="Starting Deck" deck="lobby.you.starting" role="STARTING"></deck-picker>
+            </div>
+            <div class="clearfix visible-md-block"></div>
+        </div>
+        <div class="col-md-12" style="margin-left:25px;margin-right:25px;">
+            <div class="row-container" ng-repeat="player in lobby.allPlayers">
+                <character character="player.character" thumbnail="true"></character>
+                <h2 style="vertical-align: middle;">{{player.name}}</h2>
+            </div>
         </div>
     </div>
-    <div style="margin-left:25px;margin-right:25px;">
-        <div class="row-container" ng-repeat="player in lobby.allPlayers">
-            <character character="player.character" thumbnail="true"></character>
-            <h2 style="vertical-align: middle;">{{player.name}}</h2>
-        </div>
+    <div class="col-md-3">
+        <deck-picker name="Main Deck" deck="lobby.gamemode.MAIN" role="MAIN"></deck-picker>
+        <deck-picker name="Kick" deck="lobby.gamemode.KICK" role="KICK"></deck-picker>
+        <deck-picker name="Weakness" deck="lobby.gamemode.WEAKNESS" role="WEAKNESS"></deck-picker>
+        <deck-picker name="Super Villain" deck="lobby.gamemode.SUPERVILLAIN" role="SUPERVILLAIN"></deck-picker>
+        <villain-count-picker name="Super Villain Count" villain-count-info="lobby.gamemode.numberOfVillains"></villain-count-picker>
     </div>
-</div>
-<div class="col-md-3">
-    <deck-picker name="Main Deck" deck="lobby.gamemode.MAIN" role="MAIN"></deck-picker>
-    <deck-picker name="Kick" deck="lobby.gamemode.KICK" role="KICK"></deck-picker>
-    <deck-picker name="Weakness" deck="lobby.gamemode.WEAKNESS" role="WEAKNESS"></deck-picker>
-    <deck-picker name="Super Villain" deck="lobby.gamemode.SUPERVILLAIN" role="SUPERVILLAIN"></deck-picker>
-    <villain-count-picker name="Super Villain Count" villain-count-info="lobby.gamemode.numberOfVillains"></villain-count-picker>
 </div>
