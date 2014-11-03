@@ -6,8 +6,7 @@ class ComparisonFilterParameter(Parameter):
     
     def __init__(self, optional=False, default=None):
         """ Initialize the Comparison Filter Parameter """
-        self.field = "criteria"
-        Parameter.__init__(self, optional=optional, default=default)
+        Parameter.__init__(self, "criteria", optional=optional, default=default)
     
     def __getvalue__(self, data):
         """ Build the Filter """

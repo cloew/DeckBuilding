@@ -7,8 +7,7 @@ class IntersectionFilterParameter(Parameter):
     
     def __init__(self, optional=False, default=None):
         """ Initialize the Intersection Filter Parameter """
-        self.field = "criterion"
-        Parameter.__init__(self, optional=optional, default=default)
+        Parameter.__init__(self, "criterion", optional=optional, default=default)
     
     def __getvalue__(self, data):
         """ Build the Filter """
