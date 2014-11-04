@@ -2,11 +2,6 @@
 
 var services = angular.module('DeckBuildingServices', ['ui.bootstrap']);
 
-function Game($location, notificationService, requestModalService, UrlPoller) {
-
-}
-
-
 services.factory('gameService', function($cookies, $http, $location, $routeParams, notificationService, requestModalService, UrlPoller) {
     function Game(rootUrl) {
         this.rootUrl = rootUrl;
@@ -281,8 +276,13 @@ services.service('examineDeckModalService', function($modal) {
 
 services.service('requestModalService', function($modal) {
     var modal = undefined;
+    var currentRequest = undefined;
     var modalIsOpen = false;
     var openRequestModal = function(request) {
+        currentRequest = request;
+        openModal();
+    };
+    var openModal = function() {
         var controllers = {'CHOICE':{'templateUrl':'static/partials/choose_option.html',
                                      'controller':'ChooseOptionController'},
                            'DEFEND':{'templateUrl':'static/partials/defend.html',
@@ -292,12 +292,10 @@ services.service('requestModalService', function($modal) {
                            'PICK_UP_TO_N_CARD':{'templateUrl':'static/partials/pick_up_to_n_cards.html',
                                                 'controller':'PickCardController'}};
     
-        var controller = controllers[request.type];
+        var controller = controllers[currentRequest.type];
         modalIsOpen = true;
         modal = $modal.open({
           templateUrl: controller.templateUrl,
-          backdrop: 'static',
-          keyboard : false,
           controller: controller.controller,
           size: 'lg'
         });
@@ -317,6 +315,7 @@ services.service('requestModalService', function($modal) {
         getModal: getModal,
         hasModal: hasModal,
         openRequestModal: openRequestModal,
+        openModal: openModal,
         closeModal: closeModal
     };
 });

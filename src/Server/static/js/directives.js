@@ -202,6 +202,9 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
           compile: function(element, attrs){
             if (attrs.isYou === undefined) { attrs.isYou = false; }
           },
+          controller: function($scope, requestModalService) {
+            $scope.requestService = requestModalService;
+          },
           templateUrl: 'static/partials/directives/player.html'
       }})
     .directive('hand', function() {
