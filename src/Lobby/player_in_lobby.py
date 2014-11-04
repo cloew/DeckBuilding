@@ -28,5 +28,4 @@ class PlayerInLobby:
         
     def setDeck(self, index):
         """ Set the deck for the given role """
-        print "Setting the Starting Deck"
         self.startingDeckSetting.setDeck(index)
