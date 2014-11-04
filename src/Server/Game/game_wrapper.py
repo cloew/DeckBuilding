@@ -49,7 +49,7 @@ class GameWrapper:
         yourPlayer = self.players[playerId]
         
         isYourTurn = yourPlayer is self.game.currentTurn.player
-        includeActions = isYourTurn and (request is None or yourPlayer in request.players)
+        includeActions = isYourTurn and request is None
                     
         requestWrapper = None
         if request is not None:
