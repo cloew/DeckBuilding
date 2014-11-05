@@ -26,12 +26,14 @@ class Character:
             addOngoingEffects(self)
             
     def activate(self, turn):
-        """ Activate the character and add the ongoing effects if it is the player's turn """
+        """ Activate the character and add the relevant ongoing effects """
         wasInactive = self.active == False
         self.active = True
         if wasInactive and turn.player.character is self:
             self.addOngoingEffects(turn.addOngoingEffects)
+        turn.ongoingEffects.registerTriggers(self.outOfTurnTriggerEffects)
         
-    def deactivate(self):
-        """ Deactivate the character """
+    def deactivate(self, turn):
+        """ Deactivate the character and any out of turn effects that may be watched """
         self.active = False
+        turn.ongoingEffects.unregisterTriggers(self.outOfTurnTriggerEffects)

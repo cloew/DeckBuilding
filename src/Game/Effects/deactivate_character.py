@@ -4,4 +4,4 @@ class DeactivateCharacter:
         
     def perform(self, context):
         """ Perform the Game Effect """
-        context.player.character.deactivate()
+        context.player.character.deactivate(context.owner)

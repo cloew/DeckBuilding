@@ -36,6 +36,10 @@ class OngoingEffects:
         """ Unregister the given trigger """
         self.eventListener.unregisterTriggers([trigger])
         
+    def unregisterTriggers(self, triggers):
+        """ Unregister the given trigger """
+        self.eventListener.unregisterTriggers(triggers)
+        
     def registerActivatable(self, card, activatable):
         """ Register the given activatable """
         if activatable is not None:
