@@ -110,6 +110,15 @@
     "topCard":"Vandal Savage"
 },
 {
+    "id":"Test - Super Villains",
+    "name":"Super Villains",
+    "role":"SUPERVILLAIN",
+    "type":"FIXED_TOP",
+    "cards":[{"id":"Trigon",
+              "count":1}],
+    "topCard":"Deathstroke"
+},
+{
     "id":"Deck 1 - Main Deck",
     "name":"Deck 1",
     "role":"MAIN",
@@ -354,7 +363,7 @@
     "name":"Starting",
     "role":"STARTING",
     "type":"STARTING",
-    "cards":[{"id":"Parasite",
+    "cards":[{"id":"Super Speed",
               "count":7},
              {"id":"Deck 2 - Punch",
               "count":3}]

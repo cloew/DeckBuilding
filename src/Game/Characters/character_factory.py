@@ -14,6 +14,7 @@ CHARACTER_FILENAME = resource_manager.GetResourcePath("characters.json")
 
 parameters = [PrimitiveParameter("name"),
               ComplexParameter("triggers", TriggerFactory.loadAll, optional=True, default=[]),
+              ComplexParameter("outOfTurnTriggers", TriggerFactory.loadAll, optional=True, default=[]),
               ComplexParameter("activatableEffect", ActivatableFactory.load, optional=True),
               PrimitiveParameter("goesFirst", optional=True),
               PrimitiveParameter("image", optional=True)]

@@ -1,6 +1,9 @@
 from Game.Commands.Requests.defend_request import DefendRequest
 from Game.Effects.effect_runner import PerformEffects
+
 from Game.Events.cards_event import CardsEvent
+from Game.Events.defend_event import DefendEvent
+
 from Game.Notifications.cards_notification import CardsNotification, DEFENDED
 from Game.Notifications.notification import Notification, HIT_BY_ATTACK
 from Game.Sources.source_types import HAND
@@ -22,11 +25,19 @@ class Attack:
                 targets.append(foe)
                 context.addNotification(Notification(HIT_BY_ATTACK, foe))
             else:
+                context.addNotification(CardsNotification(DEFENDED, foe, [defended]))
                 playerContext = context.getPlayerContext(foe)
+                
+                coroutine = context.owner.ongoingEffects.send(DefendEvent(defended, playerContext))
+                try:
+                    response = yield coroutine.next()
+                    while True:
+                        response = yield coroutine.send(response)
+                except StopIteration:
+                    pass
+                
                 source = playerContext.loadSource(request.findSourceFor(defended))
                 event = CardsEvent([defended], source, playerContext)
-                context.addNotification(CardsNotification(DEFENDED, foe, [defended]))
-                
                 coroutine = PerformEffects(defended.defenseEffects, event.context)
                 try:
                     response = yield coroutine.next()

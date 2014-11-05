@@ -64,10 +64,14 @@ class Player:
         del otherList[:]
         
     def addStartingEffects(self, addOngoingEffects):
-        """ Add Starting Effects for the current player """            
+        """ Add Starting Effects for the current player """
         for card in self.ongoing:
             addOngoingEffects(card)
         self.character.addOngoingEffects(addOngoingEffects)
+        
+    def addOutOfTurnEffects(self, addOngoingEffects):
+        """ Add Starting Effects for the current player """
+        self.character.addOutOfTurnEffects(addOngoingEffects)
         
     @property
     def discardPile(self):

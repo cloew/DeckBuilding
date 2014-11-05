@@ -38,6 +38,8 @@ class Turn:
             
     def start(self):
         """ Start the Turn """
+        self.ongoingEffects.addOutOfTurnEffects(self.game)
+        
         coroutine = self.game.superVillainStack.performFirstAppearanceEffects(self.game)
         try:
             response = yield coroutine.next()

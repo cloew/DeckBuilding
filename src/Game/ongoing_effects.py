@@ -13,9 +13,16 @@ class OngoingEffects:
         """ Add the Starting Effects for the Turn """
         game.currentTurn.player.addStartingEffects(self.addOngoingEffects)
         
+    def addOutOfTurnEffects(self, game):
+        """ Add the Starting Effects for the Turn """
+        game.currentTurn.player.addOutOfTurnEffects(self.registerOutOfTurnEffects)
+        
     def addOngoingEffects(self, card):
         self.registerTriggers(card.triggerEffects)
         self.registerActivatable(card, card.activatableEffect)
+        
+    def registerOutOfTurnEffects(self, card):
+        self.registerTriggers(card.outOfTurnTriggerEffects)
         
     def registerTrigger(self, trigger):
         """ Register the given trigger """

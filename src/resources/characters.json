@@ -75,6 +75,24 @@
                            "power":1}}]
 },
 {
+    "name":"Booster Gold",
+    "image":"booster_gold.jpg",
+    "triggers":[{"type":"CARD_PLAYED",
+                 "singleUse":false,
+                 "condition":{"type":"MATCHING",
+                              "criteria":{"type":"FIXED",
+                                          "field":"isDefense",
+                                          "operation":"==",
+                                          "value":true},
+                              "source":"EVENT"},
+                 "effect":{"type":"GAIN_POWER",
+                           "power":1}}],
+    "outOfTurnTriggers":[{"type":"DEFEND",
+                          "singleUse":false,
+                          "effect":{"type":"DRAW",
+                                    "count":1}}]
+},
+{
     "name":"Cyborg",
     "image":"cyborg.jpg",
     "triggers":[{"type":"CARD_PLAYED",
