@@ -2,6 +2,7 @@ from and_condition import AndCondition
 from enough_power import EnoughPower
 from filter_results import FilterResults
 from has_cards import HasCards
+from is_player_character import IsPlayerCharacter
 from is_player_turn import IsPlayerTurn
 from matching import Matching
 from not_condition import NotCondition
@@ -22,6 +23,7 @@ from kao_factory.Parameter.primitive_parameter import PrimitiveParameter
 
 ConditionFactory = TypedFactory('type', {"ENOUGH_POWER":Factory(EnoughPower, [PrimitiveParameter("power")]),
                                          "FILTER_RESULTS":Factory(FilterResults, [PrimitiveParameter("source"), FilterParameter(), PrimitiveParameter("number", optional=True)]),
+                                         "IS_PLAYER_CHARACTER":Factory(IsPlayerCharacter, []),
                                          "IS_PLAYER_TURN":Factory(IsPlayerTurn, []),
                                          "HAS_CARDS":Factory(HasCards, [PrimitiveParameter("source"), IntersectionFilterParameter(optional=True)]),
                                          "MATCHING":Factory(Matching, [PrimitiveParameter("source"), ComplexParameter("criteria", CriteriaFactory.load, optional=True), PrimitiveParameter("number", optional=True)]),

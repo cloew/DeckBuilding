@@ -12,7 +12,7 @@ class Character:
         self.image = image
         self.active = True
         
-        for trigger in triggers:
+        for trigger in triggers + self.outOfTurnTriggerEffects:
             trigger.parent = self
         
     def addOngoingEffects(self, addOngoingEffects):

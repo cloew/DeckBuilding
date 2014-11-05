@@ -13,8 +13,8 @@ class Trigger:
         
     def receive(self, event):
         """ Receive the event """
-        if self.condition is None or self.condition.evaluate(event.context):
-            context = self.getTriggerContext(event)
+        context = self.getTriggerContext(event)
+        if self.condition is None or self.condition.evaluate(context):
             if self.singleUse:
                 context.owner.unregisterTrigger(self)
         
