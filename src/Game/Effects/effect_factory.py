@@ -31,6 +31,7 @@ from Game.Effects.look_at_top import LookAtTop
 from Game.Effects.modify_hand_size import ModifyHandSize
 from Game.Effects.move_card import MoveCard
 from Game.Effects.ongoing import Ongoing
+from Game.Effects.pass_cards import PassCards
 from Game.Effects.per_foe import PerFoe
 from Game.Effects.per_match import PerMatch
 from Game.Effects.pick_cards import PickCards
@@ -93,6 +94,7 @@ EffectFactory = TypedFactory('type', {"ACTIVATE_CHARACTER":Factory(ActivateChara
                                       "MOD_HAND_SIZE":Factory(ModifyHandSize, [PrimitiveParameter("change")]),
                                       "MOVE_CARD":Factory(MoveCard, [PrimitiveParameter("from"), PrimitiveParameter("to")]),
                                       "ONGOING":Factory(Ongoing, []),
+                                      "PASS_CARDS":Factory(PassCards, [PrimitiveParameter("source")]),
                                       "PLAY":Factory(Play, [PrimitiveParameter("source"), PrimitiveParameter("returnTo", optional=True)]),
                                       "POWER_MOD":Factory(ChangePowerModifier, [PrimitiveParameter("modifier")]),
                                       "PUT_ON_BOTTOM":Factory(PutOnBottom, [PrimitiveParameter("from"), PrimitiveParameter("to")]),

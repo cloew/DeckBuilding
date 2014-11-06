@@ -11,7 +11,9 @@ class MoveCard:
         """ Perform the Game Effect """
         fromSource = context.loadSource(self.fromSourceType)
         toSource = context.loadSource(self.toSourceType)
+        self.moveCards(fromSource, toSource)
         
+    def moveCards(self, fromSource, toSource):
         for card in list(fromSource):
             fromSource.remove(card)
             toSource.add(card)
