@@ -194,6 +194,18 @@
                            "count":1}}]
 },
 {
+    "name":"Red Tornado",
+    "image":"red_tornado.jpg",
+    "activatableEffect":{"singleUse":true,
+                         "condition":{"type":"FILTER_RESULTS",
+                                      "number":4,
+                                      "source":"DISCARD_PILE",
+                                      "filter":{"type":"UNIQUE",
+                                                "field":"cardType"}},
+                         "effects":[{"type":"GAIN_POWER",
+                                     "power":2}]}
+},
+{
     "name":"Shazam",
     "image":"shazam.jpg",
     "activatableEffect":{"singleUse":false,
