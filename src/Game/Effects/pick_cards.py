@@ -51,7 +51,7 @@ class PickCards(ConditionalEffect):
             if len(possibleCards) == self.numberOfCards and self.AUTO_PICK:
                 cards = possibleCards
             else:
-                cards = yield self.REQUEST_CLASS(possibleCards, context.player, self.numberOfCards, self.toDescription)
+                cards = yield self.buildRequest(possibleCards, context)
                 
             event = self.buildEvent(cards, possibleCardsPerSource, context)
         
@@ -70,6 +70,10 @@ class PickCards(ConditionalEffect):
                 response = yield coroutine.send(response)
         except StopIteration:
             pass
+            
+    def buildRequest(self, possibleCards, context):
+        """ Build the Request """
+        return self.REQUEST_CLASS(possibleCards, context.player, self.numberOfCards, self.toDescription)
                 
     def findPossibleCards(self, context):
         """ Return the possible cards """
