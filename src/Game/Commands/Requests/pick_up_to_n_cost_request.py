@@ -1,5 +1,6 @@
+from request import Request
 
-class PickUpToNCostRequest:
+class PickUpToNCostRequest(Request):
     """ Represents a Request to Pick Up to Some Cost of Cards """
     
     def __init__(self, cards, player, cost, toDescription):

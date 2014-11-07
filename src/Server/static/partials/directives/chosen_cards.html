@@ -1,6 +1,6 @@
 <div>
     <h2 ng-hide="request.number === 1">Chosen Cards</h2>
     <div style="display: inline-block; width: 100%;" ng-hide="request.number === 1">
-        <action-card size="'medium'" card="card" index="$index" ng-repeat="card in request.cards" ng-show="hasCard($index)" include-card-actions="false"></action-card>
+        <action-card size="'medium'" card="card" index="$index" ng-repeat="card in request.cards" ng-show="hasChosenCard($index)" include-card-actions="false"></action-card>
     </div>
 </div>

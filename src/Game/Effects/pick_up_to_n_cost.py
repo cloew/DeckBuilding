@@ -10,8 +10,8 @@ class PickUpToNCost(PickCards):
     def __init__(self, sourceTypes, cost, toDescription, thenEffects, leftoverCardEffects=[]):
         """ Initialize the options """
         self.cost = cost
-        PickCards.__init__(self, sourceTypes, 1, toDescription, thenEffects, criteria=FixedCriteria("cost", self.cost, "<="), leftoverCardEffects=[])
+        PickCards.__init__(self, sourceTypes, 1, toDescription, thenEffects, criteria=[FixedCriteria("cost", self.cost, "<=")], leftoverCardEffects=[])
         
     def buildRequest(self, possibleCards, context):
         """ Build the Request """
-        return self.REQUEST_CLASS(possibleCards, context.player, self.cost, self.toDescription)
+        return self.REQUEST_CLASS([card for card in possibleCards if card.cost <= self.cost], context.player, self.cost, self.toDescription)

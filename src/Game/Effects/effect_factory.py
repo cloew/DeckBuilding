@@ -132,7 +132,7 @@ EffectFactory.addFactory("PICK_UP_TO_ALL_CARDS", Factory(PickUpToAllCards, [Prim
                                                                             ComplexParameter("leftoverCardEffects", EffectFactory.loadAll, optional=True, default=[])]))
 EffectFactory.addFactory("PICK_UP_TO_N_CARDS", Factory(PickUpToNCards, [PrimitiveParameter("sources"), PrimitiveParameter("number"), PrimitiveParameter("to"), 
                                                                         ComplexParameter("then", EffectFactory.loadAll), ComplexParameter("criteria", CriteriaFactory.loadAll, optional=True)]))
-EffectFactory.addFactory("PICK_UP_TO_N_COST", Factory(PickUpToNCards, [PrimitiveParameter("sources"), PrimitiveParameter("cost"), PrimitiveParameter("to"), 
+EffectFactory.addFactory("PICK_UP_TO_N_COST", Factory(PickUpToNCost, [PrimitiveParameter("sources"), PrimitiveParameter("cost"), PrimitiveParameter("to"), 
                                                                        ComplexParameter("then", EffectFactory.loadAll), ComplexParameter("criteria", CriteriaFactory.loadAll, optional=True)]))
 EffectFactory.addFactory("PICK_TYPE", Factory(PickType, [PrimitiveParameter("source"), ComplexParameter("then", EffectFactory.loadAll), ComparisonFilterParameter(optional=True)]))
 EffectFactory.addFactory("PLAY_OR_HAVE_PLAYED", Factory(PlayOrHavePlayed, [ComplexParameter("effect", EffectFactory.load), ComplexParameter("criteria", CriteriaFactory.load)]))

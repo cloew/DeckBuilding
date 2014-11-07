@@ -335,6 +335,8 @@
               "count":2},
              {"id":"Killer Croc",
               "count":2},
+             {"id":"Larfleeze",
+              "count":1},
              {"id":"Manhunter",
               "count":6},
              {"id":"Ocean Master",
@@ -363,15 +365,7 @@
     "name":"Starting",
     "role":"STARTING",
     "type":"STARTING",
-    "cards":[{"id":"Super Speed",
-              "count":2},
-             {"id":"Deck 2 - Punch",
-              "count":2},
-             {"id":"Kid Flash",
-              "count":2},
-             {"id":"Batarang",
-              "count":2},
-             {"id":"The Penguin",
-              "count":2}]
+    "cards":[{"id":"Larfleeze",
+              "count":10}]
 }
 ]

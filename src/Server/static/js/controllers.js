@@ -80,8 +80,53 @@ controllers.controller('PickCardController', function($scope, requestModalServic
             $scope.sendChoices();
         }
     };
-    $scope.hasCard = function(index) {
+    $scope.hasChosenCard = function(index) {
         return $scope.indices.indexOf(index) > -1;
+    };
+    $scope.isNotAvailable = function(index) {
+        return $scope.indices.indexOf(index) > -1;
+    };
+    $scope.sendChoices = function() {
+        gameWrapper.pickCard($scope.indices);
+        requestModalService.closeModal();
+    };
+});
+
+controllers.controller('PickNCostController', function($scope, requestModalService, gameService) {
+    var gameWrapper = gameService.findGameWrapper();
+    $scope.request = gameWrapper.getGame().request;
+    $scope.actions = {};
+    $scope.indices = [];
+    $scope.tooCostlyIndices = [];
+    $scope.remainingCost = $scope.request.cost;
+    $scope.actions.pickCard = function(index) {
+        $scope.indices.push(index);
+        $scope.remainingCost -= $scope.request.cards[index].cost;
+        $scope.trackUnavailableIndices();
+        if ($scope.shouldSend()) {
+            $scope.sendChoices();
+        }
+    };
+    $scope.trackUnavailableIndices = function() {
+        for (var i = 0; i < $scope.request.cards.length; i++) {
+            if ($scope.request.cards[i].cost > $scope.remainingCost) {
+                $scope.tooCostlyIndices.push(i);
+            }
+        }
+    };
+    $scope.shouldSend = function() {
+        for (var i = 0; i < $scope.request.cards.length; i++) {
+            if (!$scope.isNotAvailable(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    $scope.hasChosenCard = function(index) {
+        return $scope.indices.indexOf(index) > -1;
+    };
+    $scope.isNotAvailable = function(index) {
+        return $scope.hasChosenCard(index) || $scope.tooCostlyIndices.indexOf(index) > -1;
     };
     $scope.sendChoices = function() {
         gameWrapper.pickCard($scope.indices);

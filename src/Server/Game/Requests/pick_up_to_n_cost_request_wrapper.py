@@ -6,8 +6,7 @@ class PickUpToNCostRequestWrapper(PickCardRequestWrapper):
         
     def toJSON(self, includeActions=False):
         """ Return the request as a JSON Dictionary """
-        json = PickCardRequestWrapper.toJSON(self, includeActions=includeActions)
-        del json['number']
+        json = PickCardRequestWrapper.toCoreJSON(self, includeActions=includeActions)
         json['type'] = 'PICK_UP_TO_N_COST'
         json['cost'] = self.request.cost
         return json

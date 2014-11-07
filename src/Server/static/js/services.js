@@ -290,7 +290,9 @@ services.service('requestModalService', function($modal) {
                            'PICK_CARD':{'templateUrl':'static/partials/pick_card.html',
                                         'controller':'PickCardController'},
                            'PICK_UP_TO_N_CARD':{'templateUrl':'static/partials/pick_up_to_n_cards.html',
-                                                'controller':'PickCardController'}};
+                                                'controller':'PickCardController'},
+                           'PICK_UP_TO_N_COST':{'templateUrl':'static/partials/pick_up_to_n_cost.html',
+                                                'controller':'PickNCostController'}};
     
         var controller = controllers[currentRequest.type];
         modalIsOpen = true;
