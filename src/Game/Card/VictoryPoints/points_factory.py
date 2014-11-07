@@ -1,5 +1,6 @@
 from Game.Card.VictoryPoints.conditional_points import ConditionalPoints
 from Game.Card.VictoryPoints.fixed_points import FixedPoints
+from Game.Card.VictoryPoints.per_n_cards_in_deck import PerNCardsInDeck
 from Game.Card.VictoryPoints.per_result_points import PerResultPoints
 
 from Game.Effects.effect_factory import EffectFactory
@@ -12,6 +13,7 @@ from kao_factory.Parameter.complex_parameter import ComplexParameter
 from kao_factory.Parameter.primitive_parameter import PrimitiveParameter
 
 PointsFactory = TypedFactory('type', {"FIXED":Factory(FixedPoints, [PrimitiveParameter("points")]),
+                                      "PER_N_CARDS_IN_DECK":Factory(PerNCardsInDeck, [PrimitiveParameter("number")]),
                                       "PER_RESULT":Factory(PerResultPoints, [ComplexParameter("filter", FilterFactory.load), PrimitiveParameter("points", optional=True)])})
 PointsFactory.addFactory("CONDITIONAL", Factory(ConditionalPoints, [ComplexParameter("condition", ConditionFactory.load),
                                                                     ComplexParameter("points", PointsFactory.load),
