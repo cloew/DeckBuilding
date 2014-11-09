@@ -11,9 +11,12 @@ from Game.Sources.source_types import PLAYED, EVENT
 class NthUnique:
     """ Condition to check if a condition is the nth uniqe card played """
     
-    def __init__(self, n, criterion):
+    def __init__(self, n, criterion=[], field=None):
         """ Initialize the condition with the value of n """
         self.n = n
+        if field is None:
+            field = "name"
+        self.field = field
         self.playedFilter = self.getFilters(criterion)
         self.eventCondition = self.getEventCondition(criterion)
         
@@ -23,10 +26,10 @@ class NthUnique:
         
     def getFilters(self, criterion):
         """ Return the filter """
-        filters = [UniqueFilter("name", PLAYED)] + [ComparisonFilter(PLAYED, criteria) for criteria in criterion]
+        filters = [UniqueFilter(self.field, PLAYED)] + [ComparisonFilter(PLAYED, criteria) for criteria in criterion]
         return IntersectionFilter(filters)
         
     def getEventCondition(self, criterion):
         """ Return the event condition """
-        conditions = [Unique("name", PLAYED)] + [Matching(EVENT, criteria) for criteria in criterion]
+        conditions = [Unique(self.field, PLAYED)] + [Matching(EVENT, criteria) for criteria in criterion]
         return AndCondition(conditions)

@@ -1,5 +1,16 @@
 [
 {
+    "name":"Animal Man",
+    "image":"animal_man.jpg",
+    "triggers":[{"type":"CARD_PLAYED",
+                 "singleUse":true,
+                 "condition":{"type":"NTH_UNIQUE",
+                              "n":3,
+                              "field":"cardType"},
+                 "effect":{"type":"GAIN_POWER",
+                           "power":2}}]
+},
+{
     "name":"Aquaman",
     "image":"aquaman.jpg",
     "activatableEffect":{"singleUse":false,
