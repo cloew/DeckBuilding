@@ -1972,7 +1972,7 @@
                                                                   "value":"ODD"},
                                                       "source":"EVENT"},
                                          "effects":[{"type":"GAIN_TOP_CARD",
-                                                     "from":"WEAKNES"}]}]}]}]
+                                                     "from":"WEAKNESS"}]}]}]}]
 },
 {
     "id":"Nekron",
