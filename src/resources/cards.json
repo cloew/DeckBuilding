@@ -1816,7 +1816,7 @@
                     "count":2},
                    {"type":"ATTACK_EACH_FOE",
                     "effects":[{"type":"PICK_RANDOM",
-                                "source":"EVENT",
+                                "source":"HAND",
                                 "then":{"type":"DISCARD",
                                         "source":"EVENT"}}]},
                    {"type":"PLAY_OR_HAVE_PLAYED",
