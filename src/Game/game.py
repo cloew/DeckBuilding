@@ -7,6 +7,8 @@ from turn import Turn
 from Game.Commands.start_turn import StartTurn
 from Game.Decks.deck_factory import DeckFactory
 from Game.Notifications.notification_tracker import NotificationTracker
+from Game.Results.game_results import GameResults
+from Game.Results.player_results import PlayerResults
 
 from kao_deck.deck import Deck
 
@@ -31,18 +33,19 @@ class Game:
         self.turnCoroutine = self.pickTurn()
         self.nextTurn()
         self.isOver = False
+        self.results = None
         
     def endTurn(self):
         """ End the turn """
         self.currentTurn.cleanup()
         self.lineUp.refill()
         self.superVillainStack.refill()
-        self.isOver = self.gameOver.isOver
+        
+        self.isOver = self.__isOver
         if not self.isOver:
             self.nextTurn()
-        else:
-            for player in self.players:
-                player.cleanupForEndOfGame()
+        elif self.results is None:
+            self.end()
             
     def nextTurn(self):
         """ Set the current turn to be the next turn """
@@ -54,7 +57,21 @@ class Game:
         while True:
             for player in self.players:
                 yield Turn(player, self)
+                
+    def end(self):
+        """ End the game """
+        for player in self.players:
+            player.cleanupForEndOfGame()
+        playerResults = [PlayerResults(player, self) for player in self.players]
+        self.results = GameResults(playerResults)
             
     def __repr__(self):
         """ Return the String Representation of the Game """
         return "<Game: Line-up:{0}>".format(self.lineUp)
+        
+    @property
+    def __isOver(self):
+        """ Return if the game is Over """
+        print "Game Over Condition Met:", self.gameOver.isOver
+        print "Has Results:", self.results is not None
+        return self.gameOver.isOver or self.results is not None
