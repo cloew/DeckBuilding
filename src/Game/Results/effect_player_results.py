@@ -14,7 +14,3 @@ class EffectPlayerResults(PlayerResults):
     def points(self):
         """ Return the points """
         return self.vpResults.points
-        
-    def __cmp__(self, other):
-        """ Compare this result to another result """
-        return other.points.__cmp__(self.points)
