@@ -68,7 +68,8 @@ class GameWrapper:
     def toResultJSONForPlayer(self, playerId):
         """ Return the more detailed JSON for the given player """
         json = {}
-        playersJSON = [PlayerResultsWrapper(player, id == playerId).toJSON(self.game) for id, player in self.players.items()]
+        yourPlayer = self.players[playerId]
+        playersJSON = [PlayerResultsWrapper(playerResults, playerResults.player is yourPlayer).toJSON(self.game) for playerResults in self.game.results.playerResults]
         playersJSON.sort(key=lambda player: player['points'])
         playersJSON.reverse()
         json['players'] = playersJSON
