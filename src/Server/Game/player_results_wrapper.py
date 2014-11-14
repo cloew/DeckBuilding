@@ -7,9 +7,10 @@ from itertools import groupby
 class PlayerResultsWrapper:
     """ A Wrapper for a Player's Game Results """
     
-    def __init__(self, player, isYou):
+    def __init__(self, playerResults, isYou):
         """ Initialize the Player Wrapper """
-        self.player = player
+        self.playerResults = playerResults
+        self.player = playerResults.player
         self.isYou = isYou
         
     def toJSON(self, game):
@@ -30,4 +31,4 @@ class PlayerResultsWrapper:
             cards[cardType]['pointValues'] = sorted([points for points in cards[cardType].keys() if points != 'total'])
             
         cards['cardTypes'] = cardTypes
-        return {'points':self.player.calculatePoints(game), 'name':self.player.name, 'isYou':self.isYou, 'cards':cards}
+        return {'points':self.playerResults.points, 'name':self.player.name, 'isYou':self.isYou, 'cards':cards}
