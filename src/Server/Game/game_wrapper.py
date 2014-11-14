@@ -70,7 +70,5 @@ class GameWrapper:
         json = {}
         yourPlayer = self.players[playerId]
         playersJSON = [PlayerResultsWrapper(playerResults, playerResults.player is yourPlayer).toJSON(self.game) for playerResults in self.game.results.playerResults]
-        playersJSON.sort(key=lambda player: player['points'])
-        playersJSON.reverse()
         json['players'] = playersJSON
         return json

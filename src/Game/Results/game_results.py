@@ -5,3 +5,4 @@ class GameResults:
     def __init__(self, playerResults):
         """ Initialize the Game Results with the results for each player """
         self.playerResults = playerResults
+        self.playerResults.sort()
