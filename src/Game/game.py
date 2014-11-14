@@ -66,9 +66,10 @@ class Game:
             player.cleanupForEndOfGame()
         self.results.createPlayerResults()
         
-    def endAfterThisTurn(self):
+    def endAfterThisTurn(self, playersToResultClass):
         """ End the game after this turn """
         self.endAfterTurn = True
+        self.results.update(playersToResultClass)
             
     def __repr__(self):
         """ Return the String Representation of the Game """

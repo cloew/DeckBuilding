@@ -7,6 +7,7 @@ class GameResults:
         self.playerToResultClass = {player:defaultResultsClass for player in players}
         self.game = game
         self.playerResults = []
+        self.update = self.playerToResultClass.update
         
     def createPlayerResults(self):
         self.playerResults = [self.playerToResultClass[player](player, self.game) for player in self.playerToResultClass]
