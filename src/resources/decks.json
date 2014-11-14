@@ -277,6 +277,8 @@
               "count":2},
              {"id":"Jason Blood",
               "count":1},
+             {"id":"Kyle Rayner",
+              "count":1},
              {"id":"Plastic Man",
               "count":3},
              {"id":"Raven",
@@ -365,7 +367,9 @@
     "name":"Starting",
     "role":"STARTING",
     "type":"STARTING",
-    "cards":[{"id":"Larfleeze",
-              "count":10}]
+    "cards":[{"id":"Kyle Rayner",
+              "count":5},
+             {"id":"Deck 1 - Kick",
+              "count":5}]
 }
 ]
