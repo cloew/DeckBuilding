@@ -8,7 +8,7 @@ from Game.Commands.start_turn import StartTurn
 from Game.Decks.deck_factory import DeckFactory
 from Game.Notifications.notification_tracker import NotificationTracker
 from Game.Results.game_results import GameResults
-from Game.Results.player_results import PlayerResults
+from Game.Results.vp_player_results import VPPlayerResults
 
 from kao_deck.deck import Deck
 
@@ -63,7 +63,7 @@ class Game:
         """ End the game """
         for player in self.players:
             player.cleanupForEndOfGame()
-        playerResults = [PlayerResults(player, self) for player in self.players]
+        playerResults = [VPPlayerResults(player, self) for player in self.players]
         self.results = GameResults(playerResults)
         
     def endAfterThisTurn(self):
