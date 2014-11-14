@@ -2,7 +2,12 @@
 class GameResults:
     """ Represents the results for a game """
     
-    def __init__(self, playerResults):
+    def __init__(self, players, game, defaultResultsClass):
         """ Initialize the Game Results with the results for each player """
-        self.playerResults = playerResults
+        self.playerToResultClass = {player:defaultResultsClass for player in players}
+        self.game = game
+        self.playerResults = []
+        
+    def createPlayerResults(self):
+        self.playerResults = [self.playerToResultClass[player](player, self.game) for player in self.playerToResultClass]
         self.playerResults.sort()

@@ -32,8 +32,9 @@ class Game:
         
         self.turnCoroutine = self.pickTurn()
         self.nextTurn()
+        
         self.isOver = False
-        self.results = None
+        self.results = GameResults(self.players, self, VPPlayerResults)
         self.endAfterTurn = False
         
     def endTurn(self):
@@ -45,7 +46,7 @@ class Game:
         self.isOver = self.__isOver
         if not self.isOver:
             self.nextTurn()
-        elif self.results is None:
+        else:
             self.end()
             
     def nextTurn(self):
@@ -63,8 +64,7 @@ class Game:
         """ End the game """
         for player in self.players:
             player.cleanupForEndOfGame()
-        playerResults = [VPPlayerResults(player, self) for player in self.players]
-        self.results = GameResults(playerResults)
+        self.results.createPlayerResults()
         
     def endAfterThisTurn(self):
         """ End the game after this turn """
@@ -77,4 +77,4 @@ class Game:
     @property
     def __isOver(self):
         """ Return if the game is Over """
-        return self.gameOver.isOver or self.results is not None or self.endAfterTurn
+        return self.gameOver.isOver or self.endAfterTurn
