@@ -49,6 +49,7 @@ from Game.Effects.put_on_bottom_cleanup import PutOnBottomCleanup
 from Game.Effects.reveal import Reveal
 from Game.Effects.shuffle_and_deal import ShuffleAndDeal
 from Game.Effects.spend_power import SpendPower
+from Game.Effects.win_game import WinGame
 
 from Game.Effects.Conditions.condition_factory import ConditionFactory
 from Game.Effects.Conditions.Filters.filter_factory import FilterFactory
@@ -102,7 +103,8 @@ EffectFactory = TypedFactory('type', {"ACTIVATE_CHARACTER":Factory(ActivateChara
                                       "PUT_ON_BOTTOM_CLEANUP":Factory(PutOnBottomCleanup, []),
                                       "REVEAL":Factory(Reveal, [PrimitiveParameter("source")]),
                                       "SHUFFLE_AND_DEAL":Factory(ShuffleAndDeal, []),
-                                      "SPEND_POWER":Factory(SpendPower, [PrimitiveParameter("power")])})
+                                      "SPEND_POWER":Factory(SpendPower, [PrimitiveParameter("power")]),
+                                      "WIN_GAME":Factory(WinGame, [])})
                                       
 OptionFactory = Factory(Option, [PrimitiveParameter("description"), ComplexParameter("effects", EffectFactory.loadAll), ComplexParameter("condition", ConditionFactory.load, optional=True)])
 

@@ -34,6 +34,7 @@ class Game:
         self.nextTurn()
         self.isOver = False
         self.results = None
+        self.endAfterTurn = False
         
     def endTurn(self):
         """ End the turn """
@@ -64,6 +65,10 @@ class Game:
             player.cleanupForEndOfGame()
         playerResults = [PlayerResults(player, self) for player in self.players]
         self.results = GameResults(playerResults)
+        
+    def endAfterThisTurn(self):
+        """ End the game after this turn """
+        self.endAfterTurn = True
             
     def __repr__(self):
         """ Return the String Representation of the Game """
@@ -72,6 +77,4 @@ class Game:
     @property
     def __isOver(self):
         """ Return if the game is Over """
-        print "Game Over Condition Met:", self.gameOver.isOver
-        print "Has Results:", self.results is not None
-        return self.gameOver.isOver or self.results is not None
+        return self.gameOver.isOver or self.results is not None or self.endAfterTurn
