@@ -71,19 +71,22 @@ class PlayerContext(Context):
 class SystemContext(Context):
     """ Represents the game context for the System to use """
     
-    def __init__(self, game, parent, event=None):
+    def __init__(self, game, parent, event=None, foes=None):
         """ Initialize the Arguments """
         Context.__init__(self, game, parent, event=event)
         self.player = None
+        if foes is None:
+            foes = self._foes
+        self.foes = foes
         
     @property
-    def foes(self):
+    def _foes(self):
         """ Return the foes of the current player """
         return GetPlayersStartingWith(self.owner.player, self.game.players)
         
     def copy(self):
         """ Copy the Context """
-        return SystemContext(self.game, self.parent, event=self.event)
+        return SystemContext(self.game, self.parent, event=self.event, foes=self.foes)
         
     def getPlayerContext(self, player):
         """ Get the Context for the given player """
