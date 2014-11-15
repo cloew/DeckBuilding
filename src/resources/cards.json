@@ -2739,7 +2739,7 @@
     "cost":{"type":"FIXED",
             "cost":6},
     "points":{"type":"FIXED",
-              "points":1},
+              "points":2},
     "playEffects":[{"type":"GAIN_POWER",
                     "power":3}],
     "onGain":[{"type":"CHOICE",
