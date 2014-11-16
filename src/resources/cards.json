@@ -1644,6 +1644,10 @@
                                             "singleUse":false,
                                             "condition":{"type":"NTH",
                                                          "n":3,
+                                                         "criteria":{"type":"FIXED",
+                                                                     "field":"name",
+                                                                     "operation":"CONTAINS",
+                                                                     "value":"Power Ring"},
                                                          "source":"PLAYED"},
                                             "effect":{"type":"WIN_GAME"}}}}]
 },
