@@ -17,14 +17,31 @@ class Attack:
         
     def perform(self, context):
         """ Perform the Game Effect """
-        targets = []
+        coroutine = self.requestDefenses(context)
+        try:
+            response = yield coroutine.next()
+            while True:
+                response = yield coroutine.send(response)
+        except StopIteration:
+            pass
+            
+        coroutine = self.attackTargets(context)
+        response = yield coroutine.next()
+        while True:
+            response = yield coroutine.send(response)
+        
+    def requestDefenses(self, context):
+        """ Request defenses to determine who the targets are """
+        self.targets = []
+        self.failedAttacks = []
         for foe in context.foes:
             request = DefendRequest(context.parent, context.getPlayerContext(foe))
             defended = yield request
             if not defended:
-                targets.append(foe)
+                self.targets.append(foe)
                 context.addNotification(Notification(HIT_BY_ATTACK, foe))
             else:
+                self.failedAttacks.append(True)
                 context.addNotification(CardsNotification(DEFENDED, foe, [defended]))
                 playerContext = context.getPlayerContext(foe)
                 
@@ -46,8 +63,10 @@ class Attack:
                 except StopIteration:
                     pass
                 
+    def attackTargets(self, context):
+        """ Attack the Targets """
         context = context.copy()
-        context.foes = targets
+        context.foes = self.targets
         coroutine = PerformEffects(self.thenEffects, context)
         response = yield coroutine.next()
         while True:
