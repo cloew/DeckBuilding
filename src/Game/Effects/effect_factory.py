@@ -114,7 +114,7 @@ EffectFactory.addFactory("AS_ONLY_PLAYER_WITH_HIGHEST_COST", Factory(AsOnlyPlaye
 EffectFactory.addFactory("AS_PREVIOUS_PLAYER", Factory(AsPreviousPlayer, [ComplexParameter("then", EffectFactory.loadAll)]))
 EffectFactory.addFactory("AS_OWNER", Factory(AsOwner, [ComplexParameter("then", EffectFactory.loadAll)]))
 EffectFactory.addFactory("ATTACK", Factory(Attack, [ComplexParameter("then", EffectFactory.loadAll)]))
-EffectFactory.addFactory("ATTACK_EACH_FOE", Factory(AttackEachFoe, [ComplexParameter("effects", EffectFactory.loadAll)]))
+EffectFactory.addFactory("ATTACK_EACH_FOE", Factory(AttackEachFoe, [ComplexParameter("effects", EffectFactory.loadAll), ComplexParameter("anyFailed", EffectFactory.loadAll, optional=True, default=[])]))
 EffectFactory.addFactory("CHOICE", Factory(Choice, [ComplexParameter("choices", OptionFactory.loadAll), PrimitiveParameter("source", optional=True), FilterParameter(optional=True)]))
 EffectFactory.addFactory("CONDITIONAL", Factory(ConditionalEffect, [ComplexParameter("condition", ConditionFactory.load), 
                                                                     ComplexParameter("effects", EffectFactory.loadAll), 

@@ -9,6 +9,7 @@ class Context:
         self.parent = parent
         self.game = game
         self.event = event
+        self.failed = False
         
     @property
     def owner(self):

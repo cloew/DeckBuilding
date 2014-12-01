@@ -328,6 +328,23 @@
                                           "source":"EVENT"}]}]}]
 },
 {
+    "id":"Black Lantern Corps",
+    "name":"Black Lantern Corps",
+    "type":"Villain",
+    "image":"Deck2/Main/black_lantern_corps.jpg",
+    "cost":{"type":"FIXED",
+            "cost":6},
+    "points":{"type":"FIXED",
+              "points":2},
+    "playEffects":[{"type":"GAIN_POWER",
+                    "power":2},
+                   {"type":"ATTACK_EACH_FOE",
+                    "effects":[{"type":"GAIN_TOP_CARD",
+                                "from":"WEAKNESS"}],
+                    "anyFailed":[{"type":"DRAW",
+                                  "count":1}]}]
+},
+{
     "id":"Black Manta",
     "name":"Black Manta",
     "type":"Villain",

@@ -9,7 +9,8 @@ class PerFoe:
         
     def perform(self, context):
         """ Perform the Game Effect """
-        coroutine = PerformEffectsForEachPlayer(self.effects, context.foes, context)
+        self.failedEffects = []
+        coroutine = PerformEffectsForEachPlayer(self.effects, context.foes, context, self.failedEffects)
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)

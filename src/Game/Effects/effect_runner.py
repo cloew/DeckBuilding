@@ -1,6 +1,6 @@
 import inspect
 
-def PerformEffectsForEachPlayer(effects, players, context):
+def PerformEffectsForEachPlayer(effects, players, context, failedEffects=[]):
     """ Perform the given effects """
     for player in players:
         context = context.getPlayerContext(player)
@@ -11,6 +11,7 @@ def PerformEffectsForEachPlayer(effects, players, context):
             while True:
                 response = yield coroutine.send(response)
         except StopIteration:
+            failedEffects.append(context.failed)
             pass
 
 def PerformEffects(effects, context, effectTypesToIgnore=[]):
