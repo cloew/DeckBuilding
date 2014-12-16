@@ -16,6 +16,8 @@ class ConditionalEffect:
             coroutine = self.performEffects(context)
         elif self.otherwiseEffect is not None:
             coroutine = self.performOtherwiseEffect(context)
+        else:
+            context.failed = True
             
         if coroutine is not None:
             response = yield coroutine.next()
