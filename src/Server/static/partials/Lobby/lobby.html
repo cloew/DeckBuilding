@@ -5,19 +5,20 @@
 
         <div class="col-md-12">
             <h1>You are: {{lobby.you.name}} as {{lobby.you.character.name}}</h1>
-            <div class="col-md-12">
-                <input ng-model="newName" />
-                <button ng-click="changeName()">Change Name</button>
-            </div>
-            <div class="col-md-12">
-                <character character="lobby.you.character" thumbnail="true"></character>
-                <input ng-model="newCharacter" />
-                <button ng-click="changeCharacter()">Change Character</button>
-            </div>
             <div class="col-md-4">
-                <deck-picker name="Starting Deck" deck="lobby.you.starting" role="STARTING"></deck-picker>
+                <div class="col-md-12">
+                    <input ng-model="newName" />
+                    <button ng-click="changeName()">Change Name</button>
+                </div>
+                <div class="col-md-12">
+                    <character character="lobby.you.character" thumbnail="true"></character>
+                </div>
+                <div>
+                    <deck-picker name="Starting Deck" deck="lobby.you.starting" role="STARTING"></deck-picker>
+                </div>
+                <div class="clearfix visible-md-block"></div>
             </div>
-            <div class="clearfix visible-md-block"></div>
+            <character-selection lobby="lobbyWrapper" class="col-md-8"></character-selection>
         </div>
         <div class="col-md-12" style="margin-left:25px;margin-right:25px;">
             <div class="row-container" ng-repeat="player in lobby.allPlayers">

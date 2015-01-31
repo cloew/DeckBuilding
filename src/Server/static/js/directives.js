@@ -1,6 +1,27 @@
 'use strict';
 
 angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
+    .directive('characterSelection', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          transclude: true,
+          scope: {
+              lobby: '=lobby'
+          },
+          controller: function($scope, $http) {
+            $http.get('/api/characters').success(function(data) {
+                $scope.characters = data.characters;
+            }).error(function(error) {
+                console.log(error);
+            });
+              
+            $scope.changeCharacter = function(name) {
+                $scope.lobby.changeCharacter(name);
+            };
+          },
+          templateUrl: 'static/partials/directives/character_selection.html'
+      }})
     .directive('cardImage', function() {
       return {
           restrict: 'E',

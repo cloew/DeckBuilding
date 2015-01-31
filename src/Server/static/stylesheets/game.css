@@ -117,6 +117,16 @@
     align-items: center;
     margin: 5px;
 }
+.character-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+}
+.character-box {
+    margin: 5px;
+}
 .alert.notification {
     width: 100%;
     padding-top: 5px;
