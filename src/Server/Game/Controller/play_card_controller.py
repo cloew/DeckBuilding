@@ -7,5 +7,5 @@ class PlayCardController(GameCommandController):
         
     def buildCommand(self, player, game, json):
         """ Build the Command to try and perform """
-        cardIndex = self.json['index']
+        cardIndex = json['index']
         return PlayCard(cardIndex, game.currentTurn)

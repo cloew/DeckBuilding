@@ -5,11 +5,11 @@ from kao_flask.controllers.json_controller import JSONController
 class ChangeDeckForRoleController(JSONController):
     """ Controller to handle changing the Deck for a particular role via JSON """
     
-    def performWithJSON(self, lobbyId, playerId):
+    def performWithJSON(self, lobbyId, playerId, json=None):
         lobby = lobbies[lobbyId]
         player = lobby.players[playerId]
-        role = self.json['role']
-        index = self.json['index']
+        role = json['role']
+        index = json['index']
         
         if role == STARTING:
             player.setDeck(index)

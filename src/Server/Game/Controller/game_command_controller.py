@@ -5,11 +5,11 @@ from kao_flask.controllers.json_controller import JSONController
 class GameCommandController(JSONController):
     """ Controller to perform a game command """
     
-    def performWithJSON(self, gameId, playerId):
+    def performWithJSON(self, gameId, playerId, json=None):
         game = games[gameId]
         player = game.players[playerId]
         
-        command = self.buildCommand(player, game.game, self.json)
+        command = self.buildCommand(player, game.game, json)
         
         if command is not None and command.canPerform(player, game.game):
             self.performCommand(game.game, command)

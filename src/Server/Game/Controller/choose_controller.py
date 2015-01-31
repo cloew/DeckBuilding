@@ -7,5 +7,5 @@ class ChooseController(GameResponseController):
         
     def buildCommand(self, player, game, json):
         """ Build the Command to try and perform """
-        optionIndex = self.json['index']
+        optionIndex = json['index']
         return ChooseOption(optionIndex, game.currentTurn)
