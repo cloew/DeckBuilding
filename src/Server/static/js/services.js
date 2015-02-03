@@ -152,12 +152,16 @@ services.service('lobbyService', function($cookies, $http, $location, $routePara
         this.rootUrl = rootUrl;
         this.playerUrl = rootUrl+'/player/'+$cookies.playerId;
         this.lobby = undefined;
+        this.callbacks = [];
     };
     Lobby.prototype.startPolling = function(parentScope, callback) {
         var self = this;
+        self.callbacks = [callback];
         UrlPoller(parentScope, this.playerUrl, function(data) {
             self.setLobby(data);
-            callback(self.lobby);
+            for (var i = 0; i < self.callbacks.length; i++) {
+                self.callbacks[i](self.lobby);
+            }
         });
     };
     Lobby.prototype.getLobby = function() {
@@ -170,6 +174,9 @@ services.service('lobbyService', function($cookies, $http, $location, $routePara
         if (data.gameId) {
             $location.path('/game/'+data.gameId);
         }
+    };
+    Lobby.prototype.addCallback = function(callback) {
+        this.callbacks.push(callback);
     };
     Lobby.prototype.changeCharacter = function(newCharacter) {
         var self = this;

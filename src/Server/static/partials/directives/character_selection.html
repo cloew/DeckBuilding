@@ -1,5 +1,9 @@
 <div>
-    <div class="character-container">
-        <character ng-repeat="character in characters" character="character" thumbnail="true" ng-click="changeCharacter(character.name)" class="character-box"></character>
+    <div class="col-md-7 character-container">
+        <character ng-repeat="character in characters" character="character" thumbnail="true" ng-click="changeCharacter(character.name);" 
+                   ng-mouseover="viewCharacter(character)" ng-mouseleave="viewCurrentCharacter();" class="character-box"></character>
+    </div>
+    <div class="col-md-5">
+        <character character="viewedCharacter" thumbnail="false"></character>
     </div>
 </div>

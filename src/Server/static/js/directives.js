@@ -44,9 +44,15 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
           replace: true,
           transclude: true,
           scope: {
-              lobby: '=lobby'
+              lobbyWrapper: '=lobbyWrapper'
           },
           controller: function($scope, $http) {
+            $scope.lobbyWrapper.addCallback(function(lobby) {
+                $scope.currentCharacter = lobby.you.character;
+                if (!$scope.hovering && $scope.viewedCharacter !== $scope.currentCharacter) {
+                    $scope.viewCurrentCharacter();
+                }
+            })
             $http.get('/api/characters').success(function(data) {
                 $scope.characters = data.characters;
             }).error(function(error) {
@@ -54,7 +60,15 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
             });
               
             $scope.changeCharacter = function(name) {
-                $scope.lobby.changeCharacter(name);
+                $scope.lobbyWrapper.changeCharacter(name);
+            };
+            $scope.viewCharacter = function(character) {
+                $scope.hovering = true;
+                $scope.viewedCharacter = character;
+            };
+            $scope.viewCurrentCharacter = function() {
+                $scope.viewedCharacter = $scope.currentCharacter;
+                $scope.hovering = false;
             };
           },
           templateUrl: 'static/partials/directives/character_selection.html'
