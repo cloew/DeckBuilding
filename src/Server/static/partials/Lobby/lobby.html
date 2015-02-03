@@ -8,23 +8,7 @@
         </div>
     </div>
     <div class="col-md-9">
-        <div class="col-md-12">
-            <h1>You are: {{lobby.you.name}} as {{lobby.you.character.name}}</h1>
-            <div class="col-md-4">
-                <div class="col-md-12">
-                    <input ng-model="newName" />
-                    <button ng-click="changeName()">Change Name</button>
-                </div>
-                <div class="col-md-12">
-                    <character character="lobby.you.character" thumbnail="true"></character>
-                </div>
-                <div>
-                    <deck-picker name="Starting Deck" deck="lobby.you.starting" role="STARTING"></deck-picker>
-                </div>
-                <div class="clearfix visible-md-block"></div>
-            </div>
-            <character-selection lobby="lobbyWrapper" class="col-md-8"></character-selection>
-        </div>
+        <lobby-player-settings lobby="lobby" lobby-wrapper="lobbyWrapper" class="col-md-12"></lobby-player-settings>
         <div class="col-md-12" style="margin-left:25px;margin-right:25px;">
             <div class="row-container" ng-repeat="player in lobby.allPlayers">
                 <character character="player.character" thumbnail="true"></character>

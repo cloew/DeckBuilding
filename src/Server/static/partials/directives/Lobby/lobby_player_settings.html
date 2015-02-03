@@ -1,0 +1,17 @@
+<div>
+    <h1>You are: {{lobby.you.name}} as {{lobby.you.character.name}}</h1>
+    <div class="col-md-4">
+        <div class="col-md-12">
+            <input ng-model="newName" />
+            <button ng-click="lobbyWrapper.changeName(newName)">Change Name</button>
+        </div>
+        <div class="col-md-12">
+            <character character="lobby.you.character" thumbnail="true"></character>
+        </div>
+        <div>
+            <deck-picker name="Starting Deck" deck="lobby.you.starting" role="STARTING"></deck-picker>
+        </div>
+        <div class="clearfix visible-md-block"></div>
+    </div>
+    <character-selection lobby="lobbyWrapper" class="col-md-8"></character-selection>
+</div>
