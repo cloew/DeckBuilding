@@ -10,6 +10,15 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
           },
           templateUrl: 'static/partials/directives/Lobby/lobby_overview.html'
       }})
+    .directive('lobbySettings', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          scope: {
+              lobby: '=lobby'
+          },
+          templateUrl: 'static/partials/directives/Lobby/lobby_settings.html'
+      }})
     .directive('lobbyPlayerSettings', function() {
       return {
           restrict: 'E',
