@@ -4,10 +4,6 @@ angular.module('DeckBuilding', ['ngRoute', 'DeckBuildingControllers', 'DeckBuild
 	.config(['$routeProvider',
 		function($routeProvider) {
 		$routeProvider
-		.when('/', {
-			templateUrl: 'static/partials/start_game.html',
-			controller: 'StartGameController'
-		})
 		.when('/lobbies', {
 			templateUrl: 'static/partials/Lobby/lobbies.html',
 			controller: 'LobbiesController'
@@ -25,7 +21,7 @@ angular.module('DeckBuilding', ['ngRoute', 'DeckBuildingControllers', 'DeckBuild
 			controller: 'GameResultsController'
 		})
 		.otherwise({
-			redirectTo: '/'
+			redirectTo: '/lobbies'
 		})
 		;
 	}]);
