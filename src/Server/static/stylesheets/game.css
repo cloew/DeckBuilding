@@ -204,3 +204,13 @@
     margin-top: -15px;
     font-size: 30px;
 }
+.header-bar {
+    height: 63px;
+    position: relative;
+    margin-bottom: 10px;
+}
+.header-buttons {
+    height: 45px;
+    top:50%;
+    margin-top: -22px;
+}

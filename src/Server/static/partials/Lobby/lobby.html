@@ -1,8 +1,13 @@
 <div>
+    <div class="bg-primary col-md-12 header-bar">
+        <div class="col-md-8">
+            <h2>Lobby #{{lobby.id}}</h2>
+        </div>
+        <div class="col-md-4 header-buttons" style="text-align: center;">
+            <button ng-click="lobbyWrapper.startGame();" class="btn btn-primary btn-lg">Start Game</button>
+        </div>
+    </div>
     <div class="col-md-9">
-        <h2>Lobby #{{lobby.id}}</h2>
-        <button ng-click="lobbyWrapper.startGame();">Start Game</button>
-
         <div class="col-md-12">
             <h1>You are: {{lobby.you.name}} as {{lobby.you.character.name}}</h1>
             <div class="col-md-4">
