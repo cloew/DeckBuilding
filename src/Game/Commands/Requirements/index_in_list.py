@@ -1,4 +1,4 @@
-from Game.Sources.source_factory import SourceFactory
+from Game.Zones.zone_factory import ZoneFactory
 
 class IndexInList:
     """ Represents a command requirement that can only be run if the index exists in the list """

@@ -1,5 +1,5 @@
 from json_helper import GetCardListJSON
-from Game.Sources.source_types import PLAYED
+from Game.Zones.zone_types import PLAYED
 
 class TurnWrapper:
     """ A Wrapper for a Game Turn """
@@ -10,7 +10,7 @@ class TurnWrapper:
         
     def toJSON(self, includeActions=False):
         """ Return the turn as a JSON Dictionary """
-        playedJSON = GetCardListJSON(self.turn.playedCards, self.turn.game, source=PLAYED, includeActions=includeActions)
+        playedJSON = GetCardListJSON(self.turn.playedCards, self.turn.game, zone=PLAYED, includeActions=includeActions)
         
         return {'played':playedJSON,
                 'power':self.turn.power,

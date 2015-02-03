@@ -6,7 +6,7 @@ from Game.Events.defend_event import DefendEvent
 
 from Game.Notifications.cards_notification import CardsNotification, DEFENDED
 from Game.Notifications.notification import Notification, HIT_BY_ATTACK
-from Game.Sources.source_types import HAND
+from Game.Zones.zone_types import HAND
 
 class Attack:
     """ Represents an effect to Attack other Players """
@@ -53,8 +53,8 @@ class Attack:
                 except StopIteration:
                     pass
                 
-                source = playerContext.loadSource(request.findSourceFor(defended))
-                event = CardsEvent([defended], source, playerContext)
+                zone = playerContext.loadZone(request.findZoneFor(defended))
+                event = CardsEvent([defended], zone, playerContext)
                 coroutine = PerformEffects(defended.defenseEffects, event.context)
                 try:
                     response = yield coroutine.next()

@@ -8,5 +8,5 @@ class BuyCardController(GameCommandController):
     def buildCommand(self, player, game, json):
         """ Build the Command to try and perform """
         cardIndex = json['index']
-        sourceType = json['source']
-        return BuyCard(cardIndex, sourceType, game.currentTurn)
+        zoneType = json['zone']
+        return BuyCard(cardIndex, zoneType, game.currentTurn)

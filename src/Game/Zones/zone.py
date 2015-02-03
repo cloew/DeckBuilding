@@ -1,27 +1,27 @@
 
-class Source:
-    """ Represents a potential source """
+class Zone:
+    """ Represents a potential zone """
     
-    def __init__(self, sourceObject, sourceType=None):
-        """ Initialize the source """
-        self.source = sourceObject
-        self.sourceType = sourceType
+    def __init__(self, zoneObject, zoneType=None):
+        """ Initialize the zone """
+        self.zone = zoneObject
+        self.zoneType = zoneType
         
     def add(self, card):
-        """ Add the given card to the source """
-        self.source.add(card)
+        """ Add the given card to the zone """
+        self.zone.add(card)
         
     def remove(self, card):
         """ Remove the card from the deck """
-        self.source.remove(card)
+        self.zone.remove(card)
         
     def __getitem__(self, index):
         """ Return the item at the given index """
-        return self.source[index]
+        return self.zone[index]
         
     def __iter__(self):
         """ Return the Deck Iterator """
-        return self.source.__iter__()
+        return self.zone.__iter__()
         
     def availableLength(self):
         """ Return the number of available cards """
@@ -29,4 +29,4 @@ class Source:
         
     def __len__(self):
         """ Return the Length of the Deck """
-        return len(self.source)
+        return len(self.zone)

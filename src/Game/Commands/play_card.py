@@ -1,9 +1,9 @@
 from command import Command
 
 from Game.Commands.Requirements.current_player import CurrentPlayer
-from Game.Commands.Requirements.index_in_source import IndexInSource
+from Game.Commands.Requirements.index_in_zone import IndexInZone
 from Game.Commands.Requirements.no_request import NoRequest
-from Game.Sources.source_types import HAND
+from Game.Zones.zone_types import HAND
 
 class PlayCard(Command):
     """ Represents a Command to play a card """
@@ -11,7 +11,7 @@ class PlayCard(Command):
     def __init__(self, index, owner):
         """ Initialize the Play Card Command """
         self.owner = owner
-        self.cardFinder = IndexInSource(index, HAND)
+        self.cardFinder = IndexInZone(index, HAND)
         Command.__init__(self, [CurrentPlayer(), NoRequest(), self.cardFinder])
         
     def perform(self):

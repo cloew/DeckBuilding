@@ -1,22 +1,22 @@
-from Game.Sources.source_types import DISCARD_PILE
+from Game.Zones.zone_types import DISCARD_PILE
 
 class GainCard:
     """ Represents an effect to Gain a card """
     
-    def __init__(self, fromSourceType, toSourceType=None):
+    def __init__(self, fromZoneType, toZoneType=None):
         """ Initialize the Effect with the card to remove from play before discarding """
-        self.fromSourceType = fromSourceType
-        if toSourceType is None:
-            toSourceType = DISCARD_PILE
-        self.toSourceType = toSourceType
+        self.fromZoneType = fromZoneType
+        if toZoneType is None:
+            toZoneType = DISCARD_PILE
+        self.toZoneType = toZoneType
         
     def perform(self, context):
         """ Perform the Game Effect """
-        fromSource = context.loadSource(self.fromSourceType)
-        toSource = context.loadSource(self.toSourceType)
+        fromZone = context.loadZone(self.fromZoneType)
+        toZone = context.loadZone(self.toZoneType)
         
-        for card in fromSource:
-            coroutine = context.owner.gainCard(card, fromSource, toSource=toSource)
+        for card in fromZone:
+            coroutine = context.owner.gainCard(card, fromZone, toZone=toZone)
             try:
                 response = yield coroutine.next()
                 while True:

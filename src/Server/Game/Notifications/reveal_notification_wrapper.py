@@ -7,5 +7,5 @@ class RevealNotificationWrapper(CardsNotificationWrapper):
     def toJSON(self):
         """ Return the Notification as JSON """
         json = CardsNotificationWrapper.toJSON(self)
-        json["sourceType"] = self.notification.sourceType
+        json["zoneType"] = self.notification.zoneType
         return json

@@ -1,7 +1,7 @@
 from Game.Effects.Conditions.Filters.comparison_filter import ComparisonFilter
 from matching import Matching
 
-from Game.Sources.source_types import EVENT, PLAYED
+from Game.Zones.zone_types import EVENT, PLAYED
 
 class NthPlayed:
     """ Condition to check if a condition is the nth card played """

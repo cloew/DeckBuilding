@@ -27,7 +27,7 @@ class Trigger:
                 pass
                 
     def getTriggerContext(self, event):
-        """ Return the modified context to specify the trigger source as the parent """
+        """ Return the modified context to specify the trigger zone as the parent """
         context = event.context.copy()
         context.parent = self.parent
         return context

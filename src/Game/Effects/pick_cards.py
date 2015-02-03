@@ -9,18 +9,18 @@ from Game.Effects.Conditions.Filters.comparison_filter import ComparisonFilter
 from Game.Effects.Conditions.Filters.intersection_filter import IntersectionFilter
 
 from Game.Events.cards_event import CardsEvent
-from Game.Events.multi_source_event import MultiSourceEvent
+from Game.Events.multi_zone_event import MultiZoneEvent
 
-from Game.Sources.event_source import EventSource
+from Game.Zones.event_zone import EventZone
 
 class PickCards(ConditionalEffect):
-    """ Represents an effect to pick cards from a source and an optional filter """
+    """ Represents an effect to pick cards from a zone and an optional filter """
     REQUEST_CLASS = PickCardRequest
     AUTO_PICK = True
     
-    def __init__(self, sourceTypes, numberOfCards, toDescription, thenEffects, criteria=None, leftoverCardEffects=[]):
+    def __init__(self, zoneTypes, numberOfCards, toDescription, thenEffects, criteria=None, leftoverCardEffects=[]):
         """ Initialize the options """
-        self.sourceTypes = sourceTypes
+        self.zoneTypes = zoneTypes
         self.numberOfCards = numberOfCards
         self.toDescription = toDescription
         self.leftoverCardEffects = leftoverCardEffects
@@ -28,23 +28,23 @@ class PickCards(ConditionalEffect):
         self.filters = None
         if criteria is not None:
             self.filters = []
-            for sourceType in sourceTypes:
-                self.filters.append(IntersectionFilter([ComparisonFilter(sourceType, c) for c in criteria]))
+            for zoneType in zoneTypes:
+                self.filters.append(IntersectionFilter([ComparisonFilter(zoneType, c) for c in criteria]))
             
         conditions = []
-        for sourceType in sourceTypes:
+        for zoneType in zoneTypes:
             filter = None
             if self.filters is not None:
-                filter=self.filters[sourceTypes.index(sourceType)]
-            conditions.append(HasCards(sourceType, filter=filter))
+                filter=self.filters[zoneTypes.index(zoneType)]
+            conditions.append(HasCards(zoneType, filter=filter))
         condition = OrCondition(conditions)
         
         ConditionalEffect.__init__(self, condition, thenEffects)
         
     def performEffects(self, context):
         """ Perform the Game Effect """
-        possibleCardsPerSource = self.findPossibleCards(context)
-        possibleCards = [card for cards in possibleCardsPerSource.values() for card in cards]
+        possibleCardsPerZone = self.findPossibleCards(context)
+        possibleCards = [card for cards in possibleCardsPerZone.values() for card in cards]
         
         if len(possibleCards) != 0:
             cards = None
@@ -53,7 +53,7 @@ class PickCards(ConditionalEffect):
             else:
                 cards = yield self.buildRequest(possibleCards, context)
                 
-            event = self.buildEvent(cards, possibleCardsPerSource, context)
+            event = self.buildEvent(cards, possibleCardsPerZone, context)
         
         coroutine = ConditionalEffect.performEffects(self, event.context)
         try:
@@ -63,7 +63,7 @@ class PickCards(ConditionalEffect):
         except StopIteration:
             pass
         
-        coroutine = PerformEffects(self.leftoverCardEffects, self.buildEvent([card for card in possibleCards if card not in cards], possibleCardsPerSource, context).context)
+        coroutine = PerformEffects(self.leftoverCardEffects, self.buildEvent([card for card in possibleCards if card not in cards], possibleCardsPerZone, context).context)
         try:
             response = yield coroutine.next()
             while True:
@@ -77,29 +77,29 @@ class PickCards(ConditionalEffect):
                 
     def findPossibleCards(self, context):
         """ Return the possible cards """
-        sources = [context.loadSource(sourceType) for sourceType in self.sourceTypes]
+        zones = [context.loadZone(zoneType) for zoneType in self.zoneTypes]
         possibleCards = {}
-        for source in sources:
-            possibleCards[source] = source
+        for zone in zones:
+            possibleCards[zone] = zone
             if self.filters is not None:
-                possibleCards[source] = self.filters[sources.index(source)].evaluate(context)
+                possibleCards[zone] = self.filters[zones.index(zone)].evaluate(context)
         
         return possibleCards
         
-    def buildEvent(self, cards, possibleCardsPerSource, context):
+    def buildEvent(self, cards, possibleCardsPerZone, context):
         """ Build the proper event for the chosen cards """
-        cardsPerSource = {}
+        cardsPerZone = {}
         for card in cards:
-            for source in possibleCardsPerSource:
-                if card in source:
-                    if source in cardsPerSource:
-                        cardsPerSource[source].append(card)
+            for zone in possibleCardsPerZone:
+                if card in zone:
+                    if zone in cardsPerZone:
+                        cardsPerZone[zone].append(card)
                     else:
-                        cardsPerSource[source] = [card]
+                        cardsPerZone[zone] = [card]
                     break
                     
-        sources = [EventSource(CardsEvent(cardsPerSource[source], source, context)) for source in cardsPerSource]
-        return MultiSourceEvent(sources, context)
+        zones = [EventZone(CardsEvent(cardsPerZone[zone], zone, context)) for zone in cardsPerZone]
+        return MultiZoneEvent(zones, context)
         
     def setNumberOfCards(self, number):
         """ Set the Number of Cards that can be requested """

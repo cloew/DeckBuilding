@@ -3,7 +3,7 @@ from Game.Effects.conditional_effect import ConditionalEffect
 from Game.Effects.Conditions.matching import Matching
 from Game.Effects.Triggers.trigger import Trigger
 from Game.Events.game_events import CARD_PLAYED
-from Game.Sources.source_types import PLAYED, EVENT
+from Game.Zones.zone_types import PLAYED, EVENT
 
 class PlayOrHavePlayed(ConditionalEffect):
     """ Represents an effect that conditionally applies """

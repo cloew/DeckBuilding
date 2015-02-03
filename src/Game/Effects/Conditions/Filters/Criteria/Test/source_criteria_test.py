@@ -1,23 +1,23 @@
 import unittest
 
 from Game.Effects.game_contexts import PlayerContext
-from Game.Effects.Conditions.Filters.Criteria.source_criteria import SourceCriteria
+from Game.Effects.Conditions.Filters.Criteria.zone_criteria import ZoneCriteria
 from Game.Events.cards_event import CardsEvent
-from Game.Sources.source_types import EVENT
+from Game.Zones.zone_types import EVENT
 from Test.builders import BuildCard, BuildPlayerContext
 
 class compare(unittest.TestCase):
     """ Test cases of compare """
     
     def  setUp(self):
-        """ Build the Source and Criteria for the test """
+        """ Build the Zone and Criteria for the test """
         self.cardName = "Blah Blah"
         cardsEvent = CardsEvent([BuildCard(name=self.cardName)], None, BuildPlayerContext())
         self.context = cardsEvent.context
-        self.criteria = SourceCriteria("name", EVENT)
+        self.criteria = ZoneCriteria("name", EVENT)
         
     def valid(self):
-        """ Test that the comparison can return valid if the cards in the source are properly set """
+        """ Test that the comparison can return valid if the cards in the zone are properly set """
         cardToCompareAgainst = BuildCard(name=self.cardName)
         isValid = self.criteria.compare(cardToCompareAgainst, self.context)
         self.assertTrue(isValid, "The Comparison should be valid when the field value is set properly")

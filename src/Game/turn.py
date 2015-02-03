@@ -109,9 +109,9 @@ class Turn:
         self.player.addOngoing(card)
         self.addOngoingEffects(card)
         
-    def gainCard(self, card, fromSource, toSource=None):
+    def gainCard(self, card, fromZone, toZone=None):
         """ Gain the provided card """
-        coroutine = self.player.gainCard(card, fromSource, toSource=toSource, game=self.game)
+        coroutine = self.player.gainCard(card, fromZone, toZone=toZone, game=self.game)
         try:
             response = yield coroutine.next()
             while True:

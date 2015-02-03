@@ -4,17 +4,17 @@ from Game.Events.cards_event import CardsEvent
 class PerMatch:
     """ Represents an effect that applies for each matching card """
     
-    def __init__(self, sourceType, effects, filter=None):
+    def __init__(self, zoneType, effects, filter=None):
         """ Initialize the Effect with the condition to evaluate and effect to perform """
-        self.sourceType = sourceType
+        self.zoneType = zoneType
         self.effects = effects
         self.filter = filter
         
     def perform(self, context):
         """ Perform the Game Effect """
-        source, cards = self.findPossibleCards(context)
+        zone, cards = self.findPossibleCards(context)
         for card in cards:
-            event = CardsEvent([card], source, context)
+            event = CardsEvent([card], zone, context)
             coroutine = PerformEffects(self.effects, event.context)
             try:
                 response = yield coroutine.next()
@@ -25,9 +25,9 @@ class PerMatch:
                 
     def findPossibleCards(self, context):
         """ Return the possible cards """
-        source = context.loadSource(self.sourceType)
-        possibleCards = source
+        zone = context.loadZone(self.zoneType)
+        possibleCards = zone
         if self.filter is not None:
             possibleCards = self.filter.evaluate(context)
         
-        return source, possibleCards
+        return zone, possibleCards

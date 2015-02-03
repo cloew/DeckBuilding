@@ -1,5 +1,5 @@
 from json_helper import GetActivatableActionJSON
-from Game.Sources.source_types import CHARACTER
+from Game.Zones.zone_types import CHARACTER
 from Server.Json.character_wrapper import CharacterWrapper
 
 class GameCharacterWrapper(CharacterWrapper):
@@ -14,7 +14,7 @@ class GameCharacterWrapper(CharacterWrapper):
     def toJSON(self, includeActions=False):
         """ Return the card as a JSON Dictionary """
         actions = []
-        activatableJSON = GetActivatableActionJSON(self.character, self.game, source=CHARACTER)
+        activatableJSON = GetActivatableActionJSON(self.character, self.game, zone=CHARACTER)
         if activatableJSON is not None:
             actions.append(activatableJSON)
             

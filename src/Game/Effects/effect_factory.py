@@ -80,28 +80,28 @@ def LoadTrigger(data):
 
 EffectFactory = TypedFactory('type', {"ACTIVATE_CHARACTER":Factory(ActivateCharacter, []),
                                       "ADD_ACTIVATABLE":Factory(AddActivatable, [ComplexParameter("activatable", LoadActivatable)]),
-                                      "ADD_COST_MOD":Factory(AddCostModifier, [PrimitiveParameter("source"), ComplexParameter("cost", LoadCost)]),
+                                      "ADD_COST_MOD":Factory(AddCostModifier, [PrimitiveParameter("zone"), ComplexParameter("cost", LoadCost)]),
                                       "ADD_TO_LINE_UP":Factory(AddToLineUp, [PrimitiveParameter("count", optional=True)]),
                                       "ADD_TRIGGER":Factory(AddTrigger, [ComplexParameter("trigger", LoadTrigger)]),
                                       "DEACTIVATE_CHARACTER":Factory(DeactivateCharacter, []),
-                                      "DESTROY":Factory(Destroy, [PrimitiveParameter("source")]),
-                                      "DISCARD":Factory(Discard, [PrimitiveParameter("source")]),
+                                      "DESTROY":Factory(Destroy, [PrimitiveParameter("zone")]),
+                                      "DISCARD":Factory(Discard, [PrimitiveParameter("zone")]),
                                       "DRAW":Factory(Draw, [PrimitiveParameter("count")]),
                                       "DRAW_UNTIL":Factory(DrawUntil, [PrimitiveParameter("cost")]),
                                       "GAIN_CARD":Factory(GainCard, [PrimitiveParameter("from"), PrimitiveParameter("to", optional=True)]),
                                       "GAIN_POWER":Factory(GainPower, [PrimitiveParameter("power")]),
-                                      "GAIN_POWER_FOR_COST":Factory(GainPowerForCost, [PrimitiveParameter("source")]),
-                                      "GAIN_POWER_FROM_ANOTHER_CARD":Factory(GainPowerFromAnotherCard, [PrimitiveParameter("source")]),
+                                      "GAIN_POWER_FOR_COST":Factory(GainPowerForCost, [PrimitiveParameter("zone")]),
+                                      "GAIN_POWER_FROM_ANOTHER_CARD":Factory(GainPowerFromAnotherCard, [PrimitiveParameter("zone")]),
                                       "GAIN_TOP_CARD":Factory(GainTopCard, [PrimitiveParameter("from"), PrimitiveParameter("to", optional=True)]),
                                       "MOD_HAND_SIZE":Factory(ModifyHandSize, [PrimitiveParameter("change")]),
                                       "MOVE_CARD":Factory(MoveCard, [PrimitiveParameter("from"), PrimitiveParameter("to")]),
                                       "ONGOING":Factory(Ongoing, []),
-                                      "PASS_CARDS":Factory(PassCards, [PrimitiveParameter("source")]),
-                                      "PLAY":Factory(Play, [PrimitiveParameter("source"), PrimitiveParameter("returnTo", optional=True)]),
+                                      "PASS_CARDS":Factory(PassCards, [PrimitiveParameter("zone")]),
+                                      "PLAY":Factory(Play, [PrimitiveParameter("zone"), PrimitiveParameter("returnTo", optional=True)]),
                                       "POWER_MOD":Factory(ChangePowerModifier, [PrimitiveParameter("modifier")]),
                                       "PUT_ON_BOTTOM":Factory(PutOnBottom, [PrimitiveParameter("from"), PrimitiveParameter("to")]),
                                       "PUT_ON_BOTTOM_CLEANUP":Factory(PutOnBottomCleanup, []),
-                                      "REVEAL":Factory(Reveal, [PrimitiveParameter("source")]),
+                                      "REVEAL":Factory(Reveal, [PrimitiveParameter("zone")]),
                                       "SHUFFLE_AND_DEAL":Factory(ShuffleAndDeal, []),
                                       "SPEND_POWER":Factory(SpendPower, [PrimitiveParameter("power")]),
                                       "WIN_GAME":Factory(WinGame, [])})
@@ -109,34 +109,34 @@ EffectFactory = TypedFactory('type', {"ACTIVATE_CHARACTER":Factory(ActivateChara
 OptionFactory = Factory(Option, [PrimitiveParameter("description"), ComplexParameter("effects", EffectFactory.loadAll), ComplexParameter("condition", ConditionFactory.load, optional=True)])
 
 EffectFactory.addFactory("AS_NEXT_PLAYER", Factory(AsNextPlayer, [ComplexParameter("then", EffectFactory.loadAll)]))
-EffectFactory.addFactory("AS_PLAYER_WITH_HIGHEST_COST", Factory(AsPlayerWithHighestCost, [PrimitiveParameter("source"), ComplexParameter("then", EffectFactory.loadAll)]))
+EffectFactory.addFactory("AS_PLAYER_WITH_HIGHEST_COST", Factory(AsPlayerWithHighestCost, [PrimitiveParameter("zone"), ComplexParameter("then", EffectFactory.loadAll)]))
 EffectFactory.addFactory("AS_ONLY_PLAYER_WITH_HIGHEST_COST", Factory(AsOnlyPlayerWithHighestCost, [ComplexParameter("then", EffectFactory.loadAll)]))
 EffectFactory.addFactory("AS_PREVIOUS_PLAYER", Factory(AsPreviousPlayer, [ComplexParameter("then", EffectFactory.loadAll)]))
 EffectFactory.addFactory("AS_OWNER", Factory(AsOwner, [ComplexParameter("then", EffectFactory.loadAll)]))
 EffectFactory.addFactory("ATTACK", Factory(Attack, [ComplexParameter("then", EffectFactory.loadAll)]))
 EffectFactory.addFactory("ATTACK_EACH_FOE", Factory(AttackEachFoe, [ComplexParameter("effects", EffectFactory.loadAll), ComplexParameter("anyFailed", EffectFactory.loadAll, optional=True, default=[])]))
-EffectFactory.addFactory("CHOICE", Factory(Choice, [ComplexParameter("choices", OptionFactory.loadAll), PrimitiveParameter("source", optional=True), FilterParameter(optional=True)]))
+EffectFactory.addFactory("CHOICE", Factory(Choice, [ComplexParameter("choices", OptionFactory.loadAll), PrimitiveParameter("zone", optional=True), FilterParameter(optional=True)]))
 EffectFactory.addFactory("CONDITIONAL", Factory(ConditionalEffect, [ComplexParameter("condition", ConditionFactory.load), 
                                                                     ComplexParameter("effects", EffectFactory.loadAll), 
                                                                     ComplexParameter("otherwise", EffectFactory.load, optional=True)]))
 EffectFactory.addFactory("COLLECT_CARDS", Factory(CollectCards, [ComplexParameter("then", EffectFactory.loadAll), PrimitiveParameter("from", optional=True), 
                                                                  PrimitiveParameter("pick", optional=True), PrimitiveParameter("number", optional=True), PrimitiveParameter("to", optional=True)]))
-EffectFactory.addFactory("FILTER", Factory(Filter, [PrimitiveParameter("source"), FilterParameter(), ComplexParameter("then", EffectFactory.loadAll)]))
-EffectFactory.addFactory("LOOK_AT_TOP", Factory(LookAtTop, [PrimitiveParameter("source"), ComplexParameter("then", EffectFactory.loadAll), PrimitiveParameter("number", optional=True)]))
+EffectFactory.addFactory("FILTER", Factory(Filter, [PrimitiveParameter("zone"), FilterParameter(), ComplexParameter("then", EffectFactory.loadAll)]))
+EffectFactory.addFactory("LOOK_AT_TOP", Factory(LookAtTop, [PrimitiveParameter("zone"), ComplexParameter("then", EffectFactory.loadAll), PrimitiveParameter("number", optional=True)]))
 EffectFactory.addFactory("PER_FOE", Factory(PerFoe, [ComplexParameter("effects", EffectFactory.loadAll)]))
-EffectFactory.addFactory("PER_MATCH", Factory(PerMatch, [PrimitiveParameter("source", optional=True), ComplexParameter("effects", EffectFactory.loadAll), FilterParameter(optional=True)]))
-EffectFactory.addFactory("PICK_CARDS", Factory(PickCards, [PrimitiveParameter("sources"), PrimitiveParameter("number"), PrimitiveParameter("to"),
+EffectFactory.addFactory("PER_MATCH", Factory(PerMatch, [PrimitiveParameter("zone", optional=True), ComplexParameter("effects", EffectFactory.loadAll), FilterParameter(optional=True)]))
+EffectFactory.addFactory("PICK_CARDS", Factory(PickCards, [PrimitiveParameter("zones"), PrimitiveParameter("number"), PrimitiveParameter("to"),
                                                            ComplexParameter("then", EffectFactory.loadAll), ComplexParameter("criteria", CriteriaFactory.loadAll, optional=True),
                                                            ComplexParameter("leftoverCardEffects", EffectFactory.loadAll, optional=True, default=[])]))
-EffectFactory.addFactory("PICK_RANDOM", Factory(PickRandomCard, [PrimitiveParameter("source"), ComplexParameter("then", EffectFactory.load), PrimitiveParameter("number", optional=True)]))
-EffectFactory.addFactory("PICK_UP_TO_ALL_CARDS", Factory(PickUpToAllCards, [PrimitiveParameter("sources"), PrimitiveParameter("to"), ComplexParameter("then", EffectFactory.loadAll), 
+EffectFactory.addFactory("PICK_RANDOM", Factory(PickRandomCard, [PrimitiveParameter("zone"), ComplexParameter("then", EffectFactory.load), PrimitiveParameter("number", optional=True)]))
+EffectFactory.addFactory("PICK_UP_TO_ALL_CARDS", Factory(PickUpToAllCards, [PrimitiveParameter("zones"), PrimitiveParameter("to"), ComplexParameter("then", EffectFactory.loadAll), 
                                                                             ComplexParameter("criteria", CriteriaFactory.loadAll, optional=True),
                                                                             ComplexParameter("leftoverCardEffects", EffectFactory.loadAll, optional=True, default=[])]))
-EffectFactory.addFactory("PICK_UP_TO_N_CARDS", Factory(PickUpToNCards, [PrimitiveParameter("sources"), PrimitiveParameter("number"), PrimitiveParameter("to"), 
+EffectFactory.addFactory("PICK_UP_TO_N_CARDS", Factory(PickUpToNCards, [PrimitiveParameter("zones"), PrimitiveParameter("number"), PrimitiveParameter("to"), 
                                                                         ComplexParameter("then", EffectFactory.loadAll), ComplexParameter("criteria", CriteriaFactory.loadAll, optional=True)]))
-EffectFactory.addFactory("PICK_UP_TO_N_COST", Factory(PickUpToNCost, [PrimitiveParameter("sources"), PrimitiveParameter("cost"), PrimitiveParameter("to"), 
+EffectFactory.addFactory("PICK_UP_TO_N_COST", Factory(PickUpToNCost, [PrimitiveParameter("zones"), PrimitiveParameter("cost"), PrimitiveParameter("to"), 
                                                                        ComplexParameter("then", EffectFactory.loadAll), ComplexParameter("criteria", CriteriaFactory.loadAll, optional=True)]))
-EffectFactory.addFactory("PICK_TYPE", Factory(PickType, [PrimitiveParameter("source"), ComplexParameter("then", EffectFactory.loadAll), ComparisonFilterParameter(optional=True)]))
+EffectFactory.addFactory("PICK_TYPE", Factory(PickType, [PrimitiveParameter("zone"), ComplexParameter("then", EffectFactory.loadAll), ComparisonFilterParameter(optional=True)]))
 EffectFactory.addFactory("PLAY_OR_HAVE_PLAYED", Factory(PlayOrHavePlayed, [ComplexParameter("effect", EffectFactory.load), ComplexParameter("criteria", CriteriaFactory.load)]))
 EffectFactory.addFactory("FOR_ALL_PLAY_OR_HAVE_PLAYED", Factory(ForAllPlayOrHavePlayed, [ComplexParameter("effect", EffectFactory.load), ComplexParameter("criteria", CriteriaFactory.load)]))
 EffectFactory.addFactory("PLAY_OR_HAVE_PLAYED_ANOTHER", Factory(PlayOrHavePlayedAnother, [ComplexParameter("effect", EffectFactory.load), ComplexParameter("criteria", CriteriaFactory.load)]))

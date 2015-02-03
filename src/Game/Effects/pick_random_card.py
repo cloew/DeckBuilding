@@ -5,17 +5,17 @@ from Game.Events.cards_event import CardsEvent
 import random
 
 class PickRandomCard(ConditionalEffect):
-    """ Represents an effect to Pick a Random Card of a source """
+    """ Represents an effect to Pick a Random Card of a zone """
     
-    def __init__(self, sourceType, thenEffect, number=None):
-        """ Initialize the Effect with the source to look at """
-        self.sourceType = sourceType
+    def __init__(self, zoneType, thenEffect, number=None):
+        """ Initialize the Effect with the zone to look at """
+        self.zoneType = zoneType
         
         if number is None:
             number = 1
         self.number = number
         
-        ConditionalEffect.__init__(self, HasCards(self.sourceType), [thenEffect])
+        ConditionalEffect.__init__(self, HasCards(self.zoneType), [thenEffect])
         
     def performEffects(self, context):
         """ Perform the Game Effect """
@@ -28,10 +28,10 @@ class PickRandomCard(ConditionalEffect):
             
     def getRandomCards(self, context):
         """ Get Random Cards and return the proper event """
-        source = context.loadSource(self.sourceType)
-        cards = random.sample(source, self.getNumberOfCards(source))
-        return CardsEvent(cards, source, context)
+        zone = context.loadzone(self.zoneType)
+        cards = random.sample(zone, self.getNumberOfCards(zone))
+        return CardsEvent(cards, zone, context)
         
-    def getNumberOfCards(self, source):
+    def getNumberOfCards(self, zone):
         """ Return the number of cards that can be picked """
-        return min(self.number, len(source)) 
+        return min(self.number, len(zone)) 

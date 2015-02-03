@@ -1,16 +1,16 @@
 from Game.Effects.Conditions.Filters.Operations.operations import operations
 
-class SourceCriteria:
-    """ Represents a Criteria based on values from a source """
+class ZoneCriteria:
+    """ Represents a Criteria based on values from a zone """
     
-    def __init__(self, field, sourceType):
+    def __init__(self, field, zoneType):
         """ Initialize the Fixed Criteria """
         self.field = field
-        self.sourceType = sourceType
+        self.zoneType = zoneType
         self.operation = operations["IN"]
         
     def compare(self, card, context):
         """ Compare the card with the Matching Condition """
-        source = context.loadSource(self.sourceType)
+        zone = context.loadZone(self.zoneType)
         value = getattr(card, self.field)
-        return self.operation(value, [getattr(sourceCard, self.field) for sourceCard in source])
+        return self.operation(value, [getattr(zoneCard, self.field) for zoneCard in zone])

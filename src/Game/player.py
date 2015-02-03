@@ -33,11 +33,11 @@ class Player:
         newCards = self.deck.draw(count=count)
         self.hand += newCards
         
-    def gainCard(self, card, fromSource, toSource=None, game=None):
+    def gainCard(self, card, fromZone, toZone=None, game=None):
         """ Gain the provided card """
-        fromSource.remove(card)
-        toSource.add(card)
-        event = CardsEvent([card], toSource, PlayerContext(game, card, player=self))
+        fromZone.remove(card)
+        toZone.add(card)
+        event = CardsEvent([card], toZone, PlayerContext(game, card, player=self))
         coroutine = PerformEffects(card.onGainEffects, event.context)
         response = yield coroutine.next()
         while True:

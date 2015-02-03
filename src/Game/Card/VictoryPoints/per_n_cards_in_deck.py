@@ -1,4 +1,4 @@
-from Game.Sources.source_types import DECK
+from Game.Zones.zone_types import DECK
 
 class PerNCardsInDeck:
     """ Represents a VP based on the number of cards in your deck """
@@ -9,7 +9,6 @@ class PerNCardsInDeck:
         
     def calculatePoints(self, context):
         """ Return the number of Points """
-        deck = context.loadSource(DECK)
+        deck = context.loadZone(DECK)
         points = len(deck)/self.number
-        print points
         return points

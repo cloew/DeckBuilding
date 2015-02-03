@@ -27,10 +27,10 @@ class Option:
 class Choice:
     """ Represents an effect absed on a choice """
     
-    def __init__(self, options, relevantSourceType=None, filter=None):
+    def __init__(self, options, relevantZoneType=None, filter=None):
         """ Initialize the options """
         self.options = options
-        self.relevantSourceType = relevantSourceType
+        self.relevantZoneType = relevantZoneType
         self.filter = filter
         
     def perform(self, context):
@@ -53,8 +53,8 @@ class Choice:
         possibleCards = None
         if self.filter is not None:
             possibleCards = self.filter.evaluate(context)
-        elif self.relevantSourceType is not None:
-            source = context.loadSource(self.relevantSourceType)
+        elif self.relevantZoneType is not None:
+            source = context.loadZone(self.relevantZoneType)
             possibleCards = source
         
         return possibleCards

@@ -6,7 +6,7 @@ from supervillain_stack_wrapper import SuperVillainStackWrapper
 from turn_wrapper import TurnWrapper
 
 from Game.player_order_helper import GetPlayersStartingWith
-from Game.Sources.source_types import KICK, LINE_UP
+from Game.Zones.zone_types import KICK, LINE_UP
 from Server.Game.Notifications.notification_wrapper_factory import NotificationWrapperFactory
 from Server.Game.Requests.request_wrapper_factory import RequestWrapperFactory
 
@@ -25,10 +25,10 @@ class GameWrapper:
         
     def toJSON(self, includeActions=False):
         """ Return the game as a JSON Dictionary """
-        kicksJSON = GetCardListJSON(self.game.kickDeck, self.game, actions=[{'type':'BUY', 'source':KICK}], includeActions=includeActions, canBuyCallback=self.canBuy)
+        kicksJSON = GetCardListJSON(self.game.kickDeck, self.game, actions=[{'type':'BUY', 'zone':KICK}], includeActions=includeActions, canBuyCallback=self.canBuy)
         weaknessesJSON = GetCardListJSON(self.game.weaknessDeck, self.game, includeActions=includeActions)
         destroyedJSON = GetCardListJSON(self.game.destroyedDeck, self.game, includeActions=includeActions)
-        lineUpJSON = GetCardListJSON(self.game.lineUp.cards, self.game, actions=[{'type':'BUY', 'source':LINE_UP}], includeActions=includeActions, canBuyCallback=self.canBuy)
+        lineUpJSON = GetCardListJSON(self.game.lineUp.cards, self.game, actions=[{'type':'BUY', 'zone':LINE_UP}], includeActions=includeActions, canBuyCallback=self.canBuy)
         
         gameJSON = {'id':self.id,
                     'isOver':self.game.isOver,

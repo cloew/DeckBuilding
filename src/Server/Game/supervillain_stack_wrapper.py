@@ -1,5 +1,5 @@
 from card_wrapper import CardWrapper
-from Game.Sources.source_types import SUPERVILLAIN
+from Game.Zones.zone_types import SUPERVILLAIN
 
 class SuperVillainStackWrapper:
     """ A Wrapper for the Super Villain Stack that handles its conversion to JSON """
@@ -18,7 +18,7 @@ class SuperVillainStackWrapper:
         """ Add the top card of the super villain stack if it's available """
         if self.superVillainStack.available:
             if includeActions and canBuyCallback(self.superVillainStack.topCard):
-                actions=[{'type':'BUY', 'source':SUPERVILLAIN}]
+                actions=[{'type':'BUY', 'zone':SUPERVILLAIN}]
             else:
                 actions=[]
             superVillainJSON['cards'] = [CardWrapper(self.superVillainStack.topCard, actions=actions).toJSON()]

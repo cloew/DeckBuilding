@@ -1,16 +1,16 @@
-from source import Source
-from source_types import CHARACTER
+from zone import Zone
+from zone_types import CHARACTER
 
-class CharacterSource(Source):
-    """ Represents a Character Source """
+class CharacterZone(Zone):
+    """ Represents a Character Zone """
     
     def __init__(self, character):
-        """ Initialize the source """
+        """ Initialize the zone """
         self.character = character
-        Source.__init__(self, character, sourceType=CHARACTER)
+        Zone.__init__(self, character, zoneType=CHARACTER)
         
     def add(self, card):
-        """ Add the given card to the source """
+        """ Add the given card to the zone """
         raise NotImplemented
         
     def remove(self, card):

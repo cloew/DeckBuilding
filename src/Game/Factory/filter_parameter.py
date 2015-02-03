@@ -11,6 +11,6 @@ class FilterParameter(Parameter):
     def __getvalue__(self, data):
         """ Build the Filter """
         filterJson = data["filter"]
-        if "source" not in filterJson and "source" in data:
-            filterJson["source"] = data["source"]
+        if "zone" not in filterJson and "zone" in data:
+            filterJson["zone"] = data["zone"]
         return FilterFactory.load(filterJson)

@@ -1,5 +1,5 @@
 from Game.player_order_helper import GetPlayersStartingWith, GetNextPlayer, GetPreviousPlayer
-from Game.Sources.source_factory import SourceFactory
+from Game.Zones.zone_factory import ZoneFactory
 
 class Context:
     """ Represents a Game Context """
@@ -25,9 +25,9 @@ class Context:
         """ Add a Game Notification """
         return self.notificationTracker.append(notification)
     
-    def loadSource(self, sourceType):
-        """ Load the given source using this context """
-        return SourceFactory.getSourceInContext(sourceType, self)
+    def loadZone(self, zoneType):
+        """ Load the given zone using this context """
+        return ZoneFactory.getZoneInContext(zoneType, self)
     
 class PlayerContext(Context):
     """ Represents the game context for a particular player """

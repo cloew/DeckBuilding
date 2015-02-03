@@ -5,7 +5,7 @@ from Game.Effects.Conditions.matching import Matching
 from Game.Effects.Conditions.Filters.comparison_filter import ComparisonFilter
 from Game.Effects.Triggers.trigger import Trigger
 from Game.Events.game_events import CARD_PLAYED
-from Game.Sources.source_types import PLAYED, EVENT
+from Game.Zones.zone_types import PLAYED, EVENT
 
 class ForAllPlayOrHavePlayed:
     """ Represents an effect that performs for all cards matching some criteria that have been played or will be played """

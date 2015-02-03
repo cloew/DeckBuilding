@@ -9,4 +9,3 @@ class GainPower:
     def perform(self, context):
         """ Perform the Game Effect """
         context.owner.gainPower(context.parent, self.power)
-        # Will probably return some kind of message object that says power was gained and by what

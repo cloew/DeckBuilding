@@ -1,9 +1,6 @@
 
 class IsPlayerTurn:
-    """ Represents a condition where a source must have cards """
-    
-    def __init__(self):
-        """ Initialize the Condition with the Source to check that has cards """
+    """ Represents a condition where it must be the asking players turn """
         
     def evaluate(self, context):
         """ Evaluate the condition """

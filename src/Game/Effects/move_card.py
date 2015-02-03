@@ -2,18 +2,18 @@
 class MoveCard:
     """ Represents an effect to Move a Card """
     
-    def __init__(self, fromSourceType, toSourceType):
+    def __init__(self, fromZoneType, toZoneType):
         """ Initialize the Effect """
-        self.fromSourceType = fromSourceType
-        self.toSourceType = toSourceType
+        self.fromZoneType = fromZoneType
+        self.toZoneType = toZoneType
         
     def perform(self, context):
         """ Perform the Game Effect """
-        fromSource = context.loadSource(self.fromSourceType)
-        toSource = context.loadSource(self.toSourceType)
-        self.moveCards(fromSource, toSource)
+        fromZone = context.loadZone(self.fromZoneType)
+        toZone = context.loadZone(self.toZoneType)
+        self.moveCards(fromZone, toZone)
         
-    def moveCards(self, fromSource, toSource):
-        for card in list(fromSource):
-            fromSource.remove(card)
-            toSource.add(card)
+    def moveCards(self, fromZone, toZone):
+        for card in list(fromZone):
+            fromZone.remove(card)
+            toZone.add(card)

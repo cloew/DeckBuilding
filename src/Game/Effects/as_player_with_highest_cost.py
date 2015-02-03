@@ -3,9 +3,9 @@ from Game.Effects.effect_runner import PerformEffects
 class AsPlayerWithHighestCost:
     """ Represents an effect to run as the Player who has the greatest cost of cards """
     
-    def __init__(self, sourceType, thenEffects):
-        """ Initialize the Effect with the children effects and the source to check from """
-        self.sourceType = sourceType
+    def __init__(self, zoneType, thenEffects):
+        """ Initialize the Effect with the children effects and the zone to check from """
+        self.zoneType = zoneType
         self.thenEffects = thenEffects
         
     def perform(self, context):
@@ -39,4 +39,4 @@ class AsPlayerWithHighestCost:
         
     def findCardsforPlayer(self, context, player):
         """ Find cards for the given player """
-        return context.getPlayerContext(player).loadSource(self.sourceType)
+        return context.getPlayerContext(player).loadZone(self.zoneType)

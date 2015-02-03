@@ -16,7 +16,7 @@ class IntersectionFilterParameter(Parameter):
         filters = []
         for criteria in criterion:
             filterJson = {"criteria":criteria}
-            filterJson["source"] = data["source"]
+            filterJson["zone"] = data["zone"]
             filterJson["type"] = "COMPARISON"
             filters.append(FilterFactory.load(filterJson))
             

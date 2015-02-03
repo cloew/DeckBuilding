@@ -2,21 +2,21 @@
 class CardsEvent:
     """ Represents an Event to wrap an arbitrary number of cards """
     
-    def __init__(self, cards, fromSource, context):
+    def __init__(self, cards, fromZone, context):
         """ Initialize the Cards Event with the cards and where they came from """
         self.cards = cards
-        self.fromSource = fromSource
+        self.fromZone = fromZone
         
         self.context = context.copy()
         self.context.event = self
     
     def add(self, card):
         """ Add the card from the deck """
-        self.fromSource.add(card)    
+        self.fromZone.add(card)    
         
     def remove(self, card):
         """ Remove the card from the deck """
-        self.fromSource.remove(card)
+        self.fromZone.remove(card)
         
     def __getitem__(self, index):
         """ Return the item at the given index """

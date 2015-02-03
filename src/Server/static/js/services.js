@@ -36,17 +36,17 @@ services.factory('gameService', function($cookies, $http, $location, $routeParam
             requestModalService.openRequestModal(this.game.request);
         }
     };
-    Game.prototype.activateCard = function(index, source) {
+    Game.prototype.activateCard = function(index, zone) {
         var self = this;
-        $http.post(this.rootUrl+'/activate', {'index':index, 'source':source}).success(function(data) {
+        $http.post(this.rootUrl+'/activate', {'index':index, 'zone':zone}).success(function(data) {
             self.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     };
-    Game.prototype.buyCard = function(index, source) {
+    Game.prototype.buyCard = function(index, zone) {
         var self = this;
-        $http.post(this.rootUrl+'/buy', {'index':index, 'source':source}).success(function(data) {
+        $http.post(this.rootUrl+'/buy', {'index':index, 'zone':zone}).success(function(data) {
             self.setGame(data);
         }).error(function(error) {
             alert(error);
@@ -398,14 +398,14 @@ services.factory('RevealNotificationFactory', function(CardsNotificationFactory)
                                    "forOthers":"the top of the main deck."},};
     var getMessageWithoutPlayerName = function(notification) {
         if (notification.isYou) {
-            return typeToData[notification.sourceType].forYou;
+            return typeToData[notification.zoneType].forYou;
         } else {
-            return typeToData[notification.sourceType].forOthers;
+            return typeToData[notification.zoneType].forOthers;
         }
     }
     return {"type":"REVEAL", "load": function(notification) {
         var result = CardsNotificationFactory.load(notification);
-        result.sourceText = " from " + getMessageWithoutPlayerName(notification);
+        result.zoneText = " from " + getMessageWithoutPlayerName(notification);
         return result;
     }};
 });

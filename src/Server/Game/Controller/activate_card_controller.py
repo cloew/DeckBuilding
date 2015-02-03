@@ -8,5 +8,5 @@ class ActivateCardController(GameCommandController):
     def buildCommand(self, player, game, json):
         """ Build the Command to try and perform """
         cardIndex = json['index']
-        sourceType = json['source']
-        return ActivateCard(cardIndex, sourceType, game.currentTurn)
+        zoneType = json['zone']
+        return ActivateCard(cardIndex, zoneType, game.currentTurn)

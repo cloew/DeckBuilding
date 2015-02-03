@@ -2,9 +2,9 @@ from Game.coroutine_helper import RunCoroutineOrFunction
 from Game.Commands.Requests.pick_card_request import PickCardRequest
 from Game.Effects.effect_runner import PerformEffects
 from Game.Events.cards_event import CardsEvent
-from Game.Events.multi_source_event import MultiSourceEvent
-from Game.Sources.event_source import EventSource
-from Game.Sources.source_types import DECK
+from Game.Events.multi_zone_event import MultiZoneEvent
+from Game.Zones.event_zone import EventZone
+from Game.Zones.zone_types import DECK
 
 PICK = "PICK"
 TOP = "TOP"
@@ -12,13 +12,13 @@ TOP = "TOP"
 class CollectCards:
     """ Represents an effect to Collect Cards from the top of your opponents decks """
     
-    def __init__(self, thenEffects, sourceType=None, pickType=None, number=None, toDescription=None):
+    def __init__(self, thenEffects, zoneType=None, pickType=None, number=None, toDescription=None):
         """ Initialize the Effect with the effects to call with the collected cards """
         self.thenEffects = thenEffects
         
-        if sourceType is None:
-            sourceType = DECK
-        self.sourceType = sourceType
+        if zoneType is None:
+            zoneType = DECK
+        self.zoneType = zoneType
         
         if pickType is None:
             pickType = TOP
@@ -39,31 +39,31 @@ class CollectCards:
         function = typeToFunction[self.pickType]
         
         self.cardsForFoes = []
-        sources = []
+        zones = []
         for foe in context.foes:
             playerContext = context.getPlayerContext(foe)
-            source = playerContext.loadSource(self.sourceType)
-            coroutine = RunCoroutineOrFunction(function, [playerContext, source, self.number])
+            zone = playerContext.loadZone(self.zoneType)
+            coroutine = RunCoroutineOrFunction(function, [playerContext, zone, self.number])
             try:
                 response = yield coroutine.next()
                 while True:
                     response = yield coroutine.send(response)
             except StopIteration:
                 pass
-            event = CardsEvent(self.cardsForFoes, source, playerContext)
-            sources.append(EventSource(event))
+            event = CardsEvent(self.cardsForFoes, zone, playerContext)
+            zones.append(EventZone(event))
                 
-        event = MultiSourceEvent(sources, context)
+        event = MultiZoneEvent(zones, context)
         coroutine = PerformEffects(self.thenEffects, event.context)
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)
             
-    def getTopCards(self, context, source, number):
+    def getTopCards(self, context, zone, number):
         """ Get the Top Cards """
-        self.cardsForFoes = source[:number]
+        self.cardsForFoes = zone[:number]
             
-    def pickCards(self, context, source, number):
+    def pickCards(self, context, zone, number):
         """ Get the Top Cards """
-        self.cardsForFoes = yield PickCardRequest(source, context.player, number, self.toDescription)
+        self.cardsForFoes = yield PickCardRequest(zone, context.player, number, self.toDescription)
         
