@@ -426,9 +426,9 @@ services.factory('Poller', function($timeout) {
     return function(parentScope, pollMethod) {
         (function tick() {
             pollMethod();
-            if (!parentScope.donePolling) {
-                parentScope.pollPromise = $timeout(tick, 1000);
-            }
+            //if (!parentScope.donePolling) {
+            //    parentScope.pollPromise = $timeout(tick, 1000);
+            //}
         })();
         parentScope.$on('$destroy', function() {
             parentScope.donePolling = true;

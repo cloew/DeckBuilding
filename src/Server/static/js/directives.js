@@ -1,6 +1,15 @@
 'use strict';
 
 angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
+    .directive('lobbyOverview', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          scope: {
+              lobby: '=lobby'
+          },
+          templateUrl: 'static/partials/directives/Lobby/lobby_overview.html'
+      }})
     .directive('characterSelection', function() {
       return {
           restrict: 'E',

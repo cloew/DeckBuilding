@@ -1,0 +1,15 @@
+$kao-heading-height: 41px;
+$kao-heading-padding: 5px;
+$kao-header-height: $kao-heading-height - 2*$kao-heading-padding - 1;
+
+.kao-panel-heading {
+    height: $kao-heading-height;
+    padding-top: $kao-heading-padding;
+    padding-bottom: $kao-heading-padding;
+}
+
+.kao-panel-header {
+    display: table-cell;
+    height: $kao-header-height;
+    vertical-align: middle;
+}

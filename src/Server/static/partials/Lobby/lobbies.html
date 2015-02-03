@@ -1,11 +1,11 @@
-<div class="col-md-8 col-md-push-2" style="text-align:center;">
-    <div class="col-md-12">
+<div class="col-md-8 col-md-push-2">
+    <div class="col-md-12" style="text-align:center;">
         <h1 class="col-md-8 col-md-push-2">Your Learned Words</h1>
         <button ng-click="startNewLobby();" class="btn btn-primary btn-lg pull-right">New Lobby</button>
     </div>
-    <div ng-repeat="lobby in lobbies">
-        <h2>{{lobby.id}}</h2>
-            <button ng-click="joinLobby(lobby.id);">Join</button>
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <lobby-overview lobby="lobby" ng-repeat="lobby in lobbies"></lobby-overview>
         </div>
     </div>
 </div>
