@@ -1,11 +1,19 @@
-<div class="col-md-8 col-md-push-2">
-    <div class="col-md-12" style="text-align:center;">
-        <h1 class="col-md-8 col-md-push-2">Lobbies</h1>
-        <button ng-click="startNewLobby();" class="btn btn-primary btn-lg pull-right ">New Lobby</button>
+<div>
+    <div class="bg-primary col-md-12 header-bar" style="text-align:center;">
+        <div class="col-md-8 col-md-push-2">
+            <div  class="col-md-8 col-md-push-2">
+                <h1>Lobbies</h1>
+            </div>
+            <div class="col-md-2 pull-right" style="text-align: center;">
+                <button ng-click="startNewLobby();" class="btn btn-primary btn-lg">New Lobby</button>
+            </div>
+        </div>
     </div>
-    <div class="col-md-12">
-        <div class="col-md-6">
-            <lobby-overview lobby="lobby" ng-repeat="lobby in lobbies"></lobby-overview>
+    <div class="col-md-8 col-md-push-2">
+        <div class="col-md-12">
+            <div class="col-md-6" ng-repeat="lobby in lobbies">
+                <lobby-overview lobby="lobby"></lobby-overview>
+            </div>
         </div>
     </div>
 </div>
