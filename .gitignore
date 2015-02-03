@@ -54,3 +54,8 @@ docs/_build/
 
 # PBF
 .pbf-properties
+
+# SASS
+.sass-cache
+*.css
+*.css.map
