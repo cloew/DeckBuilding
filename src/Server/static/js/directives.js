@@ -35,6 +35,9 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
           scope: {
               lobby: '=lobby'
           },
+          controller: function($scope, lobbiesService) {
+            $scope.joinLobby = lobbiesService.joinLobby;
+          },
           templateUrl: 'static/partials/directives/Lobby/lobby_overview.html'
       }})
     .directive('lobbySettings', function() {
