@@ -1,6 +1,6 @@
 <div style="margin-left:25px;margin-right:25px;">
-    <header-div header="Players">
-        <div class="row-container" ng-repeat="player in lobby.allPlayers">
+    <header-div header="Players" stretch-to-bottom>
+        <div class="col-md-3" ng-repeat="player in lobby.allPlayers">
             <character character="player.character" thumbnail="true"></character>
             <h2 style="vertical-align: middle;">{{player.name}}</h2>
         </div>
