@@ -1,5 +1,8 @@
 <div>
-    <div class="col-md-7 character-container">
+    <div class="col-md-7 character-container" style="text-align: center">
+        <div class="col-md-12">
+            <h3>Select Character</h3>
+        </div>
         <character ng-repeat="character in characters" character="character" thumbnail="true" ng-click="changeCharacter(character.name);" 
                    ng-mouseover="viewCharacter(character)" ng-mouseleave="viewCurrentCharacter();" class="character-box"></character>
     </div>
