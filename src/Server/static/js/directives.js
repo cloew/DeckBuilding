@@ -1,6 +1,33 @@
 'use strict';
 
 angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
+    .directive('stretchToBottom', function($window, $document, $timeout) {
+        return {
+          restrict: 'A',
+          replace: true,
+          link: function (scope, element, attrs) {
+            var originalHeight = undefined;
+            var applyHeight = function() {
+              var currentHeight = element.height();
+              var newHeight = $window.innerHeight - element.offset().top - 10;
+              if (originalHeight === undefined) {
+                originalHeight = currentHeight;
+              }
+              if (newHeight > originalHeight) {
+                element.height(newHeight);
+              }
+              else {
+                element.height(originalHeight);
+              }
+            };
+            angular.element($window).bind('resize', function() {
+              scope.$apply(function() {
+                  applyHeight();
+              });
+            });
+            $document.ready(function() {$timeout(applyHeight, 200);});
+          }
+        }})
     .directive('lobbyOverview', function() {
       return {
           restrict: 'E',
