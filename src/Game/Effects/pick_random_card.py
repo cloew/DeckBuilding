@@ -28,7 +28,7 @@ class PickRandomCard(ConditionalEffect):
             
     def getRandomCards(self, context):
         """ Get Random Cards and return the proper event """
-        zone = context.loadzone(self.zoneType)
+        zone = context.loadZone(self.zoneType)
         cards = random.sample(zone, self.getNumberOfCards(zone))
         return CardsEvent(cards, zone, context)
         
