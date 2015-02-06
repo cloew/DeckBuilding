@@ -80,8 +80,8 @@ controllers.controller('PickCardController', function($scope, requestModalServic
             $scope.sendChoices();
         }
     };
-    $scope.hasChosenCard = function(index) {
-        return $scope.indices.indexOf(index) > -1;
+    $scope.hasNotChosenCard = function(index) {
+        return $scope.indices.indexOf(index) === -1;
     };
     $scope.isNotAvailable = function(index) {
         return $scope.indices.indexOf(index) > -1;

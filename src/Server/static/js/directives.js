@@ -169,10 +169,13 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
           scope: {
               cards: '=cards',
               actions: '=actions',
-              size: '@'
+              hide: '=?',
+              size: '@',
+              includeCardActions: '@'
           },
           compile: function(element, attrs){
             if (attrs.size === undefined) { attrs.size = 'medium'; }
+            if (attrs.includeCardActions === undefined) { attrs.includeCardActions = true; }
           },
           templateUrl: 'static/partials/directives/Card/card_list.html'
       }})
