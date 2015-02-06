@@ -423,4 +423,12 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
           restrict: 'E',
           replace: true,
           templateUrl: 'static/partials/directives/player_results.html'
+      }})
+    .directive('globalInfo', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          scope: {game: '=',
+                  actions: '='},
+          templateUrl: 'static/partials/directives/Game/global_info.html'
       }});

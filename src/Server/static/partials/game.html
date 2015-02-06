@@ -1,16 +1,5 @@
 <div class="clearfix visible-md-block"></div>
 <div class="col-md-3">
-    <div class="col-md-12 deck-col">
-        <div class="col-md-4">
-            <deck deck="game.mainDeck" actions="actions" size="'medium'"></deck>
-        </div>
-        <div class="col-md-4">
-            <deck deck="game.weaknesses" actions="actions" display-top-card="true" size="'medium'"></deck>
-        </div>
-        <div class="col-md-4">
-            <deck deck="game.destroyed" actions="actions" size="'medium'"></deck>
-        </div>
-    </div>
     <player player="game.you" actions="actions" is-you="true"></player>
     <player player="player" actions="actions" ng-repeat="player in game.players"></player>
 </div>
@@ -20,14 +9,7 @@
     <hand></hand>
 </div>
 <div class="col-md-3">
-    <div class="col-md-12 deck-col">
-        <div class="col-md-6">
-            <deck deck="game.superVillains" actions="actions" display-top-card="true" size="'medium'"></deck>
-        </div>
-        <div class="col-md-6">
-            <deck deck="game.kicks" actions="actions" display-top-card="true" size="'medium'"></deck>
-        </div>
-    </div>
+    <global-info game="game" actions="actions" class="col-md-12 deck-col"></global-info>
     <turn></turn>
     <notifications></notifications>
 </div>
