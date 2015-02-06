@@ -112,14 +112,14 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
               image: '=image',
               size: '=size'
           },
-          templateUrl: 'static/partials/directives/card_image.html'
+          templateUrl: 'static/partials/directives/Card/card_image.html'
       }})
     .directive('card', function() {
       return {
           restrict: 'E',
           replace: true,
           transclude: true,
-          templateUrl: 'static/partials/directives/card.html'
+          templateUrl: 'static/partials/directives/Card/card.html'
       }})
     .directive('character', function() {
       return {
@@ -405,7 +405,7 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
           scope: {header: '@',
                   cards: '=',
                   actions: '='},
-          templateUrl: 'static/partials/directives/card_group.html'
+          templateUrl: 'static/partials/directives/Card/card_group.html'
       }})
     .directive('headerDiv', function() {
       return {
