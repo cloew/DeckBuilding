@@ -160,7 +160,7 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
           compile: function(element, attrs){
             if (attrs.includeCardActions === undefined) { attrs.includeCardActions = true; }
           },
-          template: '<div style="width: 150px; float:left; position: relative;"><card><div ng-transclude></div></card></div>'
+          templateUrl: 'static/partials/directives/Card/action_card.html'
       }})
       .directive('cardList', function() {
       return {
@@ -174,7 +174,7 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
           compile: function(element, attrs){
             if (attrs.size === undefined) { attrs.size = 'medium'; }
           },
-          template: '<div style="display: inline-block; width: 100%;"><action-card actions="actions" size="size" card="card" index="$index" ng-repeat="card in cards" ng-hide="$scope.indices.indexOf($index) > -1"></action-card></div>'
+          templateUrl: 'static/partials/directives/Card/card_list.html'
       }})
       .directive('availableCards', function() {
       return {

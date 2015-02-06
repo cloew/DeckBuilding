@@ -214,3 +214,9 @@
     top:50%;
     margin-top: -22px;
 }
+.card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-around;
+}
