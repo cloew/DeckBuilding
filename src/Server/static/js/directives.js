@@ -340,6 +340,10 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
       return {
           restrict: 'E',
           replace: true,
+          scope: {
+              cards: '=',
+              actions: '='
+          },
           templateUrl: 'static/partials/directives/played.html'
       }})
     .directive('turn', function() {
