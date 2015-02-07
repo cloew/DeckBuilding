@@ -1,11 +1,12 @@
 from Game.Commands.play_card import PlayCard
 
-from Server.Game.Controller.game_command_controller import GameCommandController
+from Server.Game.Controller.game_and_card_command_controller import GameAndCardCommandController
 
-class PlayCardController(GameCommandController):
+class PlayCardController(GameAndCardCommandController):
     """ Controller to play a card """
         
-    def buildCommand(self, player, game, json):
+    def buildCommand(self, player, game, card, json):
         """ Build the Command to try and perform """
-        cardIndex = json['index']
-        return PlayCard(cardIndex, game.currentTurn)
+        print "Building play card command"
+        print card
+        return PlayCard(card, game.currentTurn)

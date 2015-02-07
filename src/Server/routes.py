@@ -1,3 +1,5 @@
+from Server.urls import activateCardURL, buyCardURL, playCardURL
+
 from Server.Game.Controller.get_game_controller import GetGameController
 from Server.Game.Controller.get_game_for_player_controller import GetGameForPlayerController
 from Server.Game.Controller.activate_card_controller import ActivateCardController
@@ -28,14 +30,14 @@ routes = [Endpoint('/', get=HTMLController('Server/templates/index.html')),
           #Game Endpoints
           Endpoint('/api/game/<int:gameId>', get=GetGameController()),
           Endpoint('/api/game/<int:gameId>/player/<int:playerId>', get=GetGameForPlayerController()),
-          Endpoint('/api/game/<int:gameId>/player/<int:playerId>/activate', post=ActivateCardController()),
-          Endpoint('/api/game/<int:gameId>/player/<int:playerId>/buy', post=BuyCardController()),
           Endpoint('/api/game/<int:gameId>/player/<int:playerId>/choose', post=ChooseController()),
           Endpoint('/api/game/<int:gameId>/player/<int:playerId>/defend', post=DefendController()),
           Endpoint('/api/game/<int:gameId>/player/<int:playerId>/endturn', post=EndTurnController()),
           Endpoint('/api/game/<int:gameId>/player/<int:playerId>/pickcard', post=PickCardController()),
-          Endpoint('/api/game/<int:gameId>/player/<int:playerId>/play', post=PlayCardController()),
           Endpoint('/api/game/<int:gameId>/player/<int:playerId>/results', get=GetResultsForPlayerController()),
+          Endpoint(activateCardURL, post=ActivateCardController()),
+          Endpoint(buyCardURL, post=BuyCardController()),
+          Endpoint(playCardURL, post=PlayCardController()),
           # Lobby Endpoints
           Endpoint('/api/lobbies', get=GetLobbiesController(), post=NewLobbyController()),
           Endpoint('/api/lobbies/<int:lobbyId>', get=GetLobbyController()),

@@ -24,23 +24,23 @@ class GameWrapper:
         """ Return if the player can buy the given card """
         return self.game.currentTurn.power >= card.cost
         
-    def toJSON(self, includeActions=False):
+    def toJSON(self, playerId, includeActions=False):
         """ Return the game as a JSON Dictionary """
-        kicksJSON = GetCardListJSON(self.game.kickDeck, actionBuilders=[BuyActionBuilder(KICK, self.game)], includeActions=includeActions)
+        kicksJSON = GetCardListJSON(self.game.kickDeck, actionBuilders=[BuyActionBuilder(KICK, self, playerId)], includeActions=includeActions)
         weaknessesJSON = GetCardListJSON(self.game.weaknessDeck, includeActions=includeActions)
         destroyedJSON = GetCardListJSON(self.game.destroyedDeck, includeActions=includeActions)
-        lineUpJSON = GetCardListJSON(self.game.lineUp.cards, actionBuilders=[BuyActionBuilder(LINE_UP, self.game)], includeActions=includeActions)
+        lineUpJSON = GetCardListJSON(self.game.lineUp.cards, actionBuilders=[BuyActionBuilder(LINE_UP, self, playerId)], includeActions=includeActions)
         
         gameJSON = {'id':self.id,
                     'isOver':self.game.isOver,
                     'mainDeck':{'count':len(self.game.mainDeck),
                                 'hidden':True},
-                    'superVillains':SuperVillainStackWrapper(self.game.superVillainStack, self.game).toJSON(includeActions=includeActions),
+                    'superVillains':SuperVillainStackWrapper(self.game.superVillainStack, self).toJSON(playerId, includeActions=includeActions),
                     'kicks':{'cards':kicksJSON, 'count':len(kicksJSON)},
                     'weaknesses':{'cards':weaknessesJSON, 'count':len(weaknessesJSON)},
                     'destroyed':{'cards':destroyedJSON, 'count':len(destroyedJSON), 'name':'Destroyed Deck'},
                     'lineUp':lineUpJSON,
-                    'turn':TurnWrapper(self.game.currentTurn).toJSON(includeActions=includeActions)}
+                    'turn':TurnWrapper(self.game.currentTurn, self).toJSON(playerId, includeActions=includeActions)}
                     
         return {'game':gameJSON}
                 
@@ -56,11 +56,11 @@ class GameWrapper:
         if request is not None:
             requestWrapper = RequestWrapperFactory.buildRequestWrapper(self.game.currentTurn.request, self.game)
         
-        json = self.toJSON(includeActions=includeActions)
+        json = self.toJSON(playerId, includeActions=includeActions)
         gameJSON = json['game']
-        gameJSON['you'] = PlayerWrapper(yourPlayer, self.game, requestWrapper).toJSONForYourself(includeActions=includeActions)
+        gameJSON['you'] = PlayerWrapper(yourPlayer, self, requestWrapper).toJSONForYourself(playerId, includeActions=includeActions)
         gameJSON['notifications'] = [NotificationWrapperFactory.buildWrapper(notification, self.game, yourPlayer).toJSON() for notification in self.game.notificationTracker.latestNotifications]
-        gameJSON['players'] = [PlayerWrapper(player, self.game, requestWrapper).toJSON(includeActions=False) for player in GetPlayersStartingWith(yourPlayer, self.game.players) if player is not yourPlayer]
+        gameJSON['players'] = [PlayerWrapper(player, self, requestWrapper).toJSON(includeActions=False) for player in GetPlayersStartingWith(yourPlayer, self.game.players) if player is not yourPlayer]
                     
         if requestWrapper is not None and yourPlayer in request.players:
             gameJSON['request'] = requestWrapper.toJSON(includeActions=True)

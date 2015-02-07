@@ -4,7 +4,7 @@ class CardIdManager:
     
     def __init__(self, game):
         """ Initialize the card id manager """
-        self.nextId = 1
+        self.__nextId = 1
         self.idToCard = {}
         
         for player in game.players:

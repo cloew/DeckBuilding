@@ -10,13 +10,13 @@ class SuperVillainStackWrapper:
         self.superVillainStack = superVillainStack
         self.game = game
         
-    def toJSON(self, includeActions=False):
+    def toJSON(self, playerId, includeActions=False):
         """ Return the supervillain stack as a JSON Dictionary """
         superVillainJSON = {'count':len(self.superVillainStack), 'hidden':not self.superVillainStack.available}
-        self.addTopCard(superVillainJSON, includeActions=includeActions)
+        self.addTopCard(superVillainJSON, playerId, includeActions=includeActions)
         return superVillainJSON
         
-    def addTopCard(self, superVillainJSON, includeActions=False):
+    def addTopCard(self, superVillainJSON, playerId, includeActions=False):
         """ Add the top card of the super villain stack if it's available """
         if self.superVillainStack.available:
-            superVillainJSON['cards'] = [CardWrapper(self.superVillainStack.topCard).toJSON(actionBuilders=[BuyActionBuilder(SUPERVILLAIN, self.game)], includeActions=includeActions)]
+            superVillainJSON['cards'] = [CardWrapper(self.superVillainStack.topCard).toJSON(actionBuilders=[BuyActionBuilder(SUPERVILLAIN, self.game, playerId)], includeActions=includeActions)]

@@ -11,9 +11,9 @@ class GameCharacterWrapper(CharacterWrapper):
         self.game = game
         CharacterWrapper.__init__(self, character)
         
-    def toJSON(self, includeActions=False):
+    def toJSON(self, playerId, includeActions=False):
         """ Return the card as a JSON Dictionary """
-        actionBuilder = ActivateActionBuilder(CHARACTER, self.game)
+        actionBuilder = ActivateActionBuilder(CHARACTER, self.game, playerId)
             
         json = CharacterWrapper.toJSON(self)
         if includeActions and actionBuilder.canBuildFor(self.character):

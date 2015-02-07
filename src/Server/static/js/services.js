@@ -36,25 +36,25 @@ services.factory('gameService', function($cookies, $http, $location, $routeParam
             requestModalService.openRequestModal(this.game.request);
         }
     };
-    Game.prototype.activateCard = function(index, zone) {
+    Game.prototype.activateCard = function(apiUrl, zone) {
         var self = this;
-        $http.post(this.rootUrl+'/activate', {'index':index, 'zone':zone}).success(function(data) {
+        $http.post(apiUrl, {'zone':zone}).success(function(data) {
             self.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     };
-    Game.prototype.buyCard = function(index, zone) {
+    Game.prototype.buyCard = function(apiUrl, zone) {
         var self = this;
-        $http.post(this.rootUrl+'/buy', {'index':index, 'zone':zone}).success(function(data) {
+        $http.post(apiUrl, {'zone':zone}).success(function(data) {
             self.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     };
-    Game.prototype.playCard = function(index) {
+    Game.prototype.playCard = function(apiUrl) {
         var self = this;
-        $http.post(this.rootUrl+'/play', {'index':index}).success(function(data) {
+        $http.post(apiUrl).success(function(data) {
             self.setGame(data);
         }).error(function(error) {
             alert(error);

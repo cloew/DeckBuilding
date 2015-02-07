@@ -10,10 +10,10 @@ class PlayedCardsWrapper:
         self.playedCards = playedCards
         self.game = game
         
-    def toJSON(self, includeActions=False):
+    def toJSON(self, playerId, includeActions=False):
         """ Return the turn as a JSON Dictionary """
-        playedCardsJSON = GetCardListJSON(self.playedCards, actionBuilders=[ActivateActionBuilder(PLAYED, self.game)], includeActions=includeActions)
-        activatableIndices = [self.playedCards.index(card) for card in self.playedCards if card in self.game.currentTurn.activatableEffects]
+        playedCardsJSON = GetCardListJSON(self.playedCards, actionBuilders=[ActivateActionBuilder(PLAYED, self.game, playerId)], includeActions=includeActions)
+        activatableIndices = [self.playedCards.index(card) for card in self.playedCards if card in self.game.game.currentTurn.activatableEffects]
         
         return {'cards':playedCardsJSON, 
                 'activatableIndices':activatableIndices}

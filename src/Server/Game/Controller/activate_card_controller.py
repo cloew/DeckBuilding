@@ -1,12 +1,11 @@
 from Game.Commands.activate_card import ActivateCard
 
-from Server.Game.Controller.game_command_controller import GameCommandController
+from Server.Game.Controller.game_and_card_command_controller import GameAndCardCommandController
 
-class ActivateCardController(GameCommandController):
+class ActivateCardController(GameAndCardCommandController):
     """ Controller to activate a card """
         
-    def buildCommand(self, player, game, json):
+    def buildCommand(self, player, game, card, json):
         """ Build the Command to try and perform """
-        cardIndex = json['index']
         zoneType = json['zone']
-        return ActivateCard(cardIndex, zoneType, game.currentTurn)
+        return ActivateCard(card, zoneType, game.currentTurn)
