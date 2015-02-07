@@ -10,9 +10,9 @@ class TurnWrapper:
         
     def toJSON(self, includeActions=False):
         """ Return the turn as a JSON Dictionary """
-        playedJSON = GetCardListJSON(self.turn.playedCards, self.turn.game, zone=PLAYED, includeActions=includeActions)
+        playedCardsJSON = GetCardListJSON(self.turn.playedCards, self.turn.game, zone=PLAYED, includeActions=includeActions)
         
-        return {'played':playedJSON,
+        return {'played':{'cards':playedCardsJSON, 'activatableIndices':[self.turn.playedCards.index(card) for card in self.turn.playedCards if card in self.turn.game.currentTurn.activatableEffects]},
                 'power':self.turn.power,
                 'modifier':self.turn.modifier,
                 'playerName':self.turn.player.name,

@@ -341,22 +341,31 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
           restrict: 'E',
           replace: true,
           scope: {
-              cards: '=',
+              played: '=',
               actions: '='
           },
           controller: function($scope) {
             var MAX_LENGTH = 5;
+            var NUM_CARDS_WITH_DECK = MAX_LENGTH-1;
             $scope.extraPlayedCards = {count: 0, name: 'Played Cards'};
-            $scope.$watch('cards', function() {
-                if ($scope.cards) {
-                    if ($scope.cards.length <= MAX_LENGTH) {
-                        $scope.cardsToShow = $scope.cards;
+            $scope.$watch('played', function() {
+                if ($scope.played && $scope.played.cards) {
+                    if ($scope.played.cards.length <= MAX_LENGTH) {
+                        $scope.cardsToShow = $scope.played.cards;
                         $scope.extraPlayedCards.count = 0;
+                        $scope.activatables = [];
                     } else {
-                        $scope.extraPlayedCards.cards = $scope.cards.slice(0, -1*(MAX_LENGTH-1));
+                        $scope.extraPlayedCards.cards = $scope.played.cards.slice(0, -1*(NUM_CARDS_WITH_DECK));
                         $scope.extraPlayedCards.cards.reverse();
                         $scope.extraPlayedCards.count = $scope.extraPlayedCards.cards.length;
-                        $scope.cardsToShow = $scope.cards.slice(-1*(MAX_LENGTH-1));
+                        $scope.cardsToShow = $scope.played.cards.slice(-1*(NUM_CARDS_WITH_DECK));
+                        $scope.activatables = [];
+                        for (var i = 0; i < $scope.played.activatableIndices.length; i++) {
+                            var index = $scope.played.activatableIndices[i];
+                            if (index < ($scope.played.cards.length - NUM_CARDS_WITH_DECK)) {
+                                $scope.activatables.push($scope.played.cards[index]);
+                            }
+                        }
                     }
                 }
             });
