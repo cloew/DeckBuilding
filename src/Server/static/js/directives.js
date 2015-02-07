@@ -346,7 +346,7 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
           },
           controller: function($scope) {
             var MAX_LENGTH = 5;
-            $scope.extraPlayedCards = {count: 0};
+            $scope.extraPlayedCards = {count: 0, name: 'Played Cards'};
             $scope.$watch('cards', function() {
                 if ($scope.cards) {
                     if ($scope.cards.length <= MAX_LENGTH) {
