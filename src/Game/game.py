@@ -1,3 +1,4 @@
+from card_id_manager import CardIdManager
 from game_over import GameOver
 from line_up import LineUp
 from player import Player
@@ -21,11 +22,14 @@ class Game:
         self.players = players
             
         self.mainDeck = mainDeck
-        self.lineUp = LineUp(self.mainDeck)
         self.kickDeck = kickDeck
         self.weaknessDeck = weaknessDeck
         self.destroyedDeck = Deck()
         self.superVillainStack = SuperVillainStack(superVillainDeck)
+        self.cardIdManager = CardIdManager(self)
+        self.getCardFromId = self.cardIdManager.getCardFromId
+        
+        self.lineUp = LineUp(self.mainDeck)
         
         self.gameOver = GameOver(self)
         self.notificationTracker = NotificationTracker()
