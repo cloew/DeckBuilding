@@ -1,5 +1,5 @@
-from Server.Game.card_wrapper import CardWrapper
-from Server.Game.json_helper import GetCardListJSON
+from Server.Game.card_wrapper import CardWrapper, GetCardListJSON
+from Server.Game.Actions.pick_action_builder import PickActionBuilder
 
 class DefendRequestWrapper:
     """ A Wrapper for a Defend Request that handles its conversion to JSON """
@@ -16,4 +16,4 @@ class DefendRequestWrapper:
         return {'type':'DEFEND',
                 'id':self.id,
                 'attack':CardWrapper(self.request.attackCard).toJSON(),
-                'defenses':GetCardListJSON(self.request.defenses, self.game, actions=[{"type":"PICK"}], includeActions=True)}
+                'defenses':GetCardListJSON(self.request.defenses, actionBuilders=[PickActionBuilder()], includeActions=True)}

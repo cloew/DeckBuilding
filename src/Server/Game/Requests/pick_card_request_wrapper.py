@@ -1,4 +1,5 @@
-from Server.Game.json_helper import GetCardListJSON
+from Server.Game.card_wrapper import GetCardListJSON
+from Server.Game.Actions.pick_action_builder import PickActionBuilder
 
 class PickCardRequestWrapper:
     """ A Wrapper for a Pick Card Request that handles its conversion to JSON """
@@ -14,7 +15,7 @@ class PickCardRequestWrapper:
         """ Return the request as a JSON Dictionary """
         return {'type':'PICK_CARD',
                 'id':self.id,
-                'cards':GetCardListJSON(self.request.cards, self.game, actions=[{"type":"PICK"}], includeActions=includeActions),
+                'cards':GetCardListJSON(self.request.cards, actionBuilders=[PickActionBuilder()], includeActions=includeActions),
                 'to':self.request.toDescription}
         
     def toJSON(self, includeActions=False):
