@@ -1,5 +1,4 @@
-from card_wrapper import CardWrapper
-from json_helper import GetCardListJSON
+from card_wrapper import CardWrapper, GetCardListJSON
 from player_wrapper import PlayerWrapper
 from player_results_wrapper import PlayerResultsWrapper
 from supervillain_stack_wrapper import SuperVillainStackWrapper
@@ -7,6 +6,8 @@ from turn_wrapper import TurnWrapper
 
 from Game.player_order_helper import GetPlayersStartingWith
 from Game.Zones.zone_types import KICK, LINE_UP
+
+from Server.Game.Actions.buy_action_builder import BuyActionBuilder
 from Server.Game.Notifications.notification_wrapper_factory import NotificationWrapperFactory
 from Server.Game.Requests.request_wrapper_factory import RequestWrapperFactory
 
@@ -25,16 +26,16 @@ class GameWrapper:
         
     def toJSON(self, includeActions=False):
         """ Return the game as a JSON Dictionary """
-        kicksJSON = GetCardListJSON(self.game.kickDeck, self.game, actions=[{'type':'BUY', 'zone':KICK}], includeActions=includeActions, canBuyCallback=self.canBuy)
-        weaknessesJSON = GetCardListJSON(self.game.weaknessDeck, self.game, includeActions=includeActions)
-        destroyedJSON = GetCardListJSON(self.game.destroyedDeck, self.game, includeActions=includeActions)
-        lineUpJSON = GetCardListJSON(self.game.lineUp.cards, self.game, actions=[{'type':'BUY', 'zone':LINE_UP}], includeActions=includeActions, canBuyCallback=self.canBuy)
+        kicksJSON = GetCardListJSON(self.game.kickDeck, actionBuilders=[BuyActionBuilder(KICK, self.game)], includeActions=includeActions)
+        weaknessesJSON = GetCardListJSON(self.game.weaknessDeck, includeActions=includeActions)
+        destroyedJSON = GetCardListJSON(self.game.destroyedDeck, includeActions=includeActions)
+        lineUpJSON = GetCardListJSON(self.game.lineUp.cards, actionBuilders=[BuyActionBuilder(LINE_UP, self.game)], includeActions=includeActions)
         
         gameJSON = {'id':self.id,
                     'isOver':self.game.isOver,
                     'mainDeck':{'count':len(self.game.mainDeck),
                                 'hidden':True},
-                    'superVillains':SuperVillainStackWrapper(self.game.superVillainStack).toJSON(includeActions=includeActions, canBuyCallback=self.canBuy),
+                    'superVillains':SuperVillainStackWrapper(self.game.superVillainStack, self.game).toJSON(includeActions=includeActions),
                     'kicks':{'cards':kicksJSON, 'count':len(kicksJSON)},
                     'weaknesses':{'cards':weaknessesJSON, 'count':len(weaknessesJSON)},
                     'destroyed':{'cards':destroyedJSON, 'count':len(destroyedJSON), 'name':'Destroyed Deck'},

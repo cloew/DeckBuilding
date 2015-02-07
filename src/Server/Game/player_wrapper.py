@@ -1,6 +1,8 @@
-from card_wrapper import CardWrapper
+from card_wrapper import CardWrapper, GetCardListJSON
 from game_character_wrapper import GameCharacterWrapper
-from json_helper import GetCardListJSON
+
+from Server.Game.Actions.activate_action_builder import ActivateActionBuilder
+from Server.Game.Actions.play_action_builder import PlayActionBuilder
 
 from Game.Zones.zone_types import ONGOING, PLAYED
 
@@ -15,9 +17,9 @@ class PlayerWrapper:
         
     def toJSON(self, includeActions=False):
         """ Return the Player as a JSON Dictionary """
-        handJSON = GetCardListJSON(self.player.hand, self.game, actions=[{'type':'PLAY'}], includeActions=includeActions)
-        ongoingJSON = GetCardListJSON(self.player.ongoing, self.game, zone=ONGOING, includeActions=includeActions)
-        discardPileJSON = GetCardListJSON(self.player.deck.discardPile, self.game, includeActions=includeActions)
+        handJSON = GetCardListJSON(self.player.hand, actionBuilders=[PlayActionBuilder()], includeActions=includeActions)
+        ongoingJSON = GetCardListJSON(self.player.ongoing, actionBuilders=[ActivateActionBuilder(ONGOING, self.game)], includeActions=includeActions)
+        discardPileJSON = GetCardListJSON(self.player.deck.discardPile, includeActions=includeActions)
         characterJSON = GameCharacterWrapper(self.player.character, self.game).toJSON(includeActions=includeActions)
         
         return {'ongoing':ongoingJSON,
@@ -33,7 +35,7 @@ class PlayerWrapper:
                 
     def toJSONForYourself(self, includeActions=False):
         """ Return the Player as a JSON Dictionary as if you are this player """
-        handJSON = GetCardListJSON(self.player.hand, self.game, actions=[{'type':'PLAY'}], includeActions=includeActions)
+        handJSON = GetCardListJSON(self.player.hand, actionBuilders=[PlayActionBuilder()], includeActions=includeActions)
         json = self.toJSON(includeActions=includeActions)
         json['hand'] = handJSON
         json['discardPile']['name'] = "Your Discard Pile"
