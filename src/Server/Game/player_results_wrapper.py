@@ -1,4 +1,4 @@
-from json_helper import GetCardListJSON
+from card_wrapper import GetCardListJSON
 
 from Game.Effects.game_contexts import PlayerContext
 
@@ -26,7 +26,7 @@ class PlayerResultsWrapper:
             cardsForType = cardsByType[cardType]
             
             cardsSortedByCost = sorted(cardsForType, key=lambda card: card.calculatePoints(context))
-            cards[cardType] = {str(points):GetCardListJSON(cardsForPoints, game) for points, cardsForPoints in groupby(cardsSortedByCost, key=lambda card: card.calculatePoints(context))}
+            cards[cardType] = {str(points):GetCardListJSON(cardsForPoints) for points, cardsForPoints in groupby(cardsSortedByCost, key=lambda card: card.calculatePoints(context))}
             cards[cardType]['total'] = sum([int(points)*len(cardsForPoints) for points, cardsForPoints in cards[cardType].items()])
             cards[cardType]['pointValues'] = sorted([points for points in cards[cardType].keys() if points != 'total'])
             

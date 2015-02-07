@@ -1,4 +1,3 @@
-from Server.Game.json_helper import GetCardListJSON
 from Server.Game.Notifications.cards_notification_wrapper import CardsNotificationWrapper
 
 class RevealNotificationWrapper(CardsNotificationWrapper):

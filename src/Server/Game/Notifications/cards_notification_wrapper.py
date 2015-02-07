@@ -1,4 +1,4 @@
-from Server.Game.json_helper import GetCardListJSON
+from Server.Game.card_wrapper import GetCardListJSON
 from Server.Game.Notifications.notification_wrapper import NotificationWrapper
 
 class CardsNotificationWrapper(NotificationWrapper):
@@ -7,5 +7,5 @@ class CardsNotificationWrapper(NotificationWrapper):
     def toJSON(self):
         """ Return the Notification as JSON """
         json = NotificationWrapper.toJSON(self)
-        json["cards"] = GetCardListJSON(self.notification.cards, self.game, includeActions=False)
+        json["cards"] = GetCardListJSON(self.notification.cards)
         return json

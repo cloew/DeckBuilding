@@ -1,4 +1,3 @@
-from Server.Game.json_helper import GetCardListJSON
 from Server.Game.Requests.pick_card_request_wrapper import PickCardRequestWrapper
 
 class PickUpToNCostRequestWrapper(PickCardRequestWrapper):
