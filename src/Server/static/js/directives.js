@@ -344,6 +344,23 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
               cards: '=',
               actions: '='
           },
+          controller: function($scope) {
+            var MAX_LENGTH = 5;
+            $scope.extraPlayedCards = {count: 0};
+            $scope.$watch('cards', function() {
+                if ($scope.cards) {
+                    if ($scope.cards.length <= MAX_LENGTH) {
+                        $scope.cardsToShow = $scope.cards;
+                        $scope.extraPlayedCards.count = 0;
+                    } else {
+                        $scope.extraPlayedCards.cards = $scope.cards.slice(0, -1*(MAX_LENGTH-1));
+                        $scope.extraPlayedCards.cards.reverse();
+                        $scope.extraPlayedCards.count = $scope.extraPlayedCards.cards.length;
+                        $scope.cardsToShow = $scope.cards.slice(-1*(MAX_LENGTH-1));
+                    }
+                }
+            });
+          },
           templateUrl: 'static/partials/directives/played.html'
       }})
     .directive('turn', function() {

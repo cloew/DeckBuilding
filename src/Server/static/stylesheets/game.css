@@ -31,10 +31,6 @@
     margin-left: auto; 
     text-align:center;
 }
-.deck {
-    display: inline-block;
-    width: 100%;
-}
 .card-icons {
     text-align:center;
     float: right;

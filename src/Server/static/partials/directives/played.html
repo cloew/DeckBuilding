@@ -1,3 +1,9 @@
-<div class="col-md-12 deck-col">
-    <card-group header="Played" cards="cards" actions="actions"></card-group>
+<div>
+    <header-div header="Played">
+        <div class="center">
+            <deck deck="extraPlayedCards" actions="actions" size="'medium'" ng-if="extraPlayedCards.count > 0" class="pull-left"></deck>
+            <card-list cards="cardsToShow" actions="actions"></card-list>
+        </div>
+    </header-div>
+    <!--<card-group header="Played" cards="cards" actions="actions"></card-group>-->
 </div>
