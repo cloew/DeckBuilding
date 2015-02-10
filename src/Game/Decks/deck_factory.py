@@ -5,9 +5,7 @@ from shuffling_deck_loader import ShufflingDeckLoader
 from starting_deck_loader import StartingDeckLoader
 from fixed_top_card_deck_loader import FixedTopCardDeckLoader
 
-from kao_deck.deck import Deck
 from kao_deck.deck_initializer import DeckInitializer
-from kao_deck.deck_with_discard_pile import DeckWithDiscardPile
 
 import resources.resource_manager as resource_manager
 
