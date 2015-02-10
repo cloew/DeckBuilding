@@ -83,10 +83,10 @@ gameConfig = [(Game, [JsonAttr('id', lambda game, gameId: gameId, args=['gameId"
                                      FieldAttr('active'),
                                      CardActionAttr,
                                      JsonAttr('imageUrl', lambda character: CHARACTER_IMAGES_DIRECTORY_URL+character.image)],
-                                    optionalKwargs={'includeActions':False, 'actionBuilders':[]}),
+                                    optionalKwargs={'includeActions':False, 'actionBuilders':[], 'gameId': None, 'playerId': None}),
               JsonConfig(Card, [FieldAttr('name'),
                                 JsonAttr('cost', lambda card: card.calculateCost()),
                                 CardActionAttr,
                                 JsonAttr('imageUrl', lambda card: CARD_IMAGES_DIRECTORY_URL+card.image)],
-                               optionalKwargs={'includeActions':False, 'actionBuilders':[]})
+                               optionalKwargs={'includeActions':False, 'actionBuilders':[], 'gameId': None, 'playerId': None})
              ] + deckConfig + playerConfig + requestConfig + notificationConfig
