@@ -1,7 +1,6 @@
-from game_wrapper import GameWrapper
-
 id = 1
 games = {}
+gameToPlayers = {}
 
 def StartNewGame(game, players):
     """ Start a New Game """
@@ -9,6 +8,7 @@ def StartNewGame(game, players):
     global id
         
     currentId = id
-    games[currentId] = GameWrapper(currentId, game, players)
+    games[currentId] = game
+    gameToPlayers[currentId] = players
     id += 1
     return currentId
