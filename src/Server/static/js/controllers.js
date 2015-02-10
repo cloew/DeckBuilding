@@ -54,6 +54,7 @@ controllers.controller('GameResultsController', function($scope, $cookies, $http
     var rootUrl = '/api/game/'+$routeParams.gameId+'/player/'+$cookies.playerId+'/results';
     $http.get(rootUrl).success(function(data) {
         $scope.results = data;
+        console.log($scope.results);
     }).error(function(error) {
         console.log(error);
     });

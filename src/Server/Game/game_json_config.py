@@ -4,6 +4,7 @@ from deck_json_config import deckConfig, GetVisibleDeckKwargs
 from player_json_config import playerConfig
 from Server.Game.Notifications.notification_json_config import notificationConfig
 from Server.Game.Requests.request_json_config import requestConfig
+from Server.Game.Results.game_results_json_config import resultsConfig
 
 from Game.game import Game
 from Game.player_order_helper import GetPlayersStartingWith
@@ -89,4 +90,4 @@ gameConfig = [(Game, [JsonAttr('id', lambda game, gameId: gameId, args=['gameId'
                                 CardActionAttr,
                                 JsonAttr('imageUrl', lambda card: CARD_IMAGES_DIRECTORY_URL+card.image)],
                                optionalKwargs={'includeActions':False, 'actionBuilders':[], 'gameId': None, 'playerId': None})
-             ] + deckConfig + playerConfig + requestConfig + notificationConfig
+             ] + deckConfig + playerConfig + requestConfig + notificationConfig + resultsConfig
