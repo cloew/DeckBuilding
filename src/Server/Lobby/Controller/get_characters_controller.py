@@ -1,6 +1,5 @@
 from Game.Characters.character_factory import CharacterFactory
 from Server.helpers.json_factory import jsonFactory
-from Server.Json.character_wrapper import CharacterWrapper
 
 from kao_flask.controllers.json_controller import JSONController
 

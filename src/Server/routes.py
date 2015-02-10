@@ -1,6 +1,5 @@
 from Server.urls import activateCardURL, buyCardURL, playCardURL
 
-from Server.Game.Controller.get_game_controller import GetGameController
 from Server.Game.Controller.get_game_for_player_controller import GetGameForPlayerController
 from Server.Game.Controller.activate_card_controller import ActivateCardController
 from Server.Game.Controller.buy_card_controller import BuyCardController
@@ -17,7 +16,6 @@ from Server.Lobby.Controller.change_number_of_villains_controller import ChangeN
 from Server.Lobby.Controller.change_name_controller import ChangeNameController
 from Server.Lobby.Controller.get_characters_controller import GetCharactersController
 from Server.Lobby.Controller.get_lobbies_controller import GetLobbiesController
-from Server.Lobby.Controller.get_lobby_controller import GetLobbyController
 from Server.Lobby.Controller.get_lobby_for_player_controller import GetLobbyForPlayerController
 from Server.Lobby.Controller.join_lobby_controller import JoinLobbyController
 from Server.Lobby.Controller.new_lobby_controller import NewLobbyController
@@ -28,7 +26,6 @@ from kao_flask.controllers.html_controller import HTMLController
 
 routes = [Endpoint('/', get=HTMLController('Server/templates/index.html')),
           #Game Endpoints
-          Endpoint('/api/game/<int:gameId>', get=GetGameController()),
           Endpoint('/api/game/<int:gameId>/player/<int:playerId>', get=GetGameForPlayerController()),
           Endpoint('/api/game/<int:gameId>/player/<int:playerId>/choose', post=ChooseController()),
           Endpoint('/api/game/<int:gameId>/player/<int:playerId>/defend', post=DefendController()),
@@ -40,7 +37,6 @@ routes = [Endpoint('/', get=HTMLController('Server/templates/index.html')),
           Endpoint(playCardURL, post=PlayCardController()),
           # Lobby Endpoints
           Endpoint('/api/lobbies', get=GetLobbiesController(), post=NewLobbyController()),
-          Endpoint('/api/lobbies/<int:lobbyId>', get=GetLobbyController()),
           Endpoint('/api/lobbies/<int:lobbyId>/join', post=JoinLobbyController()),
           Endpoint('/api/lobbies/<int:lobbyId>/start', post=StartGameController()),
           Endpoint('/api/lobbies/<int:lobbyId>/player/<int:playerId>', get=GetLobbyForPlayerController()),
