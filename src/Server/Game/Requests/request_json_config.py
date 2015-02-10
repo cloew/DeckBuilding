@@ -24,14 +24,14 @@ REQUEST_TO_PENDING_TEXT = {ChooseOptionRequest:"Making a choice",
                            PickUpToNCardRequest:"Picking cards",
                            PickUpToNCostRequest:"Picking cards"}
         
-TypeAttr = JsonAttr('type', REQUEST_TO_TYPE.__getitem__)
+TypeAttr = JsonAttr('type', lambda request: REQUEST_TO_TYPE[request.__class__])
 IdAttr = JsonAttr('id', GetRequestIdFor, args=['gameId'])
         
 def GetPlayerPendingAction(player, game):
     """ Return the pending action """
     pendingAction = None
     if RequestTarget().passed(player, game):
-        pendingAction = REQUEST_TO_PENDING_TEXT[request.__class__]
+        pendingAction = REQUEST_TO_PENDING_TEXT[game.currentTurn.request.__class__]
     return pendingAction
     
 requestConfig = [(ChooseOptionRequest, [TypeAttr,
@@ -42,11 +42,11 @@ requestConfig = [(ChooseOptionRequest, [TypeAttr,
                  (DefendRequest, [TypeAttr,
                                   IdAttr,
                                   FieldAttr('attack', field='attackCard'),
-                                  FieldAttr('defenses', lambda request, kwargs: {'actionBuilders':[PickActionBuilder()]})
+                                  FieldAttr('defenses', extraArgsProvider=lambda request, kwargs: {'actionBuilders':[PickActionBuilder()]})
                                   ]),
                  ([PickCardRequest, PickUpToNCardRequest], [TypeAttr,
                                                             IdAttr,
-                                                            FieldAttr('cards', lambda request, kwargs: {'actionBuilders':[PickActionBuilder()]}),
+                                                            FieldAttr('cards', extraArgsProvider=lambda request, kwargs: {'actionBuilders':[PickActionBuilder()]}),
                                                             FieldAttr('to', field='toDescription'),
                                                             FieldAttr('number')]),
                  JsonConfig(PickUpToNCostRequest, [FieldAttr('cost')]).inheritFrom(PickCardRequest, ignore=['number'])
