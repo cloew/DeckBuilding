@@ -1,3 +1,4 @@
+from helpers.incrementer import Incrementer
 
 class RequestTracker:
     """ Represents a module that tracks requests by the game to give them uniqe ids """
@@ -5,19 +6,16 @@ class RequestTracker:
     def __init__(self):
         """ Initialize the Request Tracker """
         self.id = 0
+        self.idProvider = Incrementer(startAt=1)
         self.request = None
         
     def getIdFor(self, request):
         """ Return the current Request Wrapper """
         if request is not self.request:
-            self.getNextId()
+            self.id = self.idProvider.next()
             self.request = request
         
         return self.id
-            
-    def getNextId(self):
-        """ Return the next id """
-        self.id += 1
         
 gameIdToTracker = {}
 
