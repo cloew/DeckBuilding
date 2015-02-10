@@ -1,5 +1,6 @@
 from Game.Decks.deck_roles import STARTING
-from Server.Lobby.lobbies import lobbies
+from Server.helpers.json_factory import jsonFactory
+from Server.Lobby.lobbies import lobbies, lobbyIdToPlayers
 from kao_flask.controllers.json_controller import JSONController
 
 class ChangeDeckForRoleController(JSONController):
@@ -7,13 +8,13 @@ class ChangeDeckForRoleController(JSONController):
     
     def performWithJSON(self, lobbyId, playerId, json=None):
         lobby = lobbies[lobbyId]
-        player = lobby.players[playerId]
+        currentPlayer=lobbyIdToPlayers[lobbyId][playerId]
         role = json['role']
         index = json['index']
         
         if role == STARTING:
-            player.setDeck(index)
+            currentPlayer.setDeck(index)
         else:
-            lobby.lobby.gameMode.setDeckForRole(role, index)
+            lobby.gameMode.setDeckForRole(role, index)
             
-        return lobbies[lobbyId].toJSONForPlayer(playerId), 201
+        return jsonFactory.toJson(lobbies[lobbyId], playerId=playerId, currentPlayer=currentPlayer), 201
