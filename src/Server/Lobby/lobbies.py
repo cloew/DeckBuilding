@@ -45,5 +45,5 @@ def StartGameFor(lobbyId):
     
     lobby = lobbies[lobbyId]
     game = lobby.buildGame()
-    lobby.gameId = StartNewGame(game, {id:lobbyIdToPlayers[lobbyId][id] for id in lobbyIdToPlayers[lobbyId]})
+    lobby.gameId = StartNewGame(game, {id:lobbyIdToPlayers[lobbyId][id].player for id in lobbyIdToPlayers[lobbyId]})
     return lobby.gameId

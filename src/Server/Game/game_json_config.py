@@ -37,7 +37,7 @@ class PlayedWrapper:
 def GetSuperVillainTopCard(stack):
     """ Returns if the quiz is for words """
     cards = []
-    if self.superVillainStack.available:
+    if stack.available:
         cards = [stack.topCard]
     return cards
 
@@ -52,9 +52,9 @@ def GetRequest(game, currentPlayer):
     else:
         return None
 
-gameConfig = [(Game, [JsonAttr('id', lambda game, gameId: gameId, args=['gameId"=']),
+gameConfig = [(Game, [JsonAttr('id', lambda game, gameId: gameId, args=['gameId']),
                       FieldAttr('isOver'),
-                      FieldAttr('mainDeck', extraArgsProvider=lambda game: {'hidden':True, 'name':'Main Deck'}),
+                      FieldAttr('mainDeck', extraArgsProvider=lambda game, kwargs: {'hidden':True, 'name':'Main Deck'}),
                       FieldAttr('superVillains', field='superVillainStack', extraArgsProvider=lambda game, kwargs: {'actionBuilders':[BuyActionBuilder(SUPERVILLAIN, game)], 'includeActions':IncludeStandardActions(game, kwargs['currentPlayer'])}),
                       FieldAttr('kicks', field='kickDeck', extraArgsProvider=lambda game, kwargs: GetVisibleDeckKwargs('Kick Deck', includeActions=IncludeStandardActions(game, kwargs['currentPlayer']), actionBuilders=[BuyActionBuilder(KICK, game)])),
                       FieldAttr('weaknesses', field='weaknessDeck', extraArgsProvider=lambda game, kwargs: GetVisibleDeckKwargs('Weakness Deck')),
@@ -62,11 +62,11 @@ gameConfig = [(Game, [JsonAttr('id', lambda game, gameId: gameId, args=['gameId"
                       JsonAttr('lineUp', lambda game: game.lineUp.cards, extraArgsProvider=lambda game, kwargs: {'actionBuilders':[BuyActionBuilder(LINE_UP, game)], 'includeActions':IncludeStandardActions(game, kwargs['currentPlayer'])}),
                       FieldAttr('turn', field='currentTurn', extraArgsProvider=lambda game, kwargs: {'includeActions':IncludeStandardActions(game, kwargs['currentPlayer'])}),
                       KeywordAttr('you', keyword='currentPlayer', extraArgsProvider=lambda game, kwargs: {'game':game, 'isYou':True, 'includeActions':IncludeStandardActions(game, kwargs['currentPlayer'])}),
-                      JsonAttr('players', lambda game, currentPlayer: [player for player in GetPlayersStartingWith(currentPlayer, game.players) if player is not currentPlayer], args=['currentPlayer'], extraArgsProvider=lambda game: {'game':game, 'isYou':False, 'includeActions':IncludeStandardActions(game, kwargs['currentPlayer'])}),
+                      JsonAttr('players', lambda game, currentPlayer: [player for player in GetPlayersStartingWith(currentPlayer, game.players) if player is not currentPlayer], args=['currentPlayer'], extraArgsProvider=lambda game, kwargs: {'game':game, 'isYou':False, 'includeActions':IncludeStandardActions(game, kwargs['currentPlayer'])}),
                       JsonAttr('request', GetRequest, args=['currentPlayer'], extraArgsProvider=lambda game, kwargs: {'includeActions':True}),
                       FieldAttr('notifications', field='notificationTracker.latestNotifications', extraArgsProvider=lambda game, kwargs: {'game':game})
                       ]),
-              (Turn, [FieldAttr('power', lambda deck: len(deck)),
+              (Turn, [FieldAttr('power'),
                       FieldAttr('modifier'),
                       FieldAttr('playerName', field='player.name'),
                       KeywordAttr('canEndTurn', keyword='includeActions'),

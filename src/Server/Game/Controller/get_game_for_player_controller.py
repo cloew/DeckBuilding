@@ -6,4 +6,4 @@ class GetGameForPlayerController(JSONController):
     """ Controller to return game details for the particular player """
     
     def performWithJSON(self, gameId, playerId, json=None):
-        return jsonFactory.toJson(games[gameId], gameId=gameId, playerId=playerId, currentPlayer=gameToPlayers[gameId][playerId])
+        return {'game':jsonFactory.toJson(games[gameId], gameId=gameId, playerId=playerId, currentPlayer=gameToPlayers[gameId][playerId])}
