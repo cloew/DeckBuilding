@@ -1,5 +1,6 @@
-from lobby_wrapper import LobbyWrapper
 from Lobby.lobby import Lobby
+from Lobby.player_in_lobby import PlayerInLobby
+
 from helpers.incrementer import Incrementer
 
 lobbyIdProvider = Incrementer(startAt=1)
@@ -12,11 +13,9 @@ def StartNewLobby():
     global lobbies
     
     lobby = Lobby()
-    currentId = lobbyIdProvider.next()
-    lobby.id = currentId
-    lobbies[currentId] = lobby
-    id += 1
-    return lobbies[currentId]
+    lobby.id = lobbyIdProvider.next()
+    lobbies[lobby.id] = lobby
+    return lobby
         
 def AddPlayerToLobby(lobbyId):
     """ Add a player to the Lobby """
