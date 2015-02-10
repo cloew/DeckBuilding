@@ -1,4 +1,4 @@
-from Server.Lobby.lobbies import StartNewLobby, lobbies
+from Server.Lobby.lobbies import StartNewLobby, AddPlayerToLobby
 from kao_flask.controllers.json_controller import JSONController
 
 class NewLobbyController(JSONController):
@@ -6,5 +6,5 @@ class NewLobbyController(JSONController):
     
     def performWithJSON(self, json=None):
         lobby = StartNewLobby()
-        playerId = lobby.addPlayer()
+        playerId = AddPlayerToLobby(lobby.id)
         return {'playerId':playerId, 'lobbyId':lobby.id}, 201
