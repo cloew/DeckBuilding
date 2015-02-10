@@ -3,6 +3,8 @@ from Lobby.player_in_lobby import PlayerInLobby
 
 from helpers.incrementer import Incrementer
 
+from Server.Game.games import StartNewGame
+
 lobbyIdProvider = Incrementer(startAt=1)
 lobbies = {}
 lobbyIdToPlayers = {}
@@ -35,3 +37,13 @@ def AddPlayerToLobby(lobbyId):
     lobbyIdToPlayers[lobbyId][playerId] = player
     lobbies[lobbyId].addPlayer(player)
     return playerId
+    
+def StartGameFor(lobbyId):
+    """ Start the game for the given lobby """
+    global lobbies
+    global lobbyIdToPlayers
+    
+    lobby = lobbies[lobbyId]
+    game = lobby.buildGame()
+    lobby.gameId = StartNewGame(game, {id:lobbyIdToPlayers[lobbyId][id] for id in lobbyIdToPlayers[lobbyId]})
+    return lobby.gameId
