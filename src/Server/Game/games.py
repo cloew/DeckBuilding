@@ -1,14 +1,14 @@
-id = 1
+from helpers.incrementer import Incrementer
+
+gameIdProvider = Incrementer(startAt=1)
 games = {}
 gameToPlayers = {}
 
 def StartNewGame(game, players):
     """ Start a New Game """
     global games
-    global id
         
-    currentId = id
+    currentId = gameIdProvider.next()
     games[currentId] = game
     gameToPlayers[currentId] = players
-    id += 1
     return currentId
