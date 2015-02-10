@@ -3631,7 +3631,7 @@
 {
     "id":"World's Mightiest Mortal",
     "name":"World's Mightiest Mortal",
-    "type":"Villain",
+    "type":"Hero",
     "image":"Deck2/Main/worlds_mightiest_mortal.jpg",
     "cost":{"type":"FIXED",
             "cost":8},
