@@ -6,7 +6,7 @@ class GameModeConfig(JsonConfig):
     
     def __init__(self):
         """ Initialize the Game Mode Config """
-        JsonConfig.__init__(self, FreeForAll, [JsonAttr('numberOfVillains', lambda gamemode: {'range':gameMode.possibleVillainCounts, 'index':gameMode.villainCountIndex})])
+        JsonConfig.__init__(self, FreeForAll, [JsonAttr('numberOfVillains', lambda gameMode: {'range':gameMode.possibleVillainCounts, 'index':gameMode.villainCountIndex})])
         
     def getAttrs(self, gameMode, classToConfig):
         """ Return the attributes for the Configuration """
