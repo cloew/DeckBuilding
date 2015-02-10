@@ -7,6 +7,4 @@ class PlayCardController(GameAndCardCommandController):
         
     def buildCommand(self, player, game, card, json):
         """ Build the Command to try and perform """
-        print "Building play card command"
-        print card
         return PlayCard(card, game.currentTurn)

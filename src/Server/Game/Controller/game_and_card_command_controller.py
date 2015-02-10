@@ -1,4 +1,5 @@
-from Server.Game.games import games
+from Server.helpers.json_factory import jsonFactory
+from Server.Game.games import games, gameToPlayers
 
 from kao_flask.controllers.json_controller import JSONController
 
@@ -7,15 +8,14 @@ class GameAndCardCommandController(JSONController):
     
     def performWithJSON(self, gameId, playerId, cardId, json=None):
         game = games[gameId]
-        player = game.players[playerId]
-        print game.game.cardIdManager.idToCard
-        card = game.game.getCardFromId(cardId)
+        player = gameToPlayers[gameId][playerId]
+        card = game.getCardFromId(cardId)
         
-        command = self.buildCommand(player, game.game, card, json)
+        command = self.buildCommand(player, game, card, json)
         
-        if command is not None and command.canPerform(player, game.game):
-            self.performCommand(game.game, command)
-        return game.toJSONForPlayer(playerId)
+        if command is not None and command.canPerform(player, game):
+            self.performCommand(game, command)
+        return {'game':jsonFactory.toJson(game, gameId=gameId, playerId=playerId, currentPlayer=player)}
         
     def performCommand(self, game, command):
         """ Perform the given command """
