@@ -18,11 +18,5 @@
         <div class="col-md-12 deck-col">
             <ongoing></ongoing>
         </div>
-        <div class="col-md-12 deck-col" ng-if="isYou && player.pending">
-            <button class="center" ng-click="requestService.openModal();">Open Request</button>
-        </div>
-        <div class="col-md-12 deck-col" ng-if="!isYou">
-            <h3>{{player.pending}}</h3>
-        </div>
     </header-div>
 </div>

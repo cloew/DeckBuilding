@@ -46,13 +46,6 @@ def IncludeStandardActions(game, player):
     """ Return if actions should be included """
     return CurrentPlayer().passed(player, game) and NoRequest().passed(player, game)
 
-def GetRequest(game, currentPlayer):
-    """ Return if actions should be included """
-    if RequestTarget().passed(currentPlayer, game):
-        return game.currentTurn.request
-    else:
-        return None
-
 gameConfig = [(Game, [JsonAttr('id', lambda game, gameId: gameId, args=['gameId']),
                       FieldAttr('isOver'),
                       FieldAttr('mainDeck', extraArgsProvider=lambda game, kwargs: {'hidden':True, 'name':'Main Deck'}),
@@ -64,7 +57,7 @@ gameConfig = [(Game, [JsonAttr('id', lambda game, gameId: gameId, args=['gameId'
                       FieldAttr('turn', field='currentTurn', extraArgsProvider=lambda game, kwargs: {'includeActions':IncludeStandardActions(game, kwargs['currentPlayer'])}),
                       KeywordAttr('you', keyword='currentPlayer', extraArgsProvider=lambda game, kwargs: {'game':game, 'isYou':True, 'includeActions':IncludeStandardActions(game, kwargs['currentPlayer'])}),
                       JsonAttr('players', lambda game, currentPlayer: [player for player in GetPlayersStartingWith(currentPlayer, game.players) if player is not currentPlayer], args=['currentPlayer'], extraArgsProvider=lambda game, kwargs: {'game':game, 'isYou':False, 'includeActions':IncludeStandardActions(game, kwargs['currentPlayer'])}),
-                      JsonAttr('request', GetRequest, args=['currentPlayer'], extraArgsProvider=lambda game, kwargs: {'includeActions':True}),
+                      FieldAttr('request', field='currentTurn.request', extraArgsProvider=lambda game, kwargs: {'includeActions':True, 'forYou':RequestTarget().passed(kwargs['currentPlayer'], game)}),
                       FieldAttr('notifications', field='notificationTracker.latestNotifications', extraArgsProvider=lambda game, kwargs: {'game':game})
                       ]),
               (Turn, [FieldAttr('power'),

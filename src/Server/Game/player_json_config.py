@@ -8,7 +8,6 @@ from Game.Zones.zone_types import CHARACTER, ONGOING
 
 from Server.Game.Actions.activate_action_builder import ActivateActionBuilder
 from Server.Game.Actions.play_action_builder import PlayActionBuilder
-from Server.Game.Requests.request_json_config import GetPlayerPendingAction
 
 from kao_deck.deck import Deck
     
@@ -36,7 +35,6 @@ def GetPlayerDeckHeader(player, kwargs):
 playerConfig = [(Player, [FieldAttr('name'),
                           FieldAttr('character', extraArgsProvider=lambda turn, kwargs: {'actionBuilders':[ActivateActionBuilder(CHARACTER, kwargs['game'])]}),
                           FieldAttr('ongoing', extraArgsProvider=lambda turn, kwargs: {'actionBuilders':[ActivateActionBuilder(ONGOING, kwargs['game'])]}),
-                          JsonAttr('pending', GetPlayerPendingAction, args=['game']),
                           JsonAttr('isTurn', CurrentPlayer().passed, args=['game']),
                           FieldAttr('deck', extraArgsProvider=lambda player, kwargs: {'hidden':True, 'name':GetPlayerDeckHeader(player, kwargs) + " Deck"}),
                           FieldAttr('discardPile', field='deck.discardPile', extraArgsProvider=lambda player, kwargs: GetVisibleDeckKwargs(GetPlayerDeckHeader(player, kwargs) + " Discard Pile", includeActions=kwargs['includeActions'])),

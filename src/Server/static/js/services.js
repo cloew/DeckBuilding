@@ -32,7 +32,7 @@ services.factory('gameService', function($cookies, $http, $location, $routeParam
         if ((!this.game.request || (oldRequest && oldRequest.id != this.game.request.id)) && requestModalService.getModal()) {
             requestModalService.closeModal();
         }
-        if (this.game.request && !requestModalService.hasModal()) {
+        if (this.game.request && this.game.request.forYou && !requestModalService.hasModal()) {
             requestModalService.openRequestModal(this.game.request);
         }
     };
