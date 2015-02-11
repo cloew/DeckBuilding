@@ -137,7 +137,7 @@
                                                                "zone":"GAINED"}]},
                                    "effects":[{"type":"PICK_CARDS",
                                                "number":1,
-                                               "to":"gain",
+                                               "to":"put on top of deck",
                                                "zones":["GAINED"],
                                                "then":[{"type":"MOVE_CARD",
                                                         "from":"EVENT",
