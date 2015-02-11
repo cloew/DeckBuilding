@@ -62,7 +62,7 @@ controllers.controller('GameResultsController', function($scope, $cookies, $http
 
 controllers.controller('ChooseOptionController', function($scope, requestModalService, gameService) {
     var gameWrapper = gameService.findGameWrapper();
-    $scope.request = gameWrapper.getGame().request;
+    $scope.request = gameWrapper.getGame().turn.request;
     
     $scope.chooseOption = function(index) {
         gameWrapper.chooseOption(index);
@@ -72,7 +72,7 @@ controllers.controller('ChooseOptionController', function($scope, requestModalSe
 
 controllers.controller('PickCardController', function($scope, requestModalService, gameService) {
     var gameWrapper = gameService.findGameWrapper();
-    $scope.request = gameWrapper.getGame().request;
+    $scope.request = gameWrapper.getGame().turn.request;
     $scope.actions = {};
     $scope.indices = [];
     $scope.actions.pickCard = function(index) {
@@ -95,7 +95,7 @@ controllers.controller('PickCardController', function($scope, requestModalServic
 
 controllers.controller('PickNCostController', function($scope, requestModalService, gameService) {
     var gameWrapper = gameService.findGameWrapper();
-    $scope.request = gameWrapper.getGame().request;
+    $scope.request = gameWrapper.getGame().turn.request;
     $scope.actions = {};
     $scope.indices = [];
     $scope.tooCostlyIndices = [];
@@ -137,7 +137,7 @@ controllers.controller('PickNCostController', function($scope, requestModalServi
 
 controllers.controller('DefendController', function($scope, requestModalService, gameService) {
     var gameWrapper = gameService.findGameWrapper();
-    $scope.request = gameWrapper.getGame().request;
+    $scope.request = gameWrapper.getGame().turn.request;
     $scope.actions = {};
     $scope.actions.pickCard = function(index) {
         gameWrapper.defend(true, index);

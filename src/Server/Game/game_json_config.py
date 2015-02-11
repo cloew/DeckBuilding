@@ -57,13 +57,13 @@ gameConfig = [(Game, [JsonAttr('id', lambda game, gameId: gameId, args=['gameId'
                       FieldAttr('turn', field='currentTurn', extraArgsProvider=lambda game, kwargs: {'includeActions':IncludeStandardActions(game, kwargs['currentPlayer'])}),
                       KeywordAttr('you', keyword='currentPlayer', extraArgsProvider=lambda game, kwargs: {'game':game, 'isYou':True, 'includeActions':IncludeStandardActions(game, kwargs['currentPlayer'])}),
                       JsonAttr('players', lambda game, currentPlayer: [player for player in GetPlayersStartingWith(currentPlayer, game.players) if player is not currentPlayer], args=['currentPlayer'], extraArgsProvider=lambda game, kwargs: {'game':game, 'isYou':False, 'includeActions':IncludeStandardActions(game, kwargs['currentPlayer'])}),
-                      FieldAttr('request', field='currentTurn.request', extraArgsProvider=lambda game, kwargs: {'includeActions':True, 'forYou':RequestTarget().passed(kwargs['currentPlayer'], game)}),
                       FieldAttr('notifications', field='notificationTracker.latestNotifications', extraArgsProvider=lambda game, kwargs: {'game':game})
                       ]),
               (Turn, [FieldAttr('power'),
                       FieldAttr('modifier'),
                       FieldAttr('playerName', field='player.name'),
                       KeywordAttr('canEndTurn', keyword='includeActions'),
+                      FieldAttr('request', extraArgsProvider=lambda turn, kwargs: {'includeActions':True, 'forYou':RequestTarget().passed(kwargs['currentPlayer'], turn.game)}),
                       JsonAttr('played', PlayedWrapper, extraArgsProvider=lambda turn, kwargs: {'actionBuilders':[ActivateActionBuilder(PLAYED, turn.game)]})
                       ]),
               (PlayedWrapper, [FieldAttr('cards', field='playedCards'),

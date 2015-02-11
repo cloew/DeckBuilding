@@ -20,8 +20,8 @@ services.factory('gameService', function($cookies, $http, $location, $routeParam
     };
     Game.prototype.setGame = function(data, parentScope) {
         var oldRequest = undefined;
-        if (this.game && this.game.request) {
-            oldRequest = this.game.request;
+        if (this.game && this.game.turn.request) {
+            oldRequest = this.game.turn.request;
         }
         
         this.game = data['game'];
@@ -29,11 +29,11 @@ services.factory('gameService', function($cookies, $http, $location, $routeParam
         if (this.game.isOver) {
             $location.path('/game/'+this.game.id+'/results');
         }
-        if ((!this.game.request || (oldRequest && oldRequest.id != this.game.request.id)) && requestModalService.getModal()) {
+        if ((!this.game.turn.request || (oldRequest && oldRequest.id != this.game.turn.request.id)) && requestModalService.getModal()) {
             requestModalService.closeModal();
         }
-        if (this.game.request && this.game.request.forYou && !requestModalService.hasModal()) {
-            requestModalService.openRequestModal(this.game.request);
+        if (this.game.turn.request && this.game.turn.request.forYou && !requestModalService.hasModal()) {
+            requestModalService.openRequestModal(this.game.turn.request);
         }
     };
     Game.prototype.activateCard = function(apiUrl, zone) {
