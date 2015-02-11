@@ -320,12 +320,16 @@ services.service('requestModalService', function($modal) {
     var hasModal = function() {
         return modalIsOpen;
     };
+    var getCurrentRequest = function() {
+        return currentRequest;
+    };
     return {
         getModal: getModal,
         hasModal: hasModal,
         openRequestModal: openRequestModal,
         openModal: openModal,
-        closeModal: closeModal
+        closeModal: closeModal,
+        getCurrentRequest: getCurrentRequest
     };
 });
 
