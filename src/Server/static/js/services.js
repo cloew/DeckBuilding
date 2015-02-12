@@ -68,25 +68,25 @@ services.factory('gameService', function($cookies, $http, $location, $routeParam
             alert(error);
         });
     };
-    Game.prototype.chooseOption = function(index) {
+    Game.prototype.chooseOption = function(request, index) {
         var self = this;
-        $http.post(this.rootUrl+'/choose', {'index':index}).success(function(data) {
+        $http.post(request.chooseUrl, {'index':index}).success(function(data) {
             self.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     };
-    Game.prototype.pickCard = function(indices) {
+    Game.prototype.pickCard = function(request, indices) {
         var self = this;
-        $http.post(this.rootUrl+'/pickcard', {'indices':indices}).success(function(data) {
+        $http.post(request.pickUrl, {'indices':indices}).success(function(data) {
             self.setGame(data);
         }).error(function(error) {
             alert(error);
         });
     };
-    Game.prototype.defend = function(defending, index) {
+    Game.prototype.defend = function(request, defending, index) {
         var self = this;
-        $http.post(this.rootUrl+'/defend', {'defending':defending, 'index':index}).success(function(data) {
+        $http.post(request.defendUrl, {'defending':defending, 'index':index}).success(function(data) {
             self.setGame(data);
         }).error(function(error) {
             alert(error);

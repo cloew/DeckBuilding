@@ -65,7 +65,7 @@ controllers.controller('ChooseOptionController', function($scope, requestModalSe
     $scope.request = requestModalService.getCurrentRequest();
     
     $scope.chooseOption = function(index) {
-        gameWrapper.chooseOption(index);
+        gameWrapper.chooseOption($scope.request, index);
         requestModalService.closeModal();
     };
 });
@@ -88,7 +88,7 @@ controllers.controller('PickCardController', function($scope, requestModalServic
         return $scope.indices.indexOf(index) > -1;
     };
     $scope.sendChoices = function() {
-        gameWrapper.pickCard($scope.indices);
+        gameWrapper.pickCard($scope.request, $scope.indices);
         requestModalService.closeModal();
     };
 });
@@ -130,7 +130,7 @@ controllers.controller('PickNCostController', function($scope, requestModalServi
         return $scope.hasChosenCard(index) || $scope.tooCostlyIndices.indexOf(index) > -1;
     };
     $scope.sendChoices = function() {
-        gameWrapper.pickCard($scope.indices);
+        gameWrapper.pickCard($scope.request, $scope.indices);
         requestModalService.closeModal();
     };
 });
@@ -140,11 +140,11 @@ controllers.controller('DefendController', function($scope, requestModalService,
     $scope.request = requestModalService.getCurrentRequest();
     $scope.actions = {};
     $scope.actions.pickCard = function(index) {
-        gameWrapper.defend(true, index);
+        gameWrapper.defend($scope.request, true, index);
         requestModalService.closeModal();
     };
     $scope.abortDefense = function() {
-        gameWrapper.defend(false);
+        gameWrapper.defend($scope.request, false);
         requestModalService.closeModal();
     };
 });

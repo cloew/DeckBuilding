@@ -10,6 +10,9 @@ changeNumberOfVillainsURL = KaoURL('/api/lobbies/<int:lobbyId>/player/<int:playe
 
 # Game Card Action Urls
 endTurnURL = KaoURL('/api/game/<int:gameId>/player/<int:playerId>/endturn')
+chooseOptionURL = KaoURL('/api/game/<int:gameId>/player/<int:playerId>/choose')
+defendURL = KaoURL('/api/game/<int:gameId>/player/<int:playerId>/defend')
+pickCardURL = KaoURL('/api/game/<int:gameId>/player/<int:playerId>/pickcard')
 activateCardURL = KaoURL('/api/game/<int:gameId>/player/<int:playerId>/card/<int:cardId>/activate')
 buyCardURL = KaoURL('/api/game/<int:gameId>/player/<int:playerId>/card/<int:cardId>/buy')
 playCardURL = KaoURL('/api/game/<int:gameId>/player/<int:playerId>/card/<int:cardId>/play')
