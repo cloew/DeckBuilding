@@ -1,6 +1,7 @@
 from kao_flask.kao_url import KaoURL
 
 # Lobby Urls
+joinLobbyURL = KaoURL('/api/lobbies/<int:lobbyId>/join')
 startGameURL = KaoURL('/api/lobbies/<int:lobbyId>/start')
 changeCharacterURL = KaoURL('/api/lobbies/<int:lobbyId>/player/<int:playerId>/changecharacter')
 changeNameURL = KaoURL('/api/lobbies/<int:lobbyId>/player/<int:playerId>/changename')

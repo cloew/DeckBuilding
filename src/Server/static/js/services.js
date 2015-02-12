@@ -123,8 +123,8 @@ services.service('lobbiesService', function($cookies, $http, $location, UrlPolle
             alert(error);
         });
     };
-    var joinLobby = function(lobbyId) {
-        $http.post(rootUrl+'/'+lobbyId+'/join').success(function(data) {
+    var joinLobby = function(lobby) {
+        $http.post(lobby.joinUrl).success(function(data) {
             trackLobby(data);
         }).error(function(error) {
             alert(error);
