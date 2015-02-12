@@ -1,3 +1,4 @@
-<div>
-    <picker name="{{name}}" options="villainCountInfo.range" current="villainCountInfo.index" callback="changeCount"></picker>
+<div class="form-group">
+    <label class="col-md-4 control-label" for="villain-count">{{name}}</label>
+    <kao-select class="col-md-8" id="villain-count" options="villainCountInfo.range" current="villainCountInfo.index" callback="changeCount"></kao-select>
 </div>

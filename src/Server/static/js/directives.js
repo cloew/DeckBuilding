@@ -425,8 +425,8 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices", "kao.select"])
               villainCountInfo: '='
           },
           controller: function($scope, lobbyService) {
-            $scope.changeCount = function(current) {
-                lobbyService.findLobbyWrapper().changeVillainCount(current);
+            $scope.changeCount = function(currentOption, currentIndex) {
+                lobbyService.findLobbyWrapper().changeVillainCount(currentIndex);
             };
           },
           templateUrl: 'static/partials/directives/villain_count_picker.html'
