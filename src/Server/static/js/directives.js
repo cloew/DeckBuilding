@@ -307,9 +307,6 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
           compile: function(element, attrs){
             if (attrs.isYou === undefined) { attrs.isYou = false; }
           },
-          controller: function($scope, requestModalService) {
-            $scope.requestService = requestModalService;
-          },
           templateUrl: 'static/partials/directives/player.html'
       }})
     .directive('hand', function() {
@@ -376,6 +373,9 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
       return {
           restrict: 'E',
           replace: true,
+          controller: function($scope, requestModalService) {
+            $scope.requestService = requestModalService;
+          },
           templateUrl: 'static/partials/directives/turn.html'
       }})
     .directive('picker', function() {

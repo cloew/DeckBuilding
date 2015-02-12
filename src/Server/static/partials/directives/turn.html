@@ -4,7 +4,9 @@
             <h2>{{game.turn.power}}<small> power</small><sup ng-hide="game.turn.modifier === 1"> x{{game.turn.modifier}}</sup></h2>
         </div>
         <div class="col-md-6">
-            <button ng-click="actions.endTurn();" ng-show="game.turn.canEndTurn" class="btn btn-primary btn-lg">Done</button>
+            <button ng-click="requestService.openModal();" class="btn btn-primary btn-lg" ng-if="game.turn.request && game.turn.request.forYou">Open Request</button>
+            <h4 ng-if="game.turn.request && !game.turn.request.forYou">{{game.turn.request.pending}}</h4>
+            <button ng-click="actions.endTurn();" ng-disabled="!game.turn.canEndTurn" class="btn btn-primary btn-lg" ng-if="!game.turn.request">End Turn</button>
         </div>
     </header-div>
 </div>
