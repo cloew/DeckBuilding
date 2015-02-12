@@ -12,7 +12,7 @@ def GetDeckCards(deck, hidden):
     if hidden:
         return []
     else:
-        return deck.__contents__
+        return list(deck)
                            
 deckConfig = [([Deck, DeckWithDiscardPile], [JsonAttr('count', lambda deck: len(deck)),
                                             KeywordAttr('hidden'),
