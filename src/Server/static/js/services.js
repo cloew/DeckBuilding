@@ -60,7 +60,7 @@ services.factory('gameService', function($cookies, $http, $location, $routeParam
             alert(error);
         });
     };
-    Game.prototype.endTurn = function(index) {
+    Game.prototype.endTurn = function() {
         var self = this;
         $http.post(this.rootUrl+'/endturn').success(function(data) {
             self.setGame(data);

@@ -23,6 +23,8 @@ from Server.Game.Actions.action_json_config import CardActionAttr
 from Server.Game.Actions.activate_action_builder import ActivateActionBuilder
 from Server.Game.Actions.buy_action_builder import BuyActionBuilder
 
+import Server.urls as urls
+
 CARD_IMAGES_DIRECTORY_URL = 'static/images/Cards/'
 CHARACTER_IMAGES_DIRECTORY_URL = 'static/images/Characters/'
 
@@ -46,6 +48,13 @@ def IncludeStandardActions(game, player):
     """ Return if actions should be included """
     return CurrentPlayer().passed(player, game) and NoRequest().passed(player, game)
 
+def GetEndTurnUrl(turn, gameId, playerId, includeActions):
+    """ Return if actions should be included """
+    if includeActions:
+        return urls.endTurnURL.build(gameId=gameId, playerId=playerId)
+    else:
+        return None
+
 gameConfig = [(Game, [JsonAttr('id', lambda game, gameId: gameId, args=['gameId']),
                       FieldAttr('isOver'),
                       FieldAttr('mainDeck', extraArgsProvider=lambda game, kwargs: {'hidden':True, 'name':'Main Deck'}),
@@ -64,7 +73,8 @@ gameConfig = [(Game, [JsonAttr('id', lambda game, gameId: gameId, args=['gameId'
                       FieldAttr('playerName', field='player.name'),
                       KeywordAttr('canEndTurn', keyword='includeActions'),
                       FieldAttr('request', extraArgsProvider=lambda turn, kwargs: {'includeActions':True, 'forYou':RequestTarget().passed(kwargs['currentPlayer'], turn.game)}),
-                      JsonAttr('played', PlayedWrapper, extraArgsProvider=lambda turn, kwargs: {'actionBuilders':[ActivateActionBuilder(PLAYED, turn.game)]})
+                      JsonAttr('played', PlayedWrapper, extraArgsProvider=lambda turn, kwargs: {'actionBuilders':[ActivateActionBuilder(PLAYED, turn.game)]}),
+                      JsonAttr('endTurnUrl', GetEndTurnUrl, args=['gameId', 'playerId', 'includeActions'])
                       ]),
               (PlayedWrapper, [FieldAttr('cards', field='playedCards'),
                                FieldAttr('activatableIndices')

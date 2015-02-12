@@ -27,11 +27,11 @@ from kao_flask.controllers.html_controller import HTMLController
 routes = [Endpoint('/', get=HTMLController('Server/templates/index.html')),
           #Game Endpoints
           Endpoint('/api/game/<int:gameId>/player/<int:playerId>', get=GetGameForPlayerController()),
+          Endpoint('/api/game/<int:gameId>/player/<int:playerId>/results', get=GetResultsForPlayerController()),
+          Endpoint(urls.endTurnURL, post=EndTurnController()),
           Endpoint('/api/game/<int:gameId>/player/<int:playerId>/choose', post=ChooseController()),
           Endpoint('/api/game/<int:gameId>/player/<int:playerId>/defend', post=DefendController()),
-          Endpoint('/api/game/<int:gameId>/player/<int:playerId>/endturn', post=EndTurnController()),
           Endpoint('/api/game/<int:gameId>/player/<int:playerId>/pickcard', post=PickCardController()),
-          Endpoint('/api/game/<int:gameId>/player/<int:playerId>/results', get=GetResultsForPlayerController()),
           Endpoint(urls.activateCardURL, post=ActivateCardController()),
           Endpoint(urls.buyCardURL, post=BuyCardController()),
           Endpoint(urls.playCardURL, post=PlayCardController()),
