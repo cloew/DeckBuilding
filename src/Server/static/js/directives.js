@@ -9,7 +9,7 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices", "kao.select"])
             var originalHeight = undefined;
             var applyHeight = function() {
               var currentHeight = element.height();
-              var newHeight = $window.innerHeight - element.offset().top - 10;
+              var newHeight = $window.innerHeight - element.offset().top - 15;
               if (originalHeight === undefined) {
                 originalHeight = currentHeight;
               }
