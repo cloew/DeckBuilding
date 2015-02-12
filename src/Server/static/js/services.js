@@ -180,7 +180,7 @@ services.service('lobbyService', function($cookies, $http, $location, $routePara
     };
     Lobby.prototype.changeCharacter = function(newCharacter) {
         var self = this;
-        $http.post(this.playerUrl+'/changecharacter', {'character':newCharacter}).success(function(data) {
+        $http.post(this.lobby.changeCharacterUrl, {'character':newCharacter}).success(function(data) {
             self.setLobby(data);
         }).error(function(error) {
             alert(error);
@@ -188,7 +188,7 @@ services.service('lobbyService', function($cookies, $http, $location, $routePara
     };
     Lobby.prototype.changeDeck = function(role, index) {
         var self = this;
-        $http.post(this.playerUrl+'/changedeck', {'role':role, 'index':index}).success(function(data) {
+        $http.post(this.lobby.changeDeckUrl, {'role':role, 'index':index}).success(function(data) {
             self.setLobby(data);
         }).error(function(error) {
             alert(error);
@@ -196,7 +196,7 @@ services.service('lobbyService', function($cookies, $http, $location, $routePara
     };
     Lobby.prototype.changeVillainCount = function(index) {
         var self = this;
-        $http.post(this.playerUrl+'/changenumberofvillains', {'index':index}).success(function(data) {
+        $http.post(this.lobby.changeNumberOfVillainsUrl, {'index':index}).success(function(data) {
             self.setLobby(data);
         }).error(function(error) {
             alert(error);
@@ -204,14 +204,14 @@ services.service('lobbyService', function($cookies, $http, $location, $routePara
     };
     Lobby.prototype.changeName = function(newName) {
         var self = this;
-        $http.post(this.playerUrl+'/changename', {'name':newName}).success(function(data) {
+        $http.post(this.lobby.changeNameUrl, {'name':newName}).success(function(data) {
             self.setLobby(data);
         }).error(function(error) {
             alert(error);
         });
     };
     Lobby.prototype.startGame = function() {
-        $http.post(this.rootUrl+'/start').success(function(data) {
+        $http.post(this.lobby.startGameUrl).success(function(data) {
             $location.path('/game/'+data.gameId);
         }).error(function(error) {
             alert(error);

@@ -1,4 +1,4 @@
-from Server.urls import activateCardURL, buyCardURL, playCardURL
+import Server.urls as urls
 
 from Server.Game.Controller.get_game_for_player_controller import GetGameForPlayerController
 from Server.Game.Controller.activate_card_controller import ActivateCardController
@@ -32,17 +32,17 @@ routes = [Endpoint('/', get=HTMLController('Server/templates/index.html')),
           Endpoint('/api/game/<int:gameId>/player/<int:playerId>/endturn', post=EndTurnController()),
           Endpoint('/api/game/<int:gameId>/player/<int:playerId>/pickcard', post=PickCardController()),
           Endpoint('/api/game/<int:gameId>/player/<int:playerId>/results', get=GetResultsForPlayerController()),
-          Endpoint(activateCardURL, post=ActivateCardController()),
-          Endpoint(buyCardURL, post=BuyCardController()),
-          Endpoint(playCardURL, post=PlayCardController()),
+          Endpoint(urls.activateCardURL, post=ActivateCardController()),
+          Endpoint(urls.buyCardURL, post=BuyCardController()),
+          Endpoint(urls.playCardURL, post=PlayCardController()),
           # Lobby Endpoints
           Endpoint('/api/lobbies', get=GetLobbiesController(), post=NewLobbyController()),
           Endpoint('/api/lobbies/<int:lobbyId>/join', post=JoinLobbyController()),
-          Endpoint('/api/lobbies/<int:lobbyId>/start', post=StartGameController()),
           Endpoint('/api/lobbies/<int:lobbyId>/player/<int:playerId>', get=GetLobbyForPlayerController()),
-          Endpoint('/api/lobbies/<int:lobbyId>/player/<int:playerId>/changecharacter', post=ChangeCharacterController()),
-          Endpoint('/api/lobbies/<int:lobbyId>/player/<int:playerId>/changename', post=ChangeNameController()),
-          Endpoint('/api/lobbies/<int:lobbyId>/player/<int:playerId>/changedeck', post=ChangeDeckForRoleController()),
-          Endpoint('/api/lobbies/<int:lobbyId>/player/<int:playerId>/changenumberofvillains', post=ChangeNumberOfVillainsController()),
+          Endpoint(urls.startGameURL, post=StartGameController()),
+          Endpoint(urls.changeCharacterURL, post=ChangeCharacterController()),
+          Endpoint(urls.changeNameURL, post=ChangeNameController()),
+          Endpoint(urls.changeDeckURL, post=ChangeDeckForRoleController()),
+          Endpoint(urls.changeNumberOfVillainsURL, post=ChangeNumberOfVillainsController()),
           # Character Endpoints
           Endpoint('/api/characters', get=GetCharactersController()),]
