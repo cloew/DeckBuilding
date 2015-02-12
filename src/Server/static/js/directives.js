@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
+angular.module('DeckBuildingDirectives', ["DeckBuildingServices", "kao.select"])
     .directive('stretchToBottom', function($window, $document, $timeout) {
         return {
           restrict: 'A',
@@ -410,8 +410,8 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices"])
               deck: '='
           },
           controller: function($scope, lobbyService) {
-            $scope.changeDeck = function(current) {
-                lobbyService.findLobbyWrapper().changeDeck($scope.role, current);
+            $scope.changeDeck = function(currentOption, currentIndex) {
+                lobbyService.findLobbyWrapper().changeDeck($scope.role, currentIndex);
             };
           },
           templateUrl: 'static/partials/directives/deck_picker.html'

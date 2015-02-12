@@ -1,0 +1,8 @@
+<div class="btn-group" dropdown>
+    <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+        {{options[current]}} <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+        <li ng-repeat="option in options" ng-class="{'bg-primary':$index === current}" ng-click="callback(option, $index);"><a>{{option}}</a></li>
+    </ul>
+</div>
