@@ -216,3 +216,9 @@
 .dropdown-menu>li>a:hover {
     background-color: #428bca;
 }
+.results-title {
+    font-size: 30px;
+}
+.results-title small {
+    color: inherit;
+}
