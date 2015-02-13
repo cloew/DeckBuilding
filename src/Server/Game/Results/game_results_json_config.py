@@ -29,5 +29,6 @@ def GetCards(playerResults, game):
 resultsConfig = [(GameResults, [FieldAttr('players', field='playerResults')]),
                  (PlayerResults, [FieldAttr('points'),
                                   FieldAttr('name', field='player.name'),
+                                  FieldAttr('rank', field='rank'),
                                   JsonAttr('isYou', lambda results, currentPlayer: results.player is currentPlayer, args=['currentPlayer']),
                                   JsonAttr('cards', GetCards, args=['game'])])]
