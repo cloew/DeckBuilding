@@ -1,0 +1,19 @@
+$header-height: 69px;
+$btn-lg-height: 45px;
+$btn-top-margin: -1*$btn-lg-height/2;
+
+.header-bar {
+    height: $header-height;
+    position: relative;
+    margin-bottom: 10px;
+    
+    div {
+        height: 100%;
+    }
+    
+    .btn-lg {
+        position: relative;
+        top:50%;
+        margin-top: $btn-top-margin;
+    }
+}
