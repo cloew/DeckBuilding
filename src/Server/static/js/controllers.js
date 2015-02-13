@@ -50,7 +50,7 @@ controllers.controller('GameController', function($scope, gameService) {
         return pending;
     };
 });
-controllers.controller('GameResultsController', function($scope, $cookies, $http, $routeParams) {
+controllers.controller('GameResultsController', function($scope, $cookies, $http, $routeParams, $location) {
     var rootUrl = '/api/game/'+$routeParams.gameId+'/player/'+$cookies.playerId+'/results';
     $http.get(rootUrl).success(function(data) {
         $scope.results = data;
@@ -58,6 +58,10 @@ controllers.controller('GameResultsController', function($scope, $cookies, $http
     }).error(function(error) {
         console.log(error);
     });
+    
+    $scope.backToLobbies = function() {
+        $location.path('/lobbies')
+    };
 });
 
 controllers.controller('ChooseOptionController', function($scope, requestModalService, gameService) {
