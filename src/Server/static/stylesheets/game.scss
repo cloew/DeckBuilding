@@ -1,4 +1,5 @@
 @import 'card';
+@import 'card_icon';
 @import 'results';
 
 .deck-col {
@@ -10,57 +11,6 @@
     margin-right: auto;
     margin-left: auto; 
     text-align:center;
-}
-.card-icons {
-    text-align:center;
-    float: right;
-    font-size: 15px;
-    width: 25px;
-    height: 100%;
-}
-.activate-icon {
-    background-image: url(/static/images/activate.png);
-    background-size: 23px 23px;
-    width: 23px;
-    height: 23px;
-    margin: 1px;
-}
-.buy-icon {
-    background-image: url(/static/images/buy.png);
-    background-size: 25px 25px;
-    width: 25px;
-    height: 25px;
-}
-.examine-icon {
-    background-image: url(/static/images/examine.png);
-    background-size: 25px 25px;
-    width: 25px;
-    height: 25px;
-}
-.pick-icon {
-    background-image: url(/static/images/pick.png);
-    background-size: 25px 25px;
-    width: 25px;
-    height: 25px;
-}
-.play-icon {
-    background-image: url(/static/images/play.png);
-    background-size: 25px 25px;
-    width: 25px;
-    height: 25px;
-}
-.deck-counter {
-    background-image: url(/static/images/count_background.png);
-    background-size: 25px 25px;
-    width: 25px;
-    height: 25px;
-}
-.deck-icons p {
-    display: table-cell;
-    vertical-align: middle;
-    text-align:center;
-    width: 25px;
-    height: 25px;
 }
 .header-fieldset {
     border: 2px groove threedface;

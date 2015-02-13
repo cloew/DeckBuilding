@@ -1,0 +1,51 @@
+@import 'bg_image';
+
+$icon-height: 25px;
+$icon-width: 25px;
+
+$activate-margin: 1px;
+$activate-height: $icon-height - $activate-margin*2;
+$activate-width: $icon-width - $activate-margin*2;
+
+.card-icons {
+    text-align:center;
+    float: right;
+    font-size: 15px;
+    width: 25px;
+    height: 100%;
+}
+.icon {
+    @include bg-image($icon-width, $icon-height);
+}
+.activate-icon {
+    @include bg-image($activate-width, $activate-height);
+    background-image: url(/static/images/activate.png);
+    margin: $activate-margin;
+}
+.buy-icon {
+    @extend .icon;
+    background-image: url(/static/images/buy.png);
+}
+.examine-icon {
+    @extend .icon;
+    background-image: url(/static/images/examine.png);
+}
+.pick-icon {
+    @extend .icon;
+    background-image: url(/static/images/pick.png);
+}
+.play-icon {
+    @extend .icon;
+    background-image: url(/static/images/play.png);
+}
+.deck-counter {
+    @extend .icon;
+    background-image: url(/static/images/count_background.png);
+}
+.deck-icons p {
+    display: table-cell;
+    vertical-align: middle;
+    text-align:center;
+    width: $icon-width;
+    height: $icon-height;
+}
