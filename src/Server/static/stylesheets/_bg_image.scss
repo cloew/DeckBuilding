@@ -1,0 +1,6 @@
+
+@mixin bg-image($width, $height) {
+    background-size: $width $height;
+    width: $width;
+    height: $height;
+}

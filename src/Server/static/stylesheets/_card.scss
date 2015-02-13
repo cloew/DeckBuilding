@@ -1,3 +1,5 @@
+@import 'bg_image';
+
 $small-height: 94px;
 $small-card-width: 68px;
 $small-char-width: 71px;
@@ -9,26 +11,18 @@ $full-char-height: 376px;
 $full-char-width: 284px;
 
 .small-card {
-    background-size: $small-card-width $small-height;
-    width: $small-card-width;
-    height: $small-height;
+    @include bg-image($small-card-width, $small-height);
     margin: 0px;
 }
 .medium-card {
-    background-size: $medium-card-width $medium-card-height;
-    width: $medium-card-width;
-    height: $medium-card-height;
+    @include bg-image($medium-card-width, $medium-card-height);
     margin: 0px;
 }
 .character-thumbnail {
-    background-size: $small-char-width $small-height;
-    width: $small-char-width;
-    height: $small-height;
+    @include bg-image($small-char-width, $small-height);
     margin: 0px;
 }
 .character {
-    background-size: $full-char-width $full-char-height;
-    width: $full-char-width;
-    height: $full-char-height;
+    @include bg-image($full-char-width, $full-char-height);
     margin: 0px;
 }
