@@ -12,3 +12,16 @@ class GameResults:
     def createPlayerResults(self):
         self.playerResults = [self.playerToResultClass[player](player, self.game) for player in self.playerToResultClass]
         self.playerResults.sort()
+        self.setPlayerRanks()
+        
+    def setPlayerRanks(self):
+        """ Set the player's game ranking (1st, 2nd, 3rd, ...) """
+        previousPlayer = None
+        previousRank = 0
+        for playerResults in self.playerResults:
+            if previousPlayer is None or playerResults < previousPlayer:
+                previousRank += 1
+                playerResults.rank = previousRank
+                previousPlayer = playerResults
+            else:
+                playerResults.rank = previousRank

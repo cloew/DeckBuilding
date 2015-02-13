@@ -9,3 +9,8 @@ class PlayerResults:
         if priorityCmp == 0:
             return other.points.__cmp__(self.points)
         return priorityCmp
+        
+    def __lt__(self, other):
+        """ Compare this result to another result """
+        cmp = self.__cmp__(other)
+        return cmp < 0
