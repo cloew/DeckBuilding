@@ -1,3 +1,5 @@
+@import 'results';
+
 .deck-col {
     padding-right: 0px;
     padding-left: 0px;
@@ -215,10 +217,4 @@
 }
 .dropdown-menu>li>a:hover {
     background-color: #428bca;
-}
-.results-title {
-    font-size: 30px;
-}
-.results-title small {
-    color: inherit;
 }
