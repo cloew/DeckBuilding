@@ -1,15 +1,29 @@
-<div>
-    <accordion>
-        <accordion-group heading="{{player.isYou && 'You' || player.name}}: {{player.points}}">
-            <accordion>
-                <accordion-group heading="{{player.cards[cardType].total}} - {{cardType}}" ng-repeat="cardType in player.cards.cardTypes">
-                    <accordion>
-                        <accordion-group heading="{{points * player.cards[cardType][points].length}} - {{points}} {{(points === '1') && 'point' || 'points'}} per card" ng-repeat="points in player.cards[cardType].pointValues">
-                            <card-list cards="player.cards[cardType][points]"></card-list>
-                        </accordion-group>
-                    </accordion>
-                </accordion-group>
-            </accoridon>
-        </accordion-group>
-    </accordion>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{player.isYou && 'You' || player.name}}</h3>
+    </div>
+    <div class="panel-body">
+        <accordion>
+            <accordion-group>
+                <accordion-heading>
+                    {{player.points}}<small> points in total</small>
+                </accordion-heading>
+                <accordion>
+                    <accordion-group ng-repeat="cardType in player.cards.cardTypes">
+                        <accordion-heading>
+                            {{player.cards[cardType].total}}<small> points from {{cardType}} cards</small>
+                        </accordion-heading>
+                        <accordion>
+                            <accordion-group ng-repeat="points in player.cards[cardType].pointValues">
+                                <accordion-heading>
+                                    {{points * player.cards[cardType][points].length}}<small> points from {{points}} point cards</small>
+                                </accordion-heading>
+                                <card-list cards="player.cards[cardType][points]"></card-list>
+                            </accordion-group>
+                        </accordion>
+                    </accordion-group>
+                </accoridon>
+            </accordion-group>
+        </accordion>
+    </div>
 </div>
