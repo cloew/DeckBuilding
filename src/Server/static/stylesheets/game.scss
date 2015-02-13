@@ -1,33 +1,11 @@
+@import 'card';
 @import 'results';
 
 .deck-col {
     padding-right: 0px;
     padding-left: 0px;
 }
-.small-card {
-    background-size: 68px 94px;
-    width: 68px;
-    height: 94px;
-    margin: 0px;
-}
-.medium-card {
-    background-size: 124px 174px;
-    width: 124px;
-    height: 174px;
-    margin: 0px;
-}
-.character {
-    background-size: 284px 376px;
-    width: 284px;
-    height: 376px;
-    margin: 0px;
-}
-.character-thumbnail {
-    background-size: 71px 94px;
-    width: 71px;
-    height: 94px;
-    margin: 0px;
-}
+
 .center {
     margin-right: auto;
     margin-left: auto; 

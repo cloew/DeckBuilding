@@ -1,0 +1,34 @@
+$small-height: 94px;
+$small-card-width: 68px;
+$small-char-width: 71px;
+
+$medium-card-height: 174px;
+$medium-card-width: 124px;
+
+$full-char-height: 376px;
+$full-char-width: 284px;
+
+.small-card {
+    background-size: $small-card-width $small-height;
+    width: $small-card-width;
+    height: $small-height;
+    margin: 0px;
+}
+.medium-card {
+    background-size: $medium-card-width $medium-card-height;
+    width: $medium-card-width;
+    height: $medium-card-height;
+    margin: 0px;
+}
+.character-thumbnail {
+    background-size: $small-char-width $small-height;
+    width: $small-char-width;
+    height: $small-height;
+    margin: 0px;
+}
+.character {
+    background-size: $full-char-width $full-char-height;
+    width: $full-char-width;
+    height: $full-char-height;
+    margin: 0px;
+}
