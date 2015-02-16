@@ -52,7 +52,7 @@ class Turn:
             pass
         
         self.ongoingEffects.addStartingEffects(self.game)
-        self.game.notificationTracker.append(Notification(START_TURN, self.player))    
+        self.game.notificationTracker.append(Notification(START_TURN, self.player))
         coroutine = self.ongoingEffects.send(StartOfTurnEvent(self.game))
         response = yield coroutine.next()
         while True:

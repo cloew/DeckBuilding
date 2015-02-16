@@ -378,7 +378,9 @@ services.factory('StandardNotificationFactory', function() {
                       "REVEAL":{"forYou":"You revealed ",
                                 "forOthers":" revealed "},
                       "START_TURN":{"forYou":"Your turn",
-                                    "forOthers":"'s turn"}};
+                                    "forOthers":"'s turn"},
+                      "END_TURN":{"forYou":"Your turn is over",
+                                  "forOthers":"'s turn is over"}};
     var getMessage = function(notification) {
         if (notification.isYou) {
             return typeToData[notification.type].forYou;
@@ -426,6 +428,7 @@ services.factory('RevealNotificationFactory', function(CardsNotificationFactory)
 services.factory('NotificationFactory', function(StandardNotificationFactory, CardsNotificationFactory, RevealNotificationFactory) {
     var typeToData = {"HIT_BY_ATTACK":StandardNotificationFactory,
                       "DEFENDED":CardsNotificationFactory,
+                      "END_TURN":StandardNotificationFactory,
                       "REVEAL":RevealNotificationFactory,
                       "START_TURN":StandardNotificationFactory};
     return function(notification) {

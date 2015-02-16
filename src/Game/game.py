@@ -7,7 +7,11 @@ from turn import Turn
 
 from Game.Commands.start_turn import StartTurn
 from Game.Decks.deck_factory import DeckFactory
+
 from Game.Notifications.notification_tracker import NotificationTracker
+from Game.Notifications.notification import Notification
+from Game.Notifications.notification_types import END_TURN
+
 from Game.Results.game_results import GameResults
 from Game.Results.vp_player_results import VPPlayerResults
 
@@ -44,6 +48,7 @@ class Game:
     def endTurn(self):
         """ End the turn """
         self.currentTurn.cleanup()
+        self.notificationTracker.append(Notification(END_TURN, self.currentTurn.player))
         self.lineUp.refill()
         self.superVillainStack.refill()
         
