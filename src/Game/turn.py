@@ -7,6 +7,9 @@ from Game.Events.played_card_event import PlayedCardEvent
 from Game.Events.start_of_turn_event import StartOfTurnEvent
 from Game.Events.game_event_listener import GameEventListener
 
+from Game.Notifications.notification import Notification
+from Game.Notifications.notification_types import START_TURN
+
 from coroutine_helper import RunCoroutineOrFunction
 
 class Turn:
@@ -49,7 +52,7 @@ class Turn:
             pass
         
         self.ongoingEffects.addStartingEffects(self.game)
-            
+        self.game.notificationTracker.append(Notification(START_TURN, self.player))    
         coroutine = self.ongoingEffects.send(StartOfTurnEvent(self.game))
         response = yield coroutine.next()
         while True:

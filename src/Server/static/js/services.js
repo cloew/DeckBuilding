@@ -370,18 +370,20 @@ services.service('notificationService', function(NotificationFactory) {
 
 services.factory('StandardNotificationFactory', function() {
     var typeToData = {"DEFENDED":{"forYou":"You defended with ",
-                                  "forOthers":"defended with",
+                                  "forOthers":" defended with",
                                   "alertType":"success"},
                       "HIT_BY_ATTACK":{"forYou":"You were hit by the attack.",
-                                       "forOthers":"was hit by the attack.",
+                                       "forOthers":" was hit by the attack.",
                                        "alertType":"danger"},
                       "REVEAL":{"forYou":"You revealed ",
-                                "forOthers":"revealed "}};
+                                "forOthers":" revealed "},
+                      "START_TURN":{"forYou":"Your turn",
+                                    "forOthers":"'s turn"}};
     var getMessage = function(notification) {
         if (notification.isYou) {
             return typeToData[notification.type].forYou;
         } else {
-            return notification.name + " " + typeToData[notification.type].forOthers;
+            return notification.name + typeToData[notification.type].forOthers;
         }
     };
     var getAlertType = function(notification) {
@@ -424,7 +426,8 @@ services.factory('RevealNotificationFactory', function(CardsNotificationFactory)
 services.factory('NotificationFactory', function(StandardNotificationFactory, CardsNotificationFactory, RevealNotificationFactory) {
     var typeToData = {"HIT_BY_ATTACK":StandardNotificationFactory,
                       "DEFENDED":CardsNotificationFactory,
-                      "REVEAL":RevealNotificationFactory};
+                      "REVEAL":RevealNotificationFactory,
+                      "START_TURN":StandardNotificationFactory};
     return function(notification) {
         var factory = typeToData[notification.type]
         var newNotification = factory.load(notification);
