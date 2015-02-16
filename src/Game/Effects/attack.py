@@ -4,8 +4,9 @@ from Game.Effects.effect_runner import PerformEffects
 from Game.Events.cards_event import CardsEvent
 from Game.Events.defend_event import DefendEvent
 
-from Game.Notifications.cards_notification import CardsNotification, DEFENDED
-from Game.Notifications.notification import Notification, HIT_BY_ATTACK
+from Game.Notifications.cards_notification import CardsNotification
+from Game.Notifications.notification import Notification
+from Game.Notifications.notification_types import DEFENDED, HIT_BY_ATTACK
 from Game.Zones.zone_types import HAND
 
 class Attack:

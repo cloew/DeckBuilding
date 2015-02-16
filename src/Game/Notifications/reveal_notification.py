@@ -1,6 +1,5 @@
 from cards_notification import CardsNotification
-
-REVEAL = "REVEAL"
+from notification_types import REVEAL
 
 class RevealNotification(CardsNotification):
     """ Represents a Game Notification that has some relevant Cards """

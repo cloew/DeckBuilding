@@ -1,6 +1,4 @@
 
-HIT_BY_ATTACK = "HIT_BY_ATTACK"
-
 class Notification:
     """ Represents a Game Notification for all players to see """
     

@@ -1,7 +1,5 @@
 from notification import Notification
 
-DEFENDED = "DEFENDED"
-
 class CardsNotification(Notification):
     """ Represents a Game Notification that has some relevant Cards """
     
