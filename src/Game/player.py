@@ -33,16 +33,6 @@ class Player:
         newCards = self.deck.draw(count=count)
         self.hand += newCards
         
-    def gainCard(self, card, fromZone, toZone=None, game=None):
-        """ Gain the provided card """
-        fromZone.remove(card)
-        toZone.add(card)
-        event = CardsEvent([card], toZone, PlayerContext(game, card, player=self))
-        coroutine = PerformEffects(card.onGainEffects, event.context)
-        response = yield coroutine.next()
-        while True:
-            response = yield coroutine.send(response)
-        
     def modifyHandSize(self, change):
         """ Modify the Player's Next Hand Size """
         self.nextHandSize += change

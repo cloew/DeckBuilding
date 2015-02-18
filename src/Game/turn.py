@@ -2,7 +2,6 @@ from power_tracker import PowerTracker
 from ongoing_effects import OngoingEffects
 
 from Game.Effects.game_contexts import PlayerContext
-from Game.Events.gained_card_event import GainedCardEvent
 from Game.Events.played_card_event import PlayedCardEvent
 from Game.Events.start_of_turn_event import StartOfTurnEvent
 from Game.Events.game_event_listener import GameEventListener
@@ -111,26 +110,6 @@ class Turn:
         """ Add the given card as an ongoing effect """
         self.player.addOngoing(card)
         self.addOngoingEffects(card)
-        
-    def gainCard(self, card, fromZone, toZone=None):
-        """ Gain the provided card """
-        coroutine = self.player.gainCard(card, fromZone, toZone=toZone, game=self.game)
-        try:
-            response = yield coroutine.next()
-            while True:
-                response = yield coroutine.send(response)
-        except StopIteration:
-            pass
-            
-        coroutine = self.ongoingEffects.send(GainedCardEvent(card, PlayerContext(self.game, card)))
-        try:
-            response = yield coroutine.next()
-            while True:
-                response = yield coroutine.send(response)
-        except StopIteration:
-            pass
-            
-        self.gainedCards.append(card)
         
     def cleanup(self):
         """ Cleanup the turn """

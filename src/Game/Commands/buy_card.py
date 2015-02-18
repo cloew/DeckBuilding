@@ -5,8 +5,11 @@ from Game.Commands.Requirements.current_player import CurrentPlayer
 from Game.Commands.Requirements.enough_power import EnoughPower
 from Game.Commands.Requirements.no_request import NoRequest
 
+from Game.Effects.effect_runner import PerformEffect
+from Game.Effects.gain_card import GainCard
 from Game.Effects.game_contexts import PlayerContext
-from Game.Zones.zone_types import DISCARD_PILE
+from Game.Events.cards_event import CardsEvent
+from Game.Zones.zone_types import EVENT
 
 class BuyCard(Command):
     """ Represents a command to buy a card """
@@ -22,9 +25,10 @@ class BuyCard(Command):
         """ Perform the command """
         context = PlayerContext(self.owner.game, self.card)
         zone = context.loadZone(self.zoneType)
+        event = CardsEvent([self.card], zone, context)
         
         self.owner.spendPower(self.card.calculateCost())
-        coroutine = self.owner.gainCard(self.card, zone, toZone=context.loadZone(DISCARD_PILE))
+        coroutine = PerformEffect(GainCard(EVENT), event.context)
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)

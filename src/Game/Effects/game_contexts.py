@@ -29,6 +29,10 @@ class Context:
         """ Load the given zone using this context """
         return ZoneFactory.getZoneInContext(zoneType, self)
     
+    def sendEvent(self, event):
+        """ Send a Game Event """
+        return self.owner.ongoingEffects.send(event)
+    
 class PlayerContext(Context):
     """ Represents the game context for a particular player """
     
