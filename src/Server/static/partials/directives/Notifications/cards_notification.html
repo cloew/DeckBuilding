@@ -1,3 +1,4 @@
 <div>
-    <alert class="notification" type="notification.alertType">{{notification.message}} <card-links></card-links>.</alert>
+    <alert class="notification" type="notification.alertType" ng-if="notification.canSeeCards">{{notification.message}} <card-links></card-links>.</alert>
+    <alert class="notification" type="notification.alertType" ng-if="!notification.canSeeCards">{{notification.message}}.</alert>
 </div>

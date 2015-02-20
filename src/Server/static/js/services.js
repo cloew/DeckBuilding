@@ -401,9 +401,23 @@ services.factory('StandardNotificationFactory', function() {
 });
 
 services.factory('CardsNotificationFactory', function(StandardNotificationFactory) {
+    var getCardsText = function(result, notification) {
+        var count = notification.count;
+        if (count === 1) {
+            count = "a card";
+        }
+        else {
+            count = count + " cards";
+        }
+        return result.message + count;
+    };
     return {"type":"CARDS", "load": function(notification) {
         var result = StandardNotificationFactory.load(notification);
         result.cards = notification.cards;
+        result.canSeeCards = notification.isYou || !notification.private;
+        if (!result.canSeeCards) {
+            result.message = getCardsText(result, notification);
+        }
         return result;
     }};
 });
