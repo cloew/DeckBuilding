@@ -24,13 +24,13 @@ class DefendRequest(Request):
         cards = []
         for i, filter in enumerate(self.defenseFilters):
             results = filter.evaluate(context)
-            self.cardsForZone[self.ZONES[i]] = results
+            self.cardsForZone[self.ZONES[i].name] = results
             cards += results
         return cards
         
     def findZoneFor(self, card):
         """ Find the zone for the card """
         for zoneType in self.ZONES:
-            if card in self.cardsForZone[zoneType]:
+            if card in self.cardsForZone[zoneType.name]:
                 return zoneType
         return None
