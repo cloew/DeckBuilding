@@ -37,7 +37,7 @@ class GainCard(MoveCard):
             except StopIteration:
                 pass
             context.owner.gainedCards.append(card)
-        context.addNotification(CardsNotification(self.notificationType, context.player, list(fromZone)))
+        context.addNotification(CardsNotification(self.notificationType, context.player, list(fromZone), private=self.isPrivate(fromZone, toZone)))
         
     def callOnGainEffects(self, card, toZone, context):
         """ Call the cards gained effects and send the gained event """
@@ -57,3 +57,7 @@ class GainCard(MoveCard):
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)
+            
+    def isPrivate(self, fromZone, toZone):
+        """ Return if the gained card event is private """
+        return not (fromZone.public or toZone.public)

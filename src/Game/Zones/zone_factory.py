@@ -33,7 +33,7 @@ class ZoneFactory:
         elif zoneType == zone_types.KICK:
             return DeckZone(game.kickDeck, zoneType=zone_types.KICK)
         elif zoneType == zone_types.LINE_UP:
-            return Zone(game.lineUp)
+            return Zone(game.lineUp, zoneType=zone_types.LINE_UP)
         elif zoneType == zone_types.MAIN_DECK:
             return DeckZone(game.mainDeck, zoneType=zone_types.MAIN_DECK)
         elif zoneType == zone_types.ONGOING:
