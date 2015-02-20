@@ -9,6 +9,7 @@ from Game.Effects.effect_runner import PerformEffect
 from Game.Effects.gain_card import GainCard
 from Game.Effects.game_contexts import PlayerContext
 from Game.Events.cards_event import CardsEvent
+from Game.Notifications.notification_types import BOUGHT_CARD
 from Game.Zones.zone_types import EVENT
 
 class BuyCard(Command):
@@ -28,7 +29,7 @@ class BuyCard(Command):
         event = CardsEvent([self.card], zone, context)
         
         self.owner.spendPower(self.card.calculateCost())
-        coroutine = PerformEffect(GainCard(EVENT), event.context)
+        coroutine = PerformEffect(GainCard(EVENT, notificationType=BOUGHT_CARD), event.context)
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)

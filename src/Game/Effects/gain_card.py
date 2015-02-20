@@ -2,13 +2,16 @@ from Game.Effects.effect_runner import PerformEffects
 from Game.Effects.move_card import MoveCard
 from Game.Events.cards_event import CardsEvent
 from Game.Events.gained_card_event import GainedCardEvent
+from Game.Notifications.cards_notification import CardsNotification
+from Game.Notifications.notification_types import GAINED_CARD
 from Game.Zones.zone_types import DISCARD_PILE
 
 class GainCard(MoveCard):
     """ Represents an effect to Gain a card """
     
-    def __init__(self, fromZoneType, toZoneType=DISCARD_PILE):
+    def __init__(self, fromZoneType, toZoneType=DISCARD_PILE, notificationType=GAINED_CARD):
         """ Initialize the Effect with the card to remove from play before discarding """
+        self.notificationType = notificationType
         MoveCard.__init__(self, fromZoneType, toZoneType)
         
     def perform(self, context):
@@ -34,6 +37,7 @@ class GainCard(MoveCard):
             except StopIteration:
                 pass
             context.owner.gainedCards.append(card)
+        context.addNotification(CardsNotification(self.notificationType, context.player, list(fromZone)))
         
     def callOnGainEffects(self, card, toZone, context):
         """ Call the cards gained effects and send the gained event """

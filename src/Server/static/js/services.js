@@ -377,6 +377,10 @@ services.factory('StandardNotificationFactory', function() {
                                        "alertType":"danger"},
                       "REVEAL":{"forYou":"You revealed ",
                                 "forOthers":" revealed "},
+                      "BOUGHT_CARD":{"forYou":"You bought ",
+                                     "forOthers":" bought "},
+                      "GAINED_CARD":{"forYou":"You gained ",
+                                     "forOthers":" gained "},
                       "START_TURN":{"forYou":"Your turn",
                                     "forOthers":"'s turn"},
                       "END_TURN":{"forYou":"Your turn is over",
@@ -428,6 +432,8 @@ services.factory('RevealNotificationFactory', function(CardsNotificationFactory)
 services.factory('NotificationFactory', function(StandardNotificationFactory, CardsNotificationFactory, RevealNotificationFactory) {
     var typeToData = {"HIT_BY_ATTACK":StandardNotificationFactory,
                       "DEFENDED":CardsNotificationFactory,
+                      "BOUGHT_CARD":CardsNotificationFactory,
+                      "GAINED_CARD":CardsNotificationFactory,
                       "END_TURN":StandardNotificationFactory,
                       "REVEAL":RevealNotificationFactory,
                       "START_TURN":StandardNotificationFactory};
