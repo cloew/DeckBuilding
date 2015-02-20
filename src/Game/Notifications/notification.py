@@ -6,3 +6,7 @@ class Notification:
         """ Initialize the Notification with the player that caused it and the notification type """
         self.player = player
         self.notificationType = notificationType
+        
+    def __repr__(self):
+        """ Return the string representation of the notification """
+        return "<{0} at {1:#x}>".format(self.notificationType, id(self))
