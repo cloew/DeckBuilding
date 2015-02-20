@@ -1,4 +1,6 @@
+from kao_decorators import proxy_for
 
+@proxy_for('zoneType', ['public'])
 class Zone:
     """ Represents a potential zone """
     
