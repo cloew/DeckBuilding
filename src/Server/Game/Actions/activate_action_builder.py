@@ -18,4 +18,4 @@ class ActivateActionBuilder:
     
     def buildFor(self, card, gameId, playerId):
         """ Return the Action JSON for the card given """
-        return {'type':'ACTIVATE', 'zone':self.zone, 'apiUrl':activateCardURL.build(gameId=gameId, playerId=playerId, cardId=card.gameId)}
+        return {'type':'ACTIVATE', 'zone':self.zone.name, 'apiUrl':activateCardURL.build(gameId=gameId, playerId=playerId, cardId=card.gameId)}

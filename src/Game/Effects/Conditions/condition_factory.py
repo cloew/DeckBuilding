@@ -15,6 +15,7 @@ from Game.Effects.Conditions.Filters.Criteria.criteria_factory import CriteriaFa
 
 from Game.Factory.intersection_filter_parameter import IntersectionFilterParameter
 from Game.Factory.filter_parameter import FilterParameter
+from Game.Factory.zone_type_parameter import ZoneTypeParameter
 
 from kao_factory.factory import Factory
 from kao_factory.typed_factory import TypedFactory
@@ -22,14 +23,14 @@ from kao_factory.Parameter.complex_parameter import ComplexParameter
 from kao_factory.Parameter.primitive_parameter import PrimitiveParameter
 
 ConditionFactory = TypedFactory('type', {"ENOUGH_POWER":Factory(EnoughPower, [PrimitiveParameter("power")]),
-                                         "FILTER_RESULTS":Factory(FilterResults, [PrimitiveParameter("zone"), FilterParameter(), PrimitiveParameter("number", optional=True)]),
+                                         "FILTER_RESULTS":Factory(FilterResults, [ZoneTypeParameter("zone"), FilterParameter(), PrimitiveParameter("number", optional=True)]),
                                          "IS_PLAYER_CHARACTER":Factory(IsPlayerCharacter, []),
                                          "IS_PLAYER_TURN":Factory(IsPlayerTurn, []),
-                                         "HAS_CARDS":Factory(HasCards, [PrimitiveParameter("zone"), IntersectionFilterParameter(optional=True)]),
-                                         "MATCHING":Factory(Matching, [PrimitiveParameter("zone"), ComplexParameter("criteria", CriteriaFactory.load, optional=True), PrimitiveParameter("number", optional=True)]),
+                                         "HAS_CARDS":Factory(HasCards, [ZoneTypeParameter("zone"), IntersectionFilterParameter(optional=True)]),
+                                         "MATCHING":Factory(Matching, [ZoneTypeParameter("zone"), ComplexParameter("criteria", CriteriaFactory.load, optional=True), PrimitiveParameter("number", optional=True)]),
                                          "NTH":Factory(NthPlayed, [PrimitiveParameter("n"), ComplexParameter("criteria", CriteriaFactory.load)]),
                                          "NTH_UNIQUE":Factory(NthUnique, [PrimitiveParameter("n"), ComplexParameter("criterion", CriteriaFactory.loadAll, optional=True, default=[]), PrimitiveParameter("field", optional=True)]),
-                                         "UNIQUE":Factory(Unique, [PrimitiveParameter("field"), PrimitiveParameter("zone")]),
+                                         "UNIQUE":Factory(Unique, [PrimitiveParameter("field"), ZoneTypeParameter("zone")]),
                                          })
 ConditionFactory.addFactory("AND", Factory(AndCondition, [ComplexParameter("conditions", ConditionFactory.loadAll)]))
 ConditionFactory.addFactory("NOT", Factory(NotCondition, [ComplexParameter("condition", ConditionFactory.load)]))

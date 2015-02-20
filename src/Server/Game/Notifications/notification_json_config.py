@@ -9,5 +9,5 @@ notificationConfig = [(Notification, [FieldAttr('type', field='notificationType'
                                       FieldAttr('name', field='player.name'),
                                       JsonAttr('isYou', lambda notification, currentPlayer: notification.player is currentPlayer, args=['currentPlayer'])]),
                       JsonConfig(CardsNotification, [FieldAttr('cards')]).inheritFrom(Notification),
-                      JsonConfig(RevealNotification, [FieldAttr('zoneType')]).inheritFrom(CardsNotification)
+                      JsonConfig(RevealNotification, [FieldAttr('zoneType', field='zoneType.name')]).inheritFrom(CardsNotification)
                       ]

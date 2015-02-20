@@ -16,4 +16,4 @@ class BuyActionBuilder:
     
     def buildFor(self, card, gameId, playerId):
         """ Return the Action JSON for the card given """
-        return {'type':'BUY', 'zone':self.zone, 'apiUrl':buyCardURL.build(gameId=gameId, playerId=playerId, cardId=card.gameId)}
+        return {'type':'BUY', 'zone':self.zone.name, 'apiUrl':buyCardURL.build(gameId=gameId, playerId=playerId, cardId=card.gameId)}

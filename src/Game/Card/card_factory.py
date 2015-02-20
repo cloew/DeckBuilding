@@ -8,6 +8,8 @@ from Game.Effects.Triggers.trigger_factory import TriggerFactory
 
 import resources.resource_manager as resource_manager
 
+from Game.Factory.zone_type_parameter import ZoneTypeParameter
+
 from kao_factory.data_source_factory import DataSourceFactory
 from kao_factory.Parameter.complex_parameter import ComplexParameter
 from kao_factory.Parameter.primitive_parameter import PrimitiveParameter
@@ -26,7 +28,7 @@ parameters = [PrimitiveParameter("name"),
               ComplexParameter("playEffects", EffectFactory.loadAll, optional=True, default=[]),
               ComplexParameter("onGain", EffectFactory.loadAll, optional=True, default=[]),
               ComplexParameter("onDefense", EffectFactory.loadAll, optional=True, default=[]),
-              PrimitiveParameter("defendFrom", optional=True),
+              ZoneTypeParameter("defendFrom", optional=True),
               ComplexParameter("onAppearance", EffectFactory.loadAll, optional=True, default=[]),
               ComplexParameter("triggers", TriggerFactory.loadAll, optional=True, default=[]),
               ComplexParameter("activatableEffect", ActivatableFactory.load, optional=True),
