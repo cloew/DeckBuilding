@@ -396,7 +396,8 @@ services.factory('StandardNotificationFactory', function() {
         return typeToData[notification.type].alertType;
     };
     return {"type":"STANDARD", "load": function(notification) {
-        return {"message":getMessage(notification), "alertType":getAlertType(notification), "id":notification.id};
+        return {"message":getMessage(notification), "alertType":getAlertType(notification), "id":notification.id, 
+                "playerName":notification.name, "isYou":notification.isYou};
     }};
 });
 

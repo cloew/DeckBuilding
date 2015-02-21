@@ -1,0 +1,35 @@
+
+.notification-container {
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 4px;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+.notification {
+    margin-bottom:5px;
+    padding: 3px;
+}
+.notification-box {
+    background: #f8faff;
+    border: 1px solid black;
+    border-radius: 6px;
+    margin-bottom:5px;
+    padding: 3px;
+}
+.notification-header {
+    font-size: 1em;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.notification-text {
+    text-align: center;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.alert.notification {
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
