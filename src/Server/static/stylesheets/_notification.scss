@@ -5,6 +5,9 @@
     border-radius: 4px;
     margin-top:5px;
     margin-bottom:5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .notification {
     margin-bottom:5px;
@@ -24,8 +27,6 @@
 }
 .notification-text {
     text-align: center;
-    margin-top: 2px;
-    margin-bottom: 2px;
 }
 .alert.notification {
     width: 100%;
