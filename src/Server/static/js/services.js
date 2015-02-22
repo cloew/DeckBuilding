@@ -430,6 +430,15 @@ services.factory('CardsNotificationFactory', function(StandardNotificationFactor
     }};
 });
 
+services.factory('MovementNotificationFactory', function(CardsNotificationFactory) {
+    return {"type":"MOVEMENT", "load": function(notification) {
+        var result = CardsNotificationFactory.load(notification);
+        result.from = notification.from;
+        result.to = notification.to;
+        return result;
+    }};
+});
+
 services.factory('RevealNotificationFactory', function(CardsNotificationFactory) {
     var typeToData = {"DECK":{"forYou":"the top of your deck.",
                               "forOthers":"the top of their deck."},
@@ -452,11 +461,11 @@ services.factory('RevealNotificationFactory', function(CardsNotificationFactory)
     }};
 });
 
-services.factory('NotificationFactory', function(StandardNotificationFactory, CardsNotificationFactory, RevealNotificationFactory) {
+services.factory('NotificationFactory', function(StandardNotificationFactory, CardsNotificationFactory, MovementNotificationFactory, RevealNotificationFactory) {
     var typeToData = {"HIT_BY_ATTACK":StandardNotificationFactory,
                       "DEFENDED":CardsNotificationFactory,
-                      "BOUGHT_CARD":CardsNotificationFactory,
-                      "GAINED_CARD":CardsNotificationFactory,
+                      "BOUGHT_CARD":MovementNotificationFactory,
+                      "GAINED_CARD":MovementNotificationFactory,
                       "END_TURN":StandardNotificationFactory,
                       "REVEAL":RevealNotificationFactory,
                       "START_TURN":StandardNotificationFactory};

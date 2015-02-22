@@ -3,6 +3,7 @@ from kao_json import JsonConfig, JsonAttr, FieldAttr, KeywordAttr
 from Game.Zones.zone import Zone
 
 from Game.Notifications.cards_notification import CardsNotification
+from Game.Notifications.movement_notification import MovementNotification
 from Game.Notifications.notification import Notification
 from Game.Notifications.reveal_notification import RevealNotification
 
@@ -24,6 +25,8 @@ notificationConfig = [(Notification, [FieldAttr('type', field='notificationType'
                       JsonConfig(CardsNotification, [JsonAttr('cards', GetCards, args=['currentPlayer']),
                                                      FieldAttr('private'),
                                                      JsonAttr('count', lambda notification: len(notification.cards))]).inheritFrom(Notification),
+                      JsonConfig(MovementNotification, [FieldAttr('from', field='fromZone'),
+                                                        FieldAttr('to', field='toZone')]).inheritFrom(CardsNotification),
                       JsonConfig(RevealNotification, [FieldAttr('zone')]).inheritFrom(CardsNotification),
                       (Zone, [FieldAttr('zoneType', field='zoneType.name'),
                               FieldAttr('playerName', field='player.name'),

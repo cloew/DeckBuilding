@@ -240,6 +240,12 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices", "kao.select"])
           transclude: true,
           templateUrl: 'static/partials/directives/Notifications/cards_notification.html'
       }})
+    .directive('movementNotification', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          templateUrl: 'static/partials/directives/Notifications/movement_notification.html'
+      }})
     .directive('revealNotification', function() {
       return {
           restrict: 'E',
