@@ -2,7 +2,7 @@ from Game.Effects.effect_runner import PerformEffects
 from Game.Effects.move_card import MoveCard
 from Game.Events.cards_event import CardsEvent
 from Game.Events.gained_card_event import GainedCardEvent
-from Game.Notifications.cards_notification import CardsNotification
+from Game.Notifications.movement_notification import MovementNotification
 from Game.Notifications.notification_types import GAINED_CARD
 from Game.Zones.zone_types import DISCARD_PILE
 
@@ -56,8 +56,4 @@ class GainCard(MoveCard):
         
     def getNotification(self, context, fromZone, toZone):
         """ Return the notification to use for the movement """
-        return CardsNotification(self.notificationType, context.player, list(fromZone), private=self.isPrivate(fromZone, toZone))
-            
-    def isPrivate(self, fromZone, toZone):
-        """ Return if the gained card event is private """
-        return not (fromZone.public or toZone.public)
+        return MovementNotification(self.notificationType, context.player, fromZone, toZone)
