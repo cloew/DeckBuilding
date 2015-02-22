@@ -54,7 +54,7 @@ class Choice:
         if self.filter is not None:
             possibleCards = self.filter.evaluate(context)
         elif self.relevantZoneType is not None:
-            source = context.loadZone(self.relevantZoneType)
-            possibleCards = source
+            zone = context.loadZone(self.relevantZoneType)
+            possibleCards = zone
         
         return possibleCards
