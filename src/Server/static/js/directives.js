@@ -227,43 +227,6 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices", "kao.select"])
           },
           templateUrl: 'static/partials/directives/deck.html'
       }})
-    .directive('notification', function() {
-      return {
-          restrict: 'E',
-          replace: true,
-          templateUrl: 'static/partials/directives/Notifications/notification.html'
-      }})
-    .directive('cardsNotification', function() {
-      return {
-          restrict: 'E',
-          replace: true,
-          transclude: true,
-          templateUrl: 'static/partials/directives/Notifications/cards_notification.html'
-      }})
-    .directive('movementNotification', function() {
-      return {
-          restrict: 'E',
-          replace: true,
-          templateUrl: 'static/partials/directives/Notifications/movement_notification.html'
-      }})
-    .directive('revealNotification', function() {
-      return {
-          restrict: 'E',
-          replace: true,
-          templateUrl: 'static/partials/directives/Notifications/reveal_notification.html'
-      }})
-    .directive('standardNotification', function() {
-      return {
-          restrict: 'E',
-          replace: true,
-          templateUrl: 'static/partials/directives/Notifications/standard_notification.html'
-      }})
-    .directive('cardLinks', function() {
-      return {
-          restrict: 'E',
-          replace: false,
-          templateUrl: 'static/partials/directives/Notifications/card_links.html'
-      }})
       .directive('cardIcons', function() {
       return {
           restrict: 'E',
@@ -351,12 +314,6 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices", "kao.select"])
           restrict: 'E',
           replace: true,
           templateUrl: 'static/partials/directives/line_up.html'
-      }})
-    .directive('notifications', function() {
-      return {
-          restrict: 'E',
-          replace: true,
-          templateUrl: 'static/partials/directives/notifications.html'
       }})
     .directive('ongoing', function() {
       return {

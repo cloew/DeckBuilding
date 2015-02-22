@@ -1,7 +1,7 @@
 <div class="notification-box">
     <h4 class="notification-header">{{(notification.isYou && 'You') || notification.playerName}}</h4>
     <div class="notification-details">
-        <card-fan cards="notification.cards" size="small" public="notification.canSeeCards"></card-fan>
+        <card-fan cards="notification.cards" size="small" public="canSeeCards"></card-fan>
         <div ng-transclude>
         </div>
     </div>

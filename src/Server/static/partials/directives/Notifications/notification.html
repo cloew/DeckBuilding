@@ -1,6 +1,6 @@
 <div class="notification">
-    <standard-notification ng-if="notification.type === 'STANDARD'"></standard-notification>
-    <cards-notification ng-if="notification.type === 'CARDS'"></cards-notification>
-    <movement-notification ng-if="notification.type === 'MOVEMENT'"></movement-notification>
-    <reveal-notification ng-if="notification.type === 'REVEAL'"></reveal-notification>
+    <standard-notification notification="notification" ng-if="displayType === 'STANDARD'"></standard-notification>
+    <cards-notification notification="notification" ng-if="displayType === 'CARDS'"></cards-notification>
+    <movement-notification notification="notification" ng-if="displayType === 'MOVEMENT'"></movement-notification>
+    <reveal-notification notification="notification" ng-if="displayType === 'REVEAL'"></reveal-notification>
 </div>
