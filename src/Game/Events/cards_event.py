@@ -1,3 +1,4 @@
+from Game.Zones.zone_types import EVENT
 
 class CardsEvent:
     """ Represents an Event to wrap an arbitrary number of cards """
@@ -29,6 +30,10 @@ class CardsEvent:
     def __iter__(self):
         """ Return the iterator for the event when it is used as a source """
         return self.cards.__iter__()
+        
+    def loadZone(self):
+        """ Load the Event Zone """
+        return self.context.loadZone(EVENT)
         
     @property
     def player(self):

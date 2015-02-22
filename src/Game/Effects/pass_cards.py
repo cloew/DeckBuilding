@@ -38,7 +38,7 @@ class PassCards:
                 
                 event = CardsEvent(cards, zone, playerContext)
                 placeholderZone = ListZone([])
-                MoveCard(EVENT, HAND).moveCards(event.context.loadZone(EVENT), placeholderZone)
+                MoveCard(EVENT, HAND).moveCards(event.loadZone(), placeholderZone)
                 
                 cardsToPass = CardsToPass(placeholderZone, target)
                 allCardsToPass.append(cardsToPass)

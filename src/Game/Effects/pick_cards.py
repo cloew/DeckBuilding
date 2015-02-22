@@ -98,7 +98,7 @@ class PickCards(ConditionalEffect):
                         cardsPerZone[zone] = [card]
                     break
                     
-        zones = [EventZone(CardsEvent(cardsPerZone[zone], zone, context)) for zone in cardsPerZone]
+        zones = [CardsEvent(cardsPerZone[zone], zone, context).loadZone() for zone in cardsPerZone]
         return MultiZoneEvent(zones, context)
         
     def setNumberOfCards(self, number):

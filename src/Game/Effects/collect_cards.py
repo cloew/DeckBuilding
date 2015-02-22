@@ -51,7 +51,7 @@ class CollectCards:
             except StopIteration:
                 pass
             event = CardsEvent(self.cardsForFoes, zone, playerContext)
-            zones.append(EventZone(event))
+            zones.append(event.loadZone())
                 
         event = MultiZoneEvent(zones, context)
         coroutine = PerformEffects(self.thenEffects, event.context)
