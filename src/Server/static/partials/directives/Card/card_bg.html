@@ -1,0 +1,11 @@
+<div>
+    <card-image size="size" image="'static/images/background.jpg'">
+        <div ng-transclude>
+        </div>
+        <div>
+            <action-card-icon ng-repeat="action in card.actions" ng-if="includeCardActions"></action-card_icon>
+        </div>
+        <examine-card-icon ng-show="!!card && !deck" ng-controller="ExamineCardIconController"></examine-card-icon>
+        <examine-deck-icon ng-show="!!deck && (deck.cards.length > 0)" ng-controller="ExamineDeckIconController"></examine-deck-icon>
+    </card-image>
+</div>

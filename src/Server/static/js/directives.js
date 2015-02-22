@@ -121,6 +121,16 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices", "kao.select"])
           transclude: true,
           templateUrl: 'static/partials/directives/Card/card.html'
       }})
+    .directive('cardBg', function() {
+      return {
+          restrict: 'E',
+          replace: true,
+          transclude: true,
+          scope: {
+              size: '=size'
+          },
+          templateUrl: 'static/partials/directives/Card/card_bg.html'
+      }})
     .directive('character', function() {
       return {
           restrict: 'E',
