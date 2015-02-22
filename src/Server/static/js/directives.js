@@ -209,7 +209,7 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices", "kao.select"])
               deck: '=deck',
               displayTopCard: '=displayTopCard',
               actions: '=actions',
-              size: '=size'
+              size: '@'
           },
           templateUrl: 'static/partials/directives/deck.html'
       }})
