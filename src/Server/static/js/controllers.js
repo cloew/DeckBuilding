@@ -66,7 +66,6 @@ controllers.controller('GameResultsController', function($scope, $cookies, $http
 controllers.controller('ChooseOptionController', function($scope, requestModalService, gameService) {
     var gameWrapper = gameService.findGameWrapper();
     $scope.request = requestModalService.getCurrentRequest();
-    console.log($scope.request);
     
     $scope.chooseOption = function(index) {
         gameWrapper.chooseOption($scope.request, index);
