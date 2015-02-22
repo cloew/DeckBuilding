@@ -11,10 +11,12 @@ class CardsFinder:
         
     def find(self, context):
         """ Return the cards """
-        zone = context.loadZone(self.zoneType)
-        cards = zone
+        cards = None
+        zone = None if self.zoneType is None else context.loadZone(self.zoneType)
         if self.filter is not None:
             cards = self.filter.evaluate(context)
+        elif zone is not None:
+            cards = zone
         
         return zone, cards
         

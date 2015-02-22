@@ -1,5 +1,6 @@
 from Game.Commands.Requests.choose_option_request import ChooseOptionRequest
 from Game.Effects.effect_runner import PerformEffects
+from Game.Effects.Conditions.Filters.cards_finder import CardsFinder
 
 class Option:
     """ Represents an option for a Choice Effect """
@@ -30,8 +31,7 @@ class Choice:
     def __init__(self, options, relevantZoneType=None, filter=None):
         """ Initialize the options """
         self.options = options
-        self.relevantZoneType = relevantZoneType
-        self.filter = filter
+        self.cardFinder = CardsFinder(relevantZoneType, filter)
         
     def perform(self, context):
         """ Perform the Game Effect """
@@ -41,20 +41,10 @@ class Choice:
         elif len(availableOptions) == 1:
             option = availableOptions[0]
         else:
-            option = yield ChooseOptionRequest(availableOptions, context.player, self.findPossibleCards(context))
+            zone, cards = self.cardFinder.find(context)
+            option = yield ChooseOptionRequest(availableOptions, context.player, cards)
             
         coroutine = option.performEffects(context)
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)
-                
-    def findPossibleCards(self, context):
-        """ Return the possible cards """
-        possibleCards = None
-        if self.filter is not None:
-            possibleCards = self.filter.evaluate(context)
-        elif self.relevantZoneType is not None:
-            zone = context.loadZone(self.relevantZoneType)
-            possibleCards = zone
-        
-        return possibleCards
