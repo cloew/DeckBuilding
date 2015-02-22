@@ -7,6 +7,7 @@ class Lobby:
         """ Initialize the Lobby """
         self.players = []
         self.gameMode = FreeForAll()
+        self.gameId = None
         
     def addPlayer(self, player):
         """ Add the player to the game lobby """

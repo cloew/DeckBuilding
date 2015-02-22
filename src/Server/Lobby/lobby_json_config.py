@@ -10,6 +10,7 @@ import Server.urls as urls
 
 lobbyConfig = [JsonConfig(Lobby, [FieldAttr('id'),
                                   FieldAttr('gamemode', field='gameMode'),
+                                  FieldAttr('gameId'),
                                   KeywordAttr('you', keyword='currentPlayer'),
                                   JsonAttr('players', lambda lobby, playerId: [player for player in lobby.players if player.id != playerId], args=['playerId']),
                                   JsonAttr('joinUrl', lambda lobby: urls.joinLobbyURL.build(lobbyId=lobby.id)),
