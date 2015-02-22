@@ -1,6 +1,6 @@
 'use strict';
 
-var controllers = angular.module('DeckBuildingControllers', ['ui.bootstrap', 'ngCookies', 'DeckBuildingServices']);
+var controllers = angular.module('DeckBuildingControllers', ['ui.bootstrap', 'ngCookies', 'DeckBuildingServices', 'Zone']);
 
 controllers.controller('StartGameController', function ($scope, $http, $location) {
     $scope.startGame = function() {

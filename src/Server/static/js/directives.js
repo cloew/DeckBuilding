@@ -237,6 +237,7 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices", "kao.select"])
       return {
           restrict: 'E',
           replace: true,
+          transclude: true,
           templateUrl: 'static/partials/directives/Notifications/cards_notification.html'
       }})
     .directive('revealNotification', function() {
