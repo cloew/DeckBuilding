@@ -1,5 +1,8 @@
 <div class="notification-box">
     <h4 class="notification-header">{{(notification.isYou && 'You') || notification.playerName}}</h4>
-    <alert type="notification.alertType" ng-if="notification.canSeeCards">{{notification.message}} <card-links></card-links>.</alert>
-    <alert type="notification.alertType" ng-if="!notification.canSeeCards">{{notification.message}}.</alert>
+    <div class="notification-details">
+        <card-list cards="notification.cards" size="small" ng-if="notification.canSeeCards"></card-list>
+        <deck size="small" deck="notification" ng-if="!notification.canSeeCards"></deck>
+        <span>{{notification.message}}</span>
+    </div>
 </div>

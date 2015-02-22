@@ -415,7 +415,9 @@ services.factory('CardsNotificationFactory', function(StandardNotificationFactor
     return {"type":"CARDS", "load": function(notification) {
         var result = StandardNotificationFactory.load(notification);
         result.cards = notification.cards;
+        result.count = notification.count;
         result.canSeeCards = notification.isYou || !notification.private;
+        result.hidden = !result.canSeeCards;
         if (!result.canSeeCards) {
             result.message = getCardsText(result, notification);
         }

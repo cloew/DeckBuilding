@@ -27,6 +27,11 @@
 .notification-text {
     text-align: center;
 }
+.notification-details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 .alert.notification {
     width: 100%;
     padding-top: 5px;
