@@ -5,7 +5,7 @@ class PickCardRequest(Request):
     
     def __init__(self, cards, player, number, toDescription):
         """ Initialize the Request with the potential options """
-        self.cards = cards
+        self.cards = list(cards)
         self.number = number
         self.toDescription = toDescription
         Request.__init__(self, [player])

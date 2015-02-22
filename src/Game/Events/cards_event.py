@@ -5,7 +5,7 @@ class CardsEvent:
     
     def __init__(self, cards, fromZone, context):
         """ Initialize the Cards Event with the cards and where they came from """
-        self.cards = cards
+        self.cards = list(cards)
         self.fromZone = fromZone
         
         self.context = context.copy()

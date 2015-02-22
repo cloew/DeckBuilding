@@ -6,5 +6,5 @@ class ChooseOptionRequest(Request):
     def __init__(self, options, player, relevantCards=None):
         """ Initialize the Request with the potential options """
         self.options = options
-        self.relevantCards = relevantCards
+        self.relevantCards = relevantCards if relevantCards is None else list(relevantCards)
         Request.__init__(self, [player])
