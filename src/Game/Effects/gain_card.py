@@ -11,6 +11,8 @@ class GainCard(MoveCard):
     
     def __init__(self, fromZoneType, toZoneType=DISCARD_PILE, notificationType=GAINED_CARD):
         """ Initialize the Effect with the card to remove from play before discarding """
+        if toZoneType is None:
+           toZoneType = DISCARD_PILE 
         self.notificationType = notificationType
         MoveCard.__init__(self, fromZoneType, toZoneType)
         
