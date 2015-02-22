@@ -439,13 +439,14 @@ services.factory('RevealNotificationFactory', function(CardsNotificationFactory)
                                    "forOthers":"the top of the main deck."},};
     var getMessageWithoutPlayerName = function(notification) {
         if (notification.isYou) {
-            return typeToData[notification.zoneType].forYou;
+            return typeToData[notification.zone.zoneType].forYou;
         } else {
-            return typeToData[notification.zoneType].forOthers;
+            return typeToData[notification.zone.zoneType].forOthers;
         }
     }
     return {"type":"REVEAL", "load": function(notification) {
         var result = CardsNotificationFactory.load(notification);
+        result.zone = notification.zone;
         result.zoneText = " from " + getMessageWithoutPlayerName(notification);
         return result;
     }};

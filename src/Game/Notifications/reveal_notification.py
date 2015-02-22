@@ -6,5 +6,5 @@ class RevealNotification(CardsNotification):
     
     def __init__(self, player, zone):
         """ Initialize the Notification with the cards, the player that caused it and the notification type """
-        self.zoneType = zone.zoneType
-        CardsNotification.__init__(self, REVEAL, player, zone)
+        self.zone = zone
+        CardsNotification.__init__(self, REVEAL, player, list(zone))

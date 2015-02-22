@@ -1,12 +1,14 @@
 from kao_json import JsonConfig, JsonAttr, FieldAttr, KeywordAttr
 
+from Game.Zones.zone import Zone
+
 from Game.Notifications.cards_notification import CardsNotification
 from Game.Notifications.notification import Notification
 from Game.Notifications.reveal_notification import RevealNotification
 
-def IsForYou(notification, currentPlayer):
+def IsForYou(object, currentPlayer):
     """ Return if the notification is for the current player """
-    return notification.player is currentPlayer
+    return object.player is currentPlayer
     
 def GetCards(notification, currentPlayer):
     """ Return the notification cards if they should be visible """
@@ -22,5 +24,8 @@ notificationConfig = [(Notification, [FieldAttr('type', field='notificationType'
                       JsonConfig(CardsNotification, [JsonAttr('cards', GetCards, args=['currentPlayer']),
                                                      FieldAttr('private'),
                                                      JsonAttr('count', lambda notification: len(notification.cards))]).inheritFrom(Notification),
-                      JsonConfig(RevealNotification, [FieldAttr('zoneType', field='zoneType.name')]).inheritFrom(CardsNotification)
+                      JsonConfig(RevealNotification, [FieldAttr('zone')]).inheritFrom(CardsNotification),
+                      (Zone, [FieldAttr('zoneType', field='zoneType.name'),
+                              FieldAttr('playerName', field='player.name'),
+                              JsonAttr('isYou', IsForYou, args=['currentPlayer'])])
                       ]
