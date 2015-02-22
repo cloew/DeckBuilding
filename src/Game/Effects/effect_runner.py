@@ -1,5 +1,15 @@
 import inspect
 
+def RunCoroutineOrFunction(fn, *args):
+    """ Run the given Coroutine or function """
+    if inspect.isgeneratorfunction(fn):
+        coroutine = fn(*args)
+        response = yield coroutine.next()
+        while True:
+            response = yield coroutine.send(response)
+    else:
+        fn(*args)
+
 def PerformEffectsForEachPlayer(effects, players, context, failedEffects=[]):
     """ Perform the given effects """
     for player in players:
@@ -28,10 +38,7 @@ def PerformEffects(effects, context, effectTypesToIgnore=[]):
 
 def PerformEffect(effect, context):
     """ Perform the given effect """
-    if inspect.isgeneratorfunction(effect.perform):
-        coroutine = effect.perform(context)
-        response = yield coroutine.next()
-        while True:
-            response = yield coroutine.send(response)
-    else:
-        effect.perform(context)
+    coroutine = RunCoroutineOrFunction(effect.perform, context)
+    response = yield coroutine.next()
+    while True:
+        response = yield coroutine.send(response)

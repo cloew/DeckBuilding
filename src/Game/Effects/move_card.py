@@ -1,3 +1,4 @@
+from Game.Effects.effect_runner import RunCoroutineOrFunction
 from Game.Effects.Conditions.Filters.cards_finder import CardsFinder
 
 class MoveCard:
@@ -15,7 +16,13 @@ class MoveCard:
         toZone = context.loadZone(self.toZoneType)
         
         self.moveCards(fromZone, toZone)
-        self.afterMove(context, fromZone, toZone)
+        coroutine = RunCoroutineOrFunction(self.afterMove, context, fromZone, toZone)
+        try:
+            response = yield coroutine.next()
+            while True:
+                response = yield coroutine.send(response)
+        except StopIteration:
+            pass
         self.addNotification(context, fromZone, toZone)
         
     def moveCards(self, fromZone, toZone):
