@@ -1,0 +1,8 @@
+<div class="card-fan">
+    <ul style="width: {{78 + (cards.length-1)*10}}px">
+        <li ng-repeat="card in cards" style="z-index: {{cards.length-$index}}; left: {{$index*10}}px">
+            <action-card card="card" size="size" ng-if="public"></action-card>
+            <card-bg size="size" ng-if="!public">
+        </li>
+    </ul>
+</div>

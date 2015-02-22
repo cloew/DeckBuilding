@@ -189,6 +189,20 @@ angular.module('DeckBuildingDirectives', ["DeckBuildingServices", "kao.select"])
           },
           templateUrl: 'static/partials/directives/Card/card_list.html'
       }})
+      .directive('cardFan', function() {
+      return {
+          restrict: 'E',
+          replace: 'true',
+          scope: {
+              cards: '=cards',
+              size: '@',
+              public: '=',
+          },
+          compile: function(element, attrs){
+            if (attrs.size === undefined) { attrs.size = 'medium'; }
+          },
+          templateUrl: 'static/partials/directives/Card/card_fan.html'
+      }})
       .directive('availableCards', function() {
       return {
           restrict: 'E',

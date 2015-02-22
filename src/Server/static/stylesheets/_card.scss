@@ -26,3 +26,20 @@ $full-char-width: 284px;
     @include bg-image($full-char-width, $full-char-height);
     margin: 0px;
 }
+
+.card-fan {
+    ul {
+        position: relative;
+        margin: 0px;
+        padding: 0px;
+    }
+    li {
+        display: inline-block;
+        list-style-type: none;
+        position: absolute;
+    }
+    li:first-child {
+        position: relative;
+        left: 0px;
+    }
+}

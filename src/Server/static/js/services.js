@@ -418,6 +418,11 @@ services.factory('CardsNotificationFactory', function(StandardNotificationFactor
         result.count = notification.count;
         result.canSeeCards = notification.isYou || !notification.private;
         result.hidden = !result.canSeeCards;
+        if (result.hidden) {
+            for (var i = 0; i < result.count; i++) {
+                result.cards.push(undefined);
+            }
+        }
         if (!result.canSeeCards) {
             result.message = getCardsText(result, notification);
         }
