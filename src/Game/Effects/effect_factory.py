@@ -90,7 +90,7 @@ EffectFactory = TypedFactory('type', {"ACTIVATE_CHARACTER":Factory(ActivateChara
                                       "DISCARD":Factory(Discard, [ZoneTypeParameter("zone")]),
                                       "DRAW":Factory(Draw, [PrimitiveParameter("count")]),
                                       "DRAW_UNTIL":Factory(DrawUntil, [PrimitiveParameter("cost")]),
-                                      "GAIN_CARD":Factory(GainCard, [ZoneTypeParameter("from"), ZoneTypeParameter("to", optional=True)]),
+                                      "GAIN_CARD":Factory(GainCard, [ZoneTypeParameter("from"), ZoneTypeParameter("to", optional=True), FilterParameter(optional=True)]),
                                       "GAIN_POWER":Factory(GainPower, [PrimitiveParameter("power")]),
                                       "GAIN_POWER_FOR_COST":Factory(GainPowerForCost, [ZoneTypeParameter("zone")]),
                                       "GAIN_POWER_FROM_ANOTHER_CARD":Factory(GainPowerFromAnotherCard, [ZoneTypeParameter("zone")]),

@@ -9,20 +9,15 @@ from Game.Zones.zone_types import DISCARD_PILE
 class GainCard(MoveCard):
     """ Represents an effect to Gain a card """
     
-    def __init__(self, fromZoneType, toZoneType=DISCARD_PILE, notificationType=GAINED_CARD):
+    def __init__(self, fromZoneType, toZoneType=None, filter=None, notificationType=GAINED_CARD):
         """ Initialize the Effect with the card to remove from play before discarding """
         if toZoneType is None:
            toZoneType = DISCARD_PILE 
         self.notificationType = notificationType
-        MoveCard.__init__(self, fromZoneType, toZoneType)
+        MoveCard.__init__(self, fromZoneType, toZoneType, filter=filter)
         
-    def perform(self, context):
-        """ Perform the Game Effect """
-        MoveCard.perform(self, context)
-        
-        fromZone = context.loadZone(self.fromZoneType)
-        toZone = context.loadZone(self.toZoneType)
-        
+    def afterMove(self, context, fromZone, toZone):
+        """ Perform any actions after the move """
         for card in fromZone:
             coroutine = self.callOnGainEffects(card, toZone, context)
             try:
@@ -39,7 +34,6 @@ class GainCard(MoveCard):
             except StopIteration:
                 pass
             context.owner.gainedCards.append(card)
-        context.addNotification(CardsNotification(self.notificationType, context.player, list(fromZone), private=self.isPrivate(fromZone, toZone)))
         
     def callOnGainEffects(self, card, toZone, context):
         """ Call the cards gained effects and send the gained event """
@@ -59,6 +53,10 @@ class GainCard(MoveCard):
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)
+        
+    def getNotification(self, context, fromZone, toZone):
+        """ Return the notification to use for the movement """
+        return CardsNotification(self.notificationType, context.player, list(fromZone), private=self.isPrivate(fromZone, toZone))
             
     def isPrivate(self, fromZone, toZone):
         """ Return if the gained card event is private """
