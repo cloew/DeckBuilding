@@ -2419,7 +2419,8 @@
             "cost":7},
     "points":{"type":"FIXED",
               "points":2},
-    "playEffects":[{"type":"PER_MATCH",
+    "playEffects":[{"type":"GAIN_CARD",
+                    "from":"LINE_UP",
                     "filter":{"type":"INTERSECTION",
                               "filters":[{"type":"COMPARISON",
                                           "criteria":{"type":"FIXED",
@@ -2432,10 +2433,7 @@
                                                       "field":"cost",
                                                       "operation":"<=",
                                                       "value":7},
-                                          "zone":"LINE_UP"}]},
-                    "zone":"LINE_UP",
-                    "effects":[{"type":"GAIN_CARD",
-                                "from":"EVENT"}]}]
+                                          "zone":"LINE_UP"}]}}]
 },
 {
     "id":"Deck 1 - Punch",
