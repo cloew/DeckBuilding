@@ -4,10 +4,10 @@ from zone_types import CHARACTER
 class CharacterZone(Zone):
     """ Represents a Character Zone """
     
-    def __init__(self, character):
+    def __init__(self, character, player):
         """ Initialize the zone """
         self.character = character
-        Zone.__init__(self, character, zoneType=CHARACTER)
+        Zone.__init__(self, character, player, zoneType=CHARACTER)
         
     def add(self, card):
         """ Add the given card to the zone """

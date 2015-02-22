@@ -4,9 +4,10 @@ from kao_decorators import proxy_for
 class Zone:
     """ Represents a potential zone """
     
-    def __init__(self, zoneObject, zoneType=None):
+    def __init__(self, zoneObject, player, zoneType=None):
         """ Initialize the zone """
         self.zone = zoneObject
+        self.player = player
         self.zoneType = zoneType
         
     def add(self, card):

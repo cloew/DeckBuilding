@@ -3,7 +3,7 @@ from zone import Zone
 class EventZone(Zone):
     """ Represents a potential zone """
     
-    def __init__(self, event):
+    def __init__(self, event, player):
         """ Initialize the zone """
         zoneType = None
         self.event = event
@@ -11,9 +11,4 @@ class EventZone(Zone):
             zoneType = event.fromZone.zoneType
         elif hasattr(event, "zones") and event.zones is not None and len(event.zones) > 0:
             zoneType = event.zones[0].zoneType
-        Zone.__init__(self, event, zoneType=zoneType)
-        
-    @property
-    def player(self):
-        """ Return the current player """
-        return self.event.player
+        Zone.__init__(self, event, player, zoneType=zoneType)

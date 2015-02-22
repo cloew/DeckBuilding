@@ -3,10 +3,10 @@ from zone import Zone
 class DeckZone(Zone):
     """ Represents a Deck that can be used as a Zone """
     
-    def __init__(self, deck, zoneType=None):
+    def __init__(self, deck, player, zoneType=None):
         """ Initialize the Deck Zone """
         self.deck = deck
-        Zone.__init__(self, deck, zoneType=zoneType)
+        Zone.__init__(self, deck, player, zoneType=zoneType)
         
     def add(self, card):
         """ Add the given card to the zone """
