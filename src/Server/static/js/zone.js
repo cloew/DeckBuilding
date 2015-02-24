@@ -23,12 +23,12 @@
                               "PLAYED":function(zone) {return "Played"},
                               "SUPERVILLAIN":function(zone) {return "Super Villain"},
                               "UNDER_CHARACTER":function(zone) {return "Under " + getPlayerHeader(zone) + " " + "Character"},
-                              "WEAKNESS":function(zone) {return "Weakness"},}
+                              "WEAKNESS":function(zone) {return "Weakness"},};
             return {getName: function(zone) {
-                    var nameRetriever = zoneToName[zone.zoneType];
-                    return (nameRetriever && nameRetriever(zone)) || 'Unknown';
-                }
-            }
+                        var nameRetriever = zoneToName[zone.zoneType];
+                        return (nameRetriever && nameRetriever(zone)) || 'Unknown';
+                    }
+            };
         })
         .directive('zoneName', function() {
             return {
