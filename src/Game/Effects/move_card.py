@@ -1,13 +1,19 @@
 from Game.Effects.effect_runner import RunCoroutineOrFunction
 from Game.Effects.Conditions.Filters.cards_finder import CardsFinder
+from Game.Notifications.movement_notification import MovementNotification
+from Game.Notifications.notification_types import MOVED_CARD
+
+from kao_decorators import smart_defaults
 
 class MoveCard:
     """ Represents an effect to Move a Card """
     
-    def __init__(self, fromZoneType, toZoneType, filter=None):
+    @smart_defaults('notificationType')
+    def __init__(self, fromZoneType, toZoneType, filter=None, notificationType=MOVED_CARD):
         """ Initialize the Effect """
         self.fromZoneType = fromZoneType
         self.toZoneType = toZoneType
+        self.notificationType = notificationType
         self.cardsFinder = CardsFinder(fromZoneType, filter)
         
     def perform(self, context):
@@ -38,7 +44,7 @@ class MoveCard:
         
     def getNotification(self, context, fromZone, toZone):
         """ Return the notification to use for the movement """
-        return None
+        return MovementNotification(self.notificationType, context.player, fromZone, toZone)
         
     def afterMove(self, context, fromZone, toZone):
         """ Perform any actions after the move """

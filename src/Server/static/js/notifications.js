@@ -36,8 +36,8 @@
                     "END_TURN":"STANDARD",
                     "START_TURN":"STANDARD",
                     "DEFENDED":"CARDS",
+                    "MOVED_CARD":"MOVEMENT",
                     "BOUGHT_CARD":"MOVEMENT",
-                    "GAINED_CARD":"MOVEMENT",
                     "REVEAL":"REVEAL"};
         })
         .factory('notificationMessages', function() {

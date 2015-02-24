@@ -2,19 +2,17 @@ from Game.Effects.effect_runner import PerformEffects
 from Game.Effects.move_card import MoveCard
 from Game.Events.cards_event import CardsEvent
 from Game.Events.gained_card_event import GainedCardEvent
-from Game.Notifications.movement_notification import MovementNotification
-from Game.Notifications.notification_types import GAINED_CARD
 from Game.Zones.zone_types import DISCARD_PILE
+
+from kao_decorators import smart_defaults
 
 class GainCard(MoveCard):
     """ Represents an effect to Gain a card """
     
-    def __init__(self, fromZoneType, toZoneType=None, filter=None, notificationType=GAINED_CARD):
+    @smart_defaults('toZoneType')
+    def __init__(self, fromZoneType, toZoneType=DISCARD_PILE, filter=None, notificationType=None):
         """ Initialize the Effect with the card to remove from play before discarding """
-        if toZoneType is None:
-           toZoneType = DISCARD_PILE 
-        self.notificationType = notificationType
-        MoveCard.__init__(self, fromZoneType, toZoneType, filter=filter)
+        MoveCard.__init__(self, fromZoneType, toZoneType, filter=filter, notificationType=notificationType)
         
     def afterMove(self, context, fromZone, toZone):
         """ Perform any actions after the move """
@@ -53,7 +51,3 @@ class GainCard(MoveCard):
         response = yield coroutine.next()
         while True:
             response = yield coroutine.send(response)
-        
-    def getNotification(self, context, fromZone, toZone):
-        """ Return the notification to use for the movement """
-        return MovementNotification(self.notificationType, context.player, fromZone, toZone)
