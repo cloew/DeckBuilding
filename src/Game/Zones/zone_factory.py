@@ -1,3 +1,4 @@
+from bottom_of_deck_zone import BottomOfDeckZone
 from character_zone import CharacterZone
 from deck_zone import DeckZone
 from deck_with_discard_pile_zone import DeckWithDiscardPileZone
@@ -20,6 +21,8 @@ class ZoneFactory:
             return CharacterZone(game.currentTurn.player.character, player)
         elif zoneType == zone_types.DECK:
             return DeckWithDiscardPileZone(player.deck, player, zoneType=zone_types.DECK)
+        elif zoneType == zone_types.BOTTOM_OF_DECK:
+            return BottomOfDeckZone(player.deck, player, zoneType=zone_types.BOTTOM_OF_DECK)
         if zoneType == zone_types.DESTROYED:
             return DeckZone(game.destroyedDeck, player, zoneType=zone_types.DESTROYED)
         elif zoneType == zone_types.DISCARD_PILE:
@@ -36,6 +39,8 @@ class ZoneFactory:
             return Zone(game.lineUp, player, zoneType=zone_types.LINE_UP)
         elif zoneType == zone_types.MAIN_DECK:
             return DeckZone(game.mainDeck, player, zoneType=zone_types.MAIN_DECK)
+        elif zoneType == zone_types.BOTTOM_OF_MAIN_DECK:
+            return BottomOfDeckZone(game.mainDeck, player, zoneType=zone_types.BOTTOM_OF_MAIN_DECK)
         elif zoneType == zone_types.ONGOING:
             return ListZone(player.ongoing, player, zoneType=zone_types.ONGOING)
         elif zoneType == zone_types.PLAYED:
