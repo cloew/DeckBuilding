@@ -316,9 +316,9 @@
                                      "number":1,
                                      "to":"put on bottom of your deck",
                                      "zones":["HAND"],
-                                     "then":[{"type":"PUT_ON_BOTTOM",
+                                     "then":[{"type":"MOVE_CARD",
                                               "from":"EVENT",
-                                              "to":"DECK"},
+                                              "to":"BOTTOM_OF_DECK"},
                                              {"type":"DRAW",
                                               "count":1}]}]}
 }

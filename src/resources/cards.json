@@ -3361,9 +3361,9 @@
                              "then":[{"type":"GAIN_CARD",
                                       "from":"EVENT",
                                       "to":"HAND"}],
-                             "leftoverCardEffects":[{"type":"PUT_ON_BOTTOM",
+                             "leftoverCardEffects":[{"type":"MOVE_CARD",
                                                      "from":"EVENT",
-                                                     "to":"MAIN_DECK"}]}]}],
+                                                     "to":"BOTTOM_OF_MAIN_DECK"}]}]}],
     "onAppearance":[{"type":"ATTACK_EACH_FOE",
                      "effects":[{"type":"PICK_CARDS",
                                  "number":1,
@@ -3742,8 +3742,8 @@
                     "number":2,
                     "to":"put on the bottom of your deck",
                     "zones":["DISCARD_PILE"],
-                    "then":[{"type":"PUT_ON_BOTTOM",
+                    "then":[{"type":"MOVE_CARD",
                              "from":"EVENT",
-                             "to":"DECK"}]}]
+                             "to":"BOTTOM_OF_DECK"}]}]
 }
 ]
