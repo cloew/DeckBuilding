@@ -47,8 +47,15 @@ class Game:
         
     def endTurn(self):
         """ End the turn """
-        self.currentTurn.cleanup()
         self.notificationTracker.append(Notification(END_TURN, self.currentTurn.player))
+        coroutine = self.currentTurn.cleanup()
+        try:
+            response = yield coroutine.next()
+            while True:
+                response = yield coroutine.send(response)
+        except StopIteration:
+            pass
+        
         self.lineUp.refill()
         self.superVillainStack.refill()
         

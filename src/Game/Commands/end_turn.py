@@ -13,4 +13,10 @@ class EndTurn(Command):
         
     def perform(self):
         """ Perform the command """
-        self.game.endTurn()
+        coroutine = self.game.endTurn()
+        try:
+            response = yield coroutine.next()
+            while True:
+                response = yield coroutine.send(response)
+        except StopIteration:
+            pass

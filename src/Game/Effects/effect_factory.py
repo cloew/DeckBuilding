@@ -3,6 +3,7 @@ from Game.Card.Cost.fixed_cost import FixedCost
 from Game.Effects.activate_character import ActivateCharacter
 from Game.Effects.add_activatable import AddActivatable
 from Game.Effects.add_cost_modifier import AddCostModifier
+from Game.Effects.add_played_cleanup import AddPlayedCleanup
 from Game.Effects.add_to_line_up import AddToLineUp
 from Game.Effects.add_trigger import AddTrigger
 from Game.Effects.as_next_player import AsNextPlayer
@@ -44,8 +45,6 @@ from Game.Effects.play import Play
 from Game.Effects.play_or_have_played import PlayOrHavePlayed
 from Game.Effects.for_all_play_or_have_played import ForAllPlayOrHavePlayed
 from Game.Effects.play_or_have_played_another import PlayOrHavePlayedAnother
-from Game.Effects.put_on_bottom import PutOnBottom
-from Game.Effects.put_on_bottom_cleanup import PutOnBottomCleanup
 from Game.Effects.reveal import Reveal
 from Game.Effects.shuffle_and_deal import ShuffleAndDeal
 from Game.Effects.spend_power import SpendPower
@@ -101,8 +100,6 @@ EffectFactory = TypedFactory('type', {"ACTIVATE_CHARACTER":Factory(ActivateChara
                                       "PASS_CARDS":Factory(PassCards, [ZoneTypeParameter("zone")]),
                                       "PLAY":Factory(Play, [ZoneTypeParameter("zone"), ZoneTypeParameter("returnTo", optional=True)]),
                                       "POWER_MOD":Factory(ChangePowerModifier, [PrimitiveParameter("modifier")]),
-                                      "PUT_ON_BOTTOM":Factory(PutOnBottom, [ZoneTypeParameter("from"), ZoneTypeParameter("to")]),
-                                      "PUT_ON_BOTTOM_CLEANUP":Factory(PutOnBottomCleanup, []),
                                       "REVEAL":Factory(Reveal, [ZoneTypeParameter("zone")]),
                                       "SHUFFLE_AND_DEAL":Factory(ShuffleAndDeal, []),
                                       "SPEND_POWER":Factory(SpendPower, [PrimitiveParameter("power")]),
@@ -110,6 +107,7 @@ EffectFactory = TypedFactory('type', {"ACTIVATE_CHARACTER":Factory(ActivateChara
                                       
 OptionFactory = Factory(Option, [PrimitiveParameter("description"), ComplexParameter("effects", EffectFactory.loadAll), ComplexParameter("condition", ConditionFactory.load, optional=True)])
 
+EffectFactory.addFactory("ADD_PLAYED_CLEANUP", Factory(AddPlayedCleanup, [ComplexParameter("then", EffectFactory.loadAll)]))
 EffectFactory.addFactory("AS_NEXT_PLAYER", Factory(AsNextPlayer, [ComplexParameter("then", EffectFactory.loadAll)]))
 EffectFactory.addFactory("AS_PLAYER_WITH_HIGHEST_COST", Factory(AsPlayerWithHighestCost, [ZoneTypeParameter("zone"), ComplexParameter("then", EffectFactory.loadAll)]))
 EffectFactory.addFactory("AS_ONLY_PLAYER_WITH_HIGHEST_COST", Factory(AsOnlyPlayerWithHighestCost, [ComplexParameter("then", EffectFactory.loadAll)]))
