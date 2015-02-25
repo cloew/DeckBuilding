@@ -2470,7 +2470,10 @@
               "points":4},
     "playEffects":[{"type":"GAIN_POWER",
                     "power":3},
-                   {"type":"PUT_ON_BOTTOM_CLEANUP"}]
+                   {"type":"ADD_PLAYED_CLEANUP",
+                    "then":[{"type":"MOVE_CARD",
+                             "from":"EVENT",
+                             "to":"BOTTOM_OF_DECK"}]}]
 },
 {
     "id":"Raven",
