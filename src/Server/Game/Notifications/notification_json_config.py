@@ -7,9 +7,16 @@ from Game.Notifications.movement_notification import MovementNotification
 from Game.Notifications.notification import Notification
 from Game.Notifications.reveal_notification import RevealNotification
 
-def IsForYou(object, currentPlayer):
+def GetPlayer(notification):
     """ Return if the notification is for the current player """
-    return object.player is currentPlayer
+    if notification.player:
+        return {'name':notification.player.name}
+    else:
+        return None
+    
+def IsForYou(notification, currentPlayer):
+    """ Return if the notification is for the current player """
+    return notification.player is currentPlayer
     
 def GetCards(notification, currentPlayer):
     """ Return the notification cards if they should be visible """
@@ -20,7 +27,7 @@ def GetCards(notification, currentPlayer):
 
 notificationConfig = [(Notification, [FieldAttr('type', field='notificationType'),
                                       JsonAttr('id', lambda notification, game: game.notificationTracker.indexOf(notification)+1, args=['game']),
-                                      FieldAttr('name', field='player.name'),
+                                      JsonAttr('player', GetPlayer),
                                       JsonAttr('isYou', IsForYou, args=['currentPlayer'])]),
                       JsonConfig(CardsNotification, [JsonAttr('cards', GetCards, args=['currentPlayer']),
                                                      FieldAttr('private'),

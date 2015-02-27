@@ -35,6 +35,7 @@
             return {"HIT_BY_ATTACK":"STANDARD",
                     "END_TURN":"STANDARD",
                     "START_TURN":"STANDARD",
+                    "ATTACKED":"CARDS",
                     "DEFENDED":"CARDS",
                     "MOVED_CARD":"MOVEMENT",
                     "BOUGHT_CARD":"MOVEMENT",
@@ -51,7 +52,7 @@
                 if (notification.isYou) {
                     return typeToData[notification.type].forYou;
                 } else {
-                    return notification.name + typeToData[notification.type].forOthers;
+                    return notification.player.name + typeToData[notification.type].forOthers;
                 }}};
         })
         .directive('notifications', function() {

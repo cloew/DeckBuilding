@@ -6,7 +6,7 @@ from Game.Events.defend_event import DefendEvent
 
 from Game.Notifications.cards_notification import CardsNotification
 from Game.Notifications.notification import Notification
-from Game.Notifications.notification_types import DEFENDED, HIT_BY_ATTACK
+from Game.Notifications.notification_types import ATTACKED, DEFENDED, HIT_BY_ATTACK
 from Game.Zones.zone_types import HAND
 
 class Attack:
@@ -18,6 +18,7 @@ class Attack:
         
     def perform(self, context):
         """ Perform the Game Effect """
+        context.addNotification(CardsNotification(ATTACKED, context.player, [context.parent]))
         coroutine = self.requestDefenses(context)
         try:
             response = yield coroutine.next()
