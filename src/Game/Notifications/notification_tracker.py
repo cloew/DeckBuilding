@@ -31,4 +31,4 @@ class NotificationTracker:
             self.hierarchy.append(notification)
             yield
         finally:
-            self.hierarchy.remove(notification)
+            self.hierarchy.pop()
