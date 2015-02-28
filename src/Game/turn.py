@@ -11,7 +11,10 @@ from Game.Notifications.notification import Notification
 from Game.Notifications.notification_types import START_TURN
 
 from coroutine_helper import RunCoroutineOrFunction
+from kao_decorators import proxy_for
 
+@proxy_for("powerTracker", ["gainPower", "spendPower", "changeModifier", "getPowerForCard"])
+@proxy_for("ongoingEffects", ["registerTrigger", "unregisterTrigger", "registerActivatable", "unregisterActivatable", "addOngoingEffects"])
 class Turn:
     """ Represents a turn in the game """
     
@@ -20,17 +23,7 @@ class Turn:
         self.player = player
         self.game = game
         self.powerTracker = PowerTracker()
-        self.gainPower = self.powerTracker.gainPower
-        self.spendPower = self.powerTracker.spendPower
-        self.changeModifier = self.powerTracker.changeModifier
-        self.getPowerForCard = self.powerTracker.getPowerForCard
-        
         self.ongoingEffects = OngoingEffects()
-        self.registerTrigger = self.ongoingEffects.registerTrigger
-        self.unregisterTrigger = self.ongoingEffects.unregisterTrigger
-        self.registerActivatable = self.ongoingEffects.registerActivatable
-        self.unregisterActivatable = self.ongoingEffects.unregisterActivatable
-        self.addOngoingEffects = self.ongoingEffects.addOngoingEffects
         
         self.playedCards = []
         self.gainedCards = []
