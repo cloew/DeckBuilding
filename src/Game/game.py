@@ -16,7 +16,9 @@ from Game.Results.game_results import GameResults
 from Game.Results.vp_player_results import VPPlayerResults
 
 from kao_deck.deck import Deck
+from kao_decorators import proxy_for
 
+@proxy_for("cardIdManager", ["getCardFromId"])
 class Game:
     """ Represents a game of the Deck Building Game """
     LINE_UP_SIZE = 5
@@ -31,7 +33,6 @@ class Game:
         self.destroyedDeck = Deck()
         self.superVillainStack = SuperVillainStack(superVillainDeck)
         self.cardIdManager = CardIdManager(self)
-        self.getCardFromId = self.cardIdManager.getCardFromId
         
         self.lineUp = LineUp(self.mainDeck)
         
