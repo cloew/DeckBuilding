@@ -26,9 +26,10 @@ def GetCards(notification, currentPlayer):
         return []
 
 notificationConfig = [(Notification, [FieldAttr('type', field='notificationType'),
-                                      JsonAttr('id', lambda notification, game: game.notificationTracker.indexOf(notification)+1, args=['game']),
+                                      FieldAttr('id'),
                                       JsonAttr('player', GetPlayer),
-                                      JsonAttr('isYou', IsForYou, args=['currentPlayer'])]),
+                                      JsonAttr('isYou', IsForYou, args=['currentPlayer']),
+                                      FieldAttr('notifications')]),
                       JsonConfig(CardsNotification, [JsonAttr('cards', GetCards, args=['currentPlayer']),
                                                      FieldAttr('private'),
                                                      JsonAttr('count', lambda notification: len(notification.cards))]).inheritFrom(Notification),

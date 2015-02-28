@@ -1,6 +1,8 @@
 from Game.player_order_helper import GetPlayersStartingWith, GetNextPlayer, GetPreviousPlayer
 from Game.Zones.zone_factory import ZoneFactory
 
+from contextlib import contextmanager
+
 class Context:
     """ Represents a Game Context """
     
@@ -24,6 +26,12 @@ class Context:
     def addNotification(self, notification):
         """ Add a Game Notification """
         return self.notificationTracker.append(notification)
+    
+    @contextmanager
+    def pushNotification(self, notification):
+        """ Push a Game Notification onto the hierarchy """
+        with self.notificationTracker.push(notification):
+            yield
     
     def loadZone(self, zoneType):
         """ Load the given zone using this context """
