@@ -35,8 +35,7 @@ class GainCard(MoveCard):
         
     def callOnGainEffects(self, card, toZone, context):
         """ Call the cards gained effects and send the gained event """
-        context = context.copy()
-        context.parent = card
+        context = context.copy(parent=card)
         event = CardsEvent([card], toZone, context)
         coroutine = PerformEffects(card.onGainEffects, event.context)
         response = yield coroutine.next()
@@ -45,8 +44,7 @@ class GainCard(MoveCard):
         
     def sendGainedEvent(self, card, context):
         """ Call the cards gained effects and send the gained event """
-        context = context.copy()
-        context.parent = card
+        context = context.copy(parent=card)
         coroutine = context.sendEvent(GainedCardEvent(card, context))
         response = yield coroutine.next()
         while True:

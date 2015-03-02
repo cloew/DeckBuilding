@@ -8,8 +8,7 @@ class CardsEvent:
         self.cards = list(cards)
         self.fromZone = fromZone
         
-        self.context = context.copy()
-        self.context.event = self
+        self.context = context.copy(event=self)
     
     def add(self, card):
         """ Add the card from the deck """

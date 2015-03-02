@@ -1,4 +1,4 @@
-from Game.Effects.game_contexts import SystemContext
+from Game.Context.system_context import SystemContext
 from Game.Effects.effect_runner import PerformEffects
 
 class SuperVillainStack:

@@ -5,8 +5,7 @@ class MultiZoneEvent:
     def __init__(self, zones, context):
         """ Initialize the Cards Event with the cards and where they came from """
         self.zones = zones
-        self.context = context.copy()
-        self.context.event = self
+        self.context = context.copy(event=self)
         
     def remove(self, card):
         """ Remove the card from the deck """

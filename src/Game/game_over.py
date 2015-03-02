@@ -1,4 +1,4 @@
-from Game.Effects.game_contexts import PlayerContext
+from Game.Context.player_context import PlayerContext
 from Game.Effects.Conditions.full_line_up import FullLineUp
 from Game.Effects.Conditions.has_cards import HasCards
 from Game.Effects.Conditions.not_condition import NotCondition

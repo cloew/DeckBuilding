@@ -5,7 +5,7 @@ from Game.Commands.Requirements.current_player import CurrentPlayer
 from Game.Commands.Requirements.index_in_zone import IndexInZone
 from Game.Commands.Requirements.no_request import NoRequest
 
-from Game.Effects.game_contexts import PlayerContext
+from Game.Context.player_context import PlayerContext
 
 class ActivateCard(Command):
     """ Represents a command to activate a card """

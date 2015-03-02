@@ -8,8 +8,7 @@ class CardEvent:
         """ Initialize the Played Card Event with the card that got played """
         self.card = card
         
-        self.context = context.copy()
-        self.context.event = self
+        self.context = context.copy(event=self)
         
     def __len__(self):
         """ Return the iterator for the event when it is used as a source """

@@ -1,7 +1,7 @@
 from power_tracker import PowerTracker
 from ongoing_effects import OngoingEffects
 
-from Game.Effects.game_contexts import PlayerContext
+from Game.Context.player_context import PlayerContext
 from Game.Effects.effect_runner import PerformEffects
 from Game.Events.played_card_event import PlayedCardEvent
 from Game.Events.start_of_turn_event import StartOfTurnEvent

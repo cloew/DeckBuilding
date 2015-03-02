@@ -1,6 +1,6 @@
 from game_events import START_OF_TURN
 
-from Game.Effects.game_contexts import PlayerContext
+from Game.Context.player_context import PlayerContext
 
 class StartOfTurnEvent:
     """ Represnts the event for the Start of a Turn """

@@ -69,8 +69,7 @@ class Attack:
                 
     def attackTargets(self, context):
         """ Attack the Targets """
-        context = context.copy()
-        context.foes = self.targets
+        context = context.copy(foes=self.targets)
         coroutine = PerformEffects(self.thenEffects, context)
         response = yield coroutine.next()
         while True:

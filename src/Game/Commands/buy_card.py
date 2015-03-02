@@ -5,9 +5,9 @@ from Game.Commands.Requirements.current_player import CurrentPlayer
 from Game.Commands.Requirements.enough_power import EnoughPower
 from Game.Commands.Requirements.no_request import NoRequest
 
+from Game.Context.player_context import PlayerContext
 from Game.Effects.effect_runner import PerformEffect
 from Game.Effects.gain_card import GainCard
-from Game.Effects.game_contexts import PlayerContext
 from Game.Events.cards_event import CardsEvent
 from Game.Notifications.notification_types import BOUGHT_CARD
 from Game.Zones.zone_types import EVENT

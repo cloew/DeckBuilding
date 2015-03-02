@@ -1,4 +1,4 @@
-from Game.Effects.game_contexts import PlayerContext
+from Game.Context.player_context import PlayerContext
 from Game.Effects.effect_runner import PerformEffects
 
 class Card:

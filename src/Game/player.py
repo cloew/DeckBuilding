@@ -1,5 +1,5 @@
 from Game.Characters.character_factory import CharacterFactory
-from Game.Effects.game_contexts import PlayerContext
+from Game.Context.player_context import PlayerContext
 from Game.Effects.effect_runner import PerformEffects
 from Game.Events.cards_event import CardsEvent
 
