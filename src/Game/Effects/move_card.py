@@ -3,13 +3,13 @@ from Game.Effects.Conditions.Filters.cards_finder import CardsFinder
 from Game.Notifications.movement_notification import MovementNotification
 from Game.Notifications.notification_types import MOVED_CARD
 
-from kao_decorators import smart_defaults
+from smart_defaults import smart_defaults, EvenIfNone
 
 class MoveCard:
     """ Represents an effect to Move a Card """
     
-    @smart_defaults('notificationType')
-    def __init__(self, fromZoneType, toZoneType, filter=None, notificationType=MOVED_CARD):
+    @smart_defaults
+    def __init__(self, fromZoneType, toZoneType, filter=None, notificationType=EvenIfNone(MOVED_CARD)):
         """ Initialize the Effect """
         self.fromZoneType = fromZoneType
         self.toZoneType = toZoneType

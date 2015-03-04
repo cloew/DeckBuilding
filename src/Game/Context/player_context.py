@@ -2,9 +2,7 @@ from context import Context
 
 from Game.player_order_helper import GetPlayersStartingWith, GetNextPlayer, GetPreviousPlayer
 
-from kao_decorators import smart_defaults, Default
-
-CopyContextDefaults = [Default('parent', field='parent'), Default('event', field='event'), Default('foes', field='foes')]
+from smart_defaults import smart_defaults, ViaField
 
 def GetPlayerFoes(currentPlayer, players):
     """ Return the foes for the given player """
@@ -40,14 +38,18 @@ class PlayerContext(Context):
     @property
     def potentialPlayers(self):
         """ Return the players available in the current context """
-        return [self.player] + self.foes
+        return self.getPotentialPlayers(self.foes)
         
-    @smart_defaults(*CopyContextDefaults)
-    def copy(self, parent=None, event=None, foes=None):
+    def getPotentialPlayers(self, foes):
+        """ Return the players available in the current context """
+        return [self.player] + foes
+        
+    @smart_defaults
+    def copy(self, parent=ViaField("parent"), event=ViaField("event"), foes=ViaField("foes")):
         """ Copy the Context """
-        return PlayerContext(self.game, parent, event=event, player=self.player, foes=GetPlayerFoes(self.player, self.potentialPlayers))
+        return PlayerContext(self.game, parent, event=event, player=self.player, foes=GetPlayerFoes(self.player, self.getPotentialPlayers(foes)))
         
-    @smart_defaults(*CopyContextDefaults)
-    def getPlayerContext(self, player, parent=None, event=None, foes=None):
+    @smart_defaults
+    def getPlayerContext(self, player, parent=ViaField("parent"), event=ViaField("event"), foes=ViaField("foes")):
         """ Get the Context for the given player """
-        return PlayerContext(self.game, parent, event=event, player=player, foes=GetPlayerFoes(player, self.potentialPlayers))
+        return PlayerContext(self.game, parent, event=event, player=player, foes=GetPlayerFoes(player, self.getPotentialPlayers(foes)))

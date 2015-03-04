@@ -4,13 +4,13 @@ from Game.Events.cards_event import CardsEvent
 from Game.Events.gained_card_event import GainedCardEvent
 from Game.Zones.zone_types import DISCARD_PILE
 
-from kao_decorators import smart_defaults
+from smart_defaults import smart_defaults, EvenIfNone
 
 class GainCard(MoveCard):
     """ Represents an effect to Gain a card """
     
-    @smart_defaults('toZoneType')
-    def __init__(self, fromZoneType, toZoneType=DISCARD_PILE, filter=None, notificationType=None):
+    @smart_defaults
+    def __init__(self, fromZoneType, toZoneType=EvenIfNone(DISCARD_PILE), filter=None, notificationType=None):
         """ Initialize the Effect with the card to remove from play before discarding """
         MoveCard.__init__(self, fromZoneType, toZoneType, filter=filter, notificationType=notificationType)
         
