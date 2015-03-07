@@ -21,15 +21,16 @@ class MoveCard:
         fromZone = self.cardsFinder.findAsEvent(context)
         toZone = context.loadZone(self.toZoneType)
         
-        self.moveCards(fromZone, toZone)
-        coroutine = RunCoroutineOrFunction(self.afterMove, context, fromZone, toZone)
-        try:
-            response = yield coroutine.next()
-            while True:
-                response = yield coroutine.send(response)
-        except StopIteration:
-            pass
-        self.addNotification(context, fromZone, toZone)
+        if len(fromZone) > 0:
+            self.moveCards(fromZone, toZone)
+            coroutine = RunCoroutineOrFunction(self.afterMove, context, fromZone, toZone)
+            try:
+                response = yield coroutine.next()
+                while True:
+                    response = yield coroutine.send(response)
+            except StopIteration:
+                pass
+            self.addNotification(context, fromZone, toZone)
         
     def moveCards(self, fromZone, toZone):
         for card in list(fromZone):
